@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="life_main" extends="main" namespace="/life">
+		
+		<action name="index" class="com.fan1tuan.life.ui.struts2.core.LifeIndexAction">
+		    <result type="freemarker">/WEB-INF/ftls/local.ftl</result>
+		</action>
+		
+		<action name="express" class="com.fan1tuan.life.ui.struts2.core.LifeIndexAction">
+		    <result type="freemarker">/WEB-INF/ftls/express.ftl</result>
+		</action>
+		
+	    <!--  
+		<action name="orderTest" class="com.fan1tuan.order.ui.struts2.core.OrderTestAction">
+		    <result>/WEB-INF/jsps/order/order_test.jsp</result>
+		</action>
+		-->
+		
+	</package>
+	
+</struts>

@@ -1,0 +1,246 @@
+#content {
+    position: relative;
+}
+
+#content {
+    width: 67.8385%;
+}
+
+#content {
+    float: left;
+    width: 780px;
+}
+
+#page, #header, #content, #footer {
+    margin-left: auto;
+    margin-right: auto;
+}
+.my-comment-item {
+    background-color: #FFFFFF;
+    border: 1px solid #E4E4E4;
+    margin: 0 20px 20px 0;
+    position: relative;
+}
+.my-comment-item .comment-box .pic-box {
+    height: 160px;
+    left: 19px;
+    position: absolute;
+    top: 19px;
+    width: 160px;
+}
+.s160, .s160 a, .s160 span {
+    height: 160px;
+    width: 160px;
+}
+
+.pic {
+    overflow: hidden;
+}
+
+.s160 a, .s160 span {
+
+}
+
+.s160, .s160 a, .s160 span {
+    height: 160px;
+    width: 160px;
+}
+
+.pic a, .pic span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.pic a img, .pic span img {
+    vertical-align: middle;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+img {
+    border: 0 none;
+    vertical-align: middle;
+}
+
+fieldset, img {
+    border: 0 none;
+}
+
+.my-comment-item .comment-box .pic-box .g_price {
+    background: none repeat scroll 0 0 rgba(51, 51, 51, 0.4);
+    bottom: 0;
+    padding: 0 5px;
+    position: absolute;
+    right: 0;
+}
+
+.g_price {
+    font-family: arial;
+}
+
+.my-comment-item .comment-box .item-right {
+    min-height: 170px;
+    padding: 15px 19px 16px 211px;
+}
+
+.my-comment-item .comment-box .item-right .comment {
+    font-size: 14px;
+    line-height: 23px;
+    margin-bottom: 10px;
+    min-height: 46px;
+    overflow: hidden;
+}
+
+.c3 {
+    color: #333333;
+}
+
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.my-comment-item .comment-box .item-right .img-list {
+    height: 80px;
+    margin-bottom: 4px;
+    position: relative;
+}
+
+.clearfix {
+    display: block;
+}
+
+ul, ol {
+    list-style: none outside none;
+}
+
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.my-comment-item .comment-box .item-right .item-right-ft .date, .my-comment-item .comment-box .item-right .item-right-ft .add-comment {
+    display: block;
+    line-height: 30px;
+    margin-right: 10px;
+}
+
+.l-left, .floatleft {
+    float: left;
+}
+
+.c9 {
+    color: #999999;
+}
+
+.my-interact {
+    height: 30px;
+    width: 240px;
+}
+
+.l-right, .floatright {
+    float: right;
+}
+
+.item-right-ft .my-interact .tbc-btn-addalbum {
+    height: auto;
+}
+
+.my-interact .first-btn {
+    width: 34%;
+}
+
+.my-interact .btn {
+    background-color: #FBFBFB;
+    background-image: linear-gradient(to bottom, floralwhite, #F5F5F5);
+    background-repeat: repeat-x;
+    color: #666666;
+    display: block;
+    float: left;
+    text-align: center;
+    width: 33%;
+}
+
+.tbc-btn-addalbum {
+    color: #6F6F6F;
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.item-right-ft .my-interact .tbc-btn-addalbum .tbc-addalbum-border {
+
+}
+
+.my-interact .first-btn .tbc-addalbum-border, .my-interact .first-btn .border {
+    border-left: 1px solid #D2D2D2;
+}
+
+.my-interact .tbc-btn-addalbum .tbc-addalbum-border {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #D2D2D2 #D2D2D2 #D2D2D2 -moz-use-text-color;
+    border-image: none;
+    border-style: solid solid solid none;
+    border-width: 1px 1px 1px 0;
+    display: block;
+    height: 28px;
+    line-height: 28px;
+}
+
+.tbc-btn-addalbum .tbc-btn-addalbum-normal {
+    display: block;
+}
+
+.my-interact .btn .icon {
+    color: #C1C1C1;
+}
+
+.tbc-btn-addalbum .icon {
+    color: #C2C2C2;
+}
+
+.tbc-addalbum-iconfont {
+    font-family: tbcaddalbumiconfont;
+    font-size: 14px;
+    font-style: normal;
+}
+.my-interact .tbc-btn-addalbum .tbc-addalbum-border {
+    line-height: 28px;
+}
+
+.my-comment-item .cont {
+    border-top: 1px solid #E4E4E4;
+}
+
+element.style {
+    display: none;
+}
+
+.my-comment-item .cont .cont-bd {
+    padding: 10px 19px 5px;
+}
+
+.cont-bd {
+    padding-top: 10px;
+}
+
+.act-area-flat {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.2s ease 0s;
+}

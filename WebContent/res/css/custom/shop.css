@@ -1,0 +1,488 @@
+.icon-rst-rating.s10 {
+    background-position: 0 0;
+}
+
+.icon-rst-rating.s9 {
+     background-position: 0 -20px;
+ }
+
+.icon-rst-rating.s8 {
+    background-position: -20px 0;
+}
+
+.icon-rst-rating.s7 {
+    background-position: -20px -20px;
+}
+
+.icon-rst-rating.s6 {
+    background-position: -40px 0;
+}
+
+.icon-rst-rating.s5 {
+    background-position: -40px -20px;
+}
+
+.icon-rst-rating.s4 {
+    background-position: -60px 0px;
+}
+.icon-rst-rating.s3 {
+    background-position: -60px -20px;
+}
+
+.icon-rst-rating.s2 {
+    background-position: -80px 0px;
+}
+
+.icon-rst-rating.s1 {
+    background-position: -80px -20px;
+}
+
+.icon-rst-rating.s0 {
+    background-position: -100px 0px;
+}
+
+
+.icon-rst-rating {
+    background: url("../../img/rst-sprites.png?v=3") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 20px;
+    width: 100px;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+.rst-rating {
+    color: #F26432;
+    font-size: 16px;
+}
+
+.rst-header-detail {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 0 0 3px 3px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+
+.rst-header-dropdown {
+    -moz-box-sizing: border-box;
+    color: #666666;
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100px;
+    z-index: 10;
+}
+
+.group:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.rst-header-detail-block {
+    border-top: 1px solid #ECECEC;
+    padding: 15px 20px;
+}
+
+.rating-point {
+    float: left;
+    margin-right: 20px;
+    width: 75px;
+}
+
+
+.rating-point > .point {
+    color: #FF6C0F;
+    display: block;
+    font: 300 52px/1em "Helvetica Neue",arial,sans-serif;
+}
+
+.rating-point > a.comment {
+    color: #0088CC;
+}
+
+.rating-point > .comment {
+    color: #999999;
+    display: block;
+    font-size: 13px;
+    margin-top: 18px;
+    text-align: center;
+}
+
+
+.rating-diagram {
+    float: left;
+    width: 245px;
+}
+
+
+.rating-diagram > .diagram-item {
+    font-size: 12px;
+    line-height: 1.5em;
+}
+
+.rating-diagram .icon-star {
+    background: url("../../img/rst-sprites.png?v=3") no-repeat scroll 0 -70px rgba(0, 0, 0, 0);
+    height: 10px;
+    vertical-align: baseline;
+    width: 55px;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+
+.rating-diagram .bar {
+    background: none repeat scroll 0 0 #FF924A;
+    display: inline-block;
+    height: 10px;
+    margin: 0 5px;
+}
+
+
+.rating-diagram .icon-star.s4 {
+    background-position: -11px -70px;
+}
+
+.rating-diagram .icon-star.s3 {
+    background-position: -22px -70px;
+}
+
+
+.rating-diagram .icon-star.s2 {
+    background-position: -33px -70px;
+}
+
+
+.rating-diagram .icon-star.s1 {
+    background-position: -44px -70px;
+}
+
+
+.rst-cate-wrapper {
+    padding: 0;
+    position: relative;
+}
+
+div, p, td, th, li {
+    word-break: break-all;
+}
+
+.rst-cate-list:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.rst-cate-list > .cate-item {
+    color: #777777;
+    float: left;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    width: 25%;
+}
+
+
+.rst-cate-list .cate-name {
+    font-size: 20px;
+}
+
+a {
+    color: #0088CC;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.dish-cat-head {
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+
+.icon-rst-deliver {
+    background: url("../../img/rst-sprites.png?v=3") no-repeat scroll -120px -80px rgba(0, 0, 0, 0);
+    height: 16px;
+    margin-right: 10px;
+    width: 20px;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+
+.rst-mask {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+    display: none;
+    height: 100%;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 30;
+}
+
+.rst-drawer-wrapper.ui_slide_in {
+    left: 0;
+}
+
+.rst-drawer-wrapper {
+    background: none repeat scroll 0 0 #F9F9F9;
+    height: 100%;
+    left: -400px;
+    position: fixed;
+    top: 0;
+    width: 376px;
+    z-index: 31;
+}
+
+.group:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+
+.rst-drawer-rating {
+    background: none repeat scroll 0 0 #FFFFFF;
+    padding: 30px 20px;
+}
+
+.rst-drawer-rating > .rating-point {
+    margin-right: 10px;
+}
+
+.rating-point {
+    float: left;
+    margin-right: 20px;
+    width: 75px;
+}
+
+.rating-point > .point {
+    color: #FF6C0F;
+    display: block;
+    font: 300 52px/1em "Helvetica Neue",arial,sans-serif;
+}
+
+.rating-point > .comment {
+    color: #999999;
+    display: block;
+    font-size: 13px;
+    margin-top: 18px;
+    text-align: center;
+}
+
+.rst-drawer {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+    display: block;
+}
+
+.rst-drawer-header {
+    background: url("../../img/rst-drawer-bg.jpg") no-repeat scroll center center / cover  rgba(0, 0, 0, 0);
+    height: 182px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.rst-drawer-close {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+    color: #FFFFFF;
+    font-size: 18px;
+    height: 23px;
+    left: 335px;
+    position: absolute;
+    text-align: center;
+    top: 17px;
+    width: 19px;
+    z-index: 1;
+}
+
+.rst-drawer-dish {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+    bottom: 0;
+    color: #FFFFFF;
+    max-height: 162px;
+    overflow: hidden;
+    padding: 5px 20px 10px;
+    position: absolute;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.65);
+    width: 376px;
+}
+
+
+.rst-drawer-dish > .dish-name {
+    font-size: 24px;
+    line-height: 1em;
+}
+
+.rst-drawer-dish .dish-favor {
+    border: medium none;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.05);
+    display: inline-block !important;
+    height: 19px;
+    margin-left: 10px;
+    text-shadow: none;
+    top: 7px;
+    width: 19px;
+}
+
+.dish-favor {
+    background-color: #F8F8F8;
+    background-image: linear-gradient(to bottom, #FFFFFF, #F1F1F1);
+    border: 1px solid #AAAAAA;
+    border-radius: 2px;
+    color: #AAAAAA;
+    display: none;
+    font: 12px/20px "eleme";
+    height: 18px;
+    position: absolute;
+    text-align: center;
+    width: 18px;
+}
+
+.rst-drawer-dish > .dish-intro {
+    font-size: 12px;
+}
+
+.rst-drawer-comment {
+    border-top: 1px solid #E2E2E2;
+    padding: 0 20px;
+}
+
+.rst-drawer-cheader {
+    border-bottom: 1px solid #E2E2E2;
+    font: 16px/44px Arial,"Microsoft Yahei",sans-serif;
+    margin: 0;
+}
+
+.rst-drawer-checkbox {
+    color: #666666;
+    float: right;
+    font-size: 12px;
+}
+
+.rst-drawer-checkbox > .checkbox {
+    margin-right: 6px;
+}
+
+
+.rst-drawer-citem {
+    border-bottom: 1px solid #E2E2E2;
+    font-size: 12px;
+    padding: 15px 3px 5px;
+}
+
+.rst-drawer-citem > .cmt-info {
+    color: #999999;
+    margin-bottom: 5px;
+}
+
+.rst-drawer-citem > .cmt-info > .icon-d-star {
+    float: right;
+}
+
+.icon-d-star {
+    background: url("../../img/rst-sprites.png?v=3") no-repeat scroll 0 -40px rgba(0, 0, 0, 0);
+    height: 12px;
+    vertical-align: text-top;
+    width: 65px;
+}
+
+
+.icon-d-star.s9 {
+    background-position: 0px -55px;
+}
+
+.icon-d-star.s8 {
+    background-position: -13px -40px;
+}
+
+.icon-d-star.s7 {
+    background-position: -13px -55px;
+}
+
+.icon-d-star.s6 {
+    background-position: -26px -40px;
+}
+.icon-d-star.s5 {
+    background-position: -26px -55px;
+}
+
+.icon-d-star.s4 {
+    background-position: -39px -40px;
+}
+
+.icon-d-star.s3 {
+    background-position: -39px -55px;
+}
+
+.icon-d-star.s2 {
+    background-position: -52px -40px;
+}
+
+.icon-d-star.s1 {
+    background-position: -52px -55px;
+}
+
+
+.rst-drawer-helper {
+    color: #999999;
+    margin: 0;
+    padding: 15px 0;
+    text-align: center;
+}
+
+
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+.icon-rst-badge {
+    background: url("../../img/icon-badges.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 15px;
+    width: 15px;
+}
+.icon-rst-badge.invoice {
+    background-position: 0 -100px;
+}
+.rst-badge-item > .icon-rst-badge {
+    margin: 0 8px 0 -23px;
+}
+
+.icon-rst-badge.new-restaurant {
+    background-position: 0 -60px;
+}
+.icon-rst-badge.online-payment {
+    background-position: 0 -120px;
+}
+
+.rst-d-ordered {
+  background: none repeat scroll 0 0 #2888D1;
+  border-radius: 2px;
+  color: #FFFFFF;
+  font-size: 12px;
+  height: 16px;
+  line-height: 16px;
+  position: absolute;
+  text-align: center;
+  top: 24px;
+  width: 16px;
+}
