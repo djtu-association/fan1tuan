@@ -5,36 +5,7 @@
 <struts>
 	<package name="index_main" extends="main" namespace="/index">
 		
-		<!-- index -->
-		<action name="index" class="com.fan1tuan.general.ui.struts2.core.IndexAction" >
-			<result name="success" type="freemarker">/WEB-INF/ftls/index.ftl</result>
-			<result name="setArea" type="redirect">setArea.f1t</result>
-		</action>
 		
-		<!-- login/out signin register -->
-		<action name="login" class="com.fan1tuan.general.ui.struts2.core.SignAction" method="initLogin">
-			<result name="success" type="freemarker">/WEB-INF/ftls/signin.ftl</result>
-		</action>
-		
-		<action name="reg" class="com.fan1tuan.general.ui.struts2.core.SignAction" method="initReg">
-			<result name="success" type="freemarker">/WEB-INF/ftls/signin.ftl</result>
-		</action>
-		
-		<action name="signin" class="com.fan1tuan.general.ui.struts2.core.SignAction" >
-			<result name="success" type="freemarker">/WEB-INF/ftls/signin.ftl</result>
-		</action>
-		
-		<action name="setArea" class="com.fan1tuan.general.ui.struts2.core.SignAction" method="initSetArea">
-			<result name="success" type="freemarker">/WEB-INF/ftls/setArea.ftl</result>
-		</action>
-		
-		<action name="updateArea" class="com.fan1tuan.general.ui.struts2.core.SignAction" method="updateArea">
-			<result name="success" type="redirectAction">
-			    <param name="actionName">index</param>
-       			<param name="namespace">/index</param>
-			</result>
-			<interceptor-ref name="defaultStack"></interceptor-ref>
-		</action>
 		
 	</package>
 	
@@ -43,47 +14,8 @@
 	<package name="index_ajax" extends="main" namespace="/index/ajax">
 		
 		<!-- Ajax operation -->
-		<action name="dishrank" class="com.fan1tuan.general.ui.struts2.core.IndexAjaxAction" method="getDishRank">
-			<result name="success" type="jsonResult">
-			rankDishList,pageMap,dishGeo
-			</result>
-		</action>
 		
-		<action name="dishrankdefault" class="com.fan1tuan.general.ui.struts2.core.IndexAjaxAction" method="getDishRankDefault">
-			<result name="success" type="jsonResult">
-			rankDishList,pageMap,dishGeo
-			</result>
-		</action>
 		
-		<action name="dishranktag" class="com.fan1tuan.general.ui.struts2.core.IndexAjaxAction" method="getDishRankByTag">
-			<result name="success" type="jsonResult">
-			rankDishListByTag,pageMap,dishGeo
-			</result>
-		</action>
-			
-		<action name="shoprank_phone" class="com.fan1tuan.general.ui.struts2.core.IndexAjaxAction" method="getShopRankPhone">
-			<result name="success" type="jsonResult">
-            shopGeo,pageMap
-            </result>
-		</action>
-		
-		<action name="shoprank_phonedf" class="com.fan1tuan.general.ui.struts2.core.IndexAjaxAction" method="getShopRankPhoneDefault">
-			<result name="success" type="jsonResult">
-            shopGeo,pageMap
-            </result>
-		</action>
-		
-		<action name="shoprank_online" class="com.fan1tuan.general.ui.struts2.core.IndexAjaxAction" method="getShopRankOnLine">
-			<result name="success" type="jsonResult">
-			shopGeo,pageMap
-			</result>
-		</action>
-		
-		<action name="shoprank_onlinedf" class="com.fan1tuan.general.ui.struts2.core.IndexAjaxAction" method="getShopRankOnLineDefault">
-			<result name="success" type="jsonResult">
-			shopGeo,pageMap
-			</result>
-		</action>
 		
 		<action name="ajaxAddFavoriteShop" class="com.fan1tuan.general.ui.struts2.core.IndexAjaxAction" method="AjaxAddFavoriteShop">
 			<result name="success" type="jsonResult">ajaxResult</result>
@@ -97,21 +29,7 @@
 			<result name="success" type="jsonResult">dishes</result>
 		</action>
 		
-		<!-- login & register & logout -->
-		<action name="ajaxGetLogin" class="com.fan1tuan.general.ui.struts2.core.SignAction" method="getLogin">
-			<result name="success" type="jsonResult">loginFlag</result>
-			<result name="error" type="jsonResult">loginFlag</result>
-		</action>
 		
-		<action name="ajaxGetReg" class="com.fan1tuan.general.ui.struts2.core.SignAction" method="getReg">
-			<result name="success" type="jsonResult">regFlag</result>
-			<result name="error" type="jsonResult">regFlag</result>
-		</action>
-		
-		<action name="logout" class="com.fan1tuan.general.ui.struts2.core.SignAction" method="logout">
-			<result name="success" type="jsonResult">logoutFlag</result>
-			<result name="error" type="jsonResult">logoutFlag</result>
-		</action>
 		
 	</package>
 	

@@ -46,37 +46,68 @@
 	    	<result>/WEB-INF/ftls/404.html</result>
 	    </action>
 	   
-
-		<action name="jsonTest" class="com.fan1tuan.general.ui.struts2.core.MainAction">
-			<result name="success" type="jsonResult">
-				<!-- <param name="included">projectName,shoppingCart</param> -->
-				<!-- 省略<param />标签，直接填写希望以json返回的变量也是可以的 -->
-				shoppingCart
-			</result>
-		</action>
-		
-		<action name="freemarkerIndex" class="com.fan1tuan.general.ui.struts2.core.MainAction">
+	   <!-- ************config end here ****************** -->
+	   
+	   <action name="index" class="com.fan1tuan.general.ui.struts2.core.IndexAction" >
 			<result name="success" type="freemarker">/WEB-INF/ftls/index.ftl</result>
 		</action>
 		
-		<action name="sitemeshHello" class="com.fan1tuan.general.ui.struts2.core.MainAction">
-			<result name="success" type="freemarker">/WEB-INF/ftls/hello.ftl</result>
+		<action name="areas" class="com.fan1tuan.general.ui.struts2.core.IndexAction" method="getAreas">
+			<result name="success" type="freemarker">/WEB-INF/ftls/setArea.ftl</result>
+		</action>
+		
+		<action name="updateArea" class="com.fan1tuan.general.ui.struts2.core.IndexAction" method="updateArea">
+			<result name="success" type="redirect">
+			    ${redirect}
+			</result>
+		</action>
+		
+		<action name="signout" class="com.fan1tuan.general.ui.struts2.core.IndexAction" method="signout">
+			<result name="success" type="redirectAction">
+			    <param name="actionName">signin</param>
+       			<param name="namespace">/</param>
+       			<param name="redirect">${redirect}</param>
+			</result>
 		</action>
 		
 		<action name="needLogin" method="needLogin" class="com.fan1tuan.general.ui.struts2.core.InnerAction">
 		    <result>
-		        <param name="actionName">signin.f1t</param>
-       			<param name="namespace">/index</param>
+		        <param name="actionName">signin</param>
+       			<param name="namespace">/</param>
        			<param name="redirect">${redirect}</param>
 		    </result>
 		</action>
 		
+		
+		
+	</package>
+
+	<package name="main_secure" namespace="/secure" extends="main">
+		<action name="signin" method="signin" class="com.fan1tuan.general.ui.struts2.core.IndexAction" >
+			<result name="success" type="freemarker">/WEB-INF/ftls/signin.ftl</result>
+		</action>
+		
+		<action name="signup" method="signup" class="com.fan1tuan.general.ui.struts2.core.IndexAction">
+			<result name="success" type="freemarker">/WEB-INF/ftls/signin.ftl</result>
+		</action>
 	</package>
 
 	<package name="main_ajax" namespace="/ajax" extends="main">
 	    <action name="ajaxNeedLogin" method="needLogin" class="com.fan1tuan.general.ui.struts2.core.InnerAction">
 	        <result type="jsonResult">flag,redirect</result>
 	    </action>
+	</package>
+
+	<package name="main_ajax" namespace="/ajax/secure" extends="main_ajax">
+	    <!-- login & register & logout -->
+		<action name="ajaxSignin" class="com.fan1tuan.general.ui.struts2.core.IndexAjaxAction" method="signin">
+			<result name="success" type="jsonResult">flag,loginFlag</result>
+		</action>
+		
+		<action name="ajaxSignup" class="com.fan1tuan.general.ui.struts2.core.IndexAjaxAction" method="signup">
+			<result name="success" type="jsonResult">flag</result>
+		</action>
+		
 	</package>
 
 	<include file="com/fan1tuan/config/struts-index.xml"></include>

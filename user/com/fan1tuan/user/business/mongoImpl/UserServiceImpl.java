@@ -90,9 +90,9 @@ public class UserServiceImpl implements UserService {
 		if(!session.isEmpty() || session != null){
 			//清除session
 			session.remove(ISession.USER);
-			//此处为注销当前用户，不影响cookie
+			//此处为注销当前用户，应该删除用户cookie
 			//((HashMap<String, Object>)session.get(ISession.LOGIN)).put(ISession.LOGIN_STATUS, ISession.LOG_STATUS.LOGOUT);
-			session.put(ISession.LOGIN, null);
+			session.remove(ISession.LOGIN);
 			return true;
 		}
 		return false;
