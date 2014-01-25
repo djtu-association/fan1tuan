@@ -11,23 +11,7 @@
 	
 		
 	
-	<package name="index_ajax" extends="main" namespace="/index/ajax">
-		
-		<!-- Ajax operation -->
-		
-		
-		
-		<action name="ajaxAddFavoriteShop" class="com.fan1tuan.general.ui.struts2.core.IndexAjaxAction" method="AjaxAddFavoriteShop">
-			<result name="success" type="jsonResult">ajaxResult</result>
-		</action>
-		
-		<action name="ajaxAddFavoriteDish" class="com.fan1tuan.general.ui.struts2.core.IndexAjaxAction" method="AjaxAddFavoriteDish">
-			<result name="success" type="jsonResult">ajaxResult</result>
-		</action>
-		
-		<action name="ajaxGetFavoriteDish" class="com.fan1tuan.general.ui.struts2.core.IndexAjaxAction" method="AjaxGetFavoriteInShop">
-			<result name="success" type="jsonResult">dishes</result>
-		</action>
+	<package name="index_ajax" extends="index_main" namespace="/index/ajax">
 		
 		
 		

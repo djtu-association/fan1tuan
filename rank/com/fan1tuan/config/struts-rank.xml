@@ -14,44 +14,44 @@
 		<!-- week rank -->
 		<action name="dishRankByTag" class="com.fan1tuan.rank.ui.struts2.core.RankAjaxAction" method="getDishRankByTag">
 			<result name="success" type="jsonResult">
-			rankDishListByTag,pageMap,dishGeo
+			flag,rankDishListByTag,pageMap,dishGeo
 			</result>
 		</action>
 		
 		<!-- dish shop phone-call -->
 		<action name="dishRank" class="com.fan1tuan.rank.ui.struts2.core.RankAjaxAction" method="getDishRank">
 			<result name="success" type="jsonResult">
-			rankDishList,pageMap,dishGeo
+			flag,rankDishList,pageMap,dishGeo
 			</result>
 		</action>
 		
 		<action name="dishRankDefault" class="com.fan1tuan.rank.ui.struts2.core.RankAjaxAction" method="getDishRankDefault">
 			<result name="success" type="jsonResult">
-			rankDishList,pageMap,dishGeo
+			flag,rankDishList,pageMap,dishGeo
 			</result>
 		</action>
 			
 		<action name="phoneCallShopRank" class="com.fan1tuan.rank.ui.struts2.core.RankAjaxAction" method="getPhoneCallShopRank">
 			<result name="success" type="jsonResult">
-            shopGeo,pageMap
+            flag,shopGeo,pageMap
             </result>
 		</action>
 		
 		<action name="phoneCallShopRankDefault" class="com.fan1tuan.rank.ui.struts2.core.RankAjaxAction" method="getPhoneCallShopRankDefault">
 			<result name="success" type="jsonResult">
-            shopGeo,pageMap
+            flag,shopGeo,pageMap
             </result>
 		</action>
 		
 		<action name="onlineShopRank" class="com.fan1tuan.rank.ui.struts2.core.RankAjaxAction" method="getOnlineShopRank">
 			<result name="success" type="jsonResult">
-			shopGeo,pageMap
+			flag,shopGeo,pageMap
 			</result>
 		</action>
 		
 		<action name="onlineShopRankDefault" class="com.fan1tuan.rank.ui.struts2.core.RankAjaxAction" method="getOnlineShopRankDefault">
 			<result name="success" type="jsonResult">
-			shopGeo,pageMap
+			flag,shopGeo,pageMap
 			</result>
 		</action>
 	</package>

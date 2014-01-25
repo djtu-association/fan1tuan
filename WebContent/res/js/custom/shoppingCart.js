@@ -179,7 +179,7 @@ $('document').ready(function(){
     	theButton.attr("disabled","true");
     	var id = theButton.attr("title");
     	$.ajax({
-    		url : "../shop/ajax_add_dish_item.f1t?dishId="+id
+    		url : "../user/ajax/secure/ajaxAddDishToCart.f1t?dishId="+id
     	}).done(function(data){
     		var cloneDom = $("img[title="+id+"]").clone();
         	cloneDom.attr("style","z-index: 1;left:"+event.clientX+"px;top:"+event.clientY+"px;position:fixed;");
@@ -218,7 +218,7 @@ $('document').ready(function(){
     
     $('.empty-cart').live("click", function(){
     	$.ajax({
-    		url: "../shop/ajax_clean_shopping_cart.f1t"
+    		url: "../user/ajax/secure/ajaxClearCart.f1t"
     	}).done(function(data){
     		if(data.status){
     			calculateCartHeight(0);
@@ -237,7 +237,7 @@ $('document').ready(function(){
     	}).get(1);
     	
     	$.ajax({
-    		url : "../shop/ajax_remove_dish_item.f1t?dishId="+dishId
+    		url : "../user/ajax/secure/ajaxRemoveDishFromCart.f1t?dishId="+dishId
     	}).done(function(data){
     		refreshCart(data);
     	});
@@ -246,7 +246,7 @@ $('document').ready(function(){
     
     //calculateCartHeight($('.tm-mcOrder').size()||0);
     $.ajax({
-		url : "../shop/ajax_get_shopping_cart.f1t"
+		url : "../user/ajax/ajaxGetShoppingCart.f1t"
 	}).done(function(data){
 		refreshCart(data);   
 	});

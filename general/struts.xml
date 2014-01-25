@@ -65,7 +65,7 @@
 		<action name="signout" class="com.fan1tuan.general.ui.struts2.core.IndexAction" method="signout">
 			<result name="success" type="redirectAction">
 			    <param name="actionName">signin</param>
-       			<param name="namespace">/</param>
+       			<param name="namespace">/secure</param>
        			<param name="redirect">${redirect}</param>
 			</result>
 		</action>
@@ -73,7 +73,7 @@
 		<action name="needLogin" method="needLogin" class="com.fan1tuan.general.ui.struts2.core.InnerAction">
 		    <result>
 		        <param name="actionName">signin</param>
-       			<param name="namespace">/</param>
+       			<param name="namespace">/secure</param>
        			<param name="redirect">${redirect}</param>
 		    </result>
 		</action>
@@ -98,7 +98,7 @@
 	    </action>
 	</package>
 
-	<package name="main_ajax" namespace="/ajax/secure" extends="main_ajax">
+	<package name="main_ajax_secure" namespace="/ajax/secure" extends="main_ajax">
 	    <!-- login & register & logout -->
 		<action name="ajaxSignin" class="com.fan1tuan.general.ui.struts2.core.IndexAjaxAction" method="signin">
 			<result name="success" type="jsonResult">flag,loginFlag</result>

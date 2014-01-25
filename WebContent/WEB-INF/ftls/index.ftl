@@ -253,7 +253,7 @@
                         </li>
                         -->
                         <li id="" title="" data-toggle="">
-                            <a href="javascript:void(0)" id="navReserveSeat" onclick="location='setArea.f1t'"><span class="fui-location"></span><span ><#if areaName?exists>${areaName}</#if></span></a>
+                            <a href="javascript:void(0)" id="navReserveSeat" onclick="location='areas.f1t'"><span class="fui-location"></span><span ><#if areaName?exists>${areaName}</#if></span></a>
                         </li>
                         
                         <!--<li id="navLifeSurround" title="" data-toggle="popover">
@@ -495,15 +495,15 @@
     								</div>
     							</div>
                             </dl>
-                        </div>
-
+                        </div><!-- end of span2 -->
+				
                     </div>
                 </div>
 
             </div>
         </div>
-        
     </div>
+    
 </div>
 
 <div id="rankPart">
@@ -654,7 +654,7 @@
                 <div class="span3">
                     <div class="btn-group">
                         <select id="sel_dish_taste" multiple="multiple" title="选择口味" onchange="index_ChangeHiddenSelTaste(this,2);dish_AjaxChange(0);">
-                        	<#list dishTasteTags as tags>
+                        	<#list shopTasteTags as tags>
                             <option value="${tags.id}">${tags.name}</option>
                             </#list>
                         </select>

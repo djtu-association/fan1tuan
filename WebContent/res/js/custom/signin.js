@@ -1,6 +1,13 @@
 
 $('document').ready(function(){
 
+	function getUrlParam(name)
+	{
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+		var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+		if (r!=null) return unescape(r[2]); return null; //返回参数值
+	} 
+	
     $('#rememberMe').tooltip({
         placement : "right"
     });
@@ -31,7 +38,7 @@ $('document').ready(function(){
 			return;
     	}
     	//ajax url,data
-    	var url = "secure/signup.f1t";
+    	var url = "../ajax/secure/ajaxSignup.f1t";
     	var data = {"cellphone":cellphone,"password":password,"checkcode":checkcode};
     	//ajax register
     	$.getJSON(url,data,function(json){
@@ -43,7 +50,12 @@ $('document').ready(function(){
     				if(count>=0){
     					$('#countTime').html(count--);
     				}else{
-    					location="index.f1t";
+    					var encodedUrl = getUrlParam("redirect");
+    					   if(encodedUrl){
+    						   	location=decodeURIComponent(encodedUrl);
+    					   }else{
+    					   		location="../index.f1t";
+    					   }
     				}
     				
     		    },1000);
@@ -77,7 +89,7 @@ $('document').ready(function(){
 		   return;
 	   }
 	   //ajax url data
-	   var url = "secure/signin.f1t";
+	   var url = "../ajax/secure/ajaxSignin.f1t";
 	   var data = {"cellphone":cellphone,"password":password,"isCookie":isCookie};
 	   //get ajax
 	   $.getJSON(url,data,function(json){
@@ -89,7 +101,12 @@ $('document').ready(function(){
 			   $('#form_div1').html(content);
 			   $('#form_div1').fadeIn(50);
 			   setTimeout(function(){
-				   location="index.f1t";
+				   var encodedUrl = getUrlParam("redirect");
+				   if(encodedUrl){
+					   	location=decodeURIComponent(encodedUrl);
+				   }else{
+				   		location="../index.f1t";
+				   }
 			   },1000);
 		   }else{
 			   $('#form_tips').html("亲，输入的信息不对哦");

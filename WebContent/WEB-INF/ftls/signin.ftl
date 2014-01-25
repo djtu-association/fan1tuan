@@ -8,8 +8,8 @@
       <link rel="shortcut icon" href="./favicon.ico">
 
       <!-- Bootstrap core CSS -->
-      <link href="res/css/bootstrap.css" rel="stylesheet">
-      <link href="res/css/flat-ui.css" rel="stylesheet">
+      <link href="../res/css/bootstrap.css" rel="stylesheet">
+      <link href="../res/css/flat-ui.css" rel="stylesheet">
 
       <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!--[if lt IE 9]>
@@ -18,7 +18,7 @@
 
 
       <!-- 每夜独立部分 -->
-      <link href="res/css/custom/signin.css" rel="stylesheet">
+      <link href="../res/css/custom/signin.css" rel="stylesheet">
       <title>饭团</title>
 
 
@@ -31,10 +31,10 @@
           <div class="col-lg-6">
               <h1>饭1团来啦!</h1>
               <p class="lead">我们专注校园外卖，“食”刻为你准备着！！</p>
-              <p><a class="btn btn-primary btn-lg" href="javascript:void(0)" onclick="location='index.f1t'">进入主页</a></p>
+              <p><a class="btn btn-primary btn-lg" href="javascript:void(0)" onclick="location='../index.f1t'">进入主页</a></p>
           </div>
 
-		  <#if flag == "0">
+		  <#if flag == 0>
           <div id="coll_div2" style="display: none" class="col-lg-3">
           <#else>
           <div id="coll_div2" class="col-lg-3">
@@ -56,7 +56,7 @@
               </form>
           </div>
 			
-		  <#if flag == "1">
+		  <#if flag == 1>
           <div class="col-lg-3" id="coll_div1" style="display: none">
           <#else>
           <div class="col-lg-3" id="coll_div1">
@@ -112,16 +112,16 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-  <script src="res/js/jquery-1.8.3.min.js"></script>
-  <script src="res/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="res/js/jquery.ui.touch-punch.min.js"></script>
-  <script src="res/js/bootstrap.min.js"></script>
-  <script src="res/js/bootstrap-select.js"></script>
-  <script src="res/js/bootstrap-switch.js"></script>
-  <script src="res/js/flatui-checkbox.js"></script>
-  <script src="res/js/flatui-radio.js"></script>
-  <script src="res/js/jquery.tagsinput.js"></script>
-  <script src="res/js/jquery.placeholder.js"></script>
-  <script src="res/js/custom/signin.js"></script>
+  <script src="../res/js/jquery-1.8.3.min.js"></script>
+  <script src="../res/js/jquery-ui-1.10.3.custom.min.js"></script>
+  <script src="../res/js/jquery.ui.touch-punch.min.js"></script>
+  <script src="../res/js/bootstrap.min.js"></script>
+  <script src="../res/js/bootstrap-select.js"></script>
+  <script src="../res/js/bootstrap-switch.js"></script>
+  <script src="../res/js/flatui-checkbox.js"></script>
+  <script src="../res/js/flatui-radio.js"></script>
+  <script src="../res/js/jquery.tagsinput.js"></script>
+  <script src="../res/js/jquery.placeholder.js"></script>
+  <script src="../res/js/custom/signin.js"></script>
   </body>
 </html>

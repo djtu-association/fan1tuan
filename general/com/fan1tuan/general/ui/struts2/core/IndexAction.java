@@ -1,5 +1,6 @@
 package com.fan1tuan.general.ui.struts2.core;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
+import com.fan1tuan.general.config.Fan1TuanConfig;
 import com.fan1tuan.general.dao.impl.AreaDao;
 import com.fan1tuan.general.pojos.Area;
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
@@ -51,10 +53,12 @@ public class IndexAction extends Fan1TuanAction {
 
 	public String execute() {
 
+		
 		Map<String, Object> area_cache = SessionUtil.getArea(session);
 		areaId = (String) area_cache.get(ISession.AREAID);
 		areaName = (String) area_cache.get(ISession.AREANAME);
 
+		
 		setShopTasteTags(tagService.getShopTasteTag());
 
 		return Action.SUCCESS;
@@ -82,19 +86,32 @@ public class IndexAction extends Fan1TuanAction {
 	//private String redirect;   这次redirect不会从url中自动进来，需要js在页面提供支持
 	//private String areaId;
 	//private String areaName;
+	
 	public String updateArea() {
+		
+		Cookie cookie = new Cookie(ICookie.AREA_CONFIG, areaId+ICookie.SEPERATOR+areaName);
+		cookie.setMaxAge(ICookie.COOKIE_AGE);
+		ServletActionContext.getResponse().addCookie(cookie);
+		
+		try {
+			areaName = new String(areaName.getBytes("ISO8859-1"),"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
 		Map<String, Object> area_cache = SessionUtil.getArea(session);
 		area_cache.put(ISession.AREAID, areaId);
 		area_cache.put(ISession.AREANAME, areaName);
 		
 		session.put(ISession.AREA, area_cache);
 		
-		Cookie cookie = new Cookie(ICookie.AREA_CONFIG, areaId+ICookie.SEPERATOR+areaName);
-		cookie.setMaxAge(ICookie.COOKIE_AGE);
-		ServletActionContext.getResponse().addCookie(cookie);
 		
+		if(redirect==null||redirect.equals("")){
+			redirect = Fan1TuanConfig.getProperty("fan1tuan.home");
+		}else{
+			redirect = StringUtil.decodeURL(redirect);
+		}
 		
-		redirect = StringUtil.decodeURL(redirect);
 		
 		return Action.SUCCESS;
 	}

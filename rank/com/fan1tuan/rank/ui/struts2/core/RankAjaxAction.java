@@ -23,6 +23,12 @@ import com.fan1tuan.user.business.UserService;
 import com.opensymphony.xwork2.Action;
 
 public class RankAjaxAction extends Fan1TuanAction {	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1975758627632278290L;
+	
+	
 	//service dao
 	private DishRankService dishRankService;
 	private ShopRankService shopRankService;

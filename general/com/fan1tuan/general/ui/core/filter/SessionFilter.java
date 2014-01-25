@@ -44,13 +44,15 @@ public class SessionFilter implements Filter {
 			httpSession.setAttribute(ISession.LOGIN, login_cache);
 		}
 		
-//		Map<String, Object> area_cache = (Map<String, Object>) httpSession.getAttribute(ISession.AREA);
-//		if(area_cache==null){
-//			area_cache = new HashMap<String,Object>();
-//			area_cache.put(ISession.AREAID, null);
-//			area_cache.put(ISession.AREANAME, null);
-//			httpSession.setAttribute(ISession.AREA, area_cache);
-//		}
+		Map<String, Object> area_cache = (Map<String, Object>) httpSession.getAttribute(ISession.AREA);
+		if(area_cache==null){
+			area_cache = new HashMap<String,Object>();
+			area_cache.put(ISession.AREAID, null);
+			area_cache.put(ISession.AREANAME, null);
+			httpSession.setAttribute(ISession.AREA, area_cache);
+		}
+		
+		
 		
 		chain.doFilter(req, res);
 	}

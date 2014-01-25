@@ -36,7 +36,7 @@
                 <div class="panel-body">
                 	<#list area as item>
                 		<span class="span2">
-                		<a href="javascript:void(0);" onclick="location='updateArea.f1t?areaId=${item.id}&areaName=${item.name}'">
+                		<a href="javascript:void(0);" onclick="location='updateArea.f1t?areaId=${item.id}&areaName=${item.name}&redirect=${redirect!""}'">
                 		<div class="palette 
                 		<#if item_index+1%5 == 1>palette-belize-hole
                 		<#elseif item_index+1%5 == 2>palette palette-emerald

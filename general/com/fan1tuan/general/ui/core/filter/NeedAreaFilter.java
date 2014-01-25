@@ -41,10 +41,13 @@ public class NeedAreaFilter implements Filter {
 		
 		HttpServletRequest request = (HttpServletRequest) req;
 		
-		String requestFullPath = request.getRequestURL().toString()+"?"+request.getQueryString();
+		String queryStr = request.getQueryString();
+		String requestFullPath = request.getRequestURL().toString()+(queryStr==null||queryStr.equals("")?"":queryStr);
 		
 		String URI = request.getRequestURI();
 		logger.trace("REQUEST URI :"+URI);
+		boolean isRedirect = false;
+
 		if( !URI.equals(FilterConstant.URL_TO_SETAREA) && !URI.equals(FilterConstant.URL_TO_GETAREA))
 		{
 			HttpServletResponse response = (HttpServletResponse)res;
@@ -95,6 +98,7 @@ public class NeedAreaFilter implements Filter {
 					//sendDirect the url 'setArea.f1t' to reset the cookie
 					logger.trace("SESSION LOSS , COOKIE LOSS , REIDRECT TO 'SETAREA.F1T'");
 					//
+					isRedirect = true;
 					response.sendRedirect(FilterConstant.URL_TO_SETAREA+"?redirect="+StringUtil.encodeURL(requestFullPath));
 				}else{
 					//(session loss,cookie got)
@@ -116,7 +120,9 @@ public class NeedAreaFilter implements Filter {
 				
 			}
 		}
-		chain.doFilter(req, res);
+		
+		if(!isRedirect)
+			chain.doFilter(req, res);
 
 	}
 

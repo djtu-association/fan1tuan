@@ -49,6 +49,8 @@ public class CharEncodingFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
     throws IOException, ServletException {
         mLogger.trace("Processing CharEncodingFilter");
+        
+        mLogger.trace(((HttpServletRequest)req).getRequestURL().toString()+"?"+((HttpServletRequest)req).getQueryString());
         try {
         	if (!"UTF-8".equals(req.getCharacterEncoding())) {
         		// only set encoding if not already UTF-8
