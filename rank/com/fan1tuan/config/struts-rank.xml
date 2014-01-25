@@ -21,13 +21,13 @@
 		<!-- dish shop phone-call -->
 		<action name="dishRank" class="com.fan1tuan.rank.ui.struts2.core.RankAjaxAction" method="getDishRank">
 			<result name="success" type="jsonResult">
-			flag,rankDishList,pageMap,dishGeo
+			flag,pageMap,dishGeo
 			</result>
 		</action>
 		
 		<action name="dishRankDefault" class="com.fan1tuan.rank.ui.struts2.core.RankAjaxAction" method="getDishRankDefault">
 			<result name="success" type="jsonResult">
-			flag,rankDishList,pageMap,dishGeo
+			flag,pageMap,dishGeo
 			</result>
 		</action>
 			

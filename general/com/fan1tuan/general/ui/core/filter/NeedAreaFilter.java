@@ -109,6 +109,7 @@ public class NeedAreaFilter implements Filter {
 					if(partial != null && partial.length ==2){
 						Map<String, Object> areaMap = new HashMap<String, Object>();
 						areaMap.put(ISession.AREAID, partial[0]);
+						partial[1] = new String(partial[1].getBytes("ISO8859-1"),"UTF-8");
 						areaMap.put(ISession.AREANAME, partial[1]);
 						session.setAttribute(ISession.AREA, areaMap);
 					}else{

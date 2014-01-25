@@ -51,7 +51,7 @@ $(document).ready(function(){
 			"<span class='glyphicon glyphicon-tag'></span>"+
 			"西式,烧烤</span><br>"+//店铺标签
 			"<span class='text-warning'>"+
-			"<i class='icon-rst-rating s"+(data[i].content.avgCommentLevel*2)+"'></i><a title='评价总数'>("+data[i].content.commentNum+")</a>"+
+			"<i class='icon-rst-rating s"+parseInt(data[i].content.avgCommentLevel*2)+"'></i><a title='评价总数'>("+data[i].content.commentNum+")</a>"+
 			"</span><br>"+
 			"<p>"+
 			"<a class='btn btn-info' href='javascript:void(0)' onclick="+shopLink+" data-toggle='Enter the shop' title='进入店铺'><span class='glyphicon glyphicon-home'></span></a>";//跟上面的进入店铺一样

@@ -26,14 +26,16 @@
 
 	<Appenders>
 		<Appender type="Console" name="STDOUT">
-			<Layout type="PatternLayout"
+<!-- 			<param name="Encoding" value="UTF-8" />
+ -->			<Layout type="PatternLayout"
 				pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n" />
 			<!-- <Filters> <Filter type="MarkerFilter" marker="FLOW" onMatch="DENY" 
 				onMismatch="NEUTRAL" /> <Filter type="MarkerFilter" marker="EXCEPTION" onMatch="DENY" 
 				onMismatch="ACCEPT" /> </Filters> -->
 		</Appender>
 		<Appender type="Console" name="FLOW">
-			<Layout type="PatternLayout"
+<!-- 			<param name="Encoding" value="UTF-8" />
+ -->			<Layout type="PatternLayout"
 				pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n" />
 			<!-- <Filters> <Filter type="MarkerFilter" marker="FLOW" onMatch="ACCEPT" 
 				onMismatch="NEUTRAL" /> <Filter type="MarkerFilter" marker="EXCEPTION" onMatch="ACCEPT" 

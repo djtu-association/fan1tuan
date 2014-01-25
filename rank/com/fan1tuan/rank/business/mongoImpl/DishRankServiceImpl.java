@@ -3,6 +3,8 @@ package com.fan1tuan.rank.business.mongoImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.data.mongodb.core.geo.Circle;
 import org.springframework.data.mongodb.core.geo.Distance;
 import org.springframework.data.mongodb.core.geo.GeoResult;
@@ -109,7 +111,7 @@ public class DishRankServiceImpl implements DishRankService {
 	private AreaDao areaDao;
 	private DishDao dishDao;
 	private ShopDao shopDao;
-	
+	private Logger logger = LogManager.getLogger("com.fan1tuan.general.business.ServiceLogger");
 	
 	public AreaDao getAreaDao() {
 		return areaDao;
@@ -188,6 +190,10 @@ public class DishRankServiceImpl implements DishRankService {
 			com.fan1tuan.general.util.Constants.Sort order, ShopState open,
 			String areaId, Pageable pageable) {
 		
+		logger.entry(shopType, rankAccord,
+			order, open,
+			 areaId,  pageable);
+		
 		List<Shop> simpleShops = this.getSimpleShops(shopType, open, areaId);
 		List<String> shopIdsList = this.transformShopListToShopIdList(simpleShops);
 		
@@ -202,6 +208,7 @@ public class DishRankServiceImpl implements DishRankService {
 		}
 		
 		pageable.setItemsNum(dishDao.getCount(criteriaWrapper));
+		logger.trace("Count the Sum of the Items:"+pageable.getItemsNum());
 		return dishDao.findByParamsInPageInOrder(criteriaWrapper, pageable, sortable);
 	}
 	@Override

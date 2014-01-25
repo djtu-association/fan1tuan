@@ -44,7 +44,7 @@ $(document).ready(function(){
 		//alert(json.rankDishList.length);
 		var data = json.dishGeo;
 		//seem to the for-in loop structure
-		for(var i=0,size=json.rankDishList.length; i<size; i++)
+		for(var i=0,size=data.length; i<size; i++)
 		{	
 			
 			tdHeader = (i==0||(i%4)==0)?"<tr><td>":"<td>";
@@ -68,7 +68,7 @@ $(document).ready(function(){
 			"</span>"+
 			"<br>"+
 			"<span class='text-warning'>"+
-			"<i class='icon-rst-rating s"+(data[i].content.avgCommentLevel*2)+"'></i><a title='评价总数'>("+data[i].content.commentNum+")</a>"+
+			"<i class='icon-rst-rating s"+parseInt(data[i].content.avgCommentLevel*2)+"'></i><a title='评价总数'>("+data[i].content.commentNum+")</a>"+
 			"</span>"+
 			"<br>"+
 			"<p>"+

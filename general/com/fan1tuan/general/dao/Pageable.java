@@ -95,5 +95,8 @@ public class Pageable {
 	public void setOffset(int offset) {
 		this.offset = offset;
 	}
-
+	
+	public String toString(){
+		return "pageNumber:"+pageNumber+";pageSize:"+pageSize;
+	}
 }

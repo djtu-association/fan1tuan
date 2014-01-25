@@ -8,6 +8,7 @@ import java.util.Map;
 import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
 import com.fan1tuan.general.util.Constants;
+import com.fan1tuan.general.util.SessionUtil;
 import com.fan1tuan.general.util.Constants.RankAccord;
 import com.fan1tuan.general.util.Constants.ShopState;
 import com.fan1tuan.general.util.Constants.ShopType;
@@ -60,31 +61,29 @@ public class RankAjaxAction extends Fan1TuanAction {
 	/*
 	 * 返回tag排行 例如菜品之星
 	 */
-	@SuppressWarnings("unchecked")
 	public String getDishRankByTag()
 	{   
-		 areaId = (String) ((HashMap<String, Object>)session.get(ISession.AREA)).get(ISession.AREAID);
+		 areaId = (String) SessionUtil.getArea(session).get(ISession.AREAID);
 		 String tagId = tagService.getRankTagByName(dishRankTName).getId();
 		 setRankDishListByTag(dishRankService.rankDishWithRankTag(tagId, areaId));
-	      
+	     flag = makeFlag(rankDishList);
       return Action.SUCCESS;
 		
 	}
 	
 	//菜品排行，筛选
-	@SuppressWarnings("unchecked")
 	public String getDishRank()
 	{
 		//缺少dishTasteTag
-		areaId = (String) ((HashMap<String, Object>)session.get(ISession.AREA)).get(ISession.AREAID);
+		areaId = (String) SessionUtil.getArea(session).get(ISession.AREAID);
 		Pageable page = Pageable.inPage(pNumber, pSize);
-		
+				
 		rankDishList = dishRankService.rankDish(ShopType.valueOf(shopType), RankAccord.valueOf(accord), Sort.valueOf(order), ShopState.valueOf(open), areaId, page);
 		List<DishGeo> dishGeos = new ArrayList<DishGeo>();
 		try {
 			//String userId = ((HashMap<String, String>)session.get(ISession.USER)).get(ISession.USER_ID);
-			HashMap<String, String> user = (HashMap<String, String>)session.get(ISession.USER);
-			String userId = (user == null)?null:user.get(ISession.USER_ID);
+			Map<String, Object> user = SessionUtil.getUser(session);
+			String userId = (user == null)?null:(String)user.get(ISession.USER_ID);
 			if(userId != null){
 				for(int i=0,size=rankDishList.size(); i<size; i++){
 					dishGeos.add(i, new DishGeo(rankDishList.get(i),Constants.FALSE));
@@ -105,29 +104,31 @@ public class RankAjaxAction extends Fan1TuanAction {
 		
 		
 		setDishGeo(dishGeos);
-		
-		long length = Pageable.getPageLength(pNumber, pSize);
+		//System.err.println("page items:"+page.getItemsNum()+";pageSize:"+page.getPageSize());
+		long length = Pageable.getPageLength(page.getItemsNum(), page.getPageSize());
 	    pageMap = new HashMap<String, Long>();
 	    pageMap.put("length", length);
 	    pageMap.put("number", Long.valueOf(pNumber));
 	    
+	    
 		return Action.SUCCESS;
 	}
+
+	
 	//菜品排行，默认
-	@SuppressWarnings("unchecked")
 	public String getDishRankDefault()
 	{
 		pNumber = 0;
 		pSize = 12;
 		Pageable page = Pageable.inPage(pNumber, pSize);
-		areaId = (String) ((HashMap<String, Object>)session.get(ISession.AREA)).get(ISession.AREAID);	
+		areaId = (String) SessionUtil.getArea(session).get(ISession.AREAID);
 		rankDishList = dishRankService.rankDish(areaId, page);
 		List<DishGeo> dishGeos = new ArrayList<DishGeo>();
 		
 		try {
 			//String userId = ((HashMap<String, String>)session.get(ISession.USER)).get(ISession.USER_ID);
-			HashMap<String, String> user = (HashMap<String, String>)session.get(ISession.USER);
-			String userId = (user == null)?null:user.get(ISession.USER_ID);
+			Map<String, Object> user = SessionUtil.getUser(session);
+			String userId = (user == null)?null:(String)user.get(ISession.USER_ID);
 			if(userId != null){
 				for(int i=0,size=rankDishList.size(); i<size; i++){
 					dishGeos.add(i, new DishGeo(rankDishList.get(i),Constants.FALSE));
@@ -147,10 +148,12 @@ public class RankAjaxAction extends Fan1TuanAction {
 		}
 		
 		setDishGeo(dishGeos);
+		//System.err.println("page items:"+page.getItemsNum()+";pageSize:"+page.getPageSize());
 		long length = Pageable.getPageLength(page.getItemsNum(), page.getPageSize());
 	    pageMap = new HashMap<String, Long>();
 	    pageMap.put("length", length);
 	    pageMap.put("number", Long.valueOf(pNumber));
+	    
 		return Action.SUCCESS;
 	}
 
@@ -373,16 +376,16 @@ public class RankAjaxAction extends Fan1TuanAction {
 	public void setOrder(int order) {
 		this.order = order;
 	}
-	public int getpNumber() {
+	public int getPNumber() {
 		return pNumber;
 	}
-	public void setpNumber(int pNumber) {
+	public void setPNumber(int pNumber) {
 		this.pNumber = pNumber;
 	}
-	public int getpSize() {
+	public int getPSize() {
 		return pSize;
 	}
-	public void setpSize(int pSize) {
+	public void setPSize(int pSize) {
 		this.pSize = pSize;
 	}
 	public int getOpen() {
