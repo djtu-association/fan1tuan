@@ -2,4 +2,4 @@
 build
 *.class
 .project
-
+.settings
