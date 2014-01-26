@@ -5,7 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 /**
- * 主要负责为Session取key提供帮助！！！
+ * 主要负责为Session取key提供帮助！！！非常重要！！！
  * @author Lihe
  *
  */
