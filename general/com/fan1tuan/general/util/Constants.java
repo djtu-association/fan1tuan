@@ -91,6 +91,7 @@ public class Constants {
 		}
 	}
 	
+	
 	public enum FlagStatus{
 		FAIL, NEEDLOGIN, SUCCESS;
 		public static FlagStatus valueOf(int flag){
