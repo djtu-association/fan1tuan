@@ -3,7 +3,6 @@ package com.fan1tuan.general.util;
 import javax.servlet.http.Cookie;
 
 /**
- * 此类主要负责为Cookie的取出提供协助
  * @author Lihe
  *
  */

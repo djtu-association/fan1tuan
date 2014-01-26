@@ -74,7 +74,7 @@ public class UserAjaxAction extends Fan1TuanAction {
 	/**
 	 * ---------------/user/ajax/ajaxGetShoppingCart.f1t -------------------
 	 */
-	//出参
+	//out
 	private ShoppingCart cart;
 	
 	public String getShoppingCart(){
@@ -89,9 +89,9 @@ public class UserAjaxAction extends Fan1TuanAction {
 	/**
 	 * ---------------/user/ajax/secure/ajaxAddDishToCart.f1t -------------------
 	 */
-	//入参
+	//in
 	private String dishId;
-	//出参
+	//out
 	//private ShoppingCart cart;
 	public String addDishToCart(){
 		Map<String,Object> user_cache = SessionUtil.getUser(session);
@@ -111,7 +111,7 @@ public class UserAjaxAction extends Fan1TuanAction {
 	/**
 	 * ---------------/user/ajax/secure/ajaxRemoveDishFromCart.f1t -------------------
 	 */
-	//入参
+	//in
 	//private String dishId;
 	//出参
 	//private ShoppingCart cart;
@@ -152,7 +152,7 @@ public class UserAjaxAction extends Fan1TuanAction {
 	 * --------------------/user/ajax/ajaxAddFavoriteShop.f1t ---------------
 	 * @return
 	 */
-	//入参
+	//in
 	//private String shopId;
 	public String addFavoriteShop()
 	{
@@ -167,7 +167,7 @@ public class UserAjaxAction extends Fan1TuanAction {
 	 * --------------------/user/ajax/ajaxAddFavoriteDish.f1t ---------------
 	 * @return
 	 */
-	//入参
+	//in
 	//private String dishId;
 	public String addFavoriteDish()
 	{
@@ -184,7 +184,7 @@ public class UserAjaxAction extends Fan1TuanAction {
 	 * --------------------/user/ajax/ajaxRemoveFavoriteDish.f1t ---------------
 	 * @return
 	 */
-	//入参
+	//in
 	//private String dishId;
 	public String removeFavoriteDish()
 	{
@@ -201,7 +201,7 @@ public class UserAjaxAction extends Fan1TuanAction {
 	 * --------------------/user/ajax/ajaxRemoveFavoriteShop.f1t ---------------
 	 * @return
 	 */
-	//入参
+	//in
 	//private String shopId;
 	public String removeFavoriteShop(){
 		Map<String, Object> user_cache = SessionUtil.getUser(session);
@@ -217,9 +217,9 @@ public class UserAjaxAction extends Fan1TuanAction {
 	 * --------------------/user/ajax/ajaxGetFavoriteDishesInShop.f1t ---------------
 	 * @return
 	 */
-	//入参
+	//in
 	private String shopId;
-	//出餐
+	//out
 	private List<Dish> dishes;
 	public String getFavoriteDishesInShop(){
 		//String userId = ((HashMap<String, String>)session.get(ISession.USER)).get(ISession.USER_ID);

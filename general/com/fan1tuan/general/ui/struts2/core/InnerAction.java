@@ -22,7 +22,6 @@ public class InnerAction extends Fan1TuanAction{
 	/**
 	 * -------------/needLogin.f1t & /ajax/ajaxNeedLogin.f1t--------------
 	 */
-	//入参与出参
 	private String redirect;
 	
 	public String needLogin(){
