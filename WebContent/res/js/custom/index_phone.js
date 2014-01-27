@@ -74,7 +74,7 @@ $(document).ready(function(){
 			"&nbsp;<span class='label label-primary'><span class='glyphicon glyphicon-edit'></span></span>"+
 			"<br><p class='text text-primary'><small>简介</small>：<label class='label label-warning'>"+data[i].content.description+"</label></p>"+
 			"<p class='text text-warning'><samll>地址</small>：<label class='label label-success'>"+data[i].content.address+"</label></p>"+
-			"<p class='text text-success'><small>营业</small>：<label class='label label-info'>10:00 - 18:00</label></p>"+//营业时间data[i].content.openTime  data[i].content.closeTime
+			"<p class='text text-success'><small>营业</small>：<label class='label label-info'>"+new Date(data[i].content.openTime).getHours()+":"+new Date(data[i].content.openTime).getMinutes()+" - "+new Date(data[i].content.closeTime).getHours()+":"+new Date(data[i].content.closeTime).getMinutes()+"</label></p>"+//营业时间data[i].content.openTime  data[i].content.closeTime
 			"</div></div></div>"+tdFooter;
 			content += partial;
 		}

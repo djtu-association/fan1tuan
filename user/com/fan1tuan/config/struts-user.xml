@@ -11,7 +11,7 @@
 	
 	<package name="user_ajax" extends="user_main" namespace="/user/ajax">
 	    <action name="ajaxGetShoppingCart" method="getShoppingCart" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
-			<result name="success" type="jsonResult">cart</result>			
+			<result name="success" type="jsonResult">flag,cart</result>			
 		</action>
 		
 		<action name="ajaxGetFavoriteDishesInShop" method="getFavoriteDishesInShop" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">

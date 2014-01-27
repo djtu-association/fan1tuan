@@ -61,7 +61,7 @@ $('document').ready(function(){
             left: 0
         });
         $.ajax({
-            url: "./ajax_get_dish_info.f1t?dishId="+id+"&pageSize=10&pageNumber=0"
+            url: "./ajax/ajaxGetDishInfo.f1t?dishId="+id+"&pageSize=10&pageNumber=0"
         }).done(function ( data ) {
             $('.rst-drawer').append(data);  
         });

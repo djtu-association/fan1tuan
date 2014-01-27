@@ -6,9 +6,9 @@
                 <p class="dish-intro">${dish.description}</p>
             </div>
         </header>
-        <section class="rst-drawer-rating group">
+        <section class="rst-drawer-rating group" >
             <div class="rating-point"><strong class="point">${dish.avgCommentLevel}</strong><span class="comment">${dish.commentNum}人评价</span></div>
-            <ul style="list-style-type:none;" class="rating-diagram">
+            <ul style="list-style-type:none;margin-left:0px;margin-right:0px;" class="rating-diagram">
             <#if dish.commentNum==0 >
                   <#assign commentNum=1 />
             <#else>
@@ -23,7 +23,8 @@
                 <li><i class="icon-star s2"></i><span style="width: ${78*(commentLevel['2']!'0')?number/commentNum}px;" class="bar"></span>${100*(commentLevel['2']!'0')?number/commentNum}%</li>
 
                 <li><i class="icon-star s1"></i><span style="width: ${78*(commentLevel['1']!'0')?number/commentNum}px;" class="bar"></span>${100*(commentLevel['1']!'0')?number/commentNum}%</li>
-            </ul></section>
+            </ul>
+        </section>
         <section class="rst-drawer-comment comment_wrap">
             <h4 class="rst-drawer-cheader">用户评价</h4>
             <div style="list-style-type:none;">

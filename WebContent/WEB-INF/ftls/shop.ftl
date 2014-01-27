@@ -29,15 +29,6 @@
 
 
 
-<div class="sr-only">
-    <div id="navReserveSeatIntro" class="row">
-        <div class="tile">
-            <img class="tile-image big-illustration" alt="Compas" src="res/images/icons/png/Compas.png">
-            <h3 class="tile-title">当前位置</h3>
-            <p>点击重新选择您的位置</p>
-        </div>
-    </div>
-</div>
 
 
 <!-- NAVBAR
