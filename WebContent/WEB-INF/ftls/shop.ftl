@@ -182,7 +182,7 @@
                         <span class="lead">美食分类</span>
                     </div>
                     <div class="panel-body">
-                        <div id="dishList">
+                        <div>
                             <div class="rst-cate-wrapper" id="menu_cate_wrapper">
                             <ul style="list-style-type:none;" class="rst-cate-list" id="menu_cate_list">
                             	<#list dishTasteTags as dishTasteTag>
@@ -209,14 +209,14 @@
                             	</div>
                             </div>
                             <div class="span2 offset3">
-                                <button class="btn btn-primary">美食分类</button>
+                                <button  title="" data-toggle="popover"  data-original-title="美食分类" class="btn btn-primary meal-category-btn">美食分类</button>
                             </div>
                             <div class="span4">
                                 <div class="btn-toolbar">
                                     <div class="btn-group">
-                                        <a href="#fakelink" class="btn btn-primary active"><i class="fui-time"></i></a>
-                                        <a href="#fakelink" class="btn btn-primary"><i class="fui-photo"></i></a>
-                                        <a href="#fakelink" class="btn btn-primary"><i class="fui-eye"></i></a>
+                                        <a href="#fakelink" class="btn btn-primary active">默认</a>
+                                        <a href="#fakelink" class="btn btn-primary">销量<i class="glyphicon glyphicon-arrow-down"></i></a>
+                                        <a href="#fakelink" class="btn btn-primary">评价<i class="glyphicon glyphicon-arrow-down"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -244,7 +244,7 @@
                                 </td>
                                 <td>
                                     <i class="icon-rst-rating s${(dish.avgCommentLevel*2)?int}"></i>(${dish.commentNum})<br>
-                                    月售${dish.saleVolume}份
+                                    	月售${dish.saleVolume}份
                                 </td>
                             </tr>
                             </#list>
@@ -283,7 +283,11 @@
                                 <section>
                                     <div class="row-fluid">
                                         <div class="span6 text-center">
-                                            <button class="btn btn-info btn-lg"><i class="glyphicon fui-heart"></i> 收藏</button>
+                                        	<#if likeShop==true >
+                                            <button class="btn btn-danger btn-lg favor-shop-btn" data-cache="true"><i class="glyphicon fui-heart"></i> 已收藏</button>
+                                        	<#else>
+                                            <button class="btn btn-info btn-lg favor-shop-btn"><i class="glyphicon fui-heart"></i> 收藏</button>
+                                        	</#if>
                                         </div>
                                         <div class="span6 text-center">
                                             <button class="btn btn-info btn-lg"><i class="glyphicon glyphicon-comment"></i> 评论</button>
@@ -326,7 +330,7 @@
                             	</div>
                         	</div>
                     	</div>
-						<#if Session["loginOK"]?exists && Session["loginOK"]==1>
+						<#if Session["login"]?exists && Session["login"]["loginStatus"]?exists && Session["login"]["loginStatus"]=="1">
                     	<div class="row-fluid">
                         	<div class="panel panel-success">
                                 	
@@ -334,7 +338,19 @@
                                		<span class="lead">我的私房菜</span>
                                	</div>
                             	<div class="panel-body">
-
+									<table class="table table-hover">
+									<#list favoredDishes as favoredDish>
+										<tr>
+											<td>
+                                    			<span class="lead dish-cat-head"> <a class="dish_item" title="${favoredDish.id}">${favoredDish.name}</a></span><br>
+                                    			<i class="icon-d-star s${(favoredDish.avgCommentLevel*2)?int}"></i><span class="lead" style="font-size:14px">(${favoredDish.commentNum})</span>										
+											</td>
+											<td>
+                                    			<button class="btn btn-info btn-sm order_btn" title="${favoredDish.id}"><i class="icon-rst-deliver"></i>${favoredDish.price}</button>
+                                			</td>
+										</tr>
+									</#list>
+									</table>
                             	</div>
                         	</div>
                     	</div>
@@ -353,14 +369,18 @@
 
 <#include "./snippet/shoppingcart.ftl" />
 
-
-
-<!-- FOOTER -->
-<footer>
-    <p class="pull-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-</footer>
-
+<div class="sr-only">
+	<div id="dish_popover_list">
+		<ul style="list-style-type:none;padding-left:5px" class="rst-cate-list">
+		<#list dishTasteTags as dishTasteTag>
+			<li class="cate_item cate-item">
+				<a  title="${dishTasteTag.id}" class="cate_name cate-name">${dishTasteTag.name}</a>&nbsp;
+			</li>
+		</#list>
+		</ul>
+	</div>
+</div>
+                        
 <div class="rst-mask s_r_m" style="display: none;"></div>
 <div class="rst-drawer-wrapper">
     <article class="rst-drawer s_r_d">

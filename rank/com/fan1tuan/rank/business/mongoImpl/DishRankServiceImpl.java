@@ -20,6 +20,7 @@ import com.fan1tuan.general.dao.impl.AreaDao;
 import com.fan1tuan.general.dao.impl.DishDao;
 import com.fan1tuan.general.dao.impl.ShopDao;
 import com.fan1tuan.general.pojos.Area;
+import com.fan1tuan.general.util.Constants.OrderType;
 import com.fan1tuan.general.util.Constants.RankAccord;
 import com.fan1tuan.general.util.Constants.ShopState;
 import com.fan1tuan.general.util.Constants.ShopType;
@@ -166,11 +167,13 @@ public class DishRankServiceImpl implements DishRankService {
 		CriteriaWrapper criteriaWrapper = CriteriaWrapper.instance();
 
 		if(shopType!=ShopType.ALL){
-			criteriaWrapper.is("type", shopType);
+			criteriaWrapper.is("type", shopType.ordinal());
 		}
 		if(open==ShopState.OPEN){
 			criteriaWrapper.is("open", true);
 		}
+		
+		criteriaWrapper.is("orderType", OrderType.ONLINE.ordinal());
 		
 		Circle circle = makeCircleWithArea(areaId);
 		GeoResults<Shop> shopGeos = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(criteriaWrapper, FieldFilter.instance("id"), null));

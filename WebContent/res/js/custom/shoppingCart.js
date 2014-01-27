@@ -183,20 +183,29 @@ $('document').ready(function(){
     	$.ajax({
     		url : "/user/ajax/secure/ajaxAddDishToCart.f1t?dishId="+id
     	}).done(function(data){
-    		var cloneDom = $("img[title="+id+"]").clone();
-        	cloneDom.attr("style","z-index: 1;left:"+event.clientX+"px;top:"+event.clientY+"px;position:fixed;");
-        	
-        	cloneDom.insertAfter("img[title="+id+"]");
-        	cloneDom.animate({
-        		width: [ "toggle", "swing" ],
-        		height: [ "toggle", "swing" ],
-        		left : ["+="+(window.innerWidth-event.clientX-200)],
-    			top:["+="+(window.innerHeight-event.clientY-50), "easeOutBounce"]
-        	},800,function(){
-        		cloneDom.remove();
-        		theButton.removeAttr("disabled");
-        		refreshCart(data);
-        	});   
+    		if(data.flag==2){
+    			var cloneDom = $("img[title="+id+"]").clone();
+            	cloneDom.attr("style","z-index: 1;left:"+event.clientX+"px;top:"+event.clientY+"px;position:fixed;");
+            	
+            	cloneDom.insertAfter("img[title="+id+"]");
+            	cloneDom.animate({
+            		width: [ "toggle", "swing" ],
+            		height: [ "toggle", "swing" ],
+            		left : ["+="+(window.innerWidth-event.clientX-200)],
+        			top:["+="+(window.innerHeight-event.clientY-50), "easeOutBounce"]
+            	},800,function(){
+            		cloneDom.remove();
+            		theButton.removeAttr("disabled");
+            		refreshCart(data);
+            	});   
+    		}else if(data.flag==1){
+    			alert("请登录");
+    			theButton.removeAttr("disabled");
+    		}else{
+    			alert("未知错误");
+    			theButton.removeAttr("disabled");
+    		}
+    		
     	});
     	
     });
@@ -228,6 +237,10 @@ $('document').ready(function(){
     	    	$(".tm-mcCartNumTotal").text("0 件");
     			$('.tm-mcCartSumCost').text("       ￥0");
     			$('.order_number').addClass("sr-only");
+    		}else if(data.flag==1){
+    			alert("请登录");
+    		}else{
+    			alert("未知错误");
     		}
     	});
     });
@@ -241,7 +254,13 @@ $('document').ready(function(){
     	$.ajax({
     		url : "/user/ajax/secure/ajaxRemoveDishFromCart.f1t?dishId="+dishId
     	}).done(function(data){
-    		refreshCart(data);
+    		if(data.flag==2){
+        		refreshCart(data);
+    		}else if(data.flag==1){
+    			alert("请登录");
+    		}else{
+    			alert("未知错误");
+    		}
     	});
     
     });

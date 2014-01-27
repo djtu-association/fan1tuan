@@ -16,6 +16,7 @@ import com.fan1tuan.shop.pojos.Dish;
 import com.fan1tuan.shop.pojos.DishTasteTag;
 import com.fan1tuan.shop.pojos.Shop;
 import com.fan1tuan.shop.pojos.ShopGeo;
+import com.fan1tuan.user.business.UserService;
 import com.opensymphony.xwork2.Action;
 
 public class ShopAction extends Fan1TuanAction{
@@ -63,6 +64,19 @@ public class ShopAction extends Fan1TuanAction{
 		this.dishTasteTags = dishTasteTags;
 	}
 	
+	
+	public boolean isLikeShop() {
+		return likeShop;
+	}
+	public void setLikeShop(boolean likeShop) {
+		this.likeShop = likeShop;
+	}
+	public List<Dish> getFavoredDishes() {
+		return favoredDishes;
+	}
+	public void setFavoredDishes(List<Dish> favoredDishes) {
+		this.favoredDishes = favoredDishes;
+	}
 	public ShoppingCart getCart() {
 		return cart;
 	}
@@ -85,7 +99,7 @@ public class ShopAction extends Fan1TuanAction{
 	//service类
 	private ShopUserService shopUserService;
 	private ShoppingCartService shoppingCartService;
-	
+	private UserService userService;
 	public ShopUserService getShopUserService() {
 		return shopUserService;
 	}
@@ -98,16 +112,21 @@ public class ShopAction extends Fan1TuanAction{
 	public void setShoppingCartService(ShoppingCartService shoppingCartService) {
 		this.shoppingCartService = shoppingCartService;
 	}
-	
+	public UserService getUserService() {
+		return userService;
+	}
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
 	
 	/*
 	**-----------------/shop/index.f1t -------------action方法开始
 	*/
-	
 	//入参
 	private String shopId;   //shop的ID
 	//出参
 	private Shop shop;      //shop实体，基本信息
+	private boolean likeShop;
 	private double distance; //距离
 	private Map<String, List<Dish>> dishes; //以才菜品标签分割的菜品映射
 	private ShoppingCart cart; //购物车实体
@@ -115,6 +134,7 @@ public class ShopAction extends Fan1TuanAction{
 	private Map<String, Integer> commentLevel; //店铺的评价星级分布
 	private List<Dish> topDishes;  //当前店铺的前排菜品
 	private String mapUrl;  //地图的动态url
+	private List<Dish> favoredDishes;
 	
 	public String execute(){
 		//session.put("guest", true);
@@ -129,9 +149,11 @@ public class ShopAction extends Fan1TuanAction{
 		String areaId = (String)area_cache.get(ISession.AREAID);
 
 		ShopGeo shopGeo = shopUserService.getShopGeo(shopId, areaId);
-			
+		likeShop = false;
 		if(user_cache!=null){
 			cart=shoppingCartService.getShoppingCartByUserId((String)user_cache.get(ISession.USER_ID));
+			favoredDishes = userService.getFavoriteInShop((String)user_cache.get(ISession.USER_ID), shopId);
+			likeShop = userService.isLikeShop((String)user_cache.get(ISession.USER_ID), shopId);
 		}
 
 		if(shopGeo==null){

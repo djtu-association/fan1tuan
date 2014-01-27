@@ -16,6 +16,8 @@ public class ISession {
 	public static final String LOGIN = "login";
 	public static final String LOGIN_TIME = "loginTime";
 	public static final String LOGIN_STATUS = "loginStatus";
+	public static final String LOGIN_TYPE = "loginType";
+
 	public static enum LOG_STATUS{
 		LOGIN(1),LOGOUT(2);
 		private int status;
@@ -27,7 +29,6 @@ public class ISession {
 			return String.valueOf(this.status);
 		}
 	}
-	public static final String LOGIN_TYPE = "loginType";
 	public static enum LOG_TYPE{
 		TRUE(1),FALSE(0);
 		private int type;

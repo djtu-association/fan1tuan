@@ -6,9 +6,9 @@
                 <p class="dish-intro">${dish.description}</p>
             </div>
         </header>
-        <section class="rst-drawer-rating group" >
+        <section class="rst-drawer-rating group" style="padding-left:10px"">
             <div class="rating-point"><strong class="point">${dish.avgCommentLevel}</strong><span class="comment">${dish.commentNum}人评价</span></div>
-            <ul style="list-style-type:none;margin-left:0px;margin-right:0px;" class="rating-diagram">
+            <ul style="width:220px;list-style-type:none;padding-left:5px" class="rating-diagram">
             <#if dish.commentNum==0 >
                   <#assign commentNum=1 />
             <#else>
