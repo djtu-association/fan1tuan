@@ -253,7 +253,7 @@
                         </li>
                         -->
                         <li id="" title="" data-toggle="">
-                            <a href="javascript:void(0)" id="navReserveSeat" onclick="location='areas.f1t'"><span class="fui-location"></span><span ><#if areaName?exists>${areaName}</#if></span></a>
+                            <a class="need-redirect" href="javascript:void(0)" id="navReserveSeat" onclick="location='/areas.f1t'"><span class="fui-location"></span><span ><#if areaName?exists>${areaName}</#if></span></a>
                         </li>
                         
                         <!--<li id="navLifeSurround" title="" data-toggle="popover">

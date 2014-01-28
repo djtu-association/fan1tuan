@@ -209,7 +209,19 @@
                             	</div>
                             </div>
                             <div class="span2 offset3">
-                                <button  title="" data-toggle="popover"  data-original-title="美食分类" class="btn btn-primary meal-category-btn">美食分类</button>
+                            	<div class="btn-group">
+    								<button class="btn btn-primary meal-category-btn dropdown-toggle" data-toggle="dropdown" href="#">
+    									美食分类
+    									<span class="caret"></span>
+    								</button>
+   									<ul class="dropdown-menu">
+    								<#list dishTasteTags as dishTasteTag>
+										<li>
+											<a  title="${dishTasteTag.id}" class="cate_name cate-name">${dishTasteTag.name}</a>&nbsp;
+										</li>
+									</#list>
+    								</ul>
+    							</div>
                             </div>
                             <div class="span4">
                                 <div class="btn-toolbar">
@@ -369,17 +381,7 @@
 
 <#include "./snippet/shoppingcart.ftl" />
 
-<div class="sr-only">
-	<div id="dish_popover_list">
-		<ul style="list-style-type:none;padding-left:5px" class="rst-cate-list">
-		<#list dishTasteTags as dishTasteTag>
-			<li class="cate_item cate-item">
-				<a  title="${dishTasteTag.id}" class="cate_name cate-name">${dishTasteTag.name}</a>&nbsp;
-			</li>
-		</#list>
-		</ul>
-	</div>
-</div>
+
                         
 <div class="rst-mask s_r_m" style="display: none;"></div>
 <div class="rst-drawer-wrapper">
@@ -407,6 +409,7 @@
 <script src="../res/js/holder.js"></script>
 <script src="../res/js/custom/shop.js"></script>
 <script src="../res/js/custom/shoppingCart.js"></script>
+<script src="../res/js/custom/publicRedirect.js"></script>
 
 </body>
 </html>

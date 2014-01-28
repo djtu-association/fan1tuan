@@ -19,13 +19,13 @@ $('document').ready(function(){
         "content" : content
     });
 
-    $('.meal-category-btn').popover({
-        "placement" : 'bottom',
-        "trigger" : 'click',
-        //"container" :'#shopPopoverCotainer',
-        "html":true,
-        "content" : dishTagListContent
-    });
+//    $('.meal-category-btn').popover({
+//        "placement" : 'bottom',
+//        "trigger" : 'click',
+//        //"container" :'#shopPopoverCotainer',
+//        "html":true,
+//        "content" : dishTagListContent
+//    });
 
     /*
      * pin效果
@@ -99,7 +99,7 @@ $('document').ready(function(){
     $('.cate_name').live('click',function(event){
     	
     	//收起美食列表
-    	var itemParent = $(this).parents().closest(".popover");
+    	var itemParent = $(this).parents().closest(".dropdown-menu");
     	
     	if(itemParent){
     		itemParent.prev().trigger('click');
