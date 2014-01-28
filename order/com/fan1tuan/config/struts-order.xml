@@ -5,51 +5,27 @@
 <struts>
 	<package name="order_main" extends="main" namespace="/order">
 	
-		<action name="orderIndex" class="com.fan1tuan.order.ui.struts2.core.OrderIndexAction">
-		    <result>/WEB-INF/ftls/order/order-index.ftl</result>
-		</action>
-		
-		
-		<action name="getShopItemByUserId" class="com.fan1tuan.order.ui.struts2.core.OrderIndexAction" method="getShopItemByUserId">
+		<action name="index" class="com.fan1tuan.order.ui.struts2.core.OrderAction">
 		    <result name="success" type="freemarker">/WEB-INF/ftls/order.ftl</result>
 		</action>
+	
 		
-		<action name="shopOrderSubmit" class="com.fan1tuan.order.ui.struts2.core.OrderIndexAction" method="shopOrderSubmit">
+		<action name="result" method="getOrderResult" class="com.fan1tuan.order.ui.struts2.core.OrderAction" >
 		    <result name="success" type="freemarker">/WEB-INF/ftls/orderSubmit.ftl</result>
 		</action>
 		
-		<action name="getDishItemsByUserIdByShopId" class="com.fan1tuan.order.ui.struts2.core.OrderIndexAction" method="getDishItemsByUserIdByShopId">
-		    <result name="success" type="jsonResult">
-		    dishItems
-		    </result>
-		</action>
-		
-		<action name="removeOneShopItemByIdByShopId" class="com.fan1tuan.order.ui.struts2.core.OrderIndexAction" method="removeOneShopItemByIdByShopId">
-		    <result name="success" type="jsonResult">
-		    </result>
-		</action>
-		
-		<action name="removeOneDishItemById" class="com.fan1tuan.order.ui.struts2.core.OrderIndexAction" method="removeOneDishItemById">
-		    <result name="success" type="jsonResult">
-		    </result>
-		</action>
-		
-		<action name="index" class="com.fan1tuan.order.ui.struts2.core.OrderIndexAction" >
-		    <result name="success" type="freemarker">/WEB-INF/ftls/order.ftl</result>
-		</action>
-		
-	    <!--  
-		<action name="orderTest" class="com.fan1tuan.order.ui.struts2.core.OrderTestAction">
-		    <result>/WEB-INF/jsps/order/order_test.jsp</result>
-		</action>
-		-->
-	</package>
-	
-	<package name="order_ajax" extends="main" namespace="/order/ajax">
 		
 	</package>
 	
-	<package name="order_secure" extends="main" namespace="/order/secure">
+	<package name="order_secure" extends="order_main" namespace="/order/secure">
+		
+	</package>
+	
+	<package name="order_ajax" extends="order_main" namespace="/order/ajax">
+		
+	</package>
+	
+	<package name="order_ajax_secure" extends="order_ajax" namespace="/order/ajax/secure">
 		
 	</package>
 	

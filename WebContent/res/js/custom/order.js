@@ -16,7 +16,10 @@ $('document').ready(function(){
 
     $("select").selectpicker({style: 'btn btn-primary', menuStyle: 'dropdown-inverse'});
     
-
+    $("#newAddressBtn").click(function(){
+    	$("#newAddressModal").removeClass("sr-only");
+    });
+    
     	
    
     
