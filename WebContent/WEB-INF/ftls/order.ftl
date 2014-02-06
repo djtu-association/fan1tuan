@@ -181,7 +181,7 @@
                                         <a style="float: left;font-size: 25px">&nbsp;<i class="glyphicon glyphicon-plus-sign"></i></a>
                                     </div>
                                 </td>
-                                <td>¥25</td>
+                                <td class="text-danger">¥25</td>
                                 <td><button class="close">X</button> </td>
                             </tr>
                             <tr>
@@ -194,7 +194,7 @@
                                         <a style="float: left;font-size: 25px">&nbsp;<i class="glyphicon glyphicon-plus-sign"></i></a>
                                     </div>
                                 </td>
-                                <td>¥25</td>
+                                <td class="text-danger">¥25</td>
                                 <td><button class="close">X</button> </td>
                             </tr>
                         </table>
@@ -206,7 +206,7 @@
                         </div>
 
                         <div class="span2 offset4">
-                            <span class="lead">店铺合计：</span><span class="lead">¥ 50</span>
+                            <span class="lead">店铺合计：</span><span class="lead text-danger"><strong>¥ 50</strong></span>
                         </div>
                     </div>
                 </div>
@@ -239,7 +239,7 @@
                                         <a style="float: left;font-size: 25px">&nbsp;<i class="glyphicon glyphicon-plus-sign"></i></a>
                                     </div>
                                 </td>
-                                <td>¥25</td>
+                                <td class="text-danger">¥25</td>
                                 <td><button class="close">X</button> </td>
                             </tr>
                             <tr>
@@ -252,7 +252,7 @@
                                         <a style="float: left;font-size: 25px">&nbsp;<i class="glyphicon glyphicon-plus-sign"></i></a>
                                     </div>
                                 </td>
-                                <td>¥25</td>
+                                <td class="text-danger">¥25</td>
                                 <td><button class="close">X</button> </td>
                             </tr>
                         </table>
@@ -264,14 +264,14 @@
                         </div>
 
                         <div class="span2 offset4">
-                            <span class="lead">店铺合计：</span><span class="lead">¥ 50</span>
+                            <span class="lead">店铺合计：</span><span class="lead text-danger"><strong>¥ 50</strong></span>
                         </div>
                     </div>
                 </div>
 
                 <hr>
                 <div class="row-fluid">
-                    <div class="span3 offset3">
+                    <div class="span3">
                         <select>
                             <option value="0">餐到付款</option>
                             <option value="1">支付宝</option>
@@ -287,7 +287,7 @@
 
                         </select>
                     </div>
-                    <div class="span2">
+                    <div class="span4">
                         <span class="featurette-heading text-warning">¥ 100</span>
                         <br>
                         <span class="lead">共 4 份美食</span>
