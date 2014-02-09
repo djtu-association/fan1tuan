@@ -5,9 +5,12 @@ import java.util.Map;
 
 import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
+import com.fan1tuan.general.util.ISession;
+import com.fan1tuan.general.util.SessionUtil;
 import com.fan1tuan.shop.business.DishUserService;
 import com.fan1tuan.shop.pojos.Dish;
 import com.fan1tuan.shop.pojos.DishComment;
+import com.fan1tuan.user.business.UserService;
 
 public class ShopAjaxAction extends Fan1TuanAction{
 	/**
@@ -16,7 +19,7 @@ public class ShopAjaxAction extends Fan1TuanAction{
 	private static final long serialVersionUID = -7989008887486497192L;
 	
 	private DishUserService dishUserService;
-	
+	private UserService	 userService;
 	
 	
 	public DishUserService getDishUserService() {
@@ -75,6 +78,22 @@ public class ShopAjaxAction extends Fan1TuanAction{
 		this.dishComments = dishComments;
 	}
 
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public boolean isLikeDish() {
+		return likeDish;
+	}
+
+	public void setLikeDish(boolean likeDish) {
+		this.likeDish = likeDish;
+	}
+
 	/**
 	 *  ---------------/shop/ajax/ajaxGetDishInfo.f1t -------------
 	 */
@@ -88,8 +107,17 @@ public class ShopAjaxAction extends Fan1TuanAction{
 	private Dish dish;
 	private Map<String, Integer> commentLevel;  //comment分布
 	private List<DishComment> dishComments;  
-	
+	private boolean likeDish = false;
 	public String getDishInfo(){
+		Map<String, Object> user_cache = SessionUtil.getUser(session);
+		
+		if(user_cache!=null){
+			String userId = (String)user_cache.get(ISession.USER_ID);
+			if(userId!=null && !userId.equals("")){
+				likeDish = userService.isLikeDish(userId, dishId);
+			}
+		}
+		
 		dish = dishUserService.getDish(dishId);
 		commentLevel = dishUserService.getSimpleDishComments(dishId);
 		if(pageSize==0){

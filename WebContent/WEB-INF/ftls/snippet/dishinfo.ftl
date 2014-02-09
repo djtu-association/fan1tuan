@@ -1,7 +1,14 @@
 		<header class="rst-drawer-header">
             <a class="rst-drawer-close" id="rst_cmt_close">×</a>
             <div class="rst-drawer-dish">
-                <h3 title="${dish.name}" class="dish-name">${dish.name}<a class="text text-danger lead"><i class="glyphicon glyphicon-heart-empty"></i> </a>
+                <h3 title="${dish.name}" data-title="${dish.id}" class="dish-name">${dish.name}
+                <a class="text text-danger lead">
+                	<#if likeDish==true >
+                		<i data-cache="true" class="glyphicon glyphicon-heart dishinfo-heart"></i> 
+                	<#else>
+                		<i class="glyphicon glyphicon-heart-empty dishinfo-heart"></i> 
+                	</#if>
+                </a>
                 </h3>
                 <p class="dish-intro">${dish.description}</p>
             </div>

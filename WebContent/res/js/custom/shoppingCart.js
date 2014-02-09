@@ -19,7 +19,7 @@ $('document').ready(function(){
                                                     '</div>'+
                                                     '<div class="tm-mcCost">'+
                                                     '    <a data-tmc="del" title="删除" class="tm-mcDel"></a><br>'+
-                                                    '    <strong class="tm-mcSum">'+dishItem.dishSum+'</strong>'+
+                                                    '    <strong class="tm-mcSum">￥'+dishItem.dishSum+'</strong>'+
                                                     '</div>'+
                                                 '</div>';
     }
@@ -33,13 +33,14 @@ $('document').ready(function(){
     	return '<div title="'+shopItem.shopId+'" class="tm-mcBundle tm-mcBundleB">'+
         '<div class="tm-mcBundleHeader">'+
         '<div class="tm-mcTitle"><span class="label label-info" style="font-size: 15px" title="">'+shopItem.shopName+'</span></div>'+
-        '<div class="tm-mcCost"><strong class="tm-mcPrice">'+shopItem.sumPrice+'</strong></div>'+
+        '<div class="tm-mcCost"><strong class="tm-mcPrice"  style="font-size: 18px">￥'+shopItem.sumPrice+'</strong></div>'+
     '</div>'+
     '<div class="tm-mcBundleList">'+
         '<div class="tm-mcMainOne" id="tmcMain0">'+
             '<div class="tm-mcMainHead">'+
                 '<div class="tm-mcMainHeader">'+
-                    '<span class="tm-mcMjzPromo">*元起送</span>'+
+                	'<a title="" target="_blank" class="tm-mcMainTitle">'+shopItem.deliveryCharge+'元起送</a>'+
+                    //'<span class="tm-mcMjzPromo">*元起送</span>'+
                 '</div>'+
             '</div>'+
             '<div class="tm-mcMainList">'+result+
@@ -95,7 +96,7 @@ $('document').ready(function(){
     		if(dishItemNum==1){
     			height = baseHeight;
     		}else if(dishItemNum==0){
-    			height = 0;
+    			height = 50;
     		}else{
     			dishItemNum--;
     			height = (dishItemNum*perScale+baseHeight>maxHeight)?maxHeight:dishItemNum*perScale+baseHeight;
@@ -127,7 +128,7 @@ $('document').ready(function(){
 					var res = hasDishItem(dishId, dishItems);
 					if(typeof res!='undefined'){
 						$(this).contents().find('.tm-mcQuantity').text(res.number);
-						$(this).contents().find('.tm-mcSum').text(res.dishSum);
+						$(this).contents().find('.tm-mcSum').text('￥'+res.dishSum);
 					}else{
 						$(this).remove();
 					}
@@ -144,13 +145,13 @@ $('document').ready(function(){
 					var dishDom = $('div[title='+v.dishId+'][class*=tm-mcOrder]');
 					if(dishDom.html()){
 						dishDom.contents().find(".tm-mcQuantity").text(v.number);
-						dishDom.contents().find(".tm-mcSum").text(v.dishSum);
+						dishDom.contents().find(".tm-mcSum").text('￥'+v.dishSum);
 					}else{
 						var content = buildDishItem(v);
 						shopItemDom.contents().find(".tm-mcMainList").prepend(content);
 					}
 				});
-				shopItemDom.contents().find(".tm-mcPrice").text(value.sumPrice);
+				shopItemDom.contents().find(".tm-mcPrice").text('￥'+value.sumPrice);
 			}else{
 				var content = buildShopItem(value);
 				$(content).insertAfter('.tm-mcTop');

@@ -172,6 +172,14 @@ $('document').ready(function(){
     	}
     });
     
+    $(".dishinfo-heart").live('click',function(event){
+    	var me = this;
+    	event.preventDefault();
+    	var id = $(this).parent().closest(".dish-name").attr("data-title");
+    	
+    	alert(id);
+    });
+    
     $(".heart").click(function(event){
     	var me = this;
     	event.preventDefault();

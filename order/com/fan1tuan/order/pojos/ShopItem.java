@@ -10,6 +10,11 @@ public class ShopItem extends EntityObject {
 	private String shopId;
 	private String shopName;
 	private double sumPrice;
+	
+	//新加字段，为了保证起送价限制与店铺的事务标签提醒
+	private double deliveryCharge;
+	private List<String> shopAffairTagIds;
+	
 	public ArrayList<DishItem> getDishItems() {
 		return dishItems;
 	}
@@ -27,6 +32,19 @@ public class ShopItem extends EntityObject {
 	}
 	public void setSumPrice(double sumPrice) {
 		this.sumPrice = sumPrice;
+	}
+	
+	public double getDeliveryCharge() {
+		return deliveryCharge;
+	}
+	public void setDeliveryCharge(double deliveryCharge) {
+		this.deliveryCharge = deliveryCharge;
+	}
+	public List<String> getShopAffairTagIds() {
+		return shopAffairTagIds;
+	}
+	public void setShopAffairTagIds(List<String> shopAffairTagIds) {
+		this.shopAffairTagIds = shopAffairTagIds;
 	}
 	public ShopItem(ArrayList<DishItem> dishItems, String shopId, double sumPrice) {
 		super();

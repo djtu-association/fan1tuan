@@ -15,6 +15,7 @@ import com.fan1tuan.order.pojos.DishItem;
 import com.fan1tuan.order.pojos.ShopItem;
 import com.fan1tuan.order.pojos.ShoppingCart;
 import com.fan1tuan.shop.pojos.Dish;
+import com.fan1tuan.shop.pojos.Shop;
 
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 	
@@ -684,9 +685,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 				dishItem.setDishSum(dish.getPrice());
 				dishItems.add(dishItem);
 				
+				Shop shop = shopDao.findOneById(dish.getShopId());
+				
 				shopItem.setDishItems(dishItems);
 				shopItem.setShopId(dish.getShopId());
-				shopItem.setShopName(shopDao.findOneById(dish.getShopId()).getName());
+				shopItem.setShopName(shop.getName());
+				shopItem.setDeliveryCharge(shop.getDeliveryCharge());
+				shopItem.setShopAffairTagIds(shop.getShopAffairTagIds());
 				shopItem.setSumPrice(dish.getPrice());
 				shopItems.add(shopItem);
 				
@@ -718,9 +723,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 			dishItems.add(dishItem);
 			
 			//new shopItem
+			Shop shop = shopDao.findOneById(dish.getShopId());
+
 			shopItem.setDishItems(dishItems);
 			shopItem.setShopId(dish.getShopId());
-			shopItem.setShopName(shopDao.findOneById(dish.getShopId()).getName());
+			shopItem.setShopName(shop.getName());
+			shopItem.setDeliveryCharge(shop.getDeliveryCharge());
+			shopItem.setShopAffairTagIds(shop.getShopAffairTagIds());
 			shopItem.setSumPrice(dish.getPrice());//only one dish now		
 			shopItems.add(shopItem);//
 			
@@ -744,7 +753,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		
 		ShoppingCart shoppingCart = shoppingCartDao.findOneByParams(CriteriaWrapper.instance().is("userId", userId));
 		for(ShopItem shopItem : shoppingCart.getShopItems()){
-			
+			System.err.println(shopItem.getShopId());
 		}
 		return false;
 	}

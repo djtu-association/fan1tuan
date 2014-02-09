@@ -11,8 +11,10 @@
                         <div class="tm-mcListInner" style="height: 290px;">
                             <div class="tm-mcList">
                                 <div class="tm-mcTop">
-                                    <span class="lead">我的菜篮子</span>
-                                    <a class="btn btn-primary btn-sm empty-cart">清空篮子</a>
+                                    <span class="lead">
+                                        我的菜篮子<a class="pull-right empty-cart" style="font-size: 14px">[清空篮子]</a>
+                                    </span>
+
                                 </div>
                                 
                                 <!-- content start here -->

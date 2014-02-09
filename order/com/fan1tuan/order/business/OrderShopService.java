@@ -8,7 +8,6 @@ import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.dao.Sortable;
 import com.fan1tuan.order.pojos.Order;
-import com.fan1tuan.shop.pojos.Dish;
 
 public interface OrderShopService extends IFan1TuanService{
 	
