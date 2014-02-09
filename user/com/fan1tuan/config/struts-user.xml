@@ -17,6 +17,14 @@
 		<action name="ajaxGetFavoriteDishesInShop" method="getFavoriteDishesInShop" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
 			<result name="success" type="jsonResult">flag,dishes</result>			
 		</action>
+		
+		<!-- get pedding orders -->
+		<action name="ajaxGetPendingOrders" method="getPendingOrders" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
+			<result name="success" type="jsonResult">flag,orders</result>			
+		</action>
+		<action name="ajaxGetUserAddresses" method="getUserAddresses" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
+			<result name="success" type="jsonResult">flag,addresses</result>			
+		</action>
 	</package>
 	
 	<package name="user_secure" extends="user_main" namespace="/user/secure">
@@ -53,6 +61,16 @@
 			<result name="success" type="jsonResult">flag</result>			
 		</action>
 		
+		<!-- order part -->
+		<action name="confirmOrder" method="confirmOrder" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
+			<result name="success" type="jsonResult">flag,msg</result>
+		</action>
+		<action name="ajaxAddUserAddress" method="addUserAddress" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
+			<result name="success" type="jsonResult">flag</result>
+		</action>
+		<action name="ajaxSubmitOrder" method="submitOrder" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
+			<result name="success" type="jsonResult">flag</result>
+		</action>
 	</package>
 	
 </struts>

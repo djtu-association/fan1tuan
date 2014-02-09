@@ -172,24 +172,16 @@ $('document').ready(function(){
     	}
     });
     
-    $(".dishinfo-heart").live('click',function(event){
-    	var me = this;
-    	event.preventDefault();
-    	var id = $(this).parent().closest(".dish-name").attr("data-title");
-    	
-    	alert(id);
-    });
-    
-    $(".heart").click(function(event){
-    	var me = this;
-    	event.preventDefault();
-    	var id = $(this).parent().closest(".dish_body_list_item").attr("title");
-    	if($(this).attr("data-cache")){
+    //真正触发收藏与取消收藏的操作
+    function favorDish(me, id, other, callback){
+    	if($(me).attr("data-cache")){
     		//取消收藏菜品
     		$.ajax({
     			url : "/user/ajax/secure/ajaxRemoveFavoriteDish.f1t?dishId="+id
     		}).done(function(data){
-				
+				if(callback){
+					callback(other, data);
+				}
     			if(data.flag==2){
     				$(me).removeAttr("data-cache");
     	    		$(me).removeClass("glyphicon-heart");
@@ -206,6 +198,9 @@ $('document').ready(function(){
     		$.ajax({
     			url : "/user/ajax/secure/ajaxAddFavoriteDish.f1t?dishId="+id
     		}).done(function(data){
+    			if(callback){
+					callback(other, data);
+				}
     			if(data.flag==2){
     				$(me).attr("data-cache",true);
     	        	$(me).removeClass("glyphicon-heart-empty");
@@ -218,6 +213,45 @@ $('document').ready(function(){
     		});
         	
     	}
+    }
+    
+    function favorDishWithoutAjax(me, data){
+    	if($(me).attr("data-cache")){
+    		//取消收藏菜品
+    		if(data.flag==2){
+				$(me).removeAttr("data-cache");
+	    		$(me).removeClass("glyphicon-heart");
+	    		$(me).addClass("glyphicon-heart-empty");
+	    		$(me).addClass("sr-only");
+			}
+    		
+    	}else{
+    		//收藏菜品
+    		if(data.flag==2){
+				$(me).attr("data-cache",true);
+	        	$(me).removeClass("glyphicon-heart-empty");
+	    		$(me).addClass("glyphicon-heart");
+	    		$(me).removeClass("sr-only");
+
+			}
+    	}
+    }
+    
+    //在dishInfo侧边栏中支持菜品的收藏与取消收藏
+    $(".dishinfo-heart").live('click',function(event){
+    	var me = this;
+    	event.preventDefault();
+    	var id = $(this).parent().closest(".dish-name").attr("data-title");
+    	
+    	var listHeart = $("tr[class=dish_body_list_item][title="+id+"]").contents().find(".heart");
+    	favorDish(me, id, listHeart, favorDishWithoutAjax);
+    });
+    
+    $(".heart").click(function(event){
+    	var me = this;
+    	event.preventDefault();
+    	var id = $(this).parent().closest(".dish_body_list_item").attr("title");
+    	favorDish(me, id);
     });
     
     //页面载入时刷新菜品和店铺的登陆状态

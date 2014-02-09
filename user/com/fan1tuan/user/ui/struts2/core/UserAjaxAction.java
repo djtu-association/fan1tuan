@@ -71,6 +71,15 @@ public class UserAjaxAction extends Fan1TuanAction {
 	}
 
 
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+
 	/**
 	 * ---------------/user/ajax/ajaxGetShoppingCart.f1t -------------------
 	 */
@@ -234,6 +243,13 @@ public class UserAjaxAction extends Fan1TuanAction {
 		
 	}
 	
+	/**
+	 * ----------------/user/ajax/secure/confirmOrder.f1t
+	 * @return
+	 */
+	//in
+	//out
+	private String message;
 	
 	
 	
