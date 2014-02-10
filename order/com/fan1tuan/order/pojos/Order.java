@@ -10,6 +10,7 @@ public class Order extends EntityObject {
 	private String orderNo;
 	private String userId;
 	private String shopId;
+	private String shopName;
 	
 	private ArrayList<DishItem> dishItems;
 	
@@ -21,8 +22,17 @@ public class Order extends EntityObject {
 	private int chargeType;
 	private String cellphone;
 	private String telephone;
+	//?
 	private String description;
+	//用户留言
 	private String userRemark;
+	
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
 	public String getUserRemark() {
 		return userRemark;
 	}

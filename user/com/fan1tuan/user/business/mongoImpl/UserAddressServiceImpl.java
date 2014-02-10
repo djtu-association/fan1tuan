@@ -25,7 +25,7 @@ public class UserAddressServiceImpl implements UserAddressService {
 			ArrayList<UserAddress> addresses) {
 		if(addresses != null)
 		{
-			userDao.updateFirstByParams(userId, UpdateWrapper.instance().addToSet("userAddress", addresses));
+			userDao.updateFirstByParams(userId, UpdateWrapper.instance().addToSet("userAddresses", addresses));
 			return true;
 		}
 		return false;
@@ -59,6 +59,16 @@ public class UserAddressServiceImpl implements UserAddressService {
 	public ArrayList<UserAddress> findAddresses(String userId) {	
 		return userDao.findOneById(userId).getUserAddresses();
 		
+	}
+
+	@Override
+	public boolean addAddress(String userId, UserAddress address) {
+		if(address != null)
+		{
+			userDao.updateFirstByParams(userId, UpdateWrapper.instance().addToSet("userAddresses", address));
+			return true;
+		}
+		return false; 
 	}
 
 }

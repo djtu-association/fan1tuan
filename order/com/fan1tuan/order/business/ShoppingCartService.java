@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.fan1tuan.general.business.IFan1TuanService;
 import com.fan1tuan.order.pojos.DishItem;
+import com.fan1tuan.order.pojos.Order;
 import com.fan1tuan.order.pojos.ShopItem;
 import com.fan1tuan.order.pojos.ShoppingCart;
 
@@ -81,7 +82,7 @@ public interface ShoppingCartService extends IFan1TuanService {
 	 * @param order
 	 * @return
 	 */
-	boolean createNewOrders(String userId);//点击提交订单，调用此方法（根据每个商家生个各自对应的订单，即一个商家一个订单）
+	List<Order> createNewOrders(String userId);//点击提交订单，调用此方法（根据每个商家生个各自对应的订单，即一个商家一个订单）
 	
 	/**
 	 * 根据shopId和dishId删除一个dishItem
@@ -106,6 +107,6 @@ public interface ShoppingCartService extends IFan1TuanService {
 	boolean removeShoppingCartByUserId(String userId);
 	
 	
-	
+	boolean evaluateShoppingCart(String userId);
 	
 }

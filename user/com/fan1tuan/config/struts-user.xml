@@ -63,7 +63,7 @@
 		
 		<!-- order part -->
 		<action name="confirmOrder" method="confirmOrder" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
-			<result name="success" type="jsonResult">flag,msg</result>
+			<result name="success" type="jsonResult">flag,message</result>
 		</action>
 		<action name="ajaxAddUserAddress" method="addUserAddress" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
 			<result name="success" type="jsonResult">flag</result>

@@ -6,6 +6,49 @@ public class Constants {
 	public static final String TRUE = "true";
 	public static final String FALSE = "FALSE";
 	
+	public static enum OrderStatus{
+		PRE_CONFIRM, CONFIRM,  // 0, 1
+		SHOP_ACCEPT, SHOP_DELIVERY, USER_ACCEPT, USER_EVALUATE, //2, 3, 4, 5
+		USER_DECLINE, // 6
+		SHOP_DECLINE; // 7
+		public static OrderStatus valueOf(int value){
+			switch (value) {
+			case 0:
+				return PRE_CONFIRM;
+			case 1:
+				return CONFIRM;
+			case 2:
+				return SHOP_ACCEPT;
+			case 3:
+				return SHOP_DELIVERY;
+			case 4:
+				return USER_ACCEPT;
+			case 5:
+				return USER_EVALUATE;
+			case 6:
+				return USER_DECLINE;
+			case 7:
+				return SHOP_DECLINE;
+			default:
+				return PRE_CONFIRM;
+			}
+		}
+		
+	}
+	
+	public static enum ChargeType{
+		NORMAL/*, ALIPAY*/;
+		
+		public static ChargeType valueOf(int value){
+			switch (value) {
+			case 0:
+				return NORMAL;
+			default:
+				return NORMAL;
+			}
+		}
+	}
+	
 	public static enum ShopState{ 
 		ALL, OPEN;
 		

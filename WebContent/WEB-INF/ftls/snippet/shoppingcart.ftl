@@ -43,7 +43,7 @@
                         <h3 style="font-size: 13px">
                             <span class="tm-e1">购物车</span>
                             <span>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-							<button class="btn btn-danger btn-sm">结 算</button>
+							<button class="btn btn-danger btn-sm " id="confirm-order">结 算</button>
 			 				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             <strong class="tm-mcCartNumTotal"></strong>
                             <strong class="tm-mcCartSumCost" style="font-size:15px;"></strong>

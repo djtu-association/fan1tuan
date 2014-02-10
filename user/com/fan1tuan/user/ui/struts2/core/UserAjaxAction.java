@@ -1,5 +1,6 @@
 package com.fan1tuan.user.ui.struts2.core;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,9 @@ import com.fan1tuan.general.util.SessionUtil;
 import com.fan1tuan.order.business.ShoppingCartService;
 import com.fan1tuan.order.pojos.ShoppingCart;
 import com.fan1tuan.shop.pojos.Dish;
+import com.fan1tuan.user.business.UserAddressService;
 import com.fan1tuan.user.business.UserService;
+import com.fan1tuan.user.pojos.UserAddress;
 import com.opensymphony.xwork2.Action;
 
 public class UserAjaxAction extends Fan1TuanAction {
@@ -20,8 +23,50 @@ public class UserAjaxAction extends Fan1TuanAction {
 
 	private ShoppingCartService shoppingCartService;
 	private UserService userService;
+	private UserAddressService userAddressService;
 	
 	
+	public String getCellphone() {
+		return cellphone;
+	}
+
+	public void setCellphone(String cellphone) {
+		this.cellphone = cellphone;
+	}
+
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
+
+	public String getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
+
+	public UserAddressService getUserAddressService() {
+		return userAddressService;
+	}
+
+	public void setUserAddressService(UserAddressService userAddressService) {
+		this.userAddressService = userAddressService;
+	}
+
+	
+	public List<UserAddress> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<UserAddress> addresses) {
+		this.addresses = addresses;
+	}
+
 	public ShoppingCartService getShoppingCartService() {
 		return shoppingCartService;
 	}
@@ -249,8 +294,77 @@ public class UserAjaxAction extends Fan1TuanAction {
 	 */
 	//in
 	//out
-	private String message;
+	private String message = "";
 	
+	public String confirmOrder(){
+		Map<String, Object> user_cache = SessionUtil.getUser(session);
+		String userId = (String)user_cache.get(ISession.USER_ID);
+		
+		boolean evaluateResult = shoppingCartService.evaluateShoppingCart(userId);
+		
+		flag = makeFlag(evaluateResult);
+			
+		if(!evaluateResult){
+			message = "购物车中存在某一个店铺的所购买商品价格不足起送价";
+		}
+		
+		return SUCCESS;
+		
+	}
 	
+	/**
+	 * ----------------------/user/ajax/ajaxGetUserAddresses.f1t
+	 * @return
+	 */
+	//out
+	private List<UserAddress> addresses; 
+	
+	public String getUserAddresses(){
+		Map<String, Object> user_cache = SessionUtil.getUser(session);
+		String userId = (String)user_cache.get(ISession.USER_ID);
+		
+		addresses = userAddressService.findAddresses(userId);
+		
+		if(addresses.size()==0){
+			flag = makeFlag(null);
+		}else{
+			flag = makeFlag(addresses);
+		}
+		
+		
+		return SUCCESS;
+	}
+	
+	/**
+	 * --------------/user/ajax/secure/ajaxAddUserAddress.f1t
+	 * @return
+	 */
+	//in
+	private String cellphone;
+	private String detailAddress;
+	private String receiver;
+	
+	public String addUserAddress(){
+		Map<String, Object> user_cache = SessionUtil.getUser(session);
+		String userId = (String)user_cache.get(ISession.USER_ID);
+		
+		try {
+			cellphone = new String(cellphone.getBytes("ISO8859-1"),"UTF-8");
+			detailAddress = new String(detailAddress.getBytes("ISO8859-1"),"UTF-8");
+			receiver = new String(receiver.getBytes("ISO8859-1"),"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		UserAddress userAddress = new UserAddress();
+		userAddress.setCellphone(cellphone);
+		userAddress.setDetailAddress(detailAddress);
+		userAddress.setReceiver(receiver);
+		userAddress.setAreaId("");
+		
+		flag = makeFlag(userAddressService.addAddress(userId, userAddress));
+		
+		return SUCCESS;
+	}
 	
 }

@@ -1,6 +1,7 @@
 package com.fan1tuan.order.business.mongoImpl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.fan1tuan.general.dao.CriteriaWrapper;
@@ -10,8 +11,11 @@ import com.fan1tuan.general.dao.impl.OrderDao;
 import com.fan1tuan.general.dao.impl.ShopDao;
 import com.fan1tuan.general.dao.impl.ShoppingCartDao;
 import com.fan1tuan.general.util.UUIDGenerator;
+import com.fan1tuan.general.util.Constants.ChargeType;
+import com.fan1tuan.general.util.Constants.OrderStatus;
 import com.fan1tuan.order.business.ShoppingCartService;
 import com.fan1tuan.order.pojos.DishItem;
+import com.fan1tuan.order.pojos.Order;
 import com.fan1tuan.order.pojos.ShopItem;
 import com.fan1tuan.order.pojos.ShoppingCart;
 import com.fan1tuan.shop.pojos.Dish;
@@ -749,13 +753,31 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	
 	//根据shoppingCart和相关信息生成Order
 	@Override
-	public boolean createNewOrders(String userId) {
+	public List<Order> createNewOrders(String userId) {
 		
 		ShoppingCart shoppingCart = shoppingCartDao.findOneByParams(CriteriaWrapper.instance().is("userId", userId));
+		
+		List<Order> orders = new ArrayList<Order>();
 		for(ShopItem shopItem : shoppingCart.getShopItems()){
-			System.err.println(shopItem.getShopId());
+			Order order = new Order();
+			order.setAddress("");
+			order.setCellphone("");
+			order.setChargeType(ChargeType.NORMAL.ordinal());
+			order.setDate(new Date());
+			order.setDeliveryTime(new Date());
+			order.setDescription("");
+			order.setDishItems(shopItem.getDishItems());
+			order.setOrderNo("");
+			order.setPrice(shopItem.getSumPrice());
+			order.setShopId(shopItem.getShopId());
+			order.setShopName(shopItem.getShopName());
+			order.setStatus(OrderStatus.PRE_CONFIRM.ordinal());
+			order.setTelephone("");
+			order.setUserId(userId);
+			order.setUserRemark("");
+			orders.add(order);
 		}
-		return false;
+		return orders;
 	}
 
 	/**
@@ -768,6 +790,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public boolean evaluateShoppingCart(String userId) {
+		ShoppingCart cart = getShoppingCartByUserId(userId);
+		
+		for(ShopItem shopItem : cart.getShopItems()){
+			if(shopItem.getSumPrice()<shopItem.getDeliveryCharge()){
+				return false;
+			}
+		}
+		
+		return true;
 	}
 
 

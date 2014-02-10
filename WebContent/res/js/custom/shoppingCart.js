@@ -276,4 +276,18 @@ $('document').ready(function(){
 		}
 	});
    
+    $("#confirm-order").live("click", function(event){
+    	event.preventDefault();
+    	event.stopPropagation();
+    	$.ajax({
+    		url : "/user/ajax/secure/confirmOrder.f1t"
+    	}).done(function(data){
+    		if(data.flag==2){
+    			location.href = "/order/index.f1t";
+    		}else{
+    			alert(data.message);
+    		}
+    	});
+    });
+    
 });

@@ -71,7 +71,7 @@
 		</action>
 		
 		<action name="needLogin" method="needLogin" class="com.fan1tuan.general.ui.struts2.core.InnerAction">
-		    <result>
+			<result name="success" type="redirectAction">
 		        <param name="actionName">signin</param>
        			<param name="namespace">/secure</param>
        			<param name="redirect">${redirect}</param>

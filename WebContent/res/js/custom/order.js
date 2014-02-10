@@ -15,109 +15,139 @@ $('document').ready(function(){
 
 
     $("select").selectpicker({style: 'btn btn-primary', menuStyle: 'dropdown-inverse'});
-    
+    //处理modal对话框的遮挡导航栏问题，bug解除
     $("#newAddressBtn").click(function(){
     	$("#newAddressModal").removeClass("sr-only");
     });
     
-    	
-   
-    
-    this.order_numberAdd = function(num){
-    	//$('#button_'+num).attr("disabled","false");
-    	var dishPrice = ($('#dishPrice_'+num).text().split('￥'))[1];//
-    	var dishNum = $('#dishNum_'+num).val();
-    	var dishSum = ($('#dishSum_'+num).text().split('￥'))[1];
-    	var dishNumInt = parseInt(dishNum)+1;
-    	if(dishNumInt<99){
-    		$('#dishNum_'+num).val(dishNumInt.toString());
-        	
-        	var sumPriceInt = parseInt(dishSum)+parseInt(dishPrice);
-        	
-        	$('#dishSum_'+num).text('￥'+sumPriceInt.toString());
-        	var pre = (num.split('_'))[0];
-        	var shopSum =($('#shopSum_'+pre).text().split('￥'))[1];
-        	var shopSumInt = parseInt(shopSum)+parseInt(dishPrice);
-        	$('#shopSum_'+pre).text('￥'+shopSumInt.toString());
-        	var finPrice = ($('#finalPrice').text().split('￥'))[1];
-        	var finPriceInt =parseInt(finPrice)+parseInt(dishPrice);
-        	$('#finalPrice').text('￥'+finPriceInt.toString());
-    	}
-    	else
-    		$('#dishNum_'+num).val('99');
-    		
-    	
-    };
-    
-    this.order_numberDec = function(num){
-    	var dishPrice = ($('#dishPrice_'+num).text().split('￥'))[1];
-    	var dishNum = $('#dishNum_'+num).val();
-    	var dishSum = ($('#dishSum_'+num).text().split('￥'))[1];
-    	var dishNumInt = parseInt(dishNum)-1;
-    	if(dishNumInt>1)
-    	{
-    		$('#dishNum_'+num).val(dishNumInt.toString());
-    		var sumPriceInt = dishNumInt*parseInt(dishPrice);
-        	$('#dishSum_'+num).text('￥'+sumPriceInt.toString());
-        	var pre = (num.split('_'))[0];
-        	var shopSum =($('#shopSum_'+pre).text().split('￥'))[1];
-        	var shopSumInt = parseInt(shopSum)-parseInt(dishPrice);
-        	$('#shopSum_'+pre).text('￥'+shopSumInt.toString());
-        	var finPrice = ($('#finalPrice').text().split('￥'))[1];
-        	var finPriceInt =parseInt(finPrice)-parseInt(dishPrice);
-        	$('#finalPrice').text('￥'+finPriceInt.toString());
-        	
-    	}
-    	else 
-    		{
-    		$('#dishNum_'+num).val("1");
-    		dishNumInt = 1;
-    		//$('#button_'+num).attr("disabled","true");
+    //添加一个新地址
+    $(".add-address-btn").live("click",function(event){
+    	var me = this;
+    	$(me).attr("disabled", true);
+    	$(me).text("添加中...");
+    	$.ajax({
+    		url : "/user/ajax/secure/ajaxAddUserAddress.f1t",
+    		data : {
+    			cellphone : $("input[type=text][name=cellphone]").val(),
+    			receiver : $("input[type=text][name=receiver]").val(),
+    			detailAddress : $("input[type=text][name=detailAddress]").val()
     		}
+    	}).done(function(data){
+    		if(data.flag==2){
+    			$(me).removeAttr("disabled");
+    	    	$(me).text("添加地址");
+    			$("#newAddressModal .close").trigger("click");
+    		    getUserAddresses();
+    		    
+    		}else{
+    			alert("添加失败...");
+    			$(me).removeAttr("disabled");
+    	    	$(me).text("添加地址");
+    		}
+    	});
     	
     	
+    });
     	
-    };
     
-    this.order_delDishItem = function(num){
-    	//alert(num);
-    	
-    	var dishSum = ($('#dishSum_'+num).text().split('￥'))[1];
-    	var pre = (num.split('_'))[0];
-    	var shopSum =($('#shopSum_'+pre).text().split('￥'))[1];
-    	var shopSumInt = parseInt(shopSum)-parseInt(dishSum);
-    	//alert(shopSumInt);
-    	$('#shopSum_'+pre).text('￥'+shopSumInt.toString());
-    	$('#row_'+num).remove();
-    	
-    	
-        
-    };
+    //动态获取用户地址
+    getUserAddresses();
     
-    this.orderSubmit = function(){
-    	$('#shopOrder').submit();
-    	
-    };
+    //处理地址的tr标签
+    function dealUserAddress(address){
+    	return '<tr>\
+                        <td>\
+                            <label class="radio" style="font-size: 18px">\
+                                <input type="radio" name="group1" value="1" data-toggle="radio">\
+                                <span class="">'+address.detailAddress+'</span>\
+                                <span class="text-muted"><strong>( '+address.receiver+' 收 )</strong></span>\
+                                <span class="text-info"><strong>'+address.cellphone+'</strong></span>\
+                            </label>\
+                        </td>\
+                    </tr>';
+    }
+    //把获取用户地址封装为一个function
+    function getUserAddresses(){
+    	$.ajax({
+        	url:"/user/ajax/ajaxGetUserAddresses.f1t"
+        }).done(function(data){
+        	if(data.flag==2){
+        		var addresses = data.addresses;
+				$(".address-table").html("");
+    			$.each(addresses, function(index, value){
+    				$(".address-table").append(dealUserAddress(value));
+    			});
+        	}else if(data.flag==0){
+    			$(".address-table").html("");
+    			$(".address-table").append("<center><h4>没有地址可以显示</h4></center>");
 
+        	}
+        });
+    }
     
+    
+    /*
+     * 订单功能部分-----以下
+     */
+    $(".subtract-dish-btn").click(function(){
+    	var me = this;
+    	var dishNum = $(me).next().val()-1;
+    	if(dishNum<1){
+    		dishNum=1;
+    	}
+    	$(me).next().val(dishNum);
+    	
+    	updateOrder($(me).next());
+    });
+    
+    $(".add-dish-btn").click(function(){
+    	var me = this;
+    	var dishNum = parseInt($(me).prev().val())+1;
+    	if(dishNum>99){
+    		dishNum=99;
+    	}
+    	$(me).prev().val(dishNum);
+    	
+    	updateOrder($(me).prev());
+
+    });
+    
+    $(".dish-number").change(function(){
+    	var me = this;
+    	    	
+    	var inputValue = parseInt($(this).val());
+    	if(inputValue){
+    		if(inputValue<1) $(me).val(1);
+    		else if(inputValue>99) $(me).val(99);
+    	}else {
+    		$(me).val(1);
+    	}
+    	
+    	updateOrder($(me));
+
+    });
+    
+    $(".dish-number").keypress(function(event){ 
+    	
+       	if(event.which!=0 && event.which!=8 && (event.which<48||event.which>57)){
+    		event.preventDefault();
+    	}
+       	
+    });
+    
+    function updateOrder(input){
+    	var trNode = input.parents().closest("tr");
+    	var dishPrice = trNode.contents().find(".dish-price");
+    	var dishSum = trNode.contents().find(".dish-sum");
+    	var shopSum = input.parents().closest(".row-fluid").next().contents().find(".shop-sum");
+    	    	
+    	var originSum = shopSum.text()-dishSum.text();
+    	
+    	dishSum.text(dishPrice.text()*input.val());
+    	
+    	shopSum.text(parseInt(originSum)+parseInt(dishSum.text()));
+    }
 });
 
 
 
-function addOneDishNum(cell){
-	alert(cell.parent().next().html());
-	var idcell =cell.nextNode.id;
-	alert(idcell);
-	var row = cell.parentNode.parentNode;
-    
-	
-}
-function decOneDishNum(){}
-function deleteDishItem(){}
-function getSumPrice(){
-	var dishNum=$('#dishNum').html();
-	alert(dishNum);
-    var dishPrice=$('#dishPrice').html();
-    var sumPrice = dishNum*dishPrice;
-    $('#sumPrice').html(sumPrice);
-}

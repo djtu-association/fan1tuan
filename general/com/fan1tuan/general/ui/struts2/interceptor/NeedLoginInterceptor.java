@@ -2,15 +2,18 @@ package com.fan1tuan.general.ui.struts2.interceptor;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.fan1tuan.general.util.ISession;
-import com.fan1tuan.general.util.StringUtil;
 import com.fan1tuan.general.util.ISession.LOG_STATUS;
 import com.fan1tuan.general.util.ISession.LOG_TYPE;
 import com.fan1tuan.general.util.SessionUtil;
+import com.fan1tuan.general.util.StringUtil;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
@@ -23,7 +26,7 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
  * @author JOE
  *
  */
-public class NeedLoginInterceptor extends AbstractInterceptor{
+public class NeedLoginInterceptor extends AbstractInterceptor implements SessionAware{
 
 	/**
 	 * 
@@ -42,12 +45,17 @@ public class NeedLoginInterceptor extends AbstractInterceptor{
 		logger.trace("Requested Action NameSpace is "+actionNameSpace);
 		boolean isAjax = actionNameSpace.contains("ajax");
 		boolean isUser = actionNameSpace.contains("user");
+		boolean isOrder = actionNameSpace.contains("order");
 		boolean isUserSecure = actionNameSpace.contains("user")&&actionNameSpace.contains("secure");
 		
-		String requestedFullPath = ServletActionContext.getRequest().getRequestURL().toString()+"?"+ServletActionContext.getRequest().getQueryString();
 		
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String queryStr = request.getQueryString();
+		String requestedFullPath = request.getRequestURL().toString()+(queryStr==null||queryStr.equals("")?"":queryStr);
+			
 		logger.trace("ajax: "+isAjax);
 		logger.trace("user: "+isUser);
+		logger.trace("order:"+isOrder);
 		logger.trace("userSecure: "+isUserSecure);
 		
 		//redirect flag
@@ -55,7 +63,7 @@ public class NeedLoginInterceptor extends AbstractInterceptor{
 		
 		//check if current uri need (true) login
 		
-		if(isUser){
+		if(isUser||isOrder){
 			Map<String, Object> login_cache = SessionUtil.getLogin(session);
 			if(login_cache!=null){
 				//check if login
@@ -83,8 +91,9 @@ public class NeedLoginInterceptor extends AbstractInterceptor{
 		
 		
 		if(needRedirect){
-			actionInvocation.getStack().setValue("redirect", StringUtil.encodeURL(requestedFullPath));
-			
+			session.put("redirect", StringUtil.encodeURL(requestedFullPath));
+
+			logger.trace("REDIRECT PAGE: "+requestedFullPath);
 			if(isAjax){
 				logger.trace("RETURN AJAX_LOGIN");
 				return "global_ajax_login";
@@ -97,6 +106,15 @@ public class NeedLoginInterceptor extends AbstractInterceptor{
 		
 		return actionInvocation.invoke();
 		
+	}
+
+	private Map<String, Object> session;
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+	public Map<String, Object> getSession() {
+		return session;
 	}
 
 	

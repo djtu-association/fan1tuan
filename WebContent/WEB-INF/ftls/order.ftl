@@ -76,13 +76,7 @@
 
 <div class="container">
     <div class="row-fluid" style="height: 100px"></div>
-    <div class="row-fluid">
-        <ul class="breadcrumb">
-            <li><a href="#">Fan1tuan</a> <span class="divider"></span></li>
-            <li><a href="#">犯罪团伙</a> <span class="divider"></span></li>
-            <li class="active">确认饿单</li>
-        </ul>
-    </div>
+    
     <div class="row-fluid">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -101,48 +95,29 @@
                                 <h4 id="myModalLabe" class="lead text-info">写一个新地址吧</h4>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal">
+                                <form action="/user/ajax/secure/ajaxAddUserAddress.f1t" id="add-address-from"  class="form-horizontal">
                                     <div class="control-group inline-block">
-                                        <input type="text" class="form-control input-sm" placeholder="电话" />
+                                        <input type="text" name="cellphone" class="form-control input-sm" placeholder="电话" />
                                         <br>
-                                        <input type="text" class="form-control input-sm" placeholder="收餐人" />
+                                        <input type="text" name="receiver" class="form-control input-sm" placeholder="收餐人" />
                                         <br>
                                     </div>
                                     <div class="control-group">
-                                        <input type="text" class="form-control input-sm" placeholder="地址" />
+                                        <input type="text" name="detailAddress" class="form-control input-sm" placeholder="地址" />
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn" data-dismiss="modal" aria-hidden="true">放弃</button>
-                                <button class="btn btn-primary">添加地址</button>
+                                <button class="btn btn-primary add-address-btn">添加地址</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="panel-body">
-                <table class="table table-hover">
-                    <tr>
-                        <td>
-                            <label class="radio" style="font-size: 18px">
-                                <input type="radio" name="group1" value="1" data-toggle="radio">
-                                <span class="">大连市交通大学二期教学楼</span>
-                                <span class="text-muted"><strong>( 李赫 收 )</strong></span>
-                                <span class="text-info"><strong>18660809549</strong></span>
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="radio" style="font-size: 18px">
-                                <input type="radio" name="group1" value="1" data-toggle="radio">
-                                <span class="">大连市交通大学二期教学楼</span>
-                                <span class="text-muted"><strong>( 李赫 收 )</strong></span>
-                                <span class="text-info"><strong>18660809549</strong></span>
-                            </label>
-                        </td>
-                    </tr>
+                <table class="table table-hover address-table">
+                    
                 </table>
             </div>
         </div>
@@ -153,13 +128,14 @@
                 <h5>确认订单信息</h5>
             </div>
             <div class="panel-body">
-                <div class="shopItem">
+            <#list orders as order>
+            	<div class="shopItem">
                     <div class="row-fluid">
                         <div class="span1">
                             <img src="../res/images/shop-image.jpeg">
                         </div>
                         <div class="span6">
-                            餐厅名称：<span><a class="btn btn-xs btn-info">犯罪团伙</a></span>
+                            餐厅名称：<span><a class="btn btn-xs btn-info" href="/shop/index.f1t?shopId=${order.shopId}">${order.shopName}</a></span>
                         </div>
                     </div>
                     <div class="row-fluid">
@@ -171,32 +147,21 @@
                                 <th>总价</th>
                                 <th></th>
                             </tr>
-                            <tr>
-                                <td>原味沙拉鸡排饭</td>
-                                <td>¥25</td>
+                            <#list order.dishItems as dishItem>
+                            <tr  data-title="${dishItem.dishId}">
+                                <td>${dishItem.dishName}</td>
+                                <td>¥<span class="dish-price">${dishItem.dishPrice}</span></td>
                                 <td>
                                     <div>
-                                        <a style="float: left;font-size: 25px"><i class="glyphicon glyphicon-minus-sign"></i>&nbsp;</a>
-                                        <input class="form-control input-sm" type="text" maxlength="2" style="width: 42px;float: left">
-                                        <a style="float: left;font-size: 25px">&nbsp;<i class="glyphicon glyphicon-plus-sign"></i></a>
+                                        <a href="javascript:void(0)" class="subtract-dish-btn" style="float: left;font-size: 25px"><i class="glyphicon glyphicon-minus-sign"></i>&nbsp;</a>
+                                        <input class="form-control input-sm dish-number" type="text" maxlength="2" style="width: 42px;float: left" value="${dishItem.number}">
+                                        <a href="javascript:void(0)" class="add-dish-btn" style="float: left;font-size: 25px">&nbsp;<i class="glyphicon glyphicon-plus-sign"></i></a>
                                     </div>
                                 </td>
-                                <td class="text-danger">¥25</td>
-                                <td><button class="close">X</button> </td>
+                                <td class="text-danger">¥<span class="dish-sum">${dishItem.dishSum}</span></td>
+                                <td><button class="close dish-close">X</button> </td>
                             </tr>
-                            <tr>
-                                <td>原味沙拉鸡排饭</td>
-                                <td>¥25</td>
-                                <td>
-                                    <div>
-                                        <a style="float: left;font-size: 25px"><i class="glyphicon glyphicon-minus-sign"></i>&nbsp;</a>
-                                        <input class="form-control input-sm" type="text" maxlength="2" style="width: 42px;float: left">
-                                        <a style="float: left;font-size: 25px">&nbsp;<i class="glyphicon glyphicon-plus-sign"></i></a>
-                                    </div>
-                                </td>
-                                <td class="text-danger">¥25</td>
-                                <td><button class="close">X</button> </td>
-                            </tr>
+                            </#list>                            
                         </table>
                     </div>
 
@@ -206,75 +171,19 @@
                         </div>
 
                         <div class="span2 offset4">
-                            <span class="lead">店铺合计：</span><span class="lead text-danger"><strong>¥ 50</strong></span>
+                            <span class="lead">店铺合计：</span><span class="lead text-danger"><strong>¥ <span class="shop-sum">${order.price}</span></strong></span>
                         </div>
                     </div>
                 </div>
                 <hr>
-                <div class="shopItem">
-                    <div class="row-fluid">
-                        <div class="span1">
-                            <img src="../res/images/shop-image.jpeg">
-                        </div>
-                        <div class="span6">
-                            餐厅名称：<span><a class="btn btn-xs btn-info">犯罪团伙</a></span>
-                        </div>
-                    </div>
-                    <div class="row-fluid">
-                        <table class="table table-hover">
-                            <tr>
-                                <th>美食</th>
-                                <th>单价</th>
-                                <th>数量</th>
-                                <th>总价</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <td>原味沙拉鸡排饭</td>
-                                <td>¥25</td>
-                                <td>
-                                    <div>
-                                        <a style="float: left;font-size: 25px"><i class="glyphicon glyphicon-minus-sign"></i>&nbsp;</a>
-                                        <input class="form-control input-sm" type="text" maxlength="2" style="width: 42px;float: left">
-                                        <a style="float: left;font-size: 25px">&nbsp;<i class="glyphicon glyphicon-plus-sign"></i></a>
-                                    </div>
-                                </td>
-                                <td class="text-danger">¥25</td>
-                                <td><button class="close">X</button> </td>
-                            </tr>
-                            <tr>
-                                <td>原味沙拉鸡排饭</td>
-                                <td>¥25</td>
-                                <td>
-                                    <div>
-                                        <a style="float: left;font-size: 25px"><i class="glyphicon glyphicon-minus-sign"></i>&nbsp;</a>
-                                        <input class="form-control input-sm" type="text" maxlength="2" style="width: 42px;float: left">
-                                        <a style="float: left;font-size: 25px">&nbsp;<i class="glyphicon glyphicon-plus-sign"></i></a>
-                                    </div>
-                                </td>
-                                <td class="text-danger">¥25</td>
-                                <td><button class="close">X</button> </td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div class="row-fluid">
-                        <div class="span6">
-                            <input data-toggle="tooltip"  name="tagsinput" class="tagsinput" value="少辣,多麻酱" placeholder="输入标签，按回车" />
-                        </div>
-
-                        <div class="span2 offset4">
-                            <span class="lead">店铺合计：</span><span class="lead text-danger"><strong>¥ 50</strong></span>
-                        </div>
-                    </div>
-                </div>
-
-                <hr>
+            
+            </#list>
+                            
+                
                 <div class="row-fluid">
                     <div class="span3">
                         <select>
                             <option value="0">餐到付款</option>
-                            <option value="1">支付宝</option>
                         </select>
                     </div>
                     <div class="span3">
@@ -288,9 +197,9 @@
                         </select>
                     </div>
                     <div class="span4">
-                        <span class="featurette-heading text-warning">¥ 100</span>
+                        <span class="featurette-heading text-warning all-sum">¥ ${sumPrice}</span>
                         <br>
-                        <span class="lead">共 4 份美食</span>
+                        <span class="lead all-number">共 ${sumDishNum} 份美食</span>
                     </div>
                     <div class="span1">
                         <button class="btn btn-lg btn-info">下单</button>
