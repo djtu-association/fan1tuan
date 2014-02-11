@@ -367,4 +367,19 @@ public class UserAjaxAction extends Fan1TuanAction {
 		return SUCCESS;
 	}
 	
+	/**
+	 * --------------/user/ajax/secure/ajaxSubmitOrder.f1t
+	 * @return
+	 */
+	//in
+	//private String detailAddress;  //地址信息
+	//private String receiver;
+	//private String cellphone;
+	
+	
+	
+	public String submitOrder(){
+		
+		return SUCCESS;
+	}
 }

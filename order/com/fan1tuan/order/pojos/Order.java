@@ -9,13 +9,13 @@ public class Order extends EntityObject {
 	private String id;
 	private String orderNo;
 	private String userId;
-	private String shopId;
-	private String shopName;
+	private String shopId;  //用户提供
+	private String shopName;  //用户提供
 	
-	private ArrayList<DishItem> dishItems;
+	private ArrayList<DishItem> dishItems;  //用户提供部分，只采用用户提供的id
 	
 	private Date date;
-	private double price;
+	private double price; //用户提供
 	private int status;
 	private String address;
 	private Date deliveryTime;
