@@ -146,6 +146,21 @@ $('document').ready(function(){
     	dishSum.text(dishPrice.text()*input.val());
     	
     	shopSum.text(parseInt(originSum)+parseInt(dishSum.text()));
+    	
+    	var shopSums = $(".shop-sum");
+    	var dishNumbers = $(".dish-number");
+    	
+    	var allSum = 0;
+    	var allNumber = 0;
+    	$.each(shopSums, function(index, value){
+    		allSum+=parseInt($(value).text());
+    	});
+    	$.each(dishNumbers, function(index, value){
+    		allNumber+=parseInt($(value).val());
+    	});
+    	
+    	$(".all-sum").text(allSum);
+    	$(".all-number").text(allNumber);
     }
 });
 

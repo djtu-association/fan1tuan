@@ -47,15 +47,14 @@ public class AutoLoginFilter implements Filter {
 		//first:check session
 		HttpServletRequest request = (HttpServletRequest) req;
 		
-		HttpSession session = request.getSession();
-		
+		HttpSession session = request.getSession();		
 		Map<String, Object> login_cache = SessionUtil.getLogin(session);
 		
 		if( SessionUtil.isLoginNull(session) || 
 				(login_cache != null && !login_cache.get(ISession.LOGIN_STATUS).equals(LOG_STATUS.LOGIN)) ){
 			//second:cookie login
 			Cookie[] cookies = request.getCookies();
-			
+			logger.trace("SESSION NOT LOGIN, TRY TO FIND COOKIE!");
 			if(!CookieUtil.isCookieNull(cookies)){
 				Cookie cookie = CookieUtil.getUserCacheCookie(cookies);
 				if(cookie!=null){
@@ -67,7 +66,7 @@ public class AutoLoginFilter implements Filter {
 					String username = parts[1]; //cellphone
 					long timestamp = Long.valueOf(parts[2]);
 					
-					long cookieAge = System.currentTimeMillis() - timestamp;
+					long cookieAge = (System.currentTimeMillis() - timestamp)/1000;
 					logger.trace("COOKIE LIFE AGE: "+cookieAge);
 					if(cookieAge <= ICookie.COOKIE_AGE){
 						//auto login,no need to get DB,set the session.LOG_STATUS to LOG_STATUS.LOGIN
@@ -88,6 +87,8 @@ public class AutoLoginFilter implements Filter {
 						cookie.setValue(null);
 						logger.trace("SET COOKIE USER_CACHE TO NULL: "+cookie.getValue());
 					}
+				}else{
+					logger.trace("COOKIE_USER_CACHE IS NULL:GIVE UP");
 				}
 
 			}else{
@@ -97,6 +98,9 @@ public class AutoLoginFilter implements Filter {
 			logger.trace("SESSION LOG_STATUS: "+ (login_cache != null && !login_cache.get(ISession.LOGIN_STATUS).equals(LOG_STATUS.LOGIN)) );
 			logger.trace("SESSION LOGIN ALREAY");
 		}
+		
+		
+		
 		logger.trace("AUTO LOGIN END");
 		chain.doFilter(req, res);
 	}

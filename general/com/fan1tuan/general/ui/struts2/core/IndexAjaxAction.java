@@ -34,7 +34,8 @@ public class IndexAjaxAction extends Fan1TuanAction{
 	private String isCookie;
 	//出参
 	private String loginFlag;
-	public String signin(){
+	public String signin(){	
+		ServletActionContext.getResponse().addCookie(new Cookie("USER_STORE", "1234"));
 		
 		User user = new User();
 		user.setPassword(password);
@@ -45,14 +46,15 @@ public class IndexAjaxAction extends Fan1TuanAction{
 		if(flag==FlagStatus.SUCCESS.ordinal()){
 			//System.out.println("Session:"+session);
 			//设置cookie
-			if(isCookie.equals("set")){
-				StringBuffer sb = new StringBuffer();
+			if(isCookie.equals("set")){				
+				StringBuilder sb = new StringBuilder();
 				String userId = (String) SessionUtil.getUser(session).get(ISession.USER_ID);
 				sb.append(userId);
 				sb.append(ICookie.SEPERATOR);
 				sb.append(cellphone);
 				sb.append(ICookie.SEPERATOR);
 				sb.append(System.currentTimeMillis());
+				//System.err.println(sb.toString());
 				Cookie cookie = new Cookie(ICookie.USER_CACHE, sb.toString());
 				cookie.setMaxAge(ICookie.COOKIE_AGE);//15天
 				ServletActionContext.getResponse().addCookie(cookie);

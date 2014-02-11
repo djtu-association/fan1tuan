@@ -3,10 +3,12 @@ package com.fan1tuan.order.ui.struts2.core;
 import java.util.List;
 import java.util.Map;
 
+import com.fan1tuan.general.pojos.dto.DateWrapper;
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
 import com.fan1tuan.general.util.ISession;
 import com.fan1tuan.general.util.SessionUtil;
 import com.fan1tuan.order.business.ShoppingCartService;
+import com.fan1tuan.order.pojos.DishItem;
 import com.fan1tuan.order.pojos.Order;
 import com.fan1tuan.user.business.UserAddressService;
 import com.fan1tuan.user.business.UserService;
@@ -20,6 +22,14 @@ public class OrderAction extends Fan1TuanAction{
 	
 	public UserAddressService getUserAddressService() {
 		return userAddressService;
+	}
+
+	public DateWrapper getNow() {
+		return now;
+	}
+
+	public void setNow(DateWrapper now) {
+		this.now = now;
 	}
 
 	public double getSumPrice() {
@@ -97,7 +107,7 @@ public class OrderAction extends Fan1TuanAction{
 	private List<Order> orders;
 	private double sumPrice = 0;
 	private int sumDishNum = 0;
-	
+	private DateWrapper now;
 	public String execute(){
 		Map<String, Object> user_cache = SessionUtil.getUser(session);
 		String userId = (String)user_cache.get(ISession.USER_ID);
@@ -106,8 +116,12 @@ public class OrderAction extends Fan1TuanAction{
 		
 		for(Order order : orders){
 			sumPrice += order.getPrice();
-			sumDishNum += order.getDishItems().size();
+			for(DishItem dishItem : order.getDishItems()){
+				sumDishNum += dishItem.getNumber();
+			}
 		}
+		
+		now = new DateWrapper();
 		
 		return SUCCESS;
 	}

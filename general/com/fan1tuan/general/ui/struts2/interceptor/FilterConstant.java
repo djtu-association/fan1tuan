@@ -15,4 +15,6 @@ public class FilterConstant {
 		"user"
 	};
 	
+	public static final String AUTO_LOGIN_ALLOW_URL = "/ajax/secure/ajaxSignin.f1t";
+	
 }

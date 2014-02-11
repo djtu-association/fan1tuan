@@ -35,7 +35,7 @@
                     <ul class="nav">
                     	
                         <li>
-                            <a href="#"><span >Fan1tuan</span></a>
+                            <a href="/index.f1t"><span >Fan1tuan</span></a>
                         </li>
                         
                         <li id="navOnlineOrder"   title="" data-toggle="popover">
@@ -188,18 +188,20 @@
                     </div>
                     <div class="span3">
                         <select>
-                            <option value="0">立即送出</option>
-                            <option value="1">14:30</option>
-                            <option value="1">14:45</option>
-                            <option value="1">15:00</option>
-                            <option value="1">15:15</option>
-
+                            <option value="${now.getNow()?datetime}">立即送出</option>
+                            <option value="${now.getNearestQuarter()?datetime}">${now.getNearestQuarter()?string("HH:mm")}</option>
+                            <option value="${now.next()?datetime}">${now.nextSleep()?string("HH:mm")}</option>
+                            <option value="${now.next()?datetime}">${now.nextSleep()?string("HH:mm")}</option>
+                            <option value="${now.next()?datetime}">${now.nextSleep()?string("HH:mm")}</option>
+                            <option value="${now.next()?datetime}">${now.nextSleep()?string("HH:mm")}</option>
+                            <option value="${now.next()?datetime}">${now.nextSleep()?string("HH:mm")}</option>
+                            <option value="${now.next()?datetime}">${now.nextSleep()?string("HH:mm")}</option>
                         </select>
                     </div>
                     <div class="span4">
-                        <span class="featurette-heading text-warning all-sum">¥ ${sumPrice}</span>
+                        <span class="featurette-heading text-warning">¥ <span class="all-sum">${sumPrice}</span></span>
                         <br>
-                        <span class="lead all-number">共 ${sumDishNum} 份美食</span>
+                        <span class="lead">共 <span class="all-number">${sumDishNum}</span> 份美食</span>
                     </div>
                     <div class="span1">
                         <button class="btn btn-lg btn-info">下单</button>
@@ -208,6 +210,9 @@
             </div>
         </div>
     </div>
+</div>
+
+<div style="height:200px">
 </div>
 
 <!-- Bootstrap core JavaScript

@@ -5,8 +5,10 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
+
 import org.apache.commons.lang3.StringUtils;
 
 
@@ -246,6 +248,43 @@ public abstract class DateUtil {
         return cal.getTime();
     }
     
+    /**
+     * get nearest quarter of hour
+     **/
+    public static Date getNearestQuarter(Date date){
+    	GregorianCalendar calenar = new GregorianCalendar();
+    	calenar.setTime(date);
+    	int minute = calenar.get(Calendar.MINUTE);
+    	int quarter = (minute / 15+1);
+    	int minuteSet = 0;
+    	int hourAdd = 0;
+    	if(quarter>3){
+    		minuteSet = 0;
+    		hourAdd = 1;
+    	}else{
+    		minuteSet = quarter * 15;
+    		hourAdd = 0;
+    	}
+    	calenar.set(Calendar.MINUTE, minuteSet);
+    	calenar.set(Calendar.HOUR_OF_DAY, calenar.get(Calendar.HOUR_OF_DAY)+hourAdd);
+    	return calenar.getTime();
+    }
+    
+    /**
+     * add minutes to the given date
+     */
+    public static Date addMinutesToDate(Date date, int minute){
+    	GregorianCalendar calenar = new GregorianCalendar();
+    	calenar.setTime(date);
+    	
+    	int hourAdd = minute / 60;
+    	int minuteAdd = minute % 60;
+    
+    	
+    	calenar.set(Calendar.MINUTE, calenar.get(Calendar.MINUTE)+minuteAdd);
+    	calenar.set(Calendar.HOUR_OF_DAY, calenar.get(Calendar.HOUR_OF_DAY)+hourAdd);
+    	return calenar.getTime();
+    }
     
     /**
      * Returns a java.sql.Timestamp equal to the current time

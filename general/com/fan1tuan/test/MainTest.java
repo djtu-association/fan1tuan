@@ -1,13 +1,21 @@
 package com.fan1tuan.test;
 
-import com.fan1tuan.general.util.StringUtil;
+import java.util.Date;
+
+import com.fan1tuan.general.util.DateUtil;
+
 
 
 public class MainTest {
 	public static void main(String[] args){
-		String url = "http://localhost:8080/CarsiLogCenter_new/idpstat.jsp?action=idp.sptopn&greeting=中文哦";
-		System.err.println(StringUtil.decodeURL(StringUtil.encodeURL(url)));
+//		String url = "http://localhost:8080/CarsiLogCenter_new/idpstat.jsp?action=idp.sptopn&greeting=中文哦";
+//		System.err.println(StringUtil.decodeURL(StringUtil.encodeURL(url)));
+//		
+//		System.out.println("Houhou, It's a good day!!!!!");
 		
-		System.out.println("Houhou, It's a good day!!!!!");
+		Date date = DateUtil.addMinutesToDate(DateUtil.getNearestQuarter(new Date()),13);
+		
+		System.err.println(date.toString());
+		
 	}
 }
