@@ -878,6 +878,7 @@
 	<script src="res/js/custom/index_shop_popover.js"></script>
 	<script src="res/js/custom/shoppingCart.js"></script>
 	<script src="res/js/custom/indexToggleCarts.js"></script>
+	<script src="../res/js/custom/pendingOrder.js"></script>
 	
 </body>
 </html>

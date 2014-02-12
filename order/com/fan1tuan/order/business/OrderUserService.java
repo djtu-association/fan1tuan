@@ -40,6 +40,8 @@ public interface OrderUserService extends IFan1TuanService{
 	
 	public List<Order> getAllOrdersByUserIdByCriteriaWrapperInorderInpage(CriteriaWrapper criteriaWrapper,Pageable pageable,Sortable sortable);//criteria参数
 	
+	public List<Order> getAllPendingOrdersByUserId(String userId);
+	
 	public boolean saveOrder(Order order);//保存订单
 	
 	public long getCountByuserId(String userId);//获取用户订单数量

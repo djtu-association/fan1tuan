@@ -230,6 +230,7 @@
 <script src="../res/js/jquery.placeholder.js"></script>
 <script src="../res/js/jquery.pin.min.js"></script>
 <script src="../res/js/custom/order.js"></script>
+<script src="../res/js/custom/pendingOrder.js"></script>
 <script src="../res/js/holder.js"></script>
 </body>
 </html>

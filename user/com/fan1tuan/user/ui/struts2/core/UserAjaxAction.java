@@ -13,7 +13,7 @@ import com.fan1tuan.general.util.DateUtil;
 import com.fan1tuan.general.util.ISession;
 import com.fan1tuan.general.util.SessionUtil;
 import com.fan1tuan.general.util.StringUtil;
-import com.fan1tuan.order.business.OrderService;
+import com.fan1tuan.order.business.OrderUserService;
 import com.fan1tuan.order.business.ShoppingCartService;
 import com.fan1tuan.order.pojos.DishItem;
 import com.fan1tuan.order.pojos.Order;
@@ -38,7 +38,7 @@ public class UserAjaxAction extends Fan1TuanAction {
 	private UserAddressService userAddressService;
 	private DishUserService dishUserService;
 	private ShopUserService shopUserService;
-	private OrderService orderService;
+	private OrderUserService orderUserService;
 	
 	public DishUserService getDishUserService() {
 		return dishUserService;
@@ -56,12 +56,20 @@ public class UserAjaxAction extends Fan1TuanAction {
 		this.shopUserService = shopUserService;
 	}
 
-	public OrderService getOrderService() {
-		return orderService;
+	public OrderUserService getOrderUserService() {
+		return orderUserService;
 	}
 
-	public void setOrderService(OrderService orderService) {
-		this.orderService = orderService;
+	public void setOrderUserService(OrderUserService orderUserService) {
+		this.orderUserService = orderUserService;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 	public String getDeliveryTime() {
@@ -442,6 +450,7 @@ public class UserAjaxAction extends Fan1TuanAction {
 	private List<String> shopInfo; //shopId and userRemark  format: shopInfo=shopId|userRemark|dishId:dishNumber|dishId:dishNumber|...
 	//out
 	
+	//检测菜品是否属于对应店铺，检测是否满足起送价，检测菜品数量是否违法！务必保证逻辑的正确性！
 	
 	public String submitOrder(){
 		Map<String, Object> user_cache = SessionUtil.getUser(session);
@@ -473,7 +482,7 @@ public class UserAjaxAction extends Fan1TuanAction {
 				order.setChargeType(ChargeType.valueOf(chargeType).ordinal());
 				order.setDate(new Date());
 				order.setDeliveryTime(DateUtil.parseDeliveryTime(deliveryTime));
-				order.setStatus(OrderStatus.PRE_CONFIRM.ordinal());
+				order.setStatus(OrderStatus.CONFIRM.ordinal());
 				order.setUserId(userId);
 				
 				String[] parts = info.split("\\|");
@@ -505,7 +514,7 @@ public class UserAjaxAction extends Fan1TuanAction {
 				order.setOrderNo(StringUtil.generateOrderNo(userId, order.getDate()));
 				order.setShopName(shop.getName());
 				
-				boolean status = orderService.saveOrder(order);
+				boolean status = orderUserService.saveOrder(order);
 				if(!status){
 					throw new RuntimeException("订单处理有误!");
 				}
@@ -516,6 +525,23 @@ public class UserAjaxAction extends Fan1TuanAction {
 			flag = makeFlag(false);
 		}
 		
+		
+		return SUCCESS;
+	}
+	
+	/**
+	 * Get pending orders -----------/user/ajax/ajaxGetPendingOrders.f1t
+	 */
+	//in
+	//out
+	private List<Order> orders;
+	public String getPendingOrders(){
+		Map<String, Object> user_cache = SessionUtil.getUser(session);
+		String userId = (String)user_cache.get(ISession.USER_ID);
+		
+		orders = orderUserService.getAllPendingOrdersByUserId(userId);
+		
+		flag = makeFlag(orders);
 		
 		return SUCCESS;
 	}

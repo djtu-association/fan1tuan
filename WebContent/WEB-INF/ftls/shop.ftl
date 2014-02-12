@@ -45,7 +45,7 @@
                     <ul class="nav">
                     	
                         <li>
-                            <a href="#"><span >Fan1tuan</span></a>
+                            <a href="/index.f1t"><span >Fan1tuan</span></a>
                         </li>
                         
                         <li id="navOnlineOrder"   title="" data-toggle="popover">
@@ -410,6 +410,6 @@
 <script src="../res/js/custom/shop.js"></script>
 <script src="../res/js/custom/shoppingCart.js"></script>
 <script src="../res/js/custom/publicRedirect.js"></script>
-
+<script src="../res/js/custom/pendingOrder.js"></script>
 </body>
 </html>

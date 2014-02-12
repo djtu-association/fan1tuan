@@ -6,6 +6,7 @@ import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.dao.Sortable;
 import com.fan1tuan.general.dao.impl.OrderDao;
+import com.fan1tuan.general.util.Constants.OrderStatus;
 import com.fan1tuan.order.business.OrderUserService;
 import com.fan1tuan.order.pojos.Order;
 
@@ -63,6 +64,13 @@ public class OrderUserServiceImpl implements OrderUserService{
 	public long getCountByuserId(String userId) {		
 		//return orderDao.getCount();
 		return 0;
+	}
+
+	@Override
+	public List<Order> getAllPendingOrdersByUserId(String userId) {
+		
+		return orderDao.findByParams(CriteriaWrapper.instance().is("userId", userId).lt("status", OrderStatus.USER_ACCEPT.ordinal()));
+		
 	}
 	
 	
