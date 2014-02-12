@@ -129,7 +129,7 @@
             </div>
             <div class="panel-body">
             <#list orders as order>
-            	<div class="shopItem">
+            	<div data-title="${order.shopId}" class="shopItem">
                     <div class="row-fluid">
                         <div class="span1">
                             <img src="../res/images/shop-image.jpeg">
@@ -148,7 +148,7 @@
                                 <th></th>
                             </tr>
                             <#list order.dishItems as dishItem>
-                            <tr  data-title="${dishItem.dishId}">
+                            <tr class="dishItem" data-title="${dishItem.dishId}">
                                 <td>${dishItem.dishName}</td>
                                 <td>¥<span class="dish-price">${dishItem.dishPrice}</span></td>
                                 <td>
@@ -182,12 +182,12 @@
                 
                 <div class="row-fluid">
                     <div class="span3">
-                        <select>
+                        <select id="chargeType">
                             <option value="0">餐到付款</option>
                         </select>
                     </div>
                     <div class="span3">
-                        <select>
+                        <select id="deliveryTime">
                             <option value="${now.getNow()?datetime}">立即送出</option>
                             <option value="${now.getNearestQuarter()?datetime}">${now.getNearestQuarter()?string("HH:mm")}</option>
                             <option value="${now.next()?datetime}">${now.nextSleep()?string("HH:mm")}</option>
@@ -204,7 +204,7 @@
                         <span class="lead">共 <span class="all-number">${sumDishNum}</span> 份美食</span>
                     </div>
                     <div class="span1">
-                        <button class="btn btn-lg btn-info">下单</button>
+                        <button class="btn btn-lg btn-info submit-order">下单</button>
                     </div>
                 </div>
             </div>

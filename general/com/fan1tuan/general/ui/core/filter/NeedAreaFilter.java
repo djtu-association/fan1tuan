@@ -42,7 +42,7 @@ public class NeedAreaFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		
 		String queryStr = request.getQueryString();
-		String requestFullPath = request.getRequestURL().toString()+(queryStr==null||queryStr.equals("")?"":queryStr);
+		String requestFullPath = request.getRequestURL().toString()+"?"+(queryStr==null||queryStr.equals("")?"":queryStr);
 		
 		String URI = request.getRequestURI();
 		logger.trace("REQUEST URI :"+URI);

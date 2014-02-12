@@ -51,7 +51,7 @@ public class NeedLoginInterceptor extends AbstractInterceptor implements Session
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String queryStr = request.getQueryString();
-		String requestedFullPath = request.getRequestURL().toString()+(queryStr==null||queryStr.equals("")?"":queryStr);
+		String requestedFullPath = request.getRequestURL().toString()+"?"+(queryStr==null||queryStr.equals("")?"":queryStr);
 			
 		logger.trace("ajax: "+isAjax);
 		logger.trace("user: "+isUser);

@@ -58,10 +58,10 @@ $('document').ready(function(){
     	return '<tr>\
                         <td>\
                             <label class="radio" style="font-size: 18px">\
-                                <input type="radio" name="group1" value="1" data-toggle="radio">\
-                                <span class="">'+address.detailAddress+'</span>\
-                                <span class="text-muted"><strong>( '+address.receiver+' 收 )</strong></span>\
-                                <span class="text-info"><strong>'+address.cellphone+'</strong></span>\
+                                <input class="address" type="radio" name="address" value="'+address.detailAddress+'|'+address.receiver+'|'+address.cellphone+'" data-toggle="radio">\
+                                <span class="detailAddress">'+address.detailAddress+'</span>\
+                                <span class="text-muted receiver"><strong>( '+address.receiver+' 收 )</strong></span>\
+                                <span class="text-info cellphone"><strong>'+address.cellphone+'</strong></span>\
                             </label>\
                         </td>\
                     </tr>';
@@ -162,6 +162,70 @@ $('document').ready(function(){
     	$(".all-sum").text(allSum);
     	$(".all-number").text(allNumber);
     }
+    
+    
+    //submit order!!!核心逻辑处理
+    $(".submit-order").click(function(event){
+    	event.preventDefault();
+    	
+    	var checkedAddress = $("input[name=address][checked=checked]").val();
+    	if(!checkedAddress){
+    		alert("选择至少一个地址！");
+    		return;
+    	}
+    	var addressParts = checkedAddress.split("|");
+    	var detailAddress = addressParts[0];
+    	var receiver = addressParts[1];
+    	var cellphone = addressParts[2];
+    	
+    	
+    	var chargeType = $("#chargeType").val();
+    	var deliveryTime = $("#deliveryTime").val();
+    	
+    	var shopItems = $(".shopItem");
+    	
+    	var shopinfos = [];
+    	
+    	$.each(shopItems, function(index, value){
+    		var shopId = $(value).attr("data-title");
+    		var userRemark = $(value).contents().find(".tagsinput").val();
+    		
+    		shopinfos[index] = shopId+"|"+userRemark;
+    		
+    		var dishItems = $(value).contents().find(".dishItem");
+    		$.each(dishItems, function(i, v){
+    			var dishId = $(v).attr("data-title");
+    			var dishNumber =  $(v).contents().find(".dish-number").val();
+    			
+    			shopinfos[index] += "|"+dishId+":"+dishNumber;
+    		});
+    		
+    	});
+
+    	//console.log(detailAddress+"\n"+cellphone+"\n"+receiver+"\n"+chargeType+"\n"+deliveryTime+"\n"+shopinfos);
+    	var url = "/user/ajax/secure/ajaxSubmitOrder.f1t?";
+    	$.each(shopinfos, function(index, value){
+    		url += "shopInfo="+value+"&";
+    	});
+    	
+    	url += "detailAddress="+detailAddress+"&";
+    	url += "cellphone="+cellphone+"&";
+    	url += "receiver="+receiver+"&";
+    	url += "chargeType="+chargeType+"&";
+    	url += "deliveryTime="+deliveryTime+"&";
+
+    	$.ajax({
+    		url : url
+    	}).done(function(data){
+    		if(data.flag==2){
+    			alert("确认订单成功！");
+    		}else if(data.flag==1){
+    			alert("请登录！");
+    		}else{
+    			alert("确认订单失败！");
+    		}
+    	});
+    });
 });
 
 

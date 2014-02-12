@@ -558,4 +558,18 @@ public abstract class DateUtil {
         return ret;
     }
     
+    /**
+     * parse the date object by string, work for delivery time
+     * @param deliveryTime
+     * @return
+     */
+    public static Date parseDeliveryTime(String deliveryTime){
+    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	try{
+    		return format.parse(deliveryTime);
+    	}catch(Exception exception){
+    		return new Date();
+    	}
+    }
+    
 }

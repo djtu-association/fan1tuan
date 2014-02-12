@@ -2,7 +2,7 @@ package com.fan1tuan.test;
 
 import java.util.Date;
 
-import com.fan1tuan.general.util.DateUtil;
+import com.fan1tuan.general.util.StringUtil;
 
 
 
@@ -13,9 +13,8 @@ public class MainTest {
 //		
 //		System.out.println("Houhou, It's a good day!!!!!");
 		
-		Date date = DateUtil.addMinutesToDate(DateUtil.getNearestQuarter(new Date()),13);
 		
-		System.err.println(date.toString());
+		System.err.println(StringUtil.generateOrderNo("52a5228730044a63597e0cf4", new Date()));
 		
 	}
 }

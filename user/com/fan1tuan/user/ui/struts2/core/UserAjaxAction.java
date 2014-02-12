@@ -1,15 +1,27 @@
 package com.fan1tuan.user.ui.struts2.core;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
+import com.fan1tuan.general.util.Constants.ChargeType;
+import com.fan1tuan.general.util.Constants.OrderStatus;
+import com.fan1tuan.general.util.DateUtil;
 import com.fan1tuan.general.util.ISession;
 import com.fan1tuan.general.util.SessionUtil;
+import com.fan1tuan.general.util.StringUtil;
+import com.fan1tuan.order.business.OrderService;
 import com.fan1tuan.order.business.ShoppingCartService;
+import com.fan1tuan.order.pojos.DishItem;
+import com.fan1tuan.order.pojos.Order;
 import com.fan1tuan.order.pojos.ShoppingCart;
+import com.fan1tuan.shop.business.DishUserService;
+import com.fan1tuan.shop.business.ShopUserService;
 import com.fan1tuan.shop.pojos.Dish;
+import com.fan1tuan.shop.pojos.Shop;
 import com.fan1tuan.user.business.UserAddressService;
 import com.fan1tuan.user.business.UserService;
 import com.fan1tuan.user.pojos.UserAddress;
@@ -24,8 +36,58 @@ public class UserAjaxAction extends Fan1TuanAction {
 	private ShoppingCartService shoppingCartService;
 	private UserService userService;
 	private UserAddressService userAddressService;
+	private DishUserService dishUserService;
+	private ShopUserService shopUserService;
+	private OrderService orderService;
 	
-	
+	public DishUserService getDishUserService() {
+		return dishUserService;
+	}
+
+	public void setDishUserService(DishUserService dishUserService) {
+		this.dishUserService = dishUserService;
+	}
+
+	public ShopUserService getShopUserService() {
+		return shopUserService;
+	}
+
+	public void setShopUserService(ShopUserService shopUserService) {
+		this.shopUserService = shopUserService;
+	}
+
+	public OrderService getOrderService() {
+		return orderService;
+	}
+
+	public void setOrderService(OrderService orderService) {
+		this.orderService = orderService;
+	}
+
+	public String getDeliveryTime() {
+		return deliveryTime;
+	}
+
+	public void setDeliveryTime(String deliveryTime) {
+		this.deliveryTime = deliveryTime;
+	}
+
+	public int getChargeType() {
+		return chargeType;
+	}
+
+	public void setChargeType(int chargeType) {
+		this.chargeType = chargeType;
+	}
+
+	public List<String> getShopInfo() {
+		return shopInfo;
+	}
+
+	public void setShopInfo(List<String> shopInfo) {
+		this.shopInfo = shopInfo;
+	}
+
 	public String getCellphone() {
 		return cellphone;
 	}
@@ -375,10 +437,85 @@ public class UserAjaxAction extends Fan1TuanAction {
 	//private String detailAddress;  //地址信息
 	//private String receiver;
 	//private String cellphone;
-	
+	private String deliveryTime;
+	private int chargeType;
+	private List<String> shopInfo; //shopId and userRemark  format: shopInfo=shopId|userRemark|dishId:dishNumber|dishId:dishNumber|...
+	//out
 	
 	
 	public String submitOrder(){
+		Map<String, Object> user_cache = SessionUtil.getUser(session);
+		String userId = (String)user_cache.get(ISession.USER_ID);
+		
+		try {
+			cellphone = new String(cellphone.getBytes("ISO8859-1"),"UTF-8");
+			detailAddress = new String(detailAddress.getBytes("ISO8859-1"),"UTF-8");
+			receiver = new String(receiver.getBytes("ISO8859-1"),"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		
+		try{
+			for(String info : shopInfo){
+				
+				try {
+					info = new String(info.getBytes("ISO8859-1"),"UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				
+				//System.err.println(info);
+				Order order = new Order();
+				order.setAddress(detailAddress);
+				order.setCellphone(cellphone);
+				order.setReceiver(receiver);
+				order.setChargeType(ChargeType.valueOf(chargeType).ordinal());
+				order.setDate(new Date());
+				order.setDeliveryTime(DateUtil.parseDeliveryTime(deliveryTime));
+				order.setStatus(OrderStatus.PRE_CONFIRM.ordinal());
+				order.setUserId(userId);
+				
+				String[] parts = info.split("\\|");
+				String shopId = parts[0];
+				String userRemark = parts[1];
+				int price = 0;
+				ArrayList<DishItem> dishItems = new ArrayList<DishItem>();
+				for(int i = 2; i < parts.length; i++){
+					DishItem dishItem = new DishItem();
+					//System.err.println(parts[i]);
+					String[] innerParts = parts[i].split(":");
+					dishItem.setDishId(innerParts[0]);				
+					dishItem.setNumber(Integer.parseInt(innerParts[1]));
+					Dish dish = dishUserService.getDish(dishItem.getDishId());
+					dishItem.setDishName(dish.getName());
+					dishItem.setDishPrice(dish.getPrice());
+					dishItem.setDishSum(dishItem.getNumber()*dishItem.getDishPrice());
+					
+					price+=dishItem.getDishSum();
+					dishItems.add(dishItem);
+				}
+				order.setDishItems(dishItems);
+				order.setPrice(price);
+				order.setShopId(shopId);
+				order.setUserRemark(userRemark);
+				
+				Shop shop = shopUserService.getShop(shopId);
+				
+				order.setOrderNo(StringUtil.generateOrderNo(userId, order.getDate()));
+				order.setShopName(shop.getName());
+				
+				boolean status = orderService.saveOrder(order);
+				if(!status){
+					throw new RuntimeException("订单处理有误!");
+				}
+			}
+			flag = makeFlag(true);
+		}catch(Exception exception){
+			exception.printStackTrace();
+			flag = makeFlag(false);
+		}
+		
 		
 		return SUCCESS;
 	}

@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
+import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
@@ -199,4 +200,10 @@ public class StringUtil {
 			return null;
 		}
     }
+    
+    public static String generateOrderNo(String userId, Date date){
+    	String uuid = UUIDGenerator.generateUUID();
+    	return userId.substring(0, userId.length()/4+1)+uuid.substring(0, uuid.indexOf('-'))+date.getTime();
+    }
+    
 }

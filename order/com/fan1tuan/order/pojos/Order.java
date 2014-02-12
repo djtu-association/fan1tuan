@@ -10,23 +10,30 @@ public class Order extends EntityObject {
 	private String orderNo;
 	private String userId;
 	private String shopId;  //用户提供
-	private String shopName;  //用户提供
+	private String shopName;  
 	
-	private ArrayList<DishItem> dishItems;  //用户提供部分，只采用用户提供的id
+	private ArrayList<DishItem> dishItems;  //用户提供部分，dishId, number
 	
 	private Date date;
-	private double price; //用户提供
+	private double price; 
 	private int status;
-	private String address;
-	private Date deliveryTime;
-	private int chargeType;
-	private String cellphone;
+	private String address; //用户提供
+	private String receiver;// 用户提供
+	private Date deliveryTime;//用户提供
+	private int chargeType;//用户提供
+	private String cellphone;//用户提供
 	private String telephone;
 	//?
 	private String description;
 	//用户留言
-	private String userRemark;
+	private String userRemark;  //用户提供
 	
+	public String getReceiver() {
+		return receiver;
+	}
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
 	public String getShopName() {
 		return shopName;
 	}
