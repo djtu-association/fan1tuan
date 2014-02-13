@@ -1,5 +1,5 @@
 .flowstep .step-no, .flowstep .step-sub-box .step-sub {
-    background: url("http://img04.taobaocdn.com/tps/i4/T1ze0ZXA0aXXcVlxZa-734-340.png") no-repeat scroll 50% -102px rgba(0, 0, 0, 0);
+    background: url("../../img/pendingOrder.png") no-repeat scroll 50% -102px rgba(0, 0, 0, 0);
 }
 .flowstep {
     margin: 0 auto;
