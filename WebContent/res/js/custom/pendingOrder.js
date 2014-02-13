@@ -20,15 +20,14 @@ $("document").ready(function(){
 			url : "/user/ajax/ajaxGetPendingOrders.f1t"
 		}).done(function(data){
 			$(".modal-body").html("");
+			$(".modal-body").append(data);
 			
-			if(data.flag==2){
-
-				$.each(data.orders, function(index, value){
-					$(".modal-body").append("<p>"+value+"</p>");
-				});
-			}else{
-				$(".modal-body").append("获取饿单快报失败...");
-			}
+//			if(data.flag==2){
+//
+//				
+//			}else{
+//				$(".modal-body").append("获取饿单快报失败...");
+//			}
 		});
 	});
 });

@@ -20,47 +20,7 @@
 										<h5 id="myModalLabel">饿单快报</h5>
 									</div>
 									<div class="modal-body">
-										<div class="flowstep">
-    	<ol class="flowstep-5">
-                		<li class="step-first">
-                                        <div class="step-done">
-                                        <div class="step-name">拍下商品</div>
-            <div class="step-no"></div>
-                                        <div class="step-time">
-                                    <div class="step-time-wraper">2014-02-08 10:15:38</div>
-                                </div>
-                        </div>        </li>
-            		<li>
-                                        <div class="step-done">
-                                        <div class="step-name">付款到支付宝</div>
-            <div class="step-no"></div>
-                                        <div class="step-time">
-                                    <div class="step-time-wraper">2014-02-08 10:15:58</div>
-                                </div>
-                        </div>        </li>
-            		<li>
-                                        <div class="step-done">
-                                        <div class="step-name">卖家发货</div>
-            <div class="step-no"></div>
-                                        <div class="step-time">
-                                    <div class="step-time-wraper">2014-02-08 11:50:25</div>
-                                </div>
-                        </div>        </li>
-            		<li>
-                                        <div class="step-done">
-                                        <div class="step-name">确认收货</div>
-            <div class="step-no"></div>
-                                        <div class="step-time">
-                                    <div class="step-time-wraper">2014-02-11 14:02:54</div>
-                                </div>
-                        </div>        </li>
-            		<li class="step-last">
-                                        <div class="step-cur">
-                                        <div class="step-name">评价</div>
-            <div class="step-no">5</div>
-                                    </div>        </li>
-        </ol>
-</div>
+										
 									</div>
 									<!-- <div class="modal-footer">
 										<button class="btn close-btn" data-dismiss="modal" aria-hidden="true">Close</button>

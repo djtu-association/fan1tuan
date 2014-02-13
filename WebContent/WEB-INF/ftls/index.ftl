@@ -25,6 +25,7 @@
     <link href="res/css/custom/sample.css" rel="stylesheet">
     <link href="res/css/custom/shoppingcart.css" rel="stylesheet">
     <link href="res/css/custom/shop.css" rel="stylesheet">
+    <link href="../res/css/custom/pendingOrder.css" rel="stylesheet">
 </head>
 
 

@@ -20,7 +20,7 @@
 		
 		<!-- get pedding orders -->
 		<action name="ajaxGetPendingOrders" method="getPendingOrders" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
-			<result name="success" type="jsonResult">flag,orders</result>			
+		    <result name="success" type="freemarker">/WEB-INF/ftls/snippet/pendingOrder.ftl</result>
 		</action>
 		<action name="ajaxGetUserAddresses" method="getUserAddresses" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
 			<result name="success" type="jsonResult">flag,addresses</result>			

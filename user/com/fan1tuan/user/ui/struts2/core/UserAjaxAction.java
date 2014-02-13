@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
 import com.fan1tuan.general.util.Constants.ChargeType;
+import com.fan1tuan.general.util.Constants.FlagStatus;
 import com.fan1tuan.general.util.Constants.OrderStatus;
 import com.fan1tuan.general.util.DateUtil;
 import com.fan1tuan.general.util.ISession;
@@ -520,6 +521,11 @@ public class UserAjaxAction extends Fan1TuanAction {
 				}
 			}
 			flag = makeFlag(true);
+			
+			if(flag==FlagStatus.SUCCESS.ordinal()){
+				shoppingCartService.cleanShoppingCartByUserId(userId);
+			}
+			
 		}catch(Exception exception){
 			exception.printStackTrace();
 			flag = makeFlag(false);

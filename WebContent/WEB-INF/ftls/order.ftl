@@ -22,6 +22,7 @@
     <!-- page independent -->
     <title>*饭1团*</title>
     <link href="../res/css/custom/index.css" rel="stylesheet">
+    <link href="../res/css/custom/pendingOrder.css" rel="stylesheet">
 </head>
 <body>
 <div class="navbar-wrapper"  id="top">
