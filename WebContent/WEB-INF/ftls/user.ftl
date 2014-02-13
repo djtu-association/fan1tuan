@@ -26,93 +26,63 @@
     <link href="../res/css/jquery-ui-smoothness.css" rel="stylesheet">
     <link href="../res/css/custom/favorite.css" rel="stylesheet">
     <link href="../res/css/custom/comments.css" rel="stylesheet">
+    <link href="../res/css/custom/pendingOrder.css" rel="stylesheet">
     <!--<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">-->
 </head>
 
 
-<div class="sr-only">
-    <div id="navOnlineOrderIntro" class="row">
-        <div class="tile tile-hot">
-            <img class="tile-image big-illustration" alt="Compas" src="images/icons/svg/compas.svg">
-            <h3 class="tile-title">在线订餐</h3>
-            <p>将繁杂的订餐过程置于鼠标点击之间，店铺排行，菜品推荐，美食街就在你的屏幕上。</p>
-            <a  class="btn btn-primary btn-large btn-block">去在线订餐吧</a>
-        </div>
-    </div>
-    <div id="navPhoneCallOrderIntro" class="row">
-        <div class="tile tile-hot">
-            <img class="tile-image big-illustration" alt="Compas" src="images/icons/svg/book.svg">
-            <h3 class="tile-title">电话订餐</h3>
-            <p>这里收录了最全的周边美食信息，人气排行，值得你去挖掘，去发现，过把嘴瘾~</p>
-            <a href="http://designmodo.com/flat" class="btn btn-primary btn-large btn-block">去电话订餐吧</a>
-        </div>
-    </div>
-    <div id="navReserveSeatIntro" class="row">
-        <div class="tile tile-hot">
-            <img class="tile-image big-illustration" alt="Compas" src="images/icons/svg/calendar.svg">
-            <h3 class="tile-title">预留餐位</h3>
-            <p>想要去的餐厅，却不知道电话，知道电话，却不屑于去拨打？鼠标点击几下，为自己，为朋友，预留餐位~</p>
-            <a class="btn btn-primary btn-large btn-block">去预留餐位吧</a>
-        </div>
-    </div>
-    <div id="navLifeSurroundIntro" class="row">
-        <div class="tile tile-hot">
-            <img class="tile-image big-illustration" alt="Compas" src="images/icons/svg/gift-box.svg">
-            <h3 class="tile-title">周边生活</h3>
-            <p>生活也可以如此便利。</p>
-            <a  class="btn btn-primary btn-large btn-block">去发现生活吧</a>
-        </div>
-    </div>
-</div>
 <!-- NAVBAR
 ================================================== -->
 <body>
-<div class="navbar-wrapper" >
+<div class="navbar-wrapper"  id="top">
     <div class="container">
 
-        <div class="navbar" style="background: #ffffff">
+        <div class="navbar">
             <div class="navbar-header">
                 <button data-target="#nav-collapse-01" data-toggle="collapse" class="btn btn-navbar" type="button"></button>
             </div>
             <div id="nav-collapse-01" class="navbar-collapse collapse">
-                <ul class="nav">
-                    <li>
-                        <a href=""><span >Fan1tuan</span></a>
-                    </li>
-                    <li id="navOnlineOrder"   title="" data-toggle="popover">
-                        <a href="#onlineOrder"><span class="fui-cmd"></span><span >在线订餐</span></a>
-                    </li>
-                    <li id="navPhoneCallOrder" title="" data-toggle="popover">
-                        <a href="#phoneCallOrder"><span class="fui-chat"></span><span >电话订餐</span></a>
-                    </li>
-                    <li id="navReserveSeat" title="" data-toggle="popover">
-                        <a href="#"><span class="fui-calendar-solid"></span><span >预留餐位</span></a>
-                    </li>
-                    <li id="navLifeSurround" title="" data-toggle="popover">
-                        <a href="#"><span class="fui-location"></span><span >本地生活</span></a>
-                    </li>
-
-                </ul>
-                <ul class="nav navbar-nav pull-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> 登陆</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-check"></span> 注册  </a></li>
-                </ul>
-                <form class="navbar-form navbar-left form-inline" role="search">
-                    <div class="input-group">
-                        <div class="form-group">
-                            <input id="searchField" type="text" class="form-control" size="25" placeholder="搜店.搜美食" />
-                            <span class="input-icon fui-search"></span>
+                    <ul class="nav">
+                    	
+                        <li>
+                            <a href="/index.f1t"><span >Fan1tuan</span></a>
+                        </li>
+                        
+                        <li id="navOnlineOrder"   title="" data-toggle="popover">
+                            <a href="javascript:void(0)" id="toOnline"><span class="fui-cmd"></span><span >在线订餐</span></a>
+                        </li>
+                        <li id="navPhoneCallOrder" title="" data-toggle="popover">
+                            <a href="javascript:void(0)" id="toPhone"><span class="fui-chat"></span><span >电话订餐</span></a>
+                        </li>
+                        
+                        
+                        <!-- <li id="" title="" data-toggle="">
+                            <a href="javascript:void(0)" id="navReserveSeat" onclick="location='areas.f1t'"><span class="fui-location"></span><span ><#if areaName?exists>${areaName}</#if></span></a>
+                        </li> -->
+                        
+                        <!--<li id="navLifeSurround" title="" data-toggle="popover">
+                            <a href="javascript:void(0)" onclick="location='../life/index.f1t'"><span class="fui-location"></span><span >本地生活</span></a>
+                        </li>-->
+				
+                    </ul>
+     
+                    
+                    <form class="navbar-form navbar-left form-inline pull-right" role="search">
+                        <div class="input-group">
+                            <div class="form-group">
+                                <input id="searchField" type="text" class="form-control" size="25" placeholder="搜店.搜美食" />
+                                <span class="input-icon fui-search"></span>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
             </div>
         </div>
     </div>
-</div>
+</div><!--end of nav -->
 
 <div class="container-fluid" style="background: antiquewhite">
     <div id="header">
-        <div class="hp-common-header theme-morning">
+        <div class="hp-common-header <#if morning>theme-morning</#if>">
             <div class="cm-bd">
                 <div class="hp-user-info">
                     <div class="hd">
@@ -144,7 +114,7 @@
                         </div>
                         <div data-url="http://my.taobao.com/homepage/ajax/get_user_info.json?user_id=646701379" id="J_HomePageSNS" class="sns">
                             <p class="line edit-btn">
-                                <a href="http://i.taobao.com/user/baseInfoSet.htm" target="_blank" class="btn btn-warning">编辑资料</a>
+                                <a href="#" target="_blank" class="btn btn-inverse">编辑资料</a>
                             </p>
                             <ul class="user-atten">
                                 <li class="atten-item fans">
@@ -172,17 +142,11 @@
             <div class="cm-ft">
                 <div id="J_HomePageNav" class="hp-nav">
                     <div class="hd">
-                        <p id="J_HomePageGreeting" class="greeting"></p>
                     </div>
                     <div class="bd">
                         <ul class="nav-list">
                             <li class="nav-item">
-                                <a href="#" class="nav-link s-active" data-id="home">
-                                    我的主页
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-id="orders">
+                                <a href="#" class="nav-link s-active" data-id="orders">
                                     饿单中心
                                 </a>
                             </li>
@@ -211,25 +175,9 @@
 </div>
 
 <div id="main_container" class="container-fluid">
-<!-- 主页 -->
-<div id="home">
-    <div class="row-fluid">
-        <div class="span2"></div>
-        <div class="span8">
-        </div>
-        <div class="span2"></div>
-    </div>
-    <div class="row-fluid">
-        <div class="span2"></div>
-        <div class="span8">
-            <h1>假主页</h1>
-        </div>
-        <div class="span2"></div>
-    </div>
-</div>
 
 <!-- 订单 -->
-<div id="orders" class="sr-only">
+<div data-mapped="orders" class="">
     <div class="row-fluid">
         <div class="span2"></div>
         <div class="span8">
@@ -425,7 +373,7 @@
 
 
 <!-- 收藏 -->
-<div id="favorites" class="sr-only">
+<div data-mapped="favorites" class="sr-only">
     <div class="row-fluid">
         <div class="span2"></div>
         <div class="span8">
@@ -901,7 +849,7 @@
 </div>
 
 <!-- 评论 -->
-<div id="comments" class="sr-only">
+<div data-mapped="comments" class="sr-only">
     <div class="row-fluid">
         <div class="span2"></div>
         <div class="span8">
@@ -1088,7 +1036,7 @@
 </div>
 
 <!-- 账户信息 -->
-<div id="info" class="sr-only">
+<div data-mapped="info" class="sr-only">
     <div class="row-fluid">
         <div class="span2"></div>
         <div class="span8">
@@ -1321,5 +1269,6 @@
 <script src="../res/js/custom/index.js"></script>
 <script src="../res/js/holder.js"></script>
 <script src="../res/js/custom/user.js"></script>
+<script src="../res/js/custom/pendingOrder.js"></script>
 </body>
 </html>

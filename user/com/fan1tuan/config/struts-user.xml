@@ -4,7 +4,7 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="user_main" extends="main" namespace="/user">
-		<action name="index">
+		<action name="index" class="com.fan1tuan.user.ui.struts2.core.UserAction">
 		    <result name="success" type="freemarker">/WEB-INF/ftls/user.ftl</result>
 		</action>
 	</package>

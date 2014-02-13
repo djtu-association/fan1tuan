@@ -1,5 +1,8 @@
 package com.fan1tuan.user.ui.struts2.core;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +51,27 @@ public class UserAction implements SessionAware {
 	private String areaId;
 	private List<Area> area;
 
+	
+	/**
+	 * user用户页面主页 ------/user/index.f1t
+	 */
+	//out
+	private boolean morning;
+	
+	public String execute() {
+		Date now = new Date();
+		GregorianCalendar gregorianCalendar = new GregorianCalendar();
+		gregorianCalendar.setTime(now);
+		if(gregorianCalendar.get(Calendar.HOUR_OF_DAY)>18||gregorianCalendar.get(Calendar.HOUR_OF_DAY)<6){
+			morning = false;
+		}else{
+			morning = true;
+		}
+		
+		
+		return "success";
+	}
+	
 	/**
 	 * 初始化登陆页面，可能要处理cookie信息
 	 * 
@@ -261,6 +285,14 @@ public class UserAction implements SessionAware {
 	}
 
 	
+	public boolean isMorning() {
+		return morning;
+	}
+
+	public void setMorning(boolean morning) {
+		this.morning = morning;
+	}
+
 	public String getIsCookie() {
 		return isCookie;
 	}

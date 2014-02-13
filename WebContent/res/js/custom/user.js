@@ -9,7 +9,8 @@ $(function() {
     //alert(miniOffset);
     //alert(bInfo);
 
-
+    
+    
     $( ".datepicker" ).datepicker();
 
     $("select").selectpicker({style: 'btn btn-info', menuStyle: 'dropdown-primary'});
@@ -39,6 +40,7 @@ $(function() {
     $(".nav-link").click(function(event){
         event.preventDefault();
 
+        
         //上一个导航按钮与其控制的domId
         var lastDom = $("a[class='nav-link s-active']");
         var lastId = lastDom.attr("data-id");
@@ -49,11 +51,13 @@ $(function() {
             return;
         }
 
+        window.location.hash = "#"+domId;
+        
         var mainContainer = $("#main_container");
 
         //两个控制区
-        var lastContentDom =  $("#"+lastId);
-        var currentContentDom = $("#"+domId);
+        var lastContentDom =  $("div[data-mapped="+lastId+"]");
+        var currentContentDom = $("div[data-mapped="+domId+"]");
 
         me.addClass("s-active");
         lastDom.removeClass("s-active");
@@ -100,5 +104,15 @@ $(function() {
         $("#receiver").toggleClass("flat");
         $("#receiver-cellphone").toggleClass("flat");
     });
+    
+    
+    /**
+     * js全部加载好后执行切换tab的操作
+     */
+    var hash = window.location.hash;
+    if(hash.length>1){
+    	hash = hash.substring(1);
+    	$("a[class*=nav-link][data-id="+hash+"]").click();
+    }
 
 });

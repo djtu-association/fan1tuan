@@ -1,6 +1,6 @@
 
 .follow-sprite, .hp-user-info .follow-ui-green .friend-follow, .hp-user-info .follow-ui-green .friend-follow:hover, .hp-user-info .follow-ui-green .friend-follow.followed, .hp-user-info .follow-ui-green .friend-follow.followed:hover, .hp-user-info .follow-ui-green .friend-follow.followed2, .hp-user-info .follow-ui-green .friend-follow.followed2:hover {
-    background-image: url("http://img01.taobaocdn.com/tps/i1/T1wiFAFjNaXXass63N-122-168.png");
+    background-image: url("../../img/symbol.png");
 }
 .hp-user-info .follow-ui-green {
     display: inline-block;
@@ -61,7 +61,7 @@
     padding-bottom: 18px;
     position: relative;
     width: 990px;
-    z-index: 99;
+    z-index: 2;
 }
 .hp-user-info .hd {
     float: left;
@@ -416,8 +416,8 @@
     background-image: url("http://img04.taobaocdn.com/tps/i4/T1rTNsFm4eXXbAlL_b-9-12.png");
 }
 .hp-common-header {
-    background: url("http://img03.taobaocdn.com/tps/i3/T1QzNuFlddXXasjJoA-2500-252.jpg") no-repeat scroll 50% 0 rgba(0, 0, 0, 0);
-    height: 290px;
+    background: url("../../img/evening.jpg") no-repeat scroll 50% 0 rgba(0, 0, 0, 0);
+    height: 293px;
     padding-top: 100px;
 }
 .hp-common-header a {

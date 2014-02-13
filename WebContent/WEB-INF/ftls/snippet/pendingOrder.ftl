@@ -35,8 +35,8 @@
                     <div class="span12">
                         <table class="table table-hover">
                             <tr>
+                                <th colspan="4" title="订单编号:${order.orderNo}"><span class="lead" style="font-size:13px">订单编号:${order.orderNo}</span></th>
                                 <th><a class="btn btn-info btn-xs" href="/shop/index.f1t?shopId=${order.shopId}">${order.shopName}</a></th>
-                                <th colspan="5" title="订单编号:${order.orderNo}"><span class="lead" style="font-size:13px">订单编号:${order.orderNo}</span></th>
                                 <th>￥${order.price}</th>
                             </tr>
                             <#list order.dishItems as dishItem>
@@ -53,7 +53,7 @@
                                 <td colspan="1">
                                     <span class="lead" style="font-size: 17px">${dishItem.number}</span>
                                 </td>
-                                <td style="text-align: center;vertical-align: baseline" colspan="2">
+                                <td style="text-align: center;vertical-align: baseline" colspan="1">
                                     <strong class="lead text-info" style="font-size: 17px">￥${dishItem.dishSum}</strong><br>
                                 </td>
                             </tr>
@@ -63,7 +63,7 @@
                                 <td colspan="2">
                                     <span class="text"><span class="label label-primary">备注</span>&nbsp;&nbsp;&nbsp;${order.userRemark}</span>
                                 </td>
-                                <td colspan="4">
+                                <td colspan="3">
                                     <span class="text"><span class="label label-primary">地址</span>&nbsp;&nbsp;&nbsp;${order.address}</span>
                                 </td>
                                 <td style="text-align: center;vertical-align: baseline">
