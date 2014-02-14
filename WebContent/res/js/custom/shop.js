@@ -5,7 +5,7 @@
 $('document').ready(function(){
 
     var content = $('#starDiagram').html();
-    var dishTagListContent = $('#dish_popover_list').html();
+    //var dishTagListContent = $('#dish_popover_list').html();
     var shopId = $(".shop-title").attr("title");
 
     /*
@@ -143,7 +143,7 @@ $('document').ready(function(){
     	    		$(me).html('<i class="glyphicon fui-heart"></i> 收藏');
     	    		$(me).removeAttr("disabled");
     			}else if(data.flag==1){
-    				alert("请登录！！！");
+    				$("#signinModalBtn").trigger("click");
     	    		$(me).removeAttr("disabled");
     			}else{
     				alert("未知错误！！！");
@@ -162,7 +162,7 @@ $('document').ready(function(){
     	    		$(me).html('<i class="glyphicon fui-heart"></i> 已收藏');
     	    		$(me).removeAttr("disabled");
     			}else if(data.flag==1){
-    				alert("请登录！！！");
+    				$("#signinModalBtn").trigger("click");
     	    		$(me).removeAttr("disabled");
     			}else{
     				alert("未知错误！！！");
@@ -187,7 +187,7 @@ $('document').ready(function(){
     	    		$(me).removeClass("glyphicon-heart");
     	    		$(me).addClass("glyphicon-heart-empty");
     			}else if(data.flag==1){
-    				alert("请登录！！！");
+    				$("#signinModalBtn").click();
     			}else{
     				alert("未知错误！！！");
     			}
@@ -206,7 +206,7 @@ $('document').ready(function(){
     	        	$(me).removeClass("glyphicon-heart-empty");
     	    		$(me).addClass("glyphicon-heart");
     			}else if(data.flag==1){
-    				alert("请登录！！！");
+    				$("#signinModalBtn").click();
     			}else{
     				alert("未知错误！！！");
     			}

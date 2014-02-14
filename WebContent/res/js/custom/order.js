@@ -16,8 +16,23 @@ $('document').ready(function(){
 
     $("select").selectpicker({style: 'btn btn-primary', menuStyle: 'dropdown-inverse'});
     //处理modal对话框的遮挡导航栏问题，bug解除
-    $("#newAddressBtn").click(function(){
-    	$("#newAddressModal").removeClass("sr-only");
+    $("#newAddressBtn").click(function(event){
+    	$("#fan1tuanModal").empty();
+    	
+    	
+    	$("#fan1tuanModal").append($("#newAddressModal").html());
+    	
+    	$("#fan1tuanModal").removeClass("sr-only");
+		
+		event.preventDefault();
+		
+		$("#fan1tuanModal").modal({
+			backdrop : true,
+			keyboard : true
+		});
+		
+		$("body").removeClass("modal-open");
+    	
     });
     
     //添加一个新地址

@@ -6,21 +6,29 @@ $("document").ready(function(){
 	
 	
 	$("#pendingOrder").click(function(event){
-		$("#pendingOrderModal").removeClass("sr-only");
-		
 		event.preventDefault();
-		
-		$("#pendingOrderModal").modal({
-			backdrop : false,
-			keyboard : true
-		});
-		
+
 		
 		$.ajax({
 			url : "/user/ajax/ajaxGetPendingOrders.f1t"
 		}).done(function(data){
-			$(".modal-body").html("");
-			$(".modal-body").append(data);
+			$("#pendingOrderModal .modal-body").html("");
+			$("#pendingOrderModal .modal-body").append(data);
+
+			$("#fan1tuanModal").empty();
+	    	
+	    	$("#fan1tuanModal").append($("#pendingOrderModal").html());
+	    	
+	    	$("#fan1tuanModal").removeClass("sr-only");
+			
+			
+			$("#fan1tuanModal").modal({
+				backdrop : true,
+				keyboard : true
+			});
+			
+			$("body").removeClass("modal-open");
+			
 			
 //			if(data.flag==2){
 //

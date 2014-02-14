@@ -200,7 +200,7 @@ $('document').ready(function(){
             		refreshCart(data);
             	});   
     		}else if(data.flag==1){
-    			alert("请登录");
+				$("#signinModalBtn").click();
     			theButton.removeAttr("disabled");
     		}else{
     			alert("未知错误");

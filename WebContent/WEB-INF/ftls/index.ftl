@@ -827,8 +827,10 @@
         </div>
 </div>
 </div> <!-- end of rankPart the big part -->
-<!-- 购物车开始 -->    
+<!-- 购物车开始 -->
+<#include "./snippet/globalModal.ftl" />    
 <#include "./snippet/shoppingcart.ftl" />
+<#include "./snippet/signinModal.ftl" />
 
 <!-- 购物车结束 -->    
 
@@ -856,7 +858,6 @@
     </footer>
 
 
-
 <!-- Bootstrap core JavaScript================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="res/js/jquery-1.8.3.min.js"></script>
@@ -880,6 +881,7 @@
 	<script src="res/js/custom/shoppingCart.js"></script>
 	<script src="res/js/custom/indexToggleCarts.js"></script>
 	<script src="../res/js/custom/pendingOrder.js"></script>
+	<script src="../res/js/custom/publicRedirect.js"></script>
 	
 </body>
 </html>

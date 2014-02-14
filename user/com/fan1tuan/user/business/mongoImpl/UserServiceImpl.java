@@ -76,10 +76,12 @@ public class UserServiceImpl implements UserService {
 				loginStatus.put(ISession.LOGIN_STATUS, ISession.LOG_STATUS.LOGIN);//设置登陆成功状态
 				session.put(ISession.LOGIN, loginStatus);
 				return true;//登陆成功
+			}else{
+				return false;//根据password和cellPhone找不到用户
 			}
-			return false;//根据password和cellPhone找不到用户
+		}else{
+			return false;//传入user为空
 		}
-		return false;//传入user为空
 
 	}
 

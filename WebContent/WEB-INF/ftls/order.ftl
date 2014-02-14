@@ -86,16 +86,16 @@
                         <h6>选择一个地址</h6>
                     </div>
                     <div class="col-lg-4 col-lg-offset-4">
-                        <a id="newAddressBtn" class="btn btn-sm btn-primary" href="#newAddressModal" role="button" data-toggle="modal"><i class="fui-new"></i>添加一个地址</a>
+                        <a id="newAddressBtn" class="btn btn-sm btn-primary" href="#fan1tuanModal" role="button" ><i class="fui-new"></i>添加一个地址</a>
                         <!-- Button to trigger modal -->
 
                         <!-- Modal -->
-                        <div id="newAddressModal" class="modal fade sr-only" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div id="newAddressModal" class="sr-only">
                             <div class="modal-header" style="height: 50px">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 id="myModalLabe" class="lead text-info">写一个新地址吧</h4>
+                                <h4  class="lead text-info">写一个新地址吧</h4>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body" id="newAddressModalLabel">
                                 <form action="/user/ajax/secure/ajaxAddUserAddress.f1t" id="add-address-from"  class="form-horizontal">
                                     <div class="control-group inline-block">
                                         <input type="text" name="cellphone" class="form-control input-sm" placeholder="电话" />
@@ -216,6 +216,9 @@
 <div style="height:200px">
 </div>
 
+<#include "./snippet/globalModal.ftl" />    
+
+
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -233,5 +236,7 @@
 <script src="../res/js/custom/order.js"></script>
 <script src="../res/js/custom/pendingOrder.js"></script>
 <script src="../res/js/holder.js"></script>
+<script src="../res/js/custom/publicRedirect.js"></script>
+
 </body>
 </html>

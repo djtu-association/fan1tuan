@@ -381,7 +381,8 @@
 <div style="height:250px"></div>
 
 <#include "./snippet/shoppingcart.ftl" />
-
+<#include "./snippet/globalModal.ftl" />    
+<#include "./snippet/signinModal.ftl" />
 
                         
 <div class="rst-mask s_r_m" style="display: none;"></div>

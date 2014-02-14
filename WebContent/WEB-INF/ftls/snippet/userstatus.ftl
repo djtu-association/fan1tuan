@@ -13,8 +13,8 @@
                   				</ul>
                 			</li>
                     		<li>
-                    			<a id="pendingOrder" href="#pendingOrderModal" role="button" ><i class="glyphicon glyphicon-list-alt"></i> 订单动态 <span class="badge badge-success">2</span></a>
-                    			<div id="pendingOrderModal" class="modal fade sr-only" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    			<a id="pendingOrder" href="#fan1tuanModal" role="button" ><i class="glyphicon glyphicon-list-alt"></i> 订单动态 <span class="badge badge-success">2</span></a>
+                    			<div id="pendingOrderModal" class="sr-only">
 									<div class="modal-header" style="height:45px">
 										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 										<h6 class="badge" style="font-size:20px" id="myModalLabel">饿单快报</h6>
@@ -33,3 +33,7 @@
 	                        <li><a class="need-redirect" href="javascript:void(0)" onclick="location='/secure/signin.f1t'"><span class="glyphicon glyphicon-user"></span> 登陆</a></li>
 	                        <li><a class="need-redirect" href="javascript:void(0)" onclick="location='/secure/signup.f1t'"><span class="glyphicon glyphicon-check"></span> 注册  </a></li>
                         </#if>
+    
+    
+
+                        

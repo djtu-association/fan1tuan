@@ -34,14 +34,13 @@ public class IndexAjaxAction extends Fan1TuanAction{
 	private String isCookie;
 	//出参
 	private String loginFlag;
-	public String signin(){	
-		ServletActionContext.getResponse().addCookie(new Cookie("USER_STORE", "1234"));
-		
+	public String signin(){			
 		User user = new User();
 		user.setPassword(password);
 		user.setCellphone(cellphone);
 		
 		flag = makeFlag(userService.login(user, session,ISession.LOG_TYPE.TRUE));
+		
 		
 		if(flag==FlagStatus.SUCCESS.ordinal()){
 			//System.out.println("Session:"+session);
