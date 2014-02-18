@@ -100,7 +100,8 @@
                         <h6 title="${shop.id}" class="shop-title"><strong>${shop.name}</strong></h6>
                     </div>
                     <div class="row-fluid">
-                        <a href="/rating" class="rst-rating" id="rst_rating"><i class="icon-rst-rating s${(shop.avgCommentLevel*2)?int}"></i> ${shop.avgCommentLevel}</a>
+                        <a href="/rating" class="rst-rating" id="rst_rating"><i class="icon-rst-rating s${(shop.avgCommentLevel*2)?int}"></i> ${shop.avgCommentLevel}</a><br>
+                        <a class="rst-rating" id="rst_rating"><span style="font-size:20px"><i class="glyphicon glyphicon-fire"></i>&nbsp;${shop.popularity} </span></a>
                     </div>
                     <div  class="sr-only">
                         <div id="starDiagram"  style='width: 250px;height: 400px' class="rst-header-detail rst-header-dropdown">
@@ -129,10 +130,17 @@
                                 </div>
                             </section>
                             <section class="rst-header-detail-block group">
-                                <p class="text text-danger lead"><i class="glyphicon glyphicon-time"></i> ${shop.openTime?string("HH:mm")} - ${shop.closeTime?string("HH:mm")}  </p>
-                                <p class="text text-default"><i class="fui-location"></i> ${shop.address} </p>
+                            	<p class="text text-warning"><i class="glyphicon glyphicon-tag"></i>
+                                <#if shopTasteTags?exists>
+                                	<#list shopTasteTags as shopTasteTag>
+                                		${shopTasteTag.name}&nbsp;
+                                	</#list>
+                                </#if>
+                                </p>
                                 <p class="text text-primary"><i class="glyphicon glyphicon-info-sign"></i> ${shop.description} </p>
-                                <p class="text text-info"><i class="glyphicon glyphicon-user"></i> ${shop.cellphone} </p>
+                                <p class="text text-default"><i class="fui-location"></i> ${shop.address} </p>
+                                <p class="text text-danger"><i class="glyphicon glyphicon-time"></i> ${shop.openTime?string("HH:mm")} - ${shop.closeTime?string("HH:mm")}  </p>
+                                <p class="text text-info"><i class="glyphicon glyphicon-phone"></i> ${shop.cellphone} </p>
                             </section>
                             
                         </div>
@@ -244,7 +252,6 @@
                                 <td style="width:250px">
                                     <img title="${dish.id}" src="../res/images/shop-image.jpeg" style="height: 42px;width: 42px" />
                                     <span class="lead dish-cat-head"> <a class="dish_item" title="${dish.id}">${dish.name}</a> </span>
-                                    <a><i class="glyphicon glyphicon-tag"></i></a>
                                 </td>
                                 <td style="width:50px">
                                 	<span class="label label-danger order_number sr-only">0</span>                                	                                	                                	
@@ -410,6 +417,7 @@
 <script src="../res/js/custom/index.js"></script>
 <script src="../res/js/holder.js"></script>
 <script src="../res/js/custom/shop.js"></script>
+<script src="../res/js/custom/shop_popover.js"></script>
 <script src="../res/js/custom/shoppingCart.js"></script>
 <script src="../res/js/custom/publicRedirect.js"></script>
 <script src="../res/js/custom/pendingOrder.js"></script>

@@ -86,14 +86,48 @@ $(document).ready(function(){
 			"</div>"+
 			"<div  class='sr-only'>"+//店铺popover弹出框，id动态生成
 			"<div id='popover_"+(i+1)+"'>"+
-			"<p class='text text-warning'>公告："+data[i].content.announcement+"</p>"+//店铺公告
-			"<small class='lead'><small>起送费<small>：<label class='label label-danger'>"+data[i].content.deliveryCharge+" 元</label></small>"+//最低起送价
-			"<br><small>事务</small>：<span class='label label-primary'><span class='glyphicon glyphicon-star'></span></span>"+//店铺标签
-			"&nbsp;<span class='label label-primary'><span class='glyphicon glyphicon-time'></span></span>"+
-			"&nbsp;<span class='label label-primary'><span class='glyphicon glyphicon-edit'></span></span>"+
-			"<br><p class='text text-primary'><small>简介</small>：<label class='label label-warning'>"+data[i].content.description+"</label></p>"+
-			"<p class='text text-warning'><samll>地址</small>：<label class='label label-success'>"+data[i].content.address+"</label></p>"+
-			"<p class='text text-success'><small>营业</small>：<label class='label label-info'>"+new Date(data[i].content.openTime).getHours()+":"+new Date(data[i].content.openTime).getMinutes()+" - "+new Date(data[i].content.closeTime).getHours()+":"+new Date(data[i].content.closeTime).getMinutes()+"</label></p>"+//营业时间data[i].content.openTime  data[i].content.closeTime
+			
+			'<p>\
+            <span class="text text-warning"><strong>公告:</strong></span>\
+            <span class="text text-warning">'+data[i].content.announcement+'</span>\
+        </p>\
+        <p>\
+            <span class="text text-info"><strong>简介:</strong></span>\
+            <span class="text text-info">'+data[i].content.description+'</span>\
+        </p>\
+        <p>\
+            <span class="text text-primary"><strong>地址:</strong></span>\
+            <span class="text text-primary">'+data[i].content.address+'</span>\
+        </p>\
+        <p>\
+            <span>我是</span>\
+            <strong><span class="text text-danger">'+data[i].content.type+'</span></strong>\
+            <span>，</span>\
+            <strong><span class="text text-danger"><i class="glyphicon glyphicon-road"></i>'+data[i].content.deliveryCharge+'元</span></strong>\
+            <span>起送，人均</span>\
+            <strong><span class="text text-danger"><i class="glyphicon glyphicon-shopping-cart"></i>'+data[i].content.avgPersonCost+'元</span></strong>\
+            <span>，人气</span>\
+            <strong><span class="text text-danger"><i class="glyphicon glyphicon-fire"></i>'+data[i].content.popularity+'</span></strong>\
+        </p>\
+        <p>\
+            <span class="text text-info">\
+                <i class="glyphicon fui-time"></i>&nbsp;'+new Date(data[i].content.openTime).getHours()+":"+new Date(data[i].content.openTime).getMinutes()+" - "+new Date(data[i].content.closeTime).getHours()+":"+new Date(data[i].content.closeTime).getMinutes()+'\
+            </span>\
+        </p>\
+        <p>\
+            <span class="text text-info">\
+            <i class="glyphicon glyphicon-phone"></i>'+data[i].content.cellphone+'\
+            </span>\
+        </p>'+
+			
+			//"<p class='text text-warning'>公告："+data[i].content.announcement+"</p>"+//店铺公告
+			//"<small class='lead'><small>起送费<small>：<label class='label label-danger'>"+data[i].content.deliveryCharge+" 元</label></small>"+//最低起送价
+			//"<br><small>事务</small>：<span class='label label-primary'><span class='glyphicon glyphicon-star'></span></span>"+//店铺标签
+			//"&nbsp;<span class='label label-primary'><span class='glyphicon glyphicon-time'></span></span>"+
+			//"&nbsp;<span class='label label-primary'><span class='glyphicon glyphicon-edit'></span></span>"+
+			//"<br><p class='text text-primary'><small>简介</small>：<label class='label label-warning'>"+data[i].content.description+"</label></p>"+
+			//"<p class='text text-warning'><samll>地址</small>：<label class='label label-success'>"+data[i].content.address+"</label></p>"+
+			//"<p class='text text-success'><small>营业</small>：<label class='label label-info'>"+new Date(data[i].content.openTime).getHours()+":"+new Date(data[i].content.openTime).getMinutes()+" - "+new Date(data[i].content.closeTime).getHours()+":"+new Date(data[i].content.closeTime).getMinutes()+"</label></p>"+//营业时间data[i].content.openTime  data[i].content.closeTime
 			"</div></div></div>"+tdFooter;
 			
 			content += partial;

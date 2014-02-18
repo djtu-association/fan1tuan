@@ -110,7 +110,7 @@
                     <div  class="sr-only">
                         <div id="starDiagram"  style='width: 250px;height: 400px' class="rst-header-detail rst-header-dropdown">
                             
-                            <section class="rst-header-detail-block group">
+                            <div>
                                 <p class="text text-warning"><i class="glyphicon glyphicon-tag"></i>
                                 <#if shopTasteTags?exists>
                                 	<#list shopTasteTags as shopTasteTag>
@@ -121,8 +121,8 @@
                                 <p class="text text-danger lead"><i class="glyphicon glyphicon-time"></i> ${shop.openTime?string("HH:mm")} - ${shop.closeTime?string("HH:mm")}  </p>
                                 <p class="text text-default"><i class="fui-location"></i> ${shop.address} </p>
                                 <p class="text text-primary"><i class="glyphicon glyphicon-info-sign"></i> ${shop.description} </p>
-                                <p class="text text-info"><i class="glyphicon glyphicon-user"></i> ${shop.cellphone} </p>
-                            </section>
+                                <p class="text text-info"><i class="glyphicon glyphicon-phone"></i> ${shop.cellphone} </p>
+                            </div>
                             
                         </div>
                     </div>
@@ -217,8 +217,6 @@
                                 <div class="btn-toolbar">
                                     <div class="btn-group">
                                         <a href="#fakelink" class="btn btn-primary active">默认</a>
-                                        <a href="#fakelink" class="btn btn-primary">销量<i class="glyphicon glyphicon-arrow-down"></i></a>
-                                        <a href="#fakelink" class="btn btn-primary">评价<i class="glyphicon glyphicon-arrow-down"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +231,6 @@
                                 <td style="width:250px">
                                     <img title="${dish.id}" src="../res/images/shop-image.jpeg" style="height: 42px;width: 42px" />
                                     <span class="lead dish-cat-head"> <a class="dish_item" title="${dish.id}">${dish.name}</a> </span>
-                                    <a><i class="glyphicon glyphicon-tag"></i></a>
                                 </td>
                                 <td style="width:50px">
                                 	<span class="label label-danger order_number sr-only">0</span>                                	                                	                                	
