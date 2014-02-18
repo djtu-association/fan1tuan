@@ -17,6 +17,7 @@ import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.FieldFilter;
 import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.dao.Sortable;
+import com.fan1tuan.general.dao.UpdateWrapper;
 import com.fan1tuan.general.dao.impl.AreaDao;
 import com.fan1tuan.general.dao.impl.DishCommentDao;
 import com.fan1tuan.general.dao.impl.DishDao;
@@ -40,6 +41,7 @@ import com.fan1tuan.shop.pojos.ShopGeo;
 import com.fan1tuan.shop.pojos.ShopTasteTag;
 import com.fan1tuan.user.pojos.FavoriteShop;
 import com.fan1tuan.user.pojos.User;
+import com.mongodb.WriteResult;
 
 public class ShopUserServiceImpl implements ShopUserService{
 	/*
@@ -65,6 +67,8 @@ public class ShopUserServiceImpl implements ShopUserService{
 	private DishTasteTagDao dishTasteTagDao;
 	private DishCommentDao dishCommentDao;
 	
+	
+
 	public AreaDao getAreaDao() {
 		return areaDao;
 	}
@@ -360,9 +364,15 @@ public class ShopUserServiceImpl implements ShopUserService{
 		for(GeoResult<Shop> geoResult:geoResults){
 			//System.out.println(geoResult.getContent().toJSON()+"\n"+geoResult.getDistance().getValue());
 			if(geoResult.getContent().getId().equals(shopId)){
-				return new ShopGeo(geoResult.getContent(), geoResult.getDistance().getValue()); 
+												
+				ShopGeo shopGeo = new ShopGeo(geoResult.getContent(), geoResult.getDistance().getValue());
+				
+				shopGeo.setShopTasteTags(getShopTasteTags(shopId));
+				
+				return  shopGeo;
 			}
 		}
+				
 		return null;
 
 		//return null;
@@ -371,6 +381,16 @@ public class ShopUserServiceImpl implements ShopUserService{
 	private Circle makeCircleWithArea(String areaId){
 		Area area = areaDao.findOneById(areaId);
 		return new Circle(area.getLongtitude(), area.getLatitude(), area.getRadius());
+	}
+
+	@Override
+	public boolean increaseShopPopularity(String shopId) {
+		WriteResult wr = shopDao.updateFirstByParams(CriteriaWrapper.instance().is("id", shopId), UpdateWrapper.instance().inc("popularity", 1));
+		if(wr.getN()>0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	

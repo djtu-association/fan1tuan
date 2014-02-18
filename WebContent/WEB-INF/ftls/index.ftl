@@ -795,9 +795,11 @@
                     <label class="btn btn-primary">
                         <input type="radio" name="options" id="option1" onchange="javascript:index_ChangeHiddenAccord(3,0);phone_AjaxChange(0);"> 人气 <span class="glyphicon glyphicon-sort-by-attributes"></span>
                     </label>
+                    <!--
                     <label class="btn btn-primary">
                         <input type="radio" name="options" id="option3" value="2" onchange="javascript:index_ChangeHiddenAccord(3,2);phone_AjaxChange(0);"> 评分 <span class="glyphicon glyphicon-sort-by-attributes"></span>
                     </label>
+                    -->
                 </div>
             </div>
         </div>

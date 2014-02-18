@@ -1,5 +1,7 @@
 package com.fan1tuan.shop.pojos;
 
+import java.util.List;
+
 import com.fan1tuan.general.pojos.EntityObject;
 import com.fan1tuan.general.util.Constants;
 
@@ -7,6 +9,17 @@ public class ShopGeo extends EntityObject{
 	private Shop content;
 	private double distance;
 	private String isLike;
+	
+	private List<ShopTasteTag> shopTasteTags;
+	
+	
+	
+	public List<ShopTasteTag> getShopTasteTags() {
+		return shopTasteTags;
+	}
+	public void setShopTasteTags(List<ShopTasteTag> shopTasteTags) {
+		this.shopTasteTags = shopTasteTags;
+	}
 	public Shop getContent() {
 		return content;
 	}

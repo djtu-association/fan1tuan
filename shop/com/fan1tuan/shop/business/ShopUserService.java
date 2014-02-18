@@ -46,4 +46,6 @@ public interface ShopUserService extends IFan1TuanService{
 	public String getShopStaticMap(String shopId);
 	
 	public String[] dealUserFavoriteShops(String userId,List<Shop> shopList);
+	
+	public boolean increaseShopPopularity(String shopId);
 }

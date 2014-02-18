@@ -12,6 +12,7 @@
     <link href="../res/css/bootstrap.css" rel="stylesheet">
     <link href="../res/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="../res/css/flat-ui.css" rel="stylesheet">
+    <link href="../res/css/cikonss.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -21,16 +22,17 @@
     <!-- Custom styles for this template -->
 
     <!-- page independent -->
-    <title>*饭1团*----在线订餐----${shop.name}</title>
+    <title>*饭1团*----电话订餐----${shop.name}</title>
     <link href="../res/css/custom/index.css" rel="stylesheet">
     <link href="../res/css/custom/shoppingcart.css" rel="stylesheet">
     <link href="../res/css/custom/shop.css" rel="stylesheet">
     <link href="../res/css/custom/pendingOrder.css" rel="stylesheet">
+    
 </head>
 
 
 
-
+ 
 
 <!-- NAVBAR
 ================================================== -->
@@ -100,35 +102,22 @@
                         <h6 title="${shop.id}" class="shop-title"><strong>${shop.name}</strong></h6>
                     </div>
                     <div class="row-fluid">
-                        <a href="/rating" class="rst-rating" id="rst_rating"><i class="icon-rst-rating s${(shop.avgCommentLevel*2)?int}"></i> ${shop.avgCommentLevel}</a>
+                        <span class="icon icon-mid"><span class="icon-phone"></span></span><span class="lead text-info">${shop.cellphone}</span>
+                        <br>
+                        <a class="rst-rating" id="rst_rating"><span style="font-size:20px"><i class="glyphicon glyphicon-fire"></i>&nbsp;${shop.popularity} </span></a>
+                        <span>
                     </div>
                     <div  class="sr-only">
                         <div id="starDiagram"  style='width: 250px;height: 400px' class="rst-header-detail rst-header-dropdown">
+                            
                             <section class="rst-header-detail-block group">
-                                <div class=" row-fluid">
-                                    <div class="span5  rating-point">
-                                        <a class="point">${shop.avgCommentLevel}</a>
-                                    </div>
-                                </div>
-                                <div class="rating-diagram">
-                                	<#if shop.commentNum==0 >
-                                		<#assign commentNum=1 />
-                                	<#else>
-                                		<#assign commentNum=shop.commentNum />
-                                	</#if>
-                             
-                                    <span class="diagram-item"><a href="/rating"><i class="icon-star s5"></i><span style="width: ${140*(commentLevel['5']!'0')?number/commentNum}px;" class="bar"></span> ${100*(commentLevel['5']!'0')?number/commentNum}%</a></span>
-                                    <br>
-                                    <span class="diagram-item"><a href="/rating"><i class="icon-star s4"></i><span style="width: ${140*(commentLevel['4']!'0')?number/commentNum}px;" class="bar"></span> ${100*(commentLevel['4']!'0')?number/commentNum}%</a></span>
-                                    <br>
-                                    <span class="diagram-item"><a href="/rating"><i class="icon-star s3"></i><span style="width: ${140*(commentLevel['3']!'0')?number/commentNum}px;" class="bar"></span>  ${100*(commentLevel['3']!'0')?number/commentNum}%</a></span>
-                                    <br>
-                                    <span class="diagram-item"><a href="/rating"><i class="icon-star s2"></i><span style="width: ${140*(commentLevel['2']!'0')?number/commentNum}px;" class="bar"></span>  ${100*(commentLevel['2']!'0')?number/commentNum}%</a></span>
-                                    <br>
-                                    <span class="diagram-item"><a href="/rating"><i class="icon-star s1"></i><span style="width: ${140*(commentLevel['1']!'0')?number/commentNum}px;" class="bar"></span> ${100*(commentLevel['1']!'0')?number/commentNum}%</a></span>
-                                </div>
-                            </section>
-                            <section class="rst-header-detail-block group">
+                                <p class="text text-warning"><i class="glyphicon glyphicon-tag"></i>
+                                <#if shopTasteTags?exists>
+                                	<#list shopTasteTags as shopTasteTag>
+                                		${shopTasteTag.name}&nbsp;
+                                	</#list>
+                                </#if>
+                                </p>
                                 <p class="text text-danger lead"><i class="glyphicon glyphicon-time"></i> ${shop.openTime?string("HH:mm")} - ${shop.closeTime?string("HH:mm")}  </p>
                                 <p class="text text-default"><i class="fui-location"></i> ${shop.address} </p>
                                 <p class="text text-primary"><i class="glyphicon glyphicon-info-sign"></i> ${shop.description} </p>
@@ -250,14 +239,13 @@
                                 	<span class="label label-danger order_number sr-only">0</span>                                	                                	                                	
                                 </td>                               
                                 <td>
-                                    <button title="${dish.id}" class="btn btn-info order_btn"><i class="icon-rst-deliver"></i>${dish.price}</button>
+                                    <span title="${dish.id}" class="lead label label-info order_btn" style="font-size:18px">￥${dish.price}</span>
                                 </td>
                                 <td style="width:45px">
                                     <a class="text text-danger lead"><i class="glyphicon glyphicon-heart-empty sr-only heart"></i> </a>
                                 </td>
-                                <td>
-                                    <i class="icon-rst-rating s${(dish.avgCommentLevel*2)?int}"></i>(${dish.commentNum})<br>
-                                    	月售${dish.saleVolume}份
+                                <td style="width:300px">
+                                    
                                 </td>
                             </tr>
                             </#list>
@@ -332,10 +320,9 @@
 										<tr>
 											<td>
                                     			<span class="lead dish-cat-head"> <a class="dish_item" title="${topDish.id}">${topDish.name}</a></span><br>
-                                    			<i class="icon-d-star s${(topDish.avgCommentLevel*2)?int}"></i><span class="lead" style="font-size:14px">(${topDish.commentNum})</span>										
 											</td>
 											<td>
-                                    			<button class="btn btn-info btn-sm order_btn" title="${topDish.id}"><i class="icon-rst-deliver"></i>${topDish.price}</button>
+                                    			<span title="${topDish.id}" class="lead label label-info order_btn" style="font-size:18px">￥${topDish.price}</span>
                                 			</td>
 										</tr>
 									</#list>
@@ -380,7 +367,6 @@
 
 <div style="height:250px"></div>
 
-<#include "./snippet/shoppingcart.ftl" />
 <#include "./snippet/globalModal.ftl" />    
 <#include "./snippet/signinModal.ftl" />
 
@@ -410,7 +396,6 @@
 <script src="../res/js/custom/index.js"></script>
 <script src="../res/js/holder.js"></script>
 <script src="../res/js/custom/shop.js"></script>
-<script src="../res/js/custom/shoppingCart.js"></script>
 <script src="../res/js/custom/publicRedirect.js"></script>
 <script src="../res/js/custom/pendingOrder.js"></script>
 </body>

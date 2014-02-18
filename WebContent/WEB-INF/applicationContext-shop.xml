@@ -27,7 +27,7 @@
 		p:rankTagDao-ref="rankTagDao"
 		p:dishTasteTagDao-ref="dishTasteTagDao" 
 		p:dishCommentDao-ref="dishCommentDao"
-		p:areaDao-ref="areaDao"/>
+		p:areaDao-ref="areaDao" />
 	<bean id="dishUserService"
 		class="com.fan1tuan.shop.business.mongoImpl.DishUserServiceImpl"
 		p:dishCommentDao-ref="dishCommentDao" 

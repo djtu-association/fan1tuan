@@ -9,13 +9,16 @@ import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
 import com.fan1tuan.general.util.ISession;
 import com.fan1tuan.general.util.NumberUtil;
 import com.fan1tuan.general.util.SessionUtil;
+import com.fan1tuan.general.util.Constants.OrderType;
 import com.fan1tuan.order.business.ShoppingCartService;
 import com.fan1tuan.order.pojos.ShoppingCart;
 import com.fan1tuan.shop.business.ShopUserService;
+import com.fan1tuan.shop.business.TagService;
 import com.fan1tuan.shop.pojos.Dish;
 import com.fan1tuan.shop.pojos.DishTasteTag;
 import com.fan1tuan.shop.pojos.Shop;
 import com.fan1tuan.shop.pojos.ShopGeo;
+import com.fan1tuan.shop.pojos.ShopTasteTag;
 import com.fan1tuan.user.business.UserService;
 import com.opensymphony.xwork2.Action;
 
@@ -95,11 +98,18 @@ public class ShopAction extends Fan1TuanAction{
 	public void setShop(Shop shop) {
 		this.shop = shop;
 	}
-	
+	public List<ShopTasteTag> getShopTasteTags() {
+		return shopTasteTags;
+	}
+	public void setShopTasteTags(List<ShopTasteTag> shopTasteTags) {
+		this.shopTasteTags = shopTasteTags;
+	}
 	//service类
 	private ShopUserService shopUserService;
 	private ShoppingCartService shoppingCartService;
 	private UserService userService;
+	private TagService tagService;
+	
 	public ShopUserService getShopUserService() {
 		return shopUserService;
 	}
@@ -119,6 +129,14 @@ public class ShopAction extends Fan1TuanAction{
 		this.userService = userService;
 	}
 	
+	public TagService getTagService() {
+		return tagService;
+	}
+	public void setTagService(TagService tagService) {
+		this.tagService = tagService;
+	}
+	
+
 	/*
 	**-----------------/shop/index.f1t -------------action方法开始
 	*/
@@ -135,6 +153,7 @@ public class ShopAction extends Fan1TuanAction{
 	private List<Dish> topDishes;  //当前店铺的前排菜品
 	private String mapUrl;  //地图的动态url
 	private List<Dish> favoredDishes;
+	private List<ShopTasteTag> shopTasteTags;
 	
 	public String execute(){
 		//session.put("guest", true);
@@ -161,6 +180,7 @@ public class ShopAction extends Fan1TuanAction{
 		}
 		
 		shop = shopGeo.getContent();
+		shopTasteTags = shopGeo.getShopTasteTags();
 		distance = NumberUtil.reserveBit(shopGeo.getDistance(),1);
 		
 		if(shop==null){
@@ -189,7 +209,14 @@ public class ShopAction extends Fan1TuanAction{
 //			System.out.println("Key:"+entry.getKey()+"\tValue:"+entry.getValue());
 //		}
 //		
-		return Action.SUCCESS;
+		shopUserService.increaseShopPopularity(shopId);
+		
+		if(shop.getOrderType()==OrderType.ONLINE.ordinal()){
+			return "online";
+		}else {
+			return "phone";
+		}
+		
 	}
 	
 

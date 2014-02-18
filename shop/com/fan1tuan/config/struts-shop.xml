@@ -5,7 +5,8 @@
 <struts>
 	<package name="shop_main" extends="main" namespace="/shop">
 		<action name="index" class="com.fan1tuan.shop.ui.struts2.core.ShopAction">
-			<result name="success" type="freemarker">/WEB-INF/ftls/shop.ftl</result>
+			<result name="online" type="freemarker">/WEB-INF/ftls/shop.ftl</result>
+			<result name="phone" type="freemarker">/WEB-INF/ftls/shop_phone.ftl</result>
 		</action>		
 	</package>
 	

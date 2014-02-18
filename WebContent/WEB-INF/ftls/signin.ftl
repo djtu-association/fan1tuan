@@ -66,8 +66,8 @@
                   <form class="form-signin pull-right">
                       <h2 class="form-signin-heading"><strong>请登录</strong></h2>
                       <div id="form_div1">
-	                      <span><input id="logCellphone" type="text" class="form-control" placeholder="手机号码" size="100" autofocus value="<#if lastLogin?exists>${lastLogin.cellphone}</#if>"></span>
-	                      <span><input id="logPassword" type="password" class="form-control" placeholder="登陆密码"  size="100" value=""></span>
+	                      <span><input name="cellphone" id="logCellphone" type="text" class="form-control" placeholder="手机号码" size="100" autofocus value="<#if lastLogin?exists>${lastLogin.cellphone}</#if>"></span>
+	                      <span><input name="password" id="logPassword" type="password" class="form-control" placeholder="登陆密码"  size="100" value=""></span>
 	                      <div  class="switch switch-square" data-toggle="tooltip" title="记住我的登陆">
 	                          <input type="checkbox" id="rememberMe" checked data-toggle="switch" />
 	                      </div>
