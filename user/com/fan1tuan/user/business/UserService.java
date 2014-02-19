@@ -16,6 +16,9 @@ import com.fan1tuan.shop.pojos.Shop;
 import com.fan1tuan.user.pojos.User;
 
 public interface UserService {
+	
+	public User getUser(String userId);
+	
 	public boolean register(User user);
 
 	public boolean login(User user,Map<String, Object> session,LOG_TYPE type);

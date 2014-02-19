@@ -320,6 +320,11 @@ public class UserServiceImpl implements UserService {
 		return shopDao;
 	}
 
+	@Override
+	public User getUser(String userId) {
+		return userDao.findOneById(userId);
+	}
+
 
 
 

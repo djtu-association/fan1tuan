@@ -796,7 +796,16 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	public boolean evaluateShoppingCart(String userId) {
 		ShoppingCart cart = getShoppingCartByUserId(userId);
 		
+		if(cart.getShopItems()==null||cart.getShopItems().size()==0){
+			return false;
+		}
+		
 		for(ShopItem shopItem : cart.getShopItems()){
+			
+			if(shopItem.getDishItems()==null||shopItem.getDishItems().size()==0){
+				return false;
+			}
+			
 			if(shopItem.getSumPrice()<shopItem.getDeliveryCharge()){
 				return false;
 			}

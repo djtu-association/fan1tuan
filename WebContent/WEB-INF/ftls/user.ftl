@@ -11,7 +11,7 @@
     <link href="../res/css/bootstrap.css" rel="stylesheet">
     <link href="../res/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="../res/css/flat-ui.css" rel="stylesheet">
-
+    <link href="../res/css/cikonss.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="../res/js/html5shiv.js"></script>
@@ -91,8 +91,8 @@
                     <div class="bd">
                         <div class="info">
                             <p class="line">
-                                <strong class="name lead">
-                                    光明的一线2010
+                                <strong class="name lead" style="font-size:23px">
+                                    ${Session["currentUser"]["userName"]}
                                 </strong>
                                 <a target="_blank">
                                     <i class="glyphicon glyphicon-user"></i>
@@ -102,11 +102,11 @@
 
                             </p>
                             <div class="line">
-                                <span data-day="19" data-month="11"  class="badge">男</span>
+                                <span data-day="19" data-month="11"  class="badge">${user.realName!""}</span>
                                 <i class="dot"></i>
-                                <span data-day="19" data-month="11"  class="badge">天蝎座</span>
+                                <span data-day="19" data-month="11"  class="badge">${user.cellphone!""}</span>
                                 <i class="dot"></i>
-                                <span data-day="19" data-month="11"  class="badge">大连交通大学</span>
+                                <span data-day="19" data-month="11"  class="badge">${user.email!""}</span>
                                 <!-- 可以 data-* 属性来为js提供可存储值 -->
                                 <div data-url="" style=""  class="medal">
                                 </div>
@@ -114,12 +114,12 @@
                         </div>
                         <div data-url="http://my.taobao.com/homepage/ajax/get_user_info.json?user_id=646701379" id="J_HomePageSNS" class="sns">
                             <p class="line edit-btn">
-                                <a href="#" target="_blank" class="btn btn-inverse">编辑资料</a>
+                                <a href="#" class="btn btn-inverse">编辑资料</a>
                             </p>
                             <ul class="user-atten">
                                 <li class="atten-item fans">
                                     <a class="atten-link " href="#">
-                                        <strong class="J_FansCount">15</strong>
+                                        <strong class="J_FansCount">0</strong>
                                         <span>
                                             粉丝
                                         </span>
@@ -127,7 +127,7 @@
                                 </li>
                                 <li class="atten-item follow">
                                     <a class="atten-link" href="#">
-                                        <strong class="J_FollowCount">8</strong>
+                                        <strong class="J_FollowCount">0</strong>
                                         <span>
                                             关注
                                         </span>
@@ -225,147 +225,131 @@
     <div class="row-fluid">
         <div class="span1"></div>
         <div class="span10">
-            <div class="panel panel-primary">
+        <#if orders?exists && orders.size()!=0>
+        	<#list orders as order>
+        	
+        	<#if order.status<6 ><div class="panel panel-info"><#else><div class="panel panel-default"></#if>
                 <div class="panel-heading">
                     <div class="row-fluid">
-                        <div class="span3">
-                            <span>订单编号：475410327737913</span>
+                        <div class="span4">
+                            <span>订单编号：${order.orderNo}</span>
                         </div>
                         <div class="span3">
-                            <span>成交时间：2013-12-11 09:06</span>
+                            <span>下单时间：${order.date?string("yyyy-MM-dd HH:mm")}</span>
                         </div>
                         <div class="span3">
-                            <span>西北面食</span>
+                            <a class="text-info" href="/shop/index.f1t?shopId=${order.shopId}">${order.shopName}</a>
+                        </div>
+                        <div class="span1 pull-right">
+                        	<a href="#" style="font-size:16px;color:black;"><i class="glyphicon glyphicon-share"></i></a>
+                        	&nbsp;&nbsp;&nbsp;
+                            <a href="#" class="text-danger" style="font-size:16px"><i class="glyphicon glyphicon-trash"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="panel-body">
-                    <table class="table">
+                    <table class="table" style="margin-bottom: 0px;">
+                        <#assign dishItemIndex=1 />
+                        <#list order.dishItems as dishItem>
+                        
                         <tr>
                             <td style="width: 50px">
                                 <a href="#"><img src="../res/images/shop-image.jpeg"></a>
                             </td>
                             <td colspan="2">
-                                <span class="text text-primary lead"><a href="#">蔬菜拌饭</a></span><br>
-                                <span class="text"><span class="label label-primary">备注</span>&nbsp;&nbsp;&nbsp;少辣，多醋，不要糖</span>
+                                <span class="text text-primary lead"><a href="#">${dishItem.dishName}</a></span><br>
+                            </td>
+                            <td colspan="2">
+                                <span class="lead" style="font-size:18px">￥${dishItem.dishPrice}</span>
                             </td>
                             <td colspan="1">
-                                <span class="lead">11</span>
+                                <span class="lead" style="font-size:18px">${dishItem.number}</span>
                             </td>
+                            <!--
                             <td colspan="1">
-                                <span class="lead">1</span>
+                                <span class="text-info lead" style="font-size:20px">￥${dishItem.dishSum}</span>
+                            </td> -->
+                            <#if dishItemIndex==1>
+                            <td colspan="2" rowspan="${order.dishItems.size()}" style="text-align: center;vertical-align : center;">
+                                <strong class="lead">￥${order.price}</strong><br>
+                        		<span class="label label-primary"><i class="glyphicon glyphicon-phone"></i>手机订单</span><br>
+                            	<span class="label label-success">货到付款</span><br>
                             </td>
-                            <td colspan="2" rowspan="2" style="text-align: center;vertical-align: baseline">
-                                <strong class="lead">22.00</strong><br>
-                                <span class="label label-info">手机订单</span>
+                            <td colspan="2" rowspan="${order.dishItems.size()}" style="text-align: center;padding-top:30px;">
+        						<span class="lead" style="font-size: 17px"><#if order.status<4 ><span class="text-info">饿单已发出</span><#elseif order.status<6><span class="text-danger">交易成功</span><#else><span style="color:darkgrey"><i class="glyphicon glyphicon-remove"></i>交易关闭</span></#if></span>
+                            
                             </td>
-                            <td colspan="3" rowspan="2" style="text-align: center;vertical-align: baseline;">
-                                <strong class="lead">大连市旅顺口区行发路216号</strong><br>
+                            
+                            <td colspan="4" rowspan="${order.dishItems.size()}" style="text-align: center;padding-top:30px">
+                            	<#if order.status<4 >
+                            	<#elseif order.status==4>
+                                	<a href="#" class=""><span class="lead text-info" style="font-size: 17px;">评价<i class="glyphicon glyphicon-pencil"></i></span></a>
+                            	<#elseif order.status==5>
+                                	<span class="text-default lead" style="font-size: 17px;color:darkgray">已评价</span>
+                            	<#else>
+                            	</#if>
                             </td>
-                            <td colspan="2" rowspan="2" style="text-align: center">
-                                <span class="label label-warning lead" style="font-size: 17px">交易成功</span><br><br>
-                                <span class="label label-info lead" style="font-size: 17px">已评价</span>
-                            </td>
-                            <td colspan="2" style="text-align: center;vertical-align: baseline;">
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-info">再次购买</a>
-                                    <a href="#" class="btn btn-default">评价</a>
-                                </div>
-                            </td>
-                            <td colspan="2" rowspan="2" style="text-align: center">
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></a>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-share"></i></a>
-                                </div>
-                            </td>
+                            </#if>
+                            
+                        </tr>
+                        <#assign dishItemIndex=dishItemIndex+1 />
+                        </#list>
+                        <tr>
+                        	<td colspan="6" rowspan="2">
+                        	<#if order.status<6 >
+                        	<div class="flowstep" style="">
+                            <ol class="flowstep-5" style="list-style:none;width:640px;margin-left:-60px;over-flow:hidden" >
+                                <li class="step-first">
+                                    <div class="<#if order.status < 1>step-sub-done<#elseif order.status==1>step-cur<#else>step-done</#if>">
+                                        <div class="step-name">确认饿单</div>
+                                        <div class="step-no"><#if order.status == 1>1</#if></div>
+
+                                    </div>        </li>
+                                <li>
+                                    <div class="<#if order.status < 2>step-sub-done<#elseif order.status==2>step-cur<#else>step-done</#if>">
+                                        <div class="step-name">店家受理</div>
+                                        <div class="step-no"><#if order.status == 2>2</#if></div>
+
+                                    </div>        </li>
+
+                                <li>
+                                    <div class="<#if order.status < 3>step-sub-done<#elseif order.status==3>step-cur<#else>step-done</#if>">
+                                        <div class="step-name">美味派送</div>
+                                        <div class="step-no"><#if order.status == 3>3</#if></div>
+
+                                    </div>        </li>
+                                <li>
+                                    <div class="<#if order.status < 4>step-sub-done<#elseif order.status==4>step-cur<#else>step-done</#if>">
+                                        <div class="step-name">买家收货</div>
+                                        <div class="step-no"><#if order.status == 4>4</#if></div>
+                                    </div>        </li>
+                                <li class="step-last">
+                                    <div class="<#if order.status < 5>step-sub-done<#elseif order.status==5>step-cur<#else>step-done</#if>">
+                                        <div class="step-name">评价美食</div>
+                                        <div class="step-no"><#if order.status == 5>5</#if></div>
+                                    </div>        </li>
+                            </ol>
+                        	</div><!-- end of flow step -->
+                        	
+                        	</#if>
+                        	</td>
+                        	<td colspan="8">
+                                 <span class="lead" style="font-size:16px"><span class="text">地址:</span>&nbsp;&nbsp;&nbsp;${order.address}&nbsp;${order.receiver}(${order.cellphone})</span>
+                        	</td>
                         </tr>
                         <tr>
-                            <td style="width: 50px">
-                                <a href="#"><img src="../res/images/shop-image.jpeg"></a>
-                            </td>
-                            <td colspan="2">
-                                <span class="text text-primary lead"><a href="#">蔬菜拌饭</a></span><br>
-                                <span class="text"><span class="label label-primary">备注</span>&nbsp;&nbsp;&nbsp;少辣，多醋，不要糖</span>
-                            </td>
-                            <td colspan="1">
-                                <span class="lead">11</span>
-                            </td>
-                            <td colspan="1">
-                                <span class="lead">1</span>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <div class="row-fluid">
-                        <div class="span3">
-                            <span>订单编号：475410327737913</span>
-                        </div>
-                        <div class="span3">
-                            <span>成交时间：2013-12-11 09:06</span>
-                        </div>
-                        <div class="span3">
-                            <span>西北面食</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <table class="table">
-                        <tr>
-                            <td style="width: 50px">
-                                <a href="#"><img src="../res/images/shop-image.jpeg"></a>
-                            </td>
-                            <td colspan="2">
-                                <span class="text text-primary lead"><a href="#">蔬菜拌饭</a></span><br>
-                                <span class="text"><span class="label label-primary">备注</span>&nbsp;&nbsp;&nbsp;少辣，多醋，不要糖</span>
-                            </td>
-                            <td colspan="1">
-                                <span class="lead">11</span>
-                            </td>
-                            <td colspan="1">
-                                <span class="lead">1</span>
-                            </td>
-                            <td colspan="2" rowspan="2" style="text-align: center;vertical-align: baseline">
-                                <strong class="lead">22.00</strong><br>
-                                <span class="label label-info">手机订单</span>
-                            </td>
-                            <td colspan="3" rowspan="2" style="text-align: center;vertical-align: baseline;">
-                                <strong class="lead">大连市旅顺口区行发路216号</strong><br>
-                            </td>
-                            <td colspan="2" rowspan="2" style="text-align: center">
-                                <span class="label label-warning lead" style="font-size: 17px">交易成功</span><br><br>
-                                <span class="label label-info lead" style="font-size: 17px">已评价</span>
-                            </td>
-                            <td colspan="2" style="text-align: center;vertical-align: baseline;">
-                                <a href="#" class="btn btn-primary">确认收货</a>
-                            </td>
-                            <td colspan="2" rowspan="2" style="text-align: center">
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></a>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-share"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 50px">
-                                <a href="#"><img src="../res/images/shop-image.jpeg"></a>
-                            </td>
-                            <td colspan="2">
-                                <span class="text text-primary lead"><a href="#">蔬菜拌饭</a></span><br>
-                                <span class="text"><span class="label label-primary">备注</span>&nbsp;&nbsp;&nbsp;少辣，多醋，不要糖</span>
-                            </td>
-                            <td colspan="1">
-                                <span class="lead">11</span>
-                            </td>
-                            <td colspan="1">
-                                <span class="lead">1</span>
-                            </td>
+                        	<td colspan="8">
+                                <span class="lead" style="font-size:16px"><span class="text">备注:</span>&nbsp;&nbsp;&nbsp;${order.userRemark}</span>
+                        	</td>
                         </tr>
                     </table>
                 </div>
             </div>
+        	
+        	</#list>
+        </#if>
+        
+            
         </div>
         <div class="span1"></div>
     </div>
@@ -1240,7 +1224,7 @@
 <div style="height: 30px"></div>
 
 
-<div style="height: 1000px"></div>
+<div style="height: 600px"></div>
 
 
 <!-- FOOTER -->
