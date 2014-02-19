@@ -14,6 +14,7 @@ import com.fan1tuan.general.util.SessionUtil;
 import com.fan1tuan.order.business.OrderUserService;
 import com.fan1tuan.order.pojos.Order;
 import com.fan1tuan.user.business.UserService;
+import com.fan1tuan.user.pojos.FavoriteShop;
 import com.fan1tuan.user.pojos.User;
 
 public class UserAction extends Fan1TuanAction {
@@ -80,6 +81,14 @@ public class UserAction extends Fan1TuanAction {
 		this.orders = orders;
 	}
 
+	public List<FavoriteShop> getFavoriteShops() {
+		return favoriteShops;
+	}
+
+	public void setFavoriteShops(List<FavoriteShop> favoriteShops) {
+		this.favoriteShops = favoriteShops;
+	}
+
 	// service dao
 	private UserService userService;
 	private OrderUserService orderUserService;
@@ -93,7 +102,7 @@ public class UserAction extends Fan1TuanAction {
 	private int pageNumber;
 	private int pageSize;
 	private List<Order> orders; //订单部分
-
+	private List<FavoriteShop> favoriteShops; //店铺收藏部分
 	public String execute() {
 		Map<String, Object> user_cache = SessionUtil.getUser(session);
 		String userId = (String)user_cache.get(ISession.USER_ID);

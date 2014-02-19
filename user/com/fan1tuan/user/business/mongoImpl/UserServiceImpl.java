@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.fan1tuan.general.dao.CriteriaWrapper;
+import com.fan1tuan.general.dao.FieldFilter;
 import com.fan1tuan.general.dao.UpdateWrapper;
 import com.fan1tuan.general.dao.impl.DishDao;
 import com.fan1tuan.general.dao.impl.ShopDao;
@@ -19,6 +20,7 @@ import com.fan1tuan.user.business.UserService;
 import com.fan1tuan.user.pojos.FavoriteDish;
 import com.fan1tuan.user.pojos.FavoriteShop;
 import com.fan1tuan.user.pojos.User;
+import com.fan1tuan.user.pojos.dto.FavoriteShopDto;
 /**
  * 
  * @author JOE
@@ -325,9 +327,33 @@ public class UserServiceImpl implements UserService {
 		return userDao.findOneById(userId);
 	}
 
-
-
-
-	
+	@Override
+	public List<FavoriteShopDto> getFavoriteShopDtos(String userId) {
+		List<FavoriteShop> favoriteShops = userDao.findOneById(userId).getFavoriteShops();
+		
+		if(favoriteShops==null||favoriteShops.size()==0){
+			return null;
+		}
+		
+		List<FavoriteShopDto> favoriteShopDtos = new ArrayList<FavoriteShopDto>();
+		
+		for(FavoriteShop favoriteShop : favoriteShops){
+			FavoriteShopDto favoriteShopDto = new FavoriteShopDto();
+			
+			Shop shop = shopDao.findOneProjectedById(favoriteShop.getShopId(), FieldFilter.instance("id","name","shopTasteTagIds","orderType","description","dishRecs"));
+		
+			favoriteShopDto.setDate(favoriteShop.getDate());
+			favoriteShopDto.setOrderType(shop.getOrderType());
+			favoriteShopDto.setShopId(favoriteShop.getShopId());
+			favoriteShopDto.setShopName(shop.getName());
+			
+			//未完待续。。。
+			
+			favoriteShopDtos.add(favoriteShopDto);
+			
+		}
+		
+		return favoriteShopDtos;
+	}	
 
 }

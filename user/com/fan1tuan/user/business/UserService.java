@@ -10,10 +10,12 @@ import java.util.Map;
 
 
 
+
 import com.fan1tuan.general.util.ISession.LOG_TYPE;
 import com.fan1tuan.shop.pojos.Dish;
 import com.fan1tuan.shop.pojos.Shop;
 import com.fan1tuan.user.pojos.User;
+import com.fan1tuan.user.pojos.dto.FavoriteShopDto;
 
 public interface UserService {
 	
@@ -29,6 +31,7 @@ public interface UserService {
 	public boolean addFavouriteShops(String userId,String shopId);
 	public boolean removeFavoriteShops(String userId,String shopId);
 	public List<Shop> getFavoriteShops(String userId);
+	public List<FavoriteShopDto> getFavoriteShopDtos(String userId);
 	//菜品
 	public boolean addFavouriteDishes(String userId,String dishId);
 	public boolean removeFavoriteDishes(String userId,String dishId);

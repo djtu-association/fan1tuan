@@ -375,7 +375,6 @@
             <div class="tab-content" id="myTabContent">
                 <div id="fav_shops" class="tab-pane fade active in">
                     <div class="row-fluid">
-                        <div style="height: 30px"></div>
                         <div class="span12" style="padding-left: 0px;margin-left: 0px">
                             <ul id="J_FavList" class="fav-shop-list J_FavList" style="padding-left: 0px;margin-left: 0px">
                                 <li class="shop-item clearfix J_FavListItem">
@@ -391,11 +390,11 @@
                                                 </a>
 
                                                 <p class="shop-desc">
-                     <span class="shop-desc-text">
-                        <a target="_blank" href="#">
-                            奶茶，汉堡，料理
-                        </a>
-                     </span>
+                     								<span class="shop-desc-text">
+                        								<a target="_blank" href="#">
+                            								奶茶，汉堡，料理
+                        								</a>
+                     								</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -408,8 +407,8 @@
                                             </div>
                                         </div>
                                         <div class="shop-item-sn">
-                                            <a href="#" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-trash"></i></a>
-                                            <a href="#" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-share"></i></a>
+                                            <a href="#" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
+                                            <a href="#" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-share"></i></a>
                                         </div>
 
                                         <div class="shop-item-s">
@@ -484,17 +483,7 @@
                                                             <div class="g_price g_price-original"><span>￥</span>299.00</div>
                                                         </div>
                                                     </li>
-                                                    <li class="item-show">
-                                                        <a title="" class="item-link" target="_blank" href="#">
-                                <span class="img-wrap">
-                                    <img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
-                                </span>
-                                                        </a>
-                                                        <div class="cont">
-                                                            <div class="g_price"><span>￥</span><strong>29.89</strong></div>
-                                                            <div class="g_price g_price-original"><span>￥</span>299.00</div>
-                                                        </div>
-                                                    </li>
+                                                    
                                                 </ul>
                                             </div>
                                         </div>

@@ -207,7 +207,7 @@
    									<ul class="dropdown-menu">
     								<#list dishTasteTags as dishTasteTag>
 										<li>
-											<a  title="${dishTasteTag.id}" class="cate_name cate-name">${dishTasteTag.name}</a>&nbsp;
+											<a  title="${dishTasteTag.id}" class="cate_name cate-name">${dishTasteTag.name}</a>
 										</li>
 									</#list>
     								</ul>

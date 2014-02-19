@@ -21,6 +21,7 @@ ul, ol {
     list-style: none outside none;
     overflow: hidden;
     padding-left: 0px;
+    padding-top: 23px;
     position: relative;
 }
 
@@ -29,7 +30,7 @@ ul, ol {
 }
 .shop-some-info {
     float: left;
-    margin-right: 15px;
+    margin-right: 10px;
     position: relative;
     width: 210px;
 }
@@ -157,7 +158,6 @@ fieldset, img {
 }
 
 .fav-shop-list .shop-item .shop-item-m .shop-detail .shop-desc-text {
-    display: inline-block;
     font-weight: 400;
     height: 20px;
     max-width: 6em;
@@ -311,10 +311,10 @@ fieldset, img {
     border-left: 1px dashed #EEEEEE;
     float: left;
     height: 266px;
-    padding-left: 30px;
+    padding-left: 24px;
     padding-top: 14px;
     position: relative;
-    width: 920px;
+    width: 780px;
 }
 .fav-shop-list .shop-item .shop-show .shop-show-tab {
     -moz-border-bottom-colors: none;
@@ -334,7 +334,6 @@ fieldset, img {
 }
 
 .fav-shop-list .shop-item .shop-show .shop-show-tab a, .fav-shop-list .shop-item .shop-show .shop-show-tab span {
-    border-right: 1px solid #E3E3E3;
     color: #282828;
     float: left;
     height: 22px;
@@ -348,7 +347,7 @@ fieldset, img {
     padding-bottom: 20px;
     padding-top: 18px;
     position: relative;
-    width: 920px;
+    width: 780px;
 }
 
 element.style {
