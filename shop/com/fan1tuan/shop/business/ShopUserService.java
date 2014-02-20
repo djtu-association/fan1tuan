@@ -5,13 +5,16 @@ import java.util.List;
 import java.util.Map;
 
 import com.fan1tuan.general.business.IFan1TuanService;
+import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.shop.pojos.Dish;
+import com.fan1tuan.shop.pojos.DishRec;
 import com.fan1tuan.shop.pojos.DishTasteTag;
 import com.fan1tuan.shop.pojos.RankTag;
 import com.fan1tuan.shop.pojos.Shop;
 import com.fan1tuan.shop.pojos.ShopAffairTag;
 import com.fan1tuan.shop.pojos.ShopGeo;
 import com.fan1tuan.shop.pojos.ShopTasteTag;
+import com.fan1tuan.user.pojos.dto.FavoriteShopRec;
 
 public interface ShopUserService extends IFan1TuanService{
 	public Shop getShop(String shopId);
@@ -27,6 +30,9 @@ public interface ShopUserService extends IFan1TuanService{
 
 	public List<Dish> getDishesWithDishTasteTagInShop(String shopId, String dishTasteTagId);
 	public List<Dish> getDishesWithDishRankTagInShop(String shopId, String rankTagId);
+	public List<Dish> getTopSaleDishesInShop(String shopId, Pageable pageable);
+	public List<Dish> getShopRecDishesInShop(String shopId, Pageable pageable);
+	public List<Dish> getShopRecDishesInShop(List<DishRec> dishRecs, Pageable pageable);
 	
 	public List<RankTag> getShopRankTags(List<String> rankTagIds);
 	public List<RankTag> getShopRankTags(String shopId);
@@ -48,4 +54,7 @@ public interface ShopUserService extends IFan1TuanService{
 	public String[] dealUserFavoriteShops(String userId,List<Shop> shopList);
 	
 	public boolean increaseShopPopularity(String shopId);
+	
+	//获取相似的店铺实体，根据传入的tags
+	public List<FavoriteShopRec> getFavoriteShopRecs(String shopId, String areaId, Pageable pageable);
 }

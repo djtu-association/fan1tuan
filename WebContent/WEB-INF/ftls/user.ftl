@@ -377,22 +377,26 @@
                     <div class="row-fluid">
                         <div class="span12" style="padding-left: 0px;margin-left: 0px">
                             <ul id="J_FavList" class="fav-shop-list J_FavList" style="padding-left: 0px;margin-left: 0px">
-                                <li class="shop-item clearfix J_FavListItem">
+                            <#assign favoriteShopIndex=0 />
+                            <#list favoriteShopDtos as favoriteShop>
+                            	<li class="shop-item clearfix J_FavListItem">
                                     <div class="shop-some-info">
                                         <div class="shop-item-m">
-                                            <a target="_blank" href="#" class="shop-icon">
+                                            <a target="_blank" href="/shop/index.f1t?shopId=${favoriteShop.shopId}" class="shop-icon">
                                                 <span class="png50"></span>
                                                 <img width="50" height="50" alt="" src="../res/images/shop-image.jpeg">
                                             </a>
                                             <div class="shop-detail">
-                                                <a title="" target="_blank" href="#" class="shop-title ">
-                                                    西北牛肉面
+                                                <a title="" target="_blank" href="/shop/index.f1t?shopId=${favoriteShop.shopId}" class="shop-title ">
+                                                    ${favoriteShop.shopName}
                                                 </a>
 
                                                 <p class="shop-desc">
                      								<span class="shop-desc-text">
                         								<a target="_blank" href="#">
-                            								奶茶，汉堡，料理
+                        									<#list favoriteShop.shopTasteTags as shopTasteTag>
+                        										${shopTasteTag.name}&nbsp;&nbsp;
+                        									</#list>
                         								</a>
                      								</span>
                                                 </p>
@@ -413,204 +417,92 @@
 
                                         <div class="shop-item-s">
                                             <a target="_blank" href="#" class="similar-shop-btn">相似店铺</a>
-                                            <a data-spm="d4912213" target="_blank" href="#">
-                                                <img src="../res/images/shop-image.jpeg">
-                                            </a>
-                                            <a data-spm="d4912213" target="_blank" href="#">
-                                                <img src="../res/images/shop-image.jpeg">
-                                            </a>
-                                            <a data-spm="d4912213" target="_blank" href="#">
-                                                <img src="../res/images/shop-image.jpeg">
-                                            </a>
+                                            <#list favoriteShop.favoriteShopRecs as favoriteShopRec>
+                                            	<a data-spm="d4912213" target="_blank" href="/shop/index.f1t?shopId=${favoriteShopRec.shopId}" title="${favoriteShopRec.shopName}">
+                                                	<img src="../res/images/shop-image.jpeg">
+                                            	</a>
+                                            </#list>
+                                            
+                                            
 
                                         </div>
                                     </div>
 
                                     <div data-href="" class="shop-show">
-		    <span class="shop-show-tab">
-    			        <ul class="nav nav-tabs" id="myTab">
-                            <li class="active"><a data-toggle="tab" href="#">店铺热卖</a></li>
-                            <li class=""><a data-toggle="tab" href="#">掌柜推荐</a></li>
-                            <li class=""><a data-toggle="tab" href="#">店铺促销</a></li>
-                            <li class=""><a data-toggle="tab" href="#">我买过的</a></li>
-                        </ul>
-    	    </span>
-                                        <div class="carousel-container latestUp-tab" style="">
-                                            <div style="display: none;" class="loading-j">请稍候</div>
-                                            <div class="ul-container">
+		    							<span class="shop-show-tab">
+    			        					<ul class="nav nav-tabs" id="shop-tab${favoriteShopIndex}">
+                            					<li class="sr-only"><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-loading">loading</a></li>
+                            					<li class="active"><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-topSale">店铺热卖</a></li>
+                            					<#if favoriteShop.shopRecDishes?exists && favoriteShop.shopRecDishes.size()!=0 ><li class=""><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-shopRec">掌柜推荐</a></li></#if>
+                            					<#if favoriteShop.onceBoughtDishes?exists && favoriteShop.onceBoughtDishes.size()!=0 ><li class=""><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-onceBought">我买过的</a></li></#if>
+                        					</ul>
+    	    							</span>
+                                        <div class="tab-content carousel-container latestUp-tab" style="">
+                                            <div style="display: none;" class="tab-pane loading-j" id="shop-tab${favoriteShopIndex}-loading">请稍候</div>
+                                            <div class="tab-pane active ul-container" id="shop-tab${favoriteShopIndex}-topSale">
                                                 <ul style="position: absolute;" class="shop-show-container ks-switchable-content">
-                                                    <li class="item-show">
+                                                <#list favoriteShop.topDishes as dish>
+                                                	<li class="item-show">
                                                         <a title="" class="item-link" target="_blank" href="#">
-                                <span class="img-wrap">
-                                    <img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
-                                </span>
+                                							<span class="img-wrap">
+                                    							<img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
+                                							</span>
                                                         </a>
                                                         <div class="cont">
-                                                            <div class="g_price"><span>￥</span><strong>29.89</strong></div>
-                                                            <div class="g_price g_price-original"><span>￥</span>299.00</div>
+                                                            <div class="g_price"><span class="lead" style="font-size:15px">${dish.name}</span></div>
+                                                            <div class="g_price"><strong>￥${dish.price}</strong></div>
+                                                            <!-- <div class="g_price g_price-original"><span>￥</span>299.00</div> -->
                                                         </div>
                                                     </li>
-                                                    <li class="item-show">
-                                                        <a title="" class="item-link" target="_blank" href="#">
-                                <span class="img-wrap">
-                                    <img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
-                                </span>
-                                                        </a>
-                                                        <div class="cont">
-                                                            <div class="g_price"><span>￥</span><strong>29.89</strong></div>
-                                                            <div class="g_price g_price-original"><span>￥</span>299.00</div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="item-show">
-                                                        <a title="" class="item-link" target="_blank" href="#">
-                                <span class="img-wrap">
-                                    <img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
-                                </span>
-                                                        </a>
-                                                        <div class="cont">
-                                                            <div class="g_price"><span>￥</span><strong>29.89</strong></div>
-                                                            <div class="g_price g_price-original"><span>￥</span>299.00</div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="item-show">
-                                                        <a title="" class="item-link" target="_blank" href="#">
-                                <span class="img-wrap">
-                                    <img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
-                                </span>
-                                                        </a>
-                                                        <div class="cont">
-                                                            <div class="g_price"><span>￥</span><strong>29.89</strong></div>
-                                                            <div class="g_price g_price-original"><span>￥</span>299.00</div>
-                                                        </div>
-                                                    </li>
-                                                    
+                                                </#list>
                                                 </ul>
                                             </div>
+                                            <#if favoriteShop.shopRecDishes?exists && favoriteShop.shopRecDishes.size()!=0 >
+                                            <div class="tab-pane ul-container" id="shop-tab${favoriteShopIndex}-shopRec">
+                                                <ul style="position: absolute;" class="shop-show-container ks-switchable-content">
+                                                <#list favoriteShop.shopRecDishes as dish>
+                                                	<li class="item-show">
+                                                        <a title="" class="item-link" target="_blank" href="#">
+                                							<span class="img-wrap">
+                                    							<img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
+                                							</span>
+                                                        </a>
+                                                        <div class="cont">
+                                                            <div class="g_price"><span class="lead" style="font-size:15px">${dish.name}</span></div>
+                                                            <div class="g_price"><strong>￥${dish.price}</strong></div>
+                                                            <!-- <div class="g_price g_price-original"><span>￥</span>299.00</div> -->
+                                                        </div>
+                                                    </li>
+                                                </#list>
+                                                </ul>
+                                            </div>
+                                            </#if>
+                                            <#if favoriteShop.onceBoughtDishes?exists && favoriteShop.onceBoughtDishes.size()!=0 >
+                                            <div class="tab-pane ul-container" id="shop-tab${favoriteShopIndex}-onceBought">
+                                                <ul style="position: absolute;" class="shop-show-container ks-switchable-content">
+                                                <#list favoriteShop.onceBoughtDishes as dish>
+                                                	<li class="item-show">
+                                                        <a title="" class="item-link" target="_blank" href="#">
+                                							<span class="img-wrap">
+                                    							<img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
+                                							</span>
+                                                        </a>
+                                                        <div class="cont">
+                                                            <div class="g_price"><span class="lead" style="font-size:15px">${dish.name}</span></div>
+                                                            <div class="g_price"><strong>￥${dish.price}</strong></div>
+                                                            <!-- <div class="g_price g_price-original"><span>￥</span>299.00</div> -->
+                                                        </div>
+                                                    </li>
+                                                </#list>
+                                                </ul>
+                                            </div>
+                                            </#if>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="shop-item clearfix J_FavListItem">
-                                    <div class="shop-some-info">
-                                        <div class="shop-item-m">
-                                            <a target="_blank" href="#" class="shop-icon">
-                                                <span class="png50"></span>
-                                                <img width="50" height="50" alt="" src="../res/images/shop-image.jpeg">
-                                            </a>
-                                            <div class="shop-detail">
-                                                <a title="" target="_blank" href="#" class="shop-title ">
-                                                    西北牛肉面
-                                                </a>
-
-                                                <p class="shop-desc">
-                     <span class="shop-desc-text">
-                        <a target="_blank" href="#">
-                            奶茶，汉堡，料理
-                        </a>
-                     </span>
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="shop-item-c clearfix">
-                                            <a  href="#" class="cancel-up" ><i class="icon-rst-rating s9"></i></a>
-                                            <div class="shop-item-c-info">
-                                                <div class="remark J_Remark">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="shop-item-sn">
-                                            <a href="#" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-trash"></i></a>
-                                            <a href="#" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-share"></i></a>
-                                        </div>
-
-                                        <div class="shop-item-s">
-                                            <a target="_blank" href="#" class="similar-shop-btn">相似店铺</a>
-                                            <a data-spm="d4912213" target="_blank" href="#">
-                                                <img src="../res/images/shop-image.jpeg">
-                                            </a>
-                                            <a data-spm="d4912213" target="_blank" href="#">
-                                                <img src="../res/images/shop-image.jpeg">
-                                            </a>
-                                            <a data-spm="d4912213" target="_blank" href="#">
-                                                <img src="../res/images/shop-image.jpeg">
-                                            </a>
-
-                                        </div>
-                                    </div>
-
-                                    <div data-href="" class="shop-show">
-		    <span class="shop-show-tab">
-    			        <ul class="nav nav-tabs" id="myTab">
-                            <li class="active"><a data-toggle="tab" href="#">店铺热卖</a></li>
-                            <li class=""><a data-toggle="tab" href="#">掌柜推荐</a></li>
-                            <li class=""><a data-toggle="tab" href="#">店铺促销</a></li>
-                            <li class=""><a data-toggle="tab" href="#">我买过的</a></li>
-                        </ul>
-    	    </span>
-                                        <div class="carousel-container latestUp-tab" style="">
-                                            <div style="display: none;" class="loading-j">请稍候</div>
-                                            <div class="ul-container">
-                                                <ul style="position: absolute;" class="shop-show-container ks-switchable-content">
-                                                    <li class="item-show">
-                                                        <a title="" class="item-link" target="_blank" href="#">
-                                <span class="img-wrap">
-                                    <img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
-                                </span>
-                                                        </a>
-                                                        <div class="cont">
-                                                            <div class="g_price"><span>￥</span><strong>29.89</strong></div>
-                                                            <div class="g_price g_price-original"><span>￥</span>299.00</div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="item-show">
-                                                        <a title="" class="item-link" target="_blank" href="#">
-                                <span class="img-wrap">
-                                    <img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
-                                </span>
-                                                        </a>
-                                                        <div class="cont">
-                                                            <div class="g_price"><span>￥</span><strong>29.89</strong></div>
-                                                            <div class="g_price g_price-original"><span>￥</span>299.00</div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="item-show">
-                                                        <a title="" class="item-link" target="_blank" href="#">
-                                <span class="img-wrap">
-                                    <img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
-                                </span>
-                                                        </a>
-                                                        <div class="cont">
-                                                            <div class="g_price"><span>￥</span><strong>29.89</strong></div>
-                                                            <div class="g_price g_price-original"><span>￥</span>299.00</div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="item-show">
-                                                        <a title="" class="item-link" target="_blank" href="#">
-                                <span class="img-wrap">
-                                    <img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
-                                </span>
-                                                        </a>
-                                                        <div class="cont">
-                                                            <div class="g_price"><span>￥</span><strong>29.89</strong></div>
-                                                            <div class="g_price g_price-original"><span>￥</span>299.00</div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="item-show">
-                                                        <a title="" class="item-link" target="_blank" href="#">
-                                <span class="img-wrap">
-                                    <img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
-                                </span>
-                                                        </a>
-                                                        <div class="cont">
-                                                            <div class="g_price"><span>￥</span><strong>29.89</strong></div>
-                                                            <div class="g_price g_price-original"><span>￥</span>299.00</div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                <#assign favoriteShopIndex=favoriteShopIndex+1 />
+                            </#list>
+                                
                             </ul>
                         </div>
                     </div>

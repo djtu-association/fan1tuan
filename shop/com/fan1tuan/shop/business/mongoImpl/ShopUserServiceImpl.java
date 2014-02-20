@@ -16,6 +16,7 @@ import org.springframework.data.mongodb.core.geo.Metrics;
 import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.FieldFilter;
 import com.fan1tuan.general.dao.Pageable;
+import com.fan1tuan.general.dao.QueryWrapper;
 import com.fan1tuan.general.dao.Sortable;
 import com.fan1tuan.general.dao.UpdateWrapper;
 import com.fan1tuan.general.dao.impl.AreaDao;
@@ -33,6 +34,7 @@ import com.fan1tuan.general.util.Constants.Sort;
 import com.fan1tuan.shop.business.ShopUserService;
 import com.fan1tuan.shop.pojos.Dish;
 import com.fan1tuan.shop.pojos.DishComment;
+import com.fan1tuan.shop.pojos.DishRec;
 import com.fan1tuan.shop.pojos.DishTasteTag;
 import com.fan1tuan.shop.pojos.RankTag;
 import com.fan1tuan.shop.pojos.Shop;
@@ -41,6 +43,7 @@ import com.fan1tuan.shop.pojos.ShopGeo;
 import com.fan1tuan.shop.pojos.ShopTasteTag;
 import com.fan1tuan.user.pojos.FavoriteShop;
 import com.fan1tuan.user.pojos.User;
+import com.fan1tuan.user.pojos.dto.FavoriteShopRec;
 import com.mongodb.WriteResult;
 
 public class ShopUserServiceImpl implements ShopUserService{
@@ -391,6 +394,57 @@ public class ShopUserServiceImpl implements ShopUserService{
 		}else{
 			return false;
 		}
+	}
+
+	@Override
+	public List<Dish> getTopSaleDishesInShop(String shopId, Pageable pageable) {
+		return dishDao.findByParamsInPageInOrder(CriteriaWrapper.instance().is("shopId", shopId), pageable, Sortable.instance("saleVolume", Sortable.DESCEND));
+	}
+
+	@Override
+	public List<Dish> getShopRecDishesInShop(String shopId, Pageable pageable) {
+		List<DishRec> dishRecs = shopDao.findOneProjectedById(shopId, FieldFilter.instance("dishRecs")).getDishRecs();
+		
+		return getShopRecDishesInShop(dishRecs, pageable);
+	}
+
+	@Override
+	public List<Dish> getShopRecDishesInShop(List<DishRec> dishRecs,
+			Pageable pageable) {
+		List<String> dishIds = new ArrayList<String>();
+		for(DishRec dishRec : dishRecs){
+			dishIds.add(dishRec.getDishId());
+		}
+		
+		return dishDao.findByParamsInPage(CriteriaWrapper.instance().in("id", dishIds), pageable);
+	}
+
+	@Override
+	public List<FavoriteShopRec> getFavoriteShopRecs(String shopId, String areaId, Pageable pageable) {
+		Circle circle = makeCircleWithArea(areaId);
+		
+		Shop shop = shopDao.findOneProjectedById(shopId, FieldFilter.instance("shopTasteTagIds","orderType"));
+		
+		//List<Shop> shops = shopDao.findProjectedByParamsInPageInOrder(CriteriaWrapper.instance().withinSphere("location", cricle));
+		GeoResults<Shop> shops = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(CriteriaWrapper.instance().in("shopTasteTagIds", shop.getShopTasteTagIds()).is("orderType", shop.getOrderType()), FieldFilter.instance("id","name","description"), pageable).with(Sortable.instance("saleVolume", Sortable.DESCEND).toSort()));
+
+		List<FavoriteShopRec> favoriteShopRecs = new ArrayList<FavoriteShopRec>();
+		
+		for(GeoResult<Shop> geoResult : shops){
+			if(geoResult.getContent().getId().equals(shopId)){
+				continue;
+			}
+			
+			FavoriteShopRec favoriteShopRec = new FavoriteShopRec();
+			favoriteShopRec.setImagePath("");
+			favoriteShopRec.setShopDescription(geoResult.getContent().getDescription());
+			favoriteShopRec.setShopId(geoResult.getContent().getId());
+			favoriteShopRec.setShopName(geoResult.getContent().getName());
+			
+			favoriteShopRecs.add(favoriteShopRec);
+		}
+		
+		return favoriteShopRecs;
 	}
 
 	

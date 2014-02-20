@@ -134,19 +134,36 @@ public class DishRankServiceImpl implements DishRankService {
 	}
 	
 	
+	//这个方法不合法！！！
+	/*
 	private List<Shop> getSimpleShopsWithinArea(String areaId){
 		Circle cricle = this.makeCircleWithArea(areaId);
 		return shopDao.findProjectedByParams(CriteriaWrapper.instance().withinSphere("location", cricle), FieldFilter.instance("id"));
 	}
+	*/
 	@Override
 	public List<Dish> rankDishWithRankTag(List<String> dishRankTagIds,
 			String areaId) {
-		List<Shop> shops = this.getSimpleShopsWithinArea(areaId);
+		List<Shop> shops = getSimpleShops(ShopType.ALL, ShopState.ALL, areaId); //this.getSimpleShopsWithinArea(areaId);
 		List<String> shopIds = this.transformShopListToShopIdList(shops);
 		//return template.find(new Query(where("rankTagIds").all(dishRankTagIds).and("shopId").in(shopIds)), Dish.class);
 		return dishDao.findByParams(CriteriaWrapper.instance().all("rankTagIds", dishRankTagIds).in("shopId", shopIds));
 	}
-	
+	@Override
+	public List<Dish> rankDishWithRankTag(String dishRankTagId, String areaId) {
+		List<Shop> shops = getSimpleShops(ShopType.ALL, ShopState.ALL, areaId); //this.getSimpleShopsWithinArea(areaId);
+		List<String> shopIds = this.transformShopListToShopIdList(shops);
+		//return template.find(new Query(where("rankTagIds").all(dishRankTagIds).and("shopId").in(shopIds)), Dish.class);
+		return dishDao.findByParams(CriteriaWrapper.instance().all("rankTagIds", dishRankTagId).in("shopId", shopIds));
+	}
+	@Override
+	public List<Dish> rankDishWithRankTag(String areaId,
+			String... dishRankTagIds) {
+		List<Shop> shops = getSimpleShops(ShopType.ALL, ShopState.ALL, areaId); //this.getSimpleShopsWithinArea(areaId);
+		List<String> shopIds = this.transformShopListToShopIdList(shops);
+		//return template.find(new Query(where("rankTagIds").all(dishRankTagIds).and("shopId").in(shopIds)), Dish.class);
+		return dishDao.findByParams(CriteriaWrapper.instance().all("rankTagIds", (Object[])dishRankTagIds).in("shopId", shopIds));
+	}
 	
 	
 	private Circle makeCircleWithArea(String areaId){
@@ -214,21 +231,7 @@ public class DishRankServiceImpl implements DishRankService {
 		logger.trace("Count the Sum of the Items:"+pageable.getItemsNum());
 		return dishDao.findByParamsInPageInOrder(criteriaWrapper, pageable, sortable);
 	}
-	@Override
-	public List<Dish> rankDishWithRankTag(String dishRankTagId, String areaId) {
-		List<Shop> shops = this.getSimpleShopsWithinArea(areaId);
-		List<String> shopIds = this.transformShopListToShopIdList(shops);
-		//return template.find(new Query(where("rankTagIds").all(dishRankTagIds).and("shopId").in(shopIds)), Dish.class);
-		return dishDao.findByParams(CriteriaWrapper.instance().all("rankTagIds", dishRankTagId).in("shopId", shopIds));
-	}
-	@Override
-	public List<Dish> rankDishWithRankTag(String areaId,
-			String... dishRankTagIds) {
-		List<Shop> shops = this.getSimpleShopsWithinArea(areaId);
-		List<String> shopIds = this.transformShopListToShopIdList(shops);
-		//return template.find(new Query(where("rankTagIds").all(dishRankTagIds).and("shopId").in(shopIds)), Dish.class);
-		return dishDao.findByParams(CriteriaWrapper.instance().all("rankTagIds", (Object[])dishRankTagIds).in("shopId", shopIds));
-	}
+	
 	
 
 }

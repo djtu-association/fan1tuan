@@ -14,8 +14,8 @@ import com.fan1tuan.general.util.SessionUtil;
 import com.fan1tuan.order.business.OrderUserService;
 import com.fan1tuan.order.pojos.Order;
 import com.fan1tuan.user.business.UserService;
-import com.fan1tuan.user.pojos.FavoriteShop;
 import com.fan1tuan.user.pojos.User;
+import com.fan1tuan.user.pojos.dto.FavoriteShopDto;
 
 public class UserAction extends Fan1TuanAction {
 	/**
@@ -81,13 +81,17 @@ public class UserAction extends Fan1TuanAction {
 		this.orders = orders;
 	}
 
-	public List<FavoriteShop> getFavoriteShops() {
-		return favoriteShops;
+	
+
+	public List<FavoriteShopDto> getFavoriteShopDtos() {
+		return favoriteShopDtos;
 	}
 
-	public void setFavoriteShops(List<FavoriteShop> favoriteShops) {
-		this.favoriteShops = favoriteShops;
+	public void setFavoriteShopDtos(List<FavoriteShopDto> favoriteShopDtos) {
+		this.favoriteShopDtos = favoriteShopDtos;
 	}
+
+
 
 	// service dao
 	private UserService userService;
@@ -102,10 +106,13 @@ public class UserAction extends Fan1TuanAction {
 	private int pageNumber;
 	private int pageSize;
 	private List<Order> orders; //订单部分
-	private List<FavoriteShop> favoriteShops; //店铺收藏部分
+	private List<FavoriteShopDto> favoriteShopDtos; //店铺收藏部分
 	public String execute() {
 		Map<String, Object> user_cache = SessionUtil.getUser(session);
 		String userId = (String)user_cache.get(ISession.USER_ID);
+		
+		Map<String, Object> area_cache = SessionUtil.getArea(session);
+		String areaId = (String)area_cache.get(ISession.AREAID);
 		
 		//判断是否为早上
 		Date now = new Date();
@@ -124,6 +131,9 @@ public class UserAction extends Fan1TuanAction {
 		//获取订单信息
 		orders = orderUserService.getAllOrdersByUserIdInOrderInPage(userId, Pageable.inPage(pageNumber, pageSize),Sortable.instance("date", Sortable.DESCEND));
 		
+		//获取收藏部分
+		favoriteShopDtos = userService.getFavoriteShopDtos(userId, areaId);
+
 		return "success";
 	}
 	

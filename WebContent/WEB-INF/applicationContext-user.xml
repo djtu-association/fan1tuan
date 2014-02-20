@@ -70,6 +70,8 @@
 		<property name="userDao" ref="userDao"></property>
 		<property name="dishDao" ref="dishDao"></property>
 		<property name="shopDao" ref="shopDao"></property>
+		<property name="shopUserService" ref="shopUserService"></property>
+		<property name="orderUserService" ref="orderUserService"></property>
 	</bean>
 	
 	<bean id="userOrderService" class="com.fan1tuan.user.business.mongoImpl.UserOrderServiceImpl">

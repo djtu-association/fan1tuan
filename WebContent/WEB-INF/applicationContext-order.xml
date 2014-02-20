@@ -33,7 +33,7 @@
 	
 	<bean id="orderShopService" class="com.fan1tuan.order.business.mongoImpl.OrderShopServiceImpl" p:orderDao-ref="orderDao"/>
 	
-	<bean id="orderUserService" class="com.fan1tuan.order.business.mongoImpl.OrderUserServiceImpl" p:orderDao-ref="orderDao"></bean>
+	<bean id="orderUserService" class="com.fan1tuan.order.business.mongoImpl.OrderUserServiceImpl" p:orderDao-ref="orderDao" p:dishDao-ref="dishDao"></bean>
 	
 	<bean id="shoppingCartService" class="com.fan1tuan.order.business.mongoImpl.ShoppingCartServiceImpl">
 			<property name="shoppingCartDao" ref="shoppingCartDao"></property>

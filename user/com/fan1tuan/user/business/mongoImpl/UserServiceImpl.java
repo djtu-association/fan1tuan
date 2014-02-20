@@ -8,12 +8,16 @@ import java.util.Map;
 
 import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.FieldFilter;
+import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.dao.UpdateWrapper;
 import com.fan1tuan.general.dao.impl.DishDao;
 import com.fan1tuan.general.dao.impl.ShopDao;
 import com.fan1tuan.general.dao.impl.UserDao;
+import com.fan1tuan.general.util.Constants.OrderType;
 import com.fan1tuan.general.util.ISession;
 import com.fan1tuan.general.util.ISession.LOG_TYPE;
+import com.fan1tuan.order.business.OrderUserService;
+import com.fan1tuan.shop.business.ShopUserService;
 import com.fan1tuan.shop.pojos.Dish;
 import com.fan1tuan.shop.pojos.Shop;
 import com.fan1tuan.user.business.UserService;
@@ -35,6 +39,13 @@ public class UserServiceImpl implements UserService {
 	private ShopDao shopDao;
 	private DishDao dishDao;
 	
+	//service
+	private ShopUserService shopUserService;
+	private OrderUserService orderUserService;
+	
+	
+	
+
 	@Override
 	public boolean register(User user) {
 		if (user != null) {
@@ -302,8 +313,17 @@ public class UserServiceImpl implements UserService {
 	
 	//-------------fileds getter and setter
 
+	
 	public DishDao getDishDao() {
 		return dishDao;
+	}
+
+	public OrderUserService getOrderUserService() {
+		return orderUserService;
+	}
+
+	public void setOrderUserService(OrderUserService orderUserService) {
+		this.orderUserService = orderUserService;
 	}
 
 	public void setDishDao(DishDao dishDao) {
@@ -321,14 +341,25 @@ public class UserServiceImpl implements UserService {
 	public ShopDao getShopDao() {
 		return shopDao;
 	}
+	public ShopUserService getShopUserService() {
+		return shopUserService;
+	}
 
+	public void setShopUserService(ShopUserService shopUserService) {
+		this.shopUserService = shopUserService;
+	}
+	
+	
 	@Override
 	public User getUser(String userId) {
 		return userDao.findOneById(userId);
 	}
 
+	/**
+	 * 必须要求传入areaId，因为推荐的店铺不应该超出当前的商圈
+	 */
 	@Override
-	public List<FavoriteShopDto> getFavoriteShopDtos(String userId) {
+	public List<FavoriteShopDto> getFavoriteShopDtos(String userId, String areaId) {		
 		List<FavoriteShop> favoriteShops = userDao.findOneById(userId).getFavoriteShops();
 		
 		if(favoriteShops==null||favoriteShops.size()==0){
@@ -346,8 +377,16 @@ public class UserServiceImpl implements UserService {
 			favoriteShopDto.setOrderType(shop.getOrderType());
 			favoriteShopDto.setShopId(favoriteShop.getShopId());
 			favoriteShopDto.setShopName(shop.getName());
+									
+			favoriteShopDto.setFavoriteShopRecs(shopUserService.getFavoriteShopRecs(shop.getId(), areaId, Pageable.inPage(0, 3)));//3个
+			favoriteShopDto.setShopTasteTags(shopUserService.getShopTasteTags(shop.getShopTasteTagIds()));
+
+			favoriteShopDto.setShopRecDishes(shopUserService.getShopRecDishesInShop(shop.getDishRecs(), Pageable.inPage(0, 4)));
 			
-			//未完待续。。。
+			if(shop.getOrderType()==OrderType.ONLINE.ordinal()){
+				favoriteShopDto.setOnceBoughtDishes(orderUserService.getBoughtDishesInShopByUserId(userId, shop.getId(), Pageable.inPage(0, 4)));
+				favoriteShopDto.setTopDishes(shopUserService.getTopSaleDishesInShop(shop.getId(), Pageable.inPage(0, 4)));
+			}
 			
 			favoriteShopDtos.add(favoriteShopDto);
 			

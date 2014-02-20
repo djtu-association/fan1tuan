@@ -7,9 +7,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import com.fan1tuan.general.dao.Pageable;
-import com.fan1tuan.rank.business.ShopRankService;
-import com.fan1tuan.shop.pojos.ShopGeo;
+import com.fan1tuan.user.business.UserService;
+import com.fan1tuan.user.pojos.dto.FavoriteShopDto;
 
 @SuppressWarnings("resource")
 public class TestShop {
@@ -41,6 +40,7 @@ public class TestShop {
 		
 	}
 	*/
+	/*
 	@Test
 	public void testGeoMethods(){
 		char sep = File.separatorChar;
@@ -53,4 +53,22 @@ public class TestShop {
 			System.out.println(geoResult.getContent().toJSON()+"\n"+geoResult.getDistance());
 		}
 	}
+	*/
+	
+	@Test
+	public void testGeoMethods(){
+		char sep = File.separatorChar;
+		ApplicationContext ctx=new FileSystemXmlApplicationContext("WebContent"+sep+"WEB-INF"+sep+"applicationContext.xml");
+
+		UserService userService = (UserService)ctx.getBean("userService");
+		
+		List<FavoriteShopDto> favoriteShopDtos = userService.getFavoriteShopDtos("52a5228130044a63597de8fb", "52a5228130044a63597de8e4");
+		
+		for(FavoriteShopDto favoriteShopDto : favoriteShopDtos){
+			System.err.println(favoriteShopDto.toJSON());
+		}
+	
+	}
+	
+	
 }

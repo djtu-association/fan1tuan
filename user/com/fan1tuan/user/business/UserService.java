@@ -31,7 +31,7 @@ public interface UserService {
 	public boolean addFavouriteShops(String userId,String shopId);
 	public boolean removeFavoriteShops(String userId,String shopId);
 	public List<Shop> getFavoriteShops(String userId);
-	public List<FavoriteShopDto> getFavoriteShopDtos(String userId);
+	public List<FavoriteShopDto> getFavoriteShopDtos(String userId, String areaId);
 	//菜品
 	public boolean addFavouriteDishes(String userId,String dishId);
 	public boolean removeFavoriteDishes(String userId,String dishId);

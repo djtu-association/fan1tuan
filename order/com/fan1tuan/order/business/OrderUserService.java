@@ -7,6 +7,7 @@ import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.dao.Sortable;
 import com.fan1tuan.order.pojos.Order;
+import com.fan1tuan.shop.pojos.Dish;
 
 
 public interface OrderUserService extends IFan1TuanService{
@@ -41,6 +42,8 @@ public interface OrderUserService extends IFan1TuanService{
 	public List<Order> getAllOrdersByUserIdByCriteriaWrapperInorderInpage(CriteriaWrapper criteriaWrapper,Pageable pageable,Sortable sortable);//criteria参数
 	
 	public List<Order> getAllPendingOrdersByUserId(String userId);
+	
+	public List<Dish> getBoughtDishesInShopByUserId(String userId, String shopId, Pageable pageable);
 	
 	public boolean saveOrder(Order order);//保存订单
 	
