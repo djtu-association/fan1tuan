@@ -37,21 +37,28 @@ $('document').ready(function(){
     
     //添加一个新地址
     $(".add-address-btn").live("click",function(event){
+    	var data = {
+			cellphone : $("#fan1tuanModal input[type=text][name=cellphone]").val(),
+			receiver : $("#fan1tuanModal input[type=text][name=receiver]").val(),
+			detailAddress : $("#fan1tuanModal input[type=text][name=detailAddress]").val()
+		};
+    	
+    	if(!data.cellphone || !data.receiver || !data.detailAddress){
+    		alert("存在空字段!");
+    		return;
+    	}
+    	
     	var me = this;
     	$(me).attr("disabled", true);
     	$(me).text("添加中...");
     	$.ajax({
     		url : "/user/ajax/secure/ajaxAddUserAddress.f1t",
-    		data : {
-    			cellphone : $("input[type=text][name=cellphone]").val(),
-    			receiver : $("input[type=text][name=receiver]").val(),
-    			detailAddress : $("input[type=text][name=detailAddress]").val()
-    		}
+    		data : data
     	}).done(function(data){
     		if(data.flag==2){
     			$(me).removeAttr("disabled");
     	    	$(me).text("添加地址");
-    			$("#newAddressModal .close").trigger("click");
+    			$("#fan1tuanModal .close").trigger("click");
     		    getUserAddresses();
     		    
     		}else{

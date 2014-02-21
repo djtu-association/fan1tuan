@@ -439,6 +439,7 @@
     	    							</span>
                                         <div class="tab-content carousel-container latestUp-tab" style="">
                                             <div style="display: none;" class="tab-pane loading-j" id="shop-tab${favoriteShopIndex}-loading">请稍候</div>
+                                            
                                             <div class="tab-pane active ul-container" id="shop-tab${favoriteShopIndex}-topSale">
                                                 <ul style="position: absolute;" class="shop-show-container ks-switchable-content">
                                                 <#list favoriteShop.topDishes as dish>

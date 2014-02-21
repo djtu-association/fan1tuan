@@ -398,7 +398,9 @@ public class ShopUserServiceImpl implements ShopUserService{
 
 	@Override
 	public List<Dish> getTopSaleDishesInShop(String shopId, Pageable pageable) {
-		return dishDao.findByParamsInPageInOrder(CriteriaWrapper.instance().is("shopId", shopId), pageable, Sortable.instance("saleVolume", Sortable.DESCEND));
+		List<Dish> dishs = dishDao.findByParamsInPageInOrder(CriteriaWrapper.instance().is("shopId", shopId), pageable, Sortable.instance("saleVolume", Sortable.DESCEND));
+		//System.err.println("get top sale dishes:"+dishs.size());
+		return dishs;
 	}
 
 	@Override
@@ -430,18 +432,25 @@ public class ShopUserServiceImpl implements ShopUserService{
 
 		List<FavoriteShopRec> favoriteShopRecs = new ArrayList<FavoriteShopRec>();
 		
+		int i = 0;
+		
 		for(GeoResult<Shop> geoResult : shops){
 			if(geoResult.getContent().getId().equals(shopId)){
 				continue;
 			}
 			
-			FavoriteShopRec favoriteShopRec = new FavoriteShopRec();
-			favoriteShopRec.setImagePath("");
-			favoriteShopRec.setShopDescription(geoResult.getContent().getDescription());
-			favoriteShopRec.setShopId(geoResult.getContent().getId());
-			favoriteShopRec.setShopName(geoResult.getContent().getName());
-			
-			favoriteShopRecs.add(favoriteShopRec);
+			if(i++<3){				
+				FavoriteShopRec favoriteShopRec = new FavoriteShopRec();
+				favoriteShopRec.setImagePath("");
+				favoriteShopRec.setShopDescription(geoResult.getContent().getDescription());
+				favoriteShopRec.setShopId(geoResult.getContent().getId());
+				favoriteShopRec.setShopName(geoResult.getContent().getName());
+				
+				favoriteShopRecs.add(favoriteShopRec);
+			}else{
+				//System.err.println("i value:"+i);
+				break;
+			}
 		}
 		
 		return favoriteShopRecs;

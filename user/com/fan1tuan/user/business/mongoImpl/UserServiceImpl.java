@@ -386,6 +386,8 @@ public class UserServiceImpl implements UserService {
 			if(shop.getOrderType()==OrderType.ONLINE.ordinal()){
 				favoriteShopDto.setOnceBoughtDishes(orderUserService.getBoughtDishesInShopByUserId(userId, shop.getId(), Pageable.inPage(0, 4)));
 				favoriteShopDto.setTopDishes(shopUserService.getTopSaleDishesInShop(shop.getId(), Pageable.inPage(0, 4)));
+			}else{
+				favoriteShopDto.setTopDishes(new ArrayList<Dish>());
 			}
 			
 			favoriteShopDtos.add(favoriteShopDto);
