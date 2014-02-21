@@ -441,6 +441,7 @@
                                             <div style="display: none;" class="tab-pane loading-j" id="shop-tab${favoriteShopIndex}-loading">请稍候</div>
                                             
                                             <div class="tab-pane active ul-container" id="shop-tab${favoriteShopIndex}-topSale">
+                                            <#if favoriteShop.topDishes?exists && favoriteShop.topDishes.size()!=0 >
                                                 <ul style="position: absolute;" class="shop-show-container ks-switchable-content">
                                                 <#list favoriteShop.topDishes as dish>
                                                 	<li class="item-show">
@@ -457,6 +458,9 @@
                                                     </li>
                                                 </#list>
                                                 </ul>
+                                            <#else>
+                                            	<div class="row-fluid"><div class="span12"><span class="text-center text-primary lead">没有内容需要显示，sorry哦</span></div></div>
+                                            </#if>
                                             </div>
                                             <#if favoriteShop.shopRecDishes?exists && favoriteShop.shopRecDishes.size()!=0 >
                                             <div class="tab-pane ul-container" id="shop-tab${favoriteShopIndex}-shopRec">

@@ -1,7 +1,9 @@
 package com.fan1tuan.order.business.mongoImpl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.FieldFilter;
@@ -93,7 +95,7 @@ public class OrderUserServiceImpl implements OrderUserService{
 
 		List<Order> orders = orderDao.findProjectedByParams(CriteriaWrapper.instance().is("shopId", shopId).is("userId", userId), FieldFilter.instance("dishItems"));
 		
-		List<Dish> dishes = new ArrayList<Dish>();
+		Map<String,Dish> dishes = new HashMap<String,Dish>();
 			
 		int offset = pageable.getOffset();
 		
@@ -105,16 +107,20 @@ public class OrderUserServiceImpl implements OrderUserService{
 			if((offset=offset - dishItems.size()) >= 0){
 				continue;
 			}else{
-				for(int i = offset + dishItems.size(); i < dishItems.size() && dishes.size() <= pageable.getPageSize(); i++){
+				for(int i = offset + dishItems.size(); i < dishItems.size() && dishes.size() < pageable.getPageSize(); i++){
 					DishItem dishItem = dishItems.get(i);
-					dishes.add(dishDao.findOneById(dishItem.getDishId()));
+					if(dishes.get(dishItem.getDishId())==null){
+						dishes.put(dishItem.getDishId(), dishDao.findOneById(dishItem.getDishId()));
+					}
 				}
 				offset = 0;
 			}
 			
 		}
 
-		return dishes;
+		List<Dish> result = new ArrayList<Dish>();
+		result.addAll(dishes.values());
+		return result;
 	}
 	
 	
