@@ -118,5 +118,8 @@
 	<include file="com/fan1tuan/config/struts-user.xml"></include>
 	<include file="com/fan1tuan/config/struts-life.xml"></include>
 	
+	<!-- admin xml include -->
+	<include file="com/fan1tuan/config/struts-admin.xml"></include>
+	
 
 </struts>
