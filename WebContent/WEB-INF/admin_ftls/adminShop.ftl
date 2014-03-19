@@ -25,9 +25,9 @@
                 <div class="panel-heading">
                     <div>
                         <div class="form-group">
-                            <label><span class="glyphicon glyphicon-wrench">¹ÜÀí:</span></label>
-                            <button type="button" class="btn btn-warning" onclick="location='showShopAdd.f1t'">Ìí¼ÓÉÌÆÌ</button>
-                            <button type="button" class="btn btn-success" onclick="location='#'">Ìí¼Ó¿ÚÎ¶±êÇ©</button>
+                            <label><span class="glyphicon glyphicon-wrench">ç®¡ç†:</span></label>
+                            <button type="button" class="btn btn-warning" onclick="location='showShopAdd.f1t'">æ·»åŠ å•†é“º</button>
+                            <button type="button" class="btn btn-success" onclick="location='#'">æ·»åŠ å£å‘³æ ‡ç­¾</button>
                         </div>
                     </div>
                 </div>
@@ -37,68 +37,68 @@
 
         <div class="panel panel-info" style="margin-bottom: 10px;">
             <div class="panel-heading">
-                 <label><span class="glyphicon glyphicon-pushpin">¹ýÂËÌõ¼þ</span></label>
+                 <label><span class="glyphicon glyphicon-pushpin">è¿‡æ»¤æ¡ä»¶</span></label>
             </div>
             <div class="panel-body">
                 <form class="form-group" role="form">
                     <label>
-                        ÉÌÈ¦£º
+                        å•†åœˆï¼š
                         <select name="collage" id="selDistrict">
-                            <option value="½»´óÒ»ÆÚ">ËùÓÐÉÌÈ¦</option>
-                            <option value="½»´óÒ»ÆÚ">½»´óÒ»ÆÚ</option>
-                            <option value="½»´ó¶þÆÚ">½»´ó¶þÆÚ</option>
-                            <option value="½»´óº½ÔË">½»´óº½ÔË</option>
+                            <option value="äº¤å¤§ä¸€æœŸ">æ‰€æœ‰å•†åœˆ</option>
+                            <option value="äº¤å¤§ä¸€æœŸ">äº¤å¤§ä¸€æœŸ</option>
+                            <option value="äº¤å¤§äºŒæœŸ">äº¤å¤§äºŒæœŸ</option>
+                            <option value="äº¤å¤§èˆªè¿">äº¤å¤§èˆªè¿</option>
                         </select>
                     </label>
                     &nbsp;
                     <label>
-                        ÀàÐÍ£º
+                        ç±»åž‹ï¼š
                         <select name="collage" id="selType">
-                            <option value="½»´óÒ»ÆÚ">ËùÓÐÉÌÆÌ</option>
-                            <option value="½»´óÒ»ÆÚ">ÔÚÏßÉÌÆÌ</option>
-                            <option value="½»´ó¶þÆÚ">µç»°ÉÌÆÌ</option>
-                            <option value="½»´óº½ÔË">×ÔÓªÉÌÆÌ</option>
+                            <option value="äº¤å¤§ä¸€æœŸ">æ‰€æœ‰å•†é“º</option>
+                            <option value="äº¤å¤§ä¸€æœŸ">åœ¨çº¿å•†é“º</option>
+                            <option value="äº¤å¤§äºŒæœŸ">ç”µè¯å•†é“º</option>
+                            <option value="äº¤å¤§èˆªè¿">è‡ªè¥å•†é“º</option>
                         </select>
                     </label>
                     &nbsp;
                     <label>
-                        ÓªÒµ×´Ì¬£º
+                        è¥ä¸šçŠ¶æ€ï¼š
                         <select name="collage" id="selOnline">
-                            <option>ËùÓÐ×´Ì¬</option>
-                            <option value="1">ÓªÒµÖÐ</option>
-                            <option value="0">ÐÝÏ¢ÖÐ</option>
+                            <option>æ‰€æœ‰çŠ¶æ€</option>
+                            <option value="1">è¥ä¸šä¸­</option>
+                            <option value="0">ä¼‘æ¯ä¸­</option>
                         </select>
                     </label>
                     &nbsp;
                     <label>
-                        ´´½¨Ê±¼ä£º
+                        åˆ›å»ºæ—¶é—´ï¼š
                         <select name="collage" id="selDateOrder">
-                            <option value="1">Ê±¼äË³Ðò</option>
-                            <option value="0">Ê±¼äµ¹Ðò</option>
+                            <option value="1">æ—¶é—´é¡ºåº</option>
+                            <option value="0">æ—¶é—´å€’åº</option>
                         </select>
                     </label>
                     &nbsp;
                     <label>
-                        ÆÀ·Ö¸ßµÍ£º
+                        è¯„åˆ†é«˜ä½Žï¼š
                         <select name="collage" id="selRankOrder">
-                            <option value="1">ÆÀ·Ö´Ó¸ßµ½µÍ</option>
-                            <option value="0">ÆÀ·Ö´ÓµÍµ½¸ß</option>
+                            <option value="1">è¯„åˆ†ä»Žé«˜åˆ°ä½Ž</option>
+                            <option value="0">è¯„åˆ†ä»Žä½Žåˆ°é«˜</option>
                         </select>
                     </label>
                     &nbsp;&nbsp;&nbsp;
                     <label>
-                        <button type="button" class="btn btn-primary btn-xs">È·¶¨</button>
+                        <button type="button" class="btn btn-primary btn-xs">ç¡®å®š</button>
                     </label>
                     <p>
                     <div>
                         <!--
                         <label>HELLO<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></label>
                         -->
-                        <span class="label label-primary" id="spnDistrict">ËùÓÐÉÌÈ¦</span>
-                        <span class="label label-success" id="spnType">ËùÓÐÉÌÆÌ</span>
-                        <span class="label label-info" id="spnStatus">ËùÓÐ×´Ì¬</span>
-                        <span class="label label-warning" id="spnDateOrder">Ê±¼äË³Ðò</span>
-                        <span class="label label-danger" id="spnRankOrder">ÆÀ·Ö´Ó¸ßµ½µÍ</span>
+                        <span class="label label-primary" id="spnDistrict">æ‰€æœ‰å•†åœˆ</span>
+                        <span class="label label-success" id="spnType">æ‰€æœ‰å•†é“º</span>
+                        <span class="label label-info" id="spnStatus">æ‰€æœ‰çŠ¶æ€</span>
+                        <span class="label label-warning" id="spnDateOrder">æ—¶é—´é¡ºåº</span>
+                        <span class="label label-danger" id="spnRankOrder">è¯„åˆ†ä»Žé«˜åˆ°ä½Ž</span>
                     </div>
                 </form>
 
@@ -107,8 +107,8 @@
 
             <div class="panel-footer" style="text-align: right">
                 <label>
-                    <input type="text"  placeholder="¹Ø¼ü×Ö">
-                    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search"/>¿ìËÙËÑË÷</button>
+                    <input type="text"  placeholder="å…³é”®å­—">
+                    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search"/>å¿«é€Ÿæœç´¢</button>
                 </label>
             </div>
         </div>
@@ -118,94 +118,94 @@
             <div class="panel panel-info">
 
                 <div class="panel-heading">
-                    <h2 class="panel-title">ÉÌÆÌÁÐ±í</h2>
+                    <h2 class="panel-title">å•†é“ºåˆ—è¡¨</h2>
                 </div>
 
                 <table class="table table-striped table-hover table-bordered">
                     <tr>
                         <th>NO.</th>
-                        <th>Ãû³Æ</th>
-                        <th>ÀàÐÍ</th>
-                        <th>ÉÌÈ¦</th>
-                        <th>×¢²áÊ±¼ä</th>
-                        <th>¹ÜÀí</th>
+                        <th>åç§°</th>
+                        <th>ç±»åž‹</th>
+                        <th>å•†åœˆ</th>
+                        <th>æ³¨å†Œæ—¶é—´</th>
+                        <th>ç®¡ç†</th>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>JOE'S SHOP</td>
-                        <td>ÔÚÏßÉÌÆÌ</td>
-                        <td>½»´ó¶þÆÚ</td>
+                        <td>åœ¨çº¿å•†é“º</td>
+                        <td>äº¤å¤§äºŒæœŸ</td>
                         <td>2013-10-23</td>
                         <td>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-primary btn-xs" onclick="location='showShopEdit'">±à¼­</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-warning btn-xs btnDel">É¾³ý</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-info btn-xs" onclick="location='showShopOrders'">ÀúÊ·¶©µ¥</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-success btn-xs" onclick="location='showDishList'">²Ëµ¥¹ÜÀí</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-primary btn-xs" onclick="location='showShopEdit'">ç¼–è¾‘</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-warning btn-xs btnDel">åˆ é™¤</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-info btn-xs" onclick="location='showShopOrders'">åŽ†å²è®¢å•</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-success btn-xs" onclick="location='showDishList'">èœå•ç®¡ç†</button></label>
                         </td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>JOE'S SHOP</td>
-                        <td>ÔÚÏßÉÌÆÌ</td>
-                        <td>½»´ó¶þÆÚ</td>
+                        <td>åœ¨çº¿å•†é“º</td>
+                        <td>äº¤å¤§äºŒæœŸ</td>
                         <td>2013-10-23</td>
                         <td>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">±à¼­</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-warning btn-xs btnDel">É¾³ý</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">ÀúÊ·¶©µ¥</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">²Ëµ¥¹ÜÀí</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">ç¼–è¾‘</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-warning btn-xs btnDel">åˆ é™¤</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">åŽ†å²è®¢å•</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">èœå•ç®¡ç†</button></label>
                         </td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>JOE'S SHOP</td>
-                        <td>ÔÚÏßÉÌÆÌ</td>
-                        <td>½»´ó¶þÆÚ</td>
+                        <td>åœ¨çº¿å•†é“º</td>
+                        <td>äº¤å¤§äºŒæœŸ</td>
                         <td>2013-10-23</td>
                         <td>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">±à¼­</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-warning btn-xs btnDel">É¾³ý</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">ÀúÊ·¶©µ¥</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">²Ëµ¥¹ÜÀí</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">ç¼–è¾‘</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-warning btn-xs btnDel">åˆ é™¤</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">åŽ†å²è®¢å•</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">èœå•ç®¡ç†</button></label>
                         </td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>JOE'S SHOP</td>
-                        <td>ÔÚÏßÉÌÆÌ</td>
-                        <td>½»´ó¶þÆÚ</td>
+                        <td>åœ¨çº¿å•†é“º</td>
+                        <td>äº¤å¤§äºŒæœŸ</td>
                         <td>2013-10-23</td>
                         <td>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">±à¼­</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-warning btn-xs btnDel">É¾³ý</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">ÀúÊ·¶©µ¥</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">²Ëµ¥¹ÜÀí</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">ç¼–è¾‘</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-warning btn-xs btnDel">åˆ é™¤</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">åŽ†å²è®¢å•</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">èœå•ç®¡ç†</button></label>
                         </td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>JOE'S SHOP</td>
-                        <td>ÔÚÏßÉÌÆÌ</td>
-                        <td>½»´ó¶þÆÚ</td>
+                        <td>åœ¨çº¿å•†é“º</td>
+                        <td>äº¤å¤§äºŒæœŸ</td>
                         <td>2013-10-23</td>
                         <td>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">±à¼­</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-warning btn-xs btnDel">É¾³ý</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">ÀúÊ·¶©µ¥</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">²Ëµ¥¹ÜÀí</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">ç¼–è¾‘</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-warning btn-xs btnDel">åˆ é™¤</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">åŽ†å²è®¢å•</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">èœå•ç®¡ç†</button></label>
                         </td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>JOE'S SHOP</td>
-                        <td>ÔÚÏßÉÌÆÌ</td>
-                        <td>½»´ó¶þÆÚ</td>
+                        <td>åœ¨çº¿å•†é“º</td>
+                        <td>äº¤å¤§äºŒæœŸ</td>
                         <td>2013-10-23</td>
                         <td>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">±à¼­</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-warning btn-xs btnDel">É¾³ý</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">ÀúÊ·¶©µ¥</button></label>
-                            <label><button type="button" value="ÉÌÆÌID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">²Ëµ¥¹ÜÀí</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">ç¼–è¾‘</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-warning btn-xs btnDel">åˆ é™¤</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">åŽ†å²è®¢å•</button></label>
+                            <label><button type="button" value="å•†é“ºID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">èœå•ç®¡ç†</button></label>
                         </td>
                     </tr>
 
@@ -242,20 +242,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel"><span id="modalTitle">ÉÌÆÌÃû³Æ</span></h4>
+                <h4 class="modal-title" id="myModalLabel"><span id="modalTitle">å•†é“ºåç§°</span></h4>
             </div>
             <div class="modal-body">
-                ÉÌÆÌÐÅÏ¢(¶¯Ì¬»ñÈ¡£¬ÏÈÓÃajax·µ»ØÊý¾Ý£¬¸üÐÂmodal£¬completeÏÔÊ¾modal)
+                å•†é“ºä¿¡æ¯(åŠ¨æ€èŽ·å–ï¼Œå…ˆç”¨ajaxè¿”å›žæ•°æ®ï¼Œæ›´æ–°modalï¼Œcompleteæ˜¾ç¤ºmodal)
                 <div id="modalContent">
                 </div>
                 <div>
                     <form role="form">
                         <ul>
-                            <li><label>Ãû³Æ£º</label></li>
-                            <li><label>µç»°£º</label></li>
-                            <li><label>ÅäËÍÊ±¼ä£º</label></li>
-                            <li><label>µÈµÈ£º</label></li>
-                            <li><label>µÈµÈ£º</label></li>
+                            <li><label>åç§°ï¼š</label></li>
+                            <li><label>ç”µè¯ï¼š</label></li>
+                            <li><label>é…é€æ—¶é—´ï¼š</label></li>
+                            <li><label>ç­‰ç­‰ï¼š</label></li>
+                            <li><label>ç­‰ç­‰ï¼š</label></li>
                         </ul>
                     </form>
                 </div>
@@ -277,11 +277,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title">È·¶¨É¾³ý¸ÃÉÌÆÌ</h3>
+                <h3 class="modal-title">ç¡®å®šåˆ é™¤è¯¥å•†é“º</h3>
             </div>
             <div class="modal-body" style="text-align: center">
-               <label><button type="button" class="btn btn-danger btn-lg">É¾³ý</button></label>
-               <label><button type="button" class="btn btn-info btn-lg" data-dismiss="modal">È¡Ïû</button></label>
+               <label><button type="button" class="btn btn-danger btn-lg">åˆ é™¤</button></label>
+               <label><button type="button" class="btn btn-info btn-lg" data-dismiss="modal">å–æ¶ˆ</button></label>
             </div>
             <div class="modal-footer">
             </div>
@@ -291,6 +291,6 @@
 </div><!-- /.modal -->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../res/js/custom/adminShop.js"></script>
+<script src="../../res/js/custom/adminShop.js"></script>
 </body>
 </html>

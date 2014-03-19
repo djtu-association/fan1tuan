@@ -24,108 +24,111 @@
             <div class="panel panel-info">
 
                 <div class="panel-heading">
-                    <h3 class="panel-title">…Ã∆Ãπ‹¿Ì</h3>
+                    <h3 class="panel-title">ÂïÜÈì∫ÁÆ°ÁêÜ</h3>
                 </div>
 
                 <!--main panel-->
                 <div class="panel-body">
-                    <div style="text-align: center">
-                        <h2>ÃÌº”…Ã∆Ã</h2>
+                    <div style="text-align: center" >
+                        <h2>Ê∑ªÂä†ÂïÜÈì∫</h2>
                     </div>
                     <div>
-                        <form class="form-horizontal" role="form">
+                        <form class="form-horizontal" role="form" method="post" action="doShopAdd.f1t" enctype="multipart/form-data">
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">…Ã∆Ã√˚≥∆</label>
+                                <label for="inputEmail3" class="col-sm-2 control-label">ÂïÜÈì∫ÂêçÁß∞</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="inputEmail3" placeholder="…Ã∆Ã√˚≥∆">
+                                    <input type="text" name="name" class="form-control" id="inputEmail3" placeholder="ÂïÜÈì∫ÂêçÁß∞">
                                 </div>
                             </div>
 
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputPassword3" class="col-sm-2 control-label">ºÚµ•√Ë ˆ</label>
+                                <label for="inputPassword3" class="col-sm-2 control-label">ÁÆÄÂçïÊèèËø∞</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword3" placeholder=" ‰»Î∂‘…Ã∆ÃµƒºÚ∂Ãπ„∏Ê√Ë ˆ">
+                                    <input type="text" name="description" class="form-control" id="inputPassword3" placeholder="ËæìÂÖ•ÂØπÂïÜÈì∫ÁöÑÁÆÄÁü≠ÂπøÂëäÊèèËø∞">
                                 </div>
                             </div>
 
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputPassword4" class="col-sm-2 control-label">∆ÀÕº€</label>
+                                <label for="inputPassword4" class="col-sm-2 control-label">Ëµ∑ÈÄÅ‰ª∑</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword4" placeholder=" ‰»Î±æ…Ã∆ÃÀÕ≤Õ∆≤Ωº€">
+                                    <input type="text" name="avgPersonCost" class="form-control" id="inputPassword4" placeholder="ËæìÂÖ•Êú¨ÂïÜÈì∫ÈÄÅÈ§êËµ∑Ê≠•‰ª∑">
                                 </div>
                             </div>
 
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputPassword5" class="col-sm-2 control-label">¡™œµµÁª∞</label>
+                                <label for="inputPassword5" class="col-sm-2 control-label">ËÅîÁ≥ªÁîµËØù</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword5" placeholder="”––ßµƒ¡™œµµÁª∞">
+                                    <input type="text" name="cellphone" class="form-control" id="inputPassword5" placeholder="ÊúâÊïàÁöÑËÅîÁ≥ªÁîµËØù">
                                 </div>
                             </div>
-
+							
                             <!--text-->
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">µÍ∆Ã¿‡–Õ</label>
+                                <label class="col-sm-2 control-label">Â∫óÈì∫Á±ªÂûã</label>
                                 <div class="col-sm-10">
-                                    <input type="radio" name="shopType">‘⁄œﬂ∂©≤Õ…Ã∆Ã
+                                    <input type="radio" name="shopType" value="1">Âú®Á∫øËÆ¢È§êÂïÜÈì∫
                                     &nbsp;
-                                    <input type="radio" name="shopType">µÁª∞∂©≤Õ…Ã∆Ã
+                                    <input type="radio" name="shopType" value="0">ÁîµËØùËÆ¢È§êÂïÜÈì∫
                                 </div>
                             </div>
 
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputPassword6" class="col-sm-2 control-label">ø™ º ±º‰</label>
+                                <label for="inputPassword6" class="col-sm-2 control-label">ÂºÄÂßãÊó∂Èó¥</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword6" placeholder="ø™ º”™“µ ±º‰">
+                                    <input type="text" name="opentime" class="form-control form_time" id="inputPassword6" placeholder="ÂºÄÂßãËê•‰∏öÊó∂Èó¥">
                                 </div>
                             </div>
 
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputPassword7" class="col-sm-2 control-label">Ω· ¯ ±º‰</label>
+                                <label for="inputPassword7" class="col-sm-2 control-label">ÁªìÊùüÊó∂Èó¥</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword7" placeholder="Ω· ¯”™“µ ±º‰">
+                                    <input type="text" name="closetime" class="form-control form_time" id="inputPassword7" placeholder="ÁªìÊùüËê•‰∏öÊó∂Èó¥">
                                 </div>
                             </div>
 
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputPassword8" class="col-sm-2 control-label">µÍ∆Ãµÿ÷∑</label>
+                                <label for="inputPassword8" class="col-sm-2 control-label">Â∫óÈì∫Âú∞ÂùÄ</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword8" placeholder=" ‰»ÎµÍ∆Ã¥Û÷¬µÿ÷∑Œª÷√">
+                                    <input type="text" name="address" class="form-control" id="inputPassword8" placeholder="ËæìÂÖ•Â∫óÈì∫Â§ßËá¥Âú∞ÂùÄ‰ΩçÁΩÆ">
                                 </div>
                             </div>
 
                             <!--file-->
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">µÍ∆ÃÕ∑œÒ£®50*50£©</label>
+                                <label class="col-sm-2 control-label">Â∫óÈì∫Â§¥ÂÉèÔºà50*50Ôºâ</label>
                                 <div class="col-sm-10">
-                                    <input type="file">
+                                    <input type="file" name="avatar">
                                 </div>
                             </div>
 
-                            <!--select-->
+							<!--text-->
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">À˘ Ù…Ã»¶</label>
+                                <label for="inputPassword8" class="col-sm-2 control-label">ÂùêÊ†á¬∑ÁªèÂ∫¶</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control">
-                                        <option value="">Ωª¥Û“ª∆⁄</option>
-                                        <option value="">Ωª¥Û∂˛∆⁄</option>
-                                        <option value="">¥Û¡¨Õ‚√≥</option>
-                                        <option value="">¥Û¡¨ø∆ºº</option>
-                                    </select>
+                                    <input type="text" name="longtitude" class="form-control" id="inputPassword8" placeholder="ËæìÂÖ•Â∫óÈì∫ÂùêÊ†áÁªèÂ∫¶">
                                 </div>
                             </div>
-
+                            
+                            <!--text-->
+                            <div class="form-group">
+                                <label for="inputPassword8" class="col-sm-2 control-label">ÂùêÊ†á¬∑Á∫¨Â∫¶</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="latitude" class="form-control" id="inputPassword8" placeholder="ËæìÂÖ•Â∫óÈì∫ÂùêÊ†áÁ∫¨Â∫¶">
+                                </div>
+                            </div>
+							
                             <!--Confirm button-->
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-success">±£¥Ê</button>
-                                    <button type="reset" class="btn btn-warning">÷ÿ÷√</button>
+                                    <button type="submit" class="btn btn-success">‰øùÂ≠ò</button>
+                                    <button type="reset" class="btn btn-warning">ÈáçÁΩÆ</button>
                                 </div>
                             </div>
                         </form>
@@ -169,13 +172,14 @@
     $('.form_time').datetimepicker({
         language:  'fr',
         weekStart: 1,
-        todayBtn:  1,
+        todayBtn:  0,
         autoclose: 1,
         todayHighlight: 1,
         startView: 1,
         minView: 0,
-        maxView: 1,
-        forceParse: 0
+        maxView: 0,
+        forceParse: 0,
+        format:'hh:ss'
     });
 
 </script>

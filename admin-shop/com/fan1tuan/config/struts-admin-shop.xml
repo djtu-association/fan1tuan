@@ -4,7 +4,7 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<!-- 店铺基本管理action -->
-	<package name="admin_shop" extends="main" namespace="/admin">
+	<package name="admin_shop" extends="admin_main" namespace="/admin/shop">
 		<!-- 显示店铺列表 -->
 		<action name="showShopList" method="showShopList" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
 		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop.ftl</result>
@@ -41,7 +41,7 @@
 	</package>
 	
 	<!-- 菜品管理action -->
-	<package name="admin_shop_menu" extends="main" namespace="/admin">
+	<package name="admin_shop_menu" extends="admin_main" namespace="/admin/dish">
 		<!-- 显示菜品列表 -->
 		<action name="showDishList" method="showDishList" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
 		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop-dishItem.ftl</result>

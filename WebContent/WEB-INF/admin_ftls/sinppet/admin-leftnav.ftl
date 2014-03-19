@@ -16,7 +16,7 @@
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a href="index.f1t">主页</a></li>
                 <li><a href="#">用户管理</a></li>
-                <li><a href="showShopList.f1t">店铺管理</a></li>
+                <li><a href="shop/showShopList.f1t">店铺管理</a></li>
                 <li><a href="#">订单管理</a></li>
                 <li><a href="#">广告管理</a></li>
             </ul>
