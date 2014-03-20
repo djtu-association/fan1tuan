@@ -2,10 +2,12 @@ package com.fan1tuan.adminshop.ui.struts2.core;
 
 import java.util.List;
 
+import com.fan1tuan.admin.dto.Page;
 import com.fan1tuan.adminshop.business.AdminShopService;
 import com.fan1tuan.adminshop.util.AdminConstant;
 import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
+import com.fan1tuan.order.pojos.Order;
 import com.fan1tuan.shop.pojos.Shop;
 import com.opensymphony.xwork2.Action;
 
@@ -19,12 +21,21 @@ public class AdminShopMain extends Fan1TuanAction{
 	private AdminShopService adminShopService;
 	private List<Shop> shopList;//出参:showShopList doShopAdd
 	private String subTitle="";//出参：showShopAdd
-	private String shopId;//出参：showShopEdit,doShopDelete
+	private String shopId;//出参：showShopEdit,doShopDelete,showShopOrders
+	private String shopName;//param-out
 	
 	
 	//--------------店铺列表-----------------
+	private int shopPage;//param-in
+	private Page shopListPage;//param-out
 	public String showShopList(){
-		setShopList(adminShopService.getShopsInPage(Pageable.inPage(0, AdminConstant.SHOPLIST_PAGESIZE)));
+		System.out.println("getShopPage:"+getShopPage());
+		setShopList(adminShopService.getShopsInPage(Pageable.inPage((getShopPage()==0?0:getShopPage()-1), AdminConstant.SHOPLIST_PAGESIZE)));
+		//set page
+		Page page = new Page();
+		page.setPageCount(adminShopService.getShopPageCount(AdminConstant.SHOPLIST_PAGESIZE));//设置分页数量
+		page.setCurrentPage((getShopPage()==0)?1:getShopPage());//设置当前分页
+		setShopListPage(page);
 		return Action.SUCCESS;
 	}
 	
@@ -107,11 +118,30 @@ public class AdminShopMain extends Fan1TuanAction{
 		return Action.SUCCESS;
 	}
 	
+	
+	//------------------------show all orders of a shop--------------
+	//shopId : param-in
+	private int orderPage;//param-in
+	private List<Order> orderList;//param-out
+	private Page orderListPage;//param-out
 	public String showShopOrders(){
+		//setOrderPage(getOrderPage());
+		setOrderList(adminShopService.getShopOrdersByShopIdInPage(shopId, Pageable.inPage((getOrderPage()==0?0:getOrderPage()-1), AdminConstant.ORDERLIST_PAGESIZE)));
+		//set the page
+		Page page = new Page();
+		page.setPageCount(adminShopService.getOrderPageCount(getShopId(), AdminConstant.ORDERLIST_PAGESIZE));
+		page.setCurrentPage((getOrderPage()==0)?1:getOrderPage());
+		setOrderListPage(page);
+		//set a shopName & shopId
+		setShopName(adminShopService.getOneShopByShopId(getShopId()).getName());
+		setShopId(getShopId());
 		return Action.SUCCESS;
 	}
-	
+	//---------------------------do delete order---------------------
+	private String orderId;//param-in
 	public String doShopOrderDelete(){
+		System.out.println("after delete: "+getShopId());
+		adminShopService.deleteShopOrderByOrderId(getOrderId());
 		return Action.SUCCESS;
 	}
 
@@ -271,6 +301,66 @@ public class AdminShopMain extends Fan1TuanAction{
 
 	public void setDeliveryCharge(double deliveryCharge) {
 		this.deliveryCharge = deliveryCharge;
+	}
+
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
+	}
+
+	public int getOrderPage() {
+		return orderPage;
+	}
+
+	public void setOrderPage(int orderPage) {
+		this.orderPage = orderPage;
+	}
+
+	public int getShopPage() {
+		return shopPage;
+	}
+
+	public void setShopPage(int shopPage) {
+		this.shopPage = shopPage;
+	}
+
+	public Page getOrderListPage() {
+		return orderListPage;
+	}
+
+	public void setOrderListPage(Page orderListPage) {
+		this.orderListPage = orderListPage;
+	}
+
+	public Page getShopListPage() {
+		return shopListPage;
+	}
+
+	public void setShopListPage(Page shopListPage) {
+		this.shopListPage = shopListPage;
+	}
+
+	public void setShopType(int shopType) {
+		this.shopType = shopType;
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	public String getShopName() {
+		return shopName;
+	}
+
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
 	}
 	
 	

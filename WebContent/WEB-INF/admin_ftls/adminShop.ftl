@@ -141,8 +141,8 @@
 	                        <td>
 	                            <label><button type="button" value="商铺ID" class="btn btn-primary btn-xs" onclick="location='showShopEdit.f1t?shopId=${shop.id}'">编辑</button></label>
 	                            <label><button type="button" value="商铺ID" class="btn btn-warning btn-xs btnDel" id="${shop.id}">删除</button></label>
-	                            <label><button type="button" value="商铺ID" class="btn btn-info btn-xs" onclick="location='showShopOrders'">历史订单</button></label>
-	                            <label><button type="button" value="商铺ID" class="btn btn-success btn-xs" onclick="location='showDishList'">菜单管理</button></label>
+	                            <label><button type="button" value="商铺ID" class="btn btn-info btn-xs" onclick="location='showShopOrders.f1t?shopId=${shop.id}'">历史订单</button></label>
+	                            <label><button type="button" value="商铺ID" class="btn btn-success btn-xs" onclick="location='showDishList.f1t?shopId=${shop.id}'">菜单管理</button></label>
 	                        </td>
                     	</tr>
                     	</#list>
@@ -153,13 +153,27 @@
                 <!--footer-->
                 <div class="panel" style="float: right;">
                     <ul class="pagination">
-                        <li class="disabled"><a href="#">&laquo;</a></li>
-                        <li  class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
+                        <#if shopListPage?exists>
+                        	<#if (shopListPage.currentPage>1)>
+                        		<li><a href="showShopList.f1t?shopPage=${shopListPage.currentPage-1}" >&laquo;</a></li>
+                        	<#else>
+                        		<li class="disabled"><a>&laquo;</a></li>
+                        	</#if>
+			            	
+		        			<#list 1..shopListPage.pageCount as num>
+		        				<#if shopListPage.currentPage == num>
+		        					<li class="active"><a>${num}</a></li>
+		        				<#else>
+		        					<li><a href="showShopList.f1t?shopPage=${num}">${num}</a></li>
+		        				</#if>
+		        			</#list>
+		        			
+		        			<#if (shopListPage.currentPage<shopListPage.pageCount)>
+                        		<li><a href="showShopList.f1t?shopPage=${shopListPage.currentPage+1}" >&raquo;</a></li>
+                        	<#else>
+                        		<li class="disabled"><a>&raquo;</a></li>
+                        	</#if>
+			            </#if>
                     </ul>
                 </div>
             </div>

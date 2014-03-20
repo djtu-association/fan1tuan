@@ -26,22 +26,21 @@
 
                 <div class="panel-heading">
                     <ol class="breadcrumb">
-                        <li><a href="adminShop.html">…Ã∆Ãπ‹¿Ì</a></li>
-                        <li class="active">¿˙ ∑∂©µ•</li>
+                        <li><a href="showShopList.f1t">ÂïÜÈì∫ÁÆ°ÁêÜ</a></li>
+                        <li class="active">ÂéÜÂè≤ËÆ¢Âçï</li>
                     </ol>
                 </div>
 
                 <!--main panel-->
                 <div class="panel-body">
-                    <h3>µÍ∆Ã£∫µÍ∆Ã√˚≥∆</h3>
+                    <h3>Â∫óÈì∫<#if shopName?exists> : ${shopName} </#if> </h3>
                     <!--datePicker-->
                     <div>
                         <div>
                             <div>
                                 <label>
-                                    <div class="input-group date form_date col-md-5" data-date-format="dd MM yyyy" data-link-field="dtp_input1">
-                                        <input class="form-control" size="16" type="text" value="" readonly>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <div class="input-group date col-md-5"  data-link-field="dtp_input1">
+                                        <input class="form-control form_date" data-date-format="yyyy-mm-dd" size="80" type="text" value="" readonly>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                                     </div>
                                 </label>
@@ -62,85 +61,43 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <label>
-                    <h3><span class="glyphicon glyphicon-shopping-cart"/>¿˙ ∑∂©µ•</h3>
+                    <h3><span class="glyphicon glyphicon-shopping-cart"/>ÂéÜÂè≤ËÆ¢Âçï</h3>
                 </label>
             </div>
             <div>
                 <table class="table table-hover table-bordered table-responsive">
                     <tr>
                         <th>NO.</th>
-                        <th>∂©µ•±‡∫≈</th>
-                        <th>”√ªßÍ«≥∆£®µ„ª˜ø…≤Èø¥”√ªßœÍ«È£©</th>
-                        <th>∂©µ• ±º‰</th>
-                        <th>∂©µ•◊¥Ã¨</th>
-                        <th>π‹¿Ì</th>
+                        <th>ËÆ¢ÂçïÁºñÂè∑</th>
+                        <th>Áî®Êà∑ID(ÁÇπÂáªÂèØÊü•ÁúãÁî®Êà∑ËØ¶ÊÉÖ)</th>
+                        <th>ËÆ¢Âçï‰ª∑Ê†º</th>
+                        <th>ËÆ¢ÂçïÁä∂ÊÄÅ</th>
+                        <th>ÁÆ°ÁêÜ</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>FT2013103289</td>
-                        <td onclick="javascript:checkUserDetail('JOE');" title="µ„ª˜≤Èø¥”√ªßœÍ«È">JOE</td>
-                        <td>2013-10-24 12:50:30</td>
-                        <td><span class="label label-success">“—ÕÍ≥…</span></td>
-                        <td><button type="button" class="btn btn-danger btn-xs shopHistoryDel">…æ≥˝</button></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>FT2013103289</td>
-                        <td onclick="javascript:checkUserDetail('JOE');" title="µ„ª˜≤Èø¥”√ªßœÍ«È">JOE</td>
-                        <td>2013-10-24 12:50:30</td>
-                        <td><span class="label label-warning">…Ãº“»°œ˚</span></td>
-                        <td><button type="button" class="btn btn-danger btn-xs shopHistoryDel">…æ≥˝</button></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>FT2013103289</td>
-                        <td onclick="javascript:checkUserDetail('JOE');" title="µ„ª˜≤Èø¥”√ªßœÍ«È">JOE</td>
-                        <td>2013-10-24 12:50:30</td>
-                        <td><span class="label label-info">¬Úº“»°œ˚</span></td>
-                        <td><button type="button" class="btn btn-danger btn-xs shopHistoryDel">…æ≥˝</button></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>FT2013103289</td>
-                        <td onclick="javascript:checkUserDetail('JOE');" title="µ„ª˜≤Èø¥”√ªßœÍ«È">JOE</td>
-                        <td>2013-10-24 12:50:30</td>
-                        <td><span class="label label-info">¬Úº“»°œ˚</span></td>
-                        <td><button type="button" class="btn btn-danger btn-xs shopHistoryDel">…æ≥˝</button></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>FT2013103289</td>
-                        <td onclick="javascript:checkUserDetail('JOE');" title="µ„ª˜≤Èø¥”√ªßœÍ«È">JOE</td>
-                        <td>2013-10-24 12:50:30</td>
-                        <td><span class="label label-warning">…Ãº“»°œ˚</span></td>
-                        <td><button type="button" class="btn btn-danger btn-xs shopHistoryDel">…æ≥˝</button></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>FT2013103289</td>
-                        <td onclick="javascript:checkUserDetail('JOE');" title="µ„ª˜≤Èø¥”√ªßœÍ«È">JOE</td>
-                        <td>2013-10-24 12:50:30</td>
-                        <td><span class="label label-success">“—ÕÍ≥…</span></td>
-                        <td><button type="button" class="btn btn-danger btn-xs shopHistoryDel">…æ≥˝</button></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>FT2013103289</td>
-                        <td onclick="javascript:checkUserDetail('JOE');" title="µ„ª˜≤Èø¥”√ªßœÍ«È">JOE</td>
-                        <td>2013-10-24 12:50:30</td>
-                        <td><span class="label label-success">“—ÕÍ≥…</span></td>
-                        <td><button type="button" class="btn btn-danger btn-xs shopHistoryDel">…æ≥˝</button></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>FT2013103289</td>
-                        <td onclick="javascript:checkUserDetail('JOE');" title="µ„ª˜≤Èø¥”√ªßœÍ«È">JOE</td>
-                        <td>2013-10-24 12:50:30</td>
-                        <td><span class="label label-success">“—ÕÍ≥…</span></td>
-                        <td><button type="button" class="btn btn-danger btn-xs shopHistoryDel">…æ≥˝</button></td>
-                    </tr>
-
-
+                    <#if orderList?exists&&(orderList?size>0)>
+                    	<#list orderList as order>
+		            		<tr>
+		                        <td>${order_index+1}</td>
+		                        <td>${order.orderNo}</td>
+		                        <td onclick="javascript:checkUserDetail('JOE');" title="ÁÇπÂáªÊü•ÁúãÁî®Êà∑ËØ¶ÊÉÖ">${order.userId}</td>
+		                        <td>${order.price}</td>
+		                        <td>
+		                        	<#if order.status == 0>
+		                        		<span class="label label-success">done</span>
+	                        		<#elseif order.status ==1>
+	                        			<span class="label label-warning">undone</span>
+	                        		<#else>
+	                        			<span class="label label-danger">unpay</span>
+		                        	</#if>
+		                        </td>
+		                        <td><button type="button" class="btn btn-danger btn-xs shopHistoryDel" id="${order.id}">Âà†Èô§</button></td>
+		                    </tr>
+                    	</#list>
+                	<#else>
+                		<tr>
+                			<td colspan="6" style="text-align:center"><h3><strong>ÁõÆÂâçËøòÊ≤°ÊúâËÆ¢Âçï</strong></h3></td>
+                    	</tr>
+                    </#if>
                 </table>
             </div>
         </div>
@@ -148,34 +105,46 @@
         <!--panel footer-->
         <div style="text-align: right">
             <ul class="pagination">
-                <li class="disabled"><a href="#">&laquo;</a></li>
-                <li  class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&raquo;</a></li>
+	            <#if orderListPage?exists>
+	            	<#if (orderListPage.currentPage>1)>
+	            		<li><a href="showShopOrders.f1t?shopId=${shopId}&orderPage=${orderListPage.currentPage-1}" >&laquo;</a></li>
+	            	<#else>
+	            		<li class="disabled"><a>&laquo;</a></li>
+	            	</#if>
+	            	
+	    			<#list 1..orderListPage.pageCount as num>
+	    				<#if orderListPage.currentPage == num>
+	    					<li class="active"><a>${num}</a></li>
+	    				<#else>
+	    					<li><a href="showShopOrders.f1t?shopId=${shopId}&orderPage=${num}">${num}</a></li>
+	    				</#if>
+	    			</#list>
+	    			
+	    			<#if (orderListPage.currentPage<orderListPage.pageCount)>
+	            		<li><a href="showShopOrders.f1t?shopId=${shopId}&orderPage=${orderListPage.currentPage+1}" >&raquo;</a></li>
+	            	<#else>
+	            		<li class="disabled"><a>&raquo;</a></li>
+	            	</#if>
+	            </#if>
             </ul>
         </div>
     </div>
 
 </div>
 
-
+<input type="hidden" id="shopId" value="${shopId}">
 <!-- historyOrderDel Modal -->
-<div class="modal fade" id="shopHistoryDelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="shopHistoryDelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel0" aria-hidden="true">
 
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title">»∑∂®…æ≥˝∏√º«¬º</h3>
+                <h3 class="modal-title">Á°ÆÂÆöÂà†Èô§ËØ•ËÆ∞ÂΩï? ÈóÆÈ¢ò‰∏çÂ§ßÔºåÈÖåÊÉÖÂà†ÂêßÔºÅ</h3>
             </div>
             <div class="modal-body" style="text-align: center">
-                <label><button type="button" class="btn btn-danger btn-lg">…æ≥˝</button></label>
-                <label><button type="button" class="btn btn-info btn-lg" data-dismiss="modal">»°œ˚</button></label>
-            </div>
-            <div class="modal-footer">
+                <label><button type="button" class="btn btn-danger btn-lg" onclick="javascript:confirmDeleteOrder();">Âà†Èô§</button></label>
+                <label><button type="button" class="btn btn-info btn-lg" data-dismiss="modal">ÂèñÊ∂à</button></label>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -189,24 +158,26 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title">”√ªßœÍ«È</h3>
+                <h3 class="modal-title">Áî®Êà∑ËØ¶ÊÉÖ</h3>
             </div>
             <div class="modal-body">
                 <ul>
-                    <li>√˚◊÷£∫JOE</li>
-                    <li>–‘±£∫</li>
-                    <li> ’ªÒµÿ÷∑£∫Ωª¥Û∂˛∆⁄5#</li>
-                    <li>Õ∑œÒ£∫
+                    <li>ÂêçÂ≠óÔºöJOE</li>
+                    <li>ÊÄßÂà´Ôºö</li>
+                    <li>Êî∂Ëé∑Âú∞ÂùÄÔºö‰∫§Â§ß‰∫åÊúü5#</li>
+                    <li>Â§¥ÂÉèÔºö
                         <div class="row">
                         <div class="col-sm-6 col-md-3">
                             <a href="#" class="thumbnail">
-                                <img data-src="holder.js/100%x180">
+                                <img src="../../res/img/avatar.jpg">
                             </a>
                         </div>
                     </div></li>
                 </ul>
-            </div>
-            <div class="modal-footer">
+                <p>
+                <div style="text-align:center">
+                	<label><button type="button" class="btn btn-info btn-lg" data-dismiss="modal">ÂÖ≥Èó≠</button></label>
+                </div>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -215,7 +186,7 @@
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../res/js/custom/adminShop.js"></script>
+<script src="../../res/js/custom/adminShop.js"></script>
 <script type="text/javascript">
     $('.form_datetime').datetimepicker({
         //language:  'fr',
@@ -250,7 +221,6 @@
         maxView: 1,
         forceParse: 0
     });
-
 </script>
 </body>
 </html>

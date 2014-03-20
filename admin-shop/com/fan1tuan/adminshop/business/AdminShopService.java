@@ -44,5 +44,12 @@ public interface AdminShopService extends IFan1TuanService {
 	public void saveDishTasteTagEdit(DishTasteTag dishTasteTag);
 	//删除一个菜品分类：根据tagId
 	public void deleteDishTasteTagByTagId(String tagId);
+	
+	//获取分页
+	public long getShopPageCount(int pageSize);
+	
+	public long getOrderPageCount(String shopId,int pageSize);
+	
+	public long getDishPageCount(String shopId,int pageSize);
 
 }

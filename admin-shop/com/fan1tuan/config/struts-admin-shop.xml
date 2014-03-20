@@ -35,7 +35,10 @@
 		</action>
 		<!-- 确认订单删除 -->
 		<action name="doShopOrderDelete" method="doShopOrderDelete" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShopHistoryOrder.ftl</result>
+		    <result name="success" type="redirectAction">
+		    	<param name="actionName">showShopOrders.f1t</param>
+		    	<param name="shopId">${shopId}</param>
+		    </result>
 		</action>
 				
 	</package>

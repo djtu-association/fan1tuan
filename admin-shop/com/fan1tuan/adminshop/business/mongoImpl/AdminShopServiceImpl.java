@@ -154,4 +154,20 @@ public class AdminShopServiceImpl implements AdminShopService{
 		return dishDao.findOneById(dishId);
 	}
 
+	@Override
+	public long getShopPageCount(int pageSize) {
+		return shopDao.getPageCount(CriteriaWrapper.instance(), pageSize);
+	}
+
+	@Override
+	public long getOrderPageCount(String shopId, int pageSize) {
+		return orderDao.getPageCount(CriteriaWrapper.instance().is("shopId", shopId), pageSize);
+	}
+
+	@Override
+	public long getDishPageCount(String shopId, int pageSize) {
+		return dishDao.getPageCount(CriteriaWrapper.instance().is("shopId", shopId), pageSize);
+	}
+	
+
 }
