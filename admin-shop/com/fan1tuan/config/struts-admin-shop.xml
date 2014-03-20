@@ -15,7 +15,7 @@
 		</action>
 		<!-- 确认店铺添加 -->
 		<action name="doShopAdd" method="doShopAdd" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop.ftl</result>
+		    <result name="success" type="redirectAction">showShopList.f1t</result>
 		</action>
 		<!-- 显示店铺编辑 -->
 		<action name="showShopEdit" method="showShopEdit" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
@@ -23,11 +23,11 @@
 		</action>
 		<!-- 确认店铺编辑 -->
 		<action name="doShopEdit" method="doShopEdit" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop.ftl</result>
+		    <result name="success" type="redirectAction">showShopList.f1t</result>
 		</action>
 		<!--  确认店铺删除-->
 		<action name="doShopDelete" method="doShopDelete" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop.ftl</result>
+		    <result name="success" type="redirectAction">showShopList.f1t</result>
 		</action>
 		<!-- 显示店铺订单列表 -->
 		<action name="showShopOrders" method="showShopOrders" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">

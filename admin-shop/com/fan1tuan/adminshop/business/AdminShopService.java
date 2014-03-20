@@ -16,6 +16,8 @@ public interface AdminShopService extends IFan1TuanService {
 	public void addNewShop(Shop shop);
 	//添加新的口味标签
 	public void addNewShopTasteTag(ShopTasteTag shopTasteTag);
+	//获取一个店铺
+	public Shop getOneShopByShopId(String shopId);
 	//保存编辑后的店铺
 	public void saveShopEdit(Shop shop);
 	//删除一个店铺：根据shopId
@@ -28,6 +30,8 @@ public interface AdminShopService extends IFan1TuanService {
 	public List<Dish> getShopDishsByShopIdInPage(String shopId,Pageable pageable);
 	//添加新的菜品
 	public void addNewDish(Dish dish);
+	//获取一个菜品
+	public Dish getOneDishByDishId(String dishId);
 	//保存编辑后的菜品
 	public void saveDishEdit(Dish dish);
 	//删除一个菜品：根据dishId

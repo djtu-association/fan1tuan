@@ -1,33 +1,23 @@
 /**
  * Created by Administrator on 13-10-23.
  */
-$(document).ready = function(){
+var delShopId = "";
+//-----adminShop.htnl------------
+$('.btnDel').click(function(){
+	delShopId = $(this).attr('id');
+    $('#delModal').modal('toggle');
+});
 
-    //-----adminShop.htnl------------
-    $('.btnDel').click(function(){
-        $('#delModal').modal('toggle');
-    });
+//---shopHistoryOrder-------------------
+$('.shopHistoryDel').click(function(){
+    $('#shopHistoryDelModal').modal('toggle');
+});
 
-    function editShop(shopId)
-    {
-        alert("relocation by js function"+"传入商铺ID");
-        window.location='adminShopEditOrAdd.html';
-    }
+function checkUserDetail(userid){
+    $('#shopHistoryUserModal').modal('toggle');
+}
 
-    function checkHistoryOrder(shopId)
-    {
-        alert("relocation by js function"+"传入商铺ID");
-        window.location='adminShopHistoryOrder.html';
-    }
-
-
-    //---shopHistoryOrder-------------------
-    $('.shopHistoryDel').click(function(){
-        $('#shopHistoryDelModal').modal('toggle');
-    });
-
-    function checkUserDetail(userid)
-    {
-        $('#shopHistoryUserModal').modal('toggle');
-    }
+function confirmDeleteShop(){
+	alert(delShopId);
+	location="doShopDelete.f1t?shopId="+delShopId;
 }

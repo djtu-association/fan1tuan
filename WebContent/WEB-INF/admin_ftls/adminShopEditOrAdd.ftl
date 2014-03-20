@@ -24,21 +24,25 @@
             <div class="panel panel-info">
 
                 <div class="panel-heading">
-                    <h3 class="panel-title">商铺管理</h3>
+                    <h3 class="panel-title"><a href="showShopList.f1t">商铺管理</a></h3>
                 </div>
 
                 <!--main panel-->
                 <div class="panel-body">
                     <div style="text-align: center" >
-                        <h2>添加商铺</h2>
+                        <h2>${subTitle}</h2>
                     </div>
                     <div>
-                        <form class="form-horizontal" role="form" method="post" action="doShopAdd.f1t" enctype="multipart/form-data">
+                        <form class="form-horizontal" role="form" method="post" <#if shop?exists>action="doShopEdit.f1t"<#else>action="doShopAdd.f1t"</#if> enctype="multipart/form-data">
+                        	<#if shop?exists>
+                        		<!--edit-->
+                        		<input type="hidden" name="shopId" value="${shop.id}">
+                        	</#if>
                             <!--text-->
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">商铺名称</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="name" class="form-control" id="inputEmail3" placeholder="商铺名称">
+                                    <input type="text" name="name" class="form-control" id="inputEmail3" placeholder="商铺名称" value="<#if shop?exists&&shop.name?exists>${shop.name}</#if>">
                                 </div>
                             </div>
 
@@ -46,23 +50,39 @@
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-2 control-label">简单描述</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="description" class="form-control" id="inputPassword3" placeholder="输入对商铺的简短广告描述">
+                                    <input type="text" name="description" class="form-control" id="inputPassword3" placeholder="输入对商铺的简短广告描述" value="<#if shop?exists&&shop.name?exists>${shop.name}</#if>">
                                 </div>
                             </div>
 
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputPassword4" class="col-sm-2 control-label">起送价</label>
+                                <label for="inputPassword44" class="col-sm-2 control-label">起送价(元)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="avgPersonCost" class="form-control" id="inputPassword4" placeholder="输入本商铺送餐起步价">
+                                    <input type="text" name="deliveryCharge" class="form-control" id="inputPassword44" placeholder="输入本商铺送餐起步价（元）" value="<#if shop?exists&&shop.deliveryCharge?exists>${shop.deliveryCharge}</#if>">
+                                </div>
+                            </div>
+                            
+                            <!--text-->
+                            <div class="form-group">
+                                <label for="inputPassword445" class="col-sm-2 control-label">人均消费(元)</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="avgPersonCost" class="form-control" id="inputPassword445" placeholder="输入本商铺人均消费价（元）" value="<#if shop?exists&&shop.avgPersonCost?exists>${shop.avgPersonCost}</#if>">
+                                </div>
+                            </div>
+                            
+                            <!--text-->
+                            <div class="form-group">
+                                <label for="inputPassword4" class="col-sm-2 control-label">平均送达时间(分钟)</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="avgDeliveryTime" class="form-control" id="inputPassword4" placeholder="输入本商铺送餐到达平均时间（分钟）" value="<#if shop?exists&&shop.avgDeliveryTime?exists>${shop.avgDeliveryTime}</#if>">
                                 </div>
                             </div>
 
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputPassword5" class="col-sm-2 control-label">联系电话</label>
+                                <label for="inputPassword5" class="col-sm-2 control-label">联系电话(手机)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="cellphone" class="form-control" id="inputPassword5" placeholder="有效的联系电话">
+                                    <input type="text" name="cellphone" class="form-control" id="inputPassword5" placeholder="有效的联系电话" value="<#if shop?exists&&shop.cellphone?exists>${shop.cellphone}</#if>">
                                 </div>
                             </div>
 							
@@ -70,25 +90,25 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">店铺类型</label>
                                 <div class="col-sm-10">
-                                    <input type="radio" name="shopType" value="1">在线订餐商铺
+                                    <input type="radio" name="shopType" value="000" <#if shop?exists&&shop.type?exists&&shop.type==0>checked</#if> >在线订餐
                                     &nbsp;
-                                    <input type="radio" name="shopType" value="0">电话订餐商铺
+                                    <input type="radio" name="shopType" value="111" <#if shop?exists&&shop.type?exists&&shop.type==1>checked</#if> >电话订餐
                                 </div>
                             </div>
 
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputPassword6" class="col-sm-2 control-label">开始时间</label>
+                                <label for="inputPassword6" class="col-sm-2 control-label">开始时间(时:分)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="opentime" class="form-control form_time" id="inputPassword6" placeholder="开始营业时间">
+                                    <input type="text" name="opentime" class="form-control form_time" id="inputPassword6" placeholder="开始营业时间" value="<#if shop?exists&&shop.opentime?exists>${shop.opentime}</#if>">
                                 </div>
                             </div>
 
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputPassword7" class="col-sm-2 control-label">结束时间</label>
+                                <label for="inputPassword7" class="col-sm-2 control-label">结束时间(时:分)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="closetime" class="form-control form_time" id="inputPassword7" placeholder="结束营业时间">
+                                    <input type="text" name="closetime" class="form-control form_time" id="inputPassword7" placeholder="结束营业时间" value="<#if shop?exists&&shop.closetime?exists>${shop.closetime}</#if>">
                                 </div>
                             </div>
 
@@ -96,7 +116,7 @@
                             <div class="form-group">
                                 <label for="inputPassword8" class="col-sm-2 control-label">店铺地址</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="address" class="form-control" id="inputPassword8" placeholder="输入店铺大致地址位置">
+                                    <input type="text" name="address" class="form-control" id="inputPassword8" placeholder="输入店铺大致地址位置" value="<#if shop?exists&&shop.address?exists>${shop.address}</#if>">
                                 </div>
                             </div>
 
@@ -107,20 +127,30 @@
                                     <input type="file" name="avatar">
                                 </div>
                             </div>
-
+							
+							
+							<!--text 原坐标-->
+							<#if shop?exists&&shop.location?exists>
+	                            <div class="form-group">
+	                                <label class="col-sm-2 control-label">原坐标</label>
+	                                <div class="col-sm-10">
+	                                    <label class="label label-primary">（ ${shop.location[0]} , ${shop.location[1]} ）</label>
+	                                </div>
+	                            </div>
+                            </#if>
 							<!--text-->
                             <div class="form-group">
-                                <label for="inputPassword8" class="col-sm-2 control-label">坐标·经度</label>
+                                <label for="inputPassword888" class="col-sm-2 control-label">坐标·经度('C)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="longtitude" class="form-control" id="inputPassword8" placeholder="输入店铺坐标经度">
+                                    <input type="text" name="longtitude" class="form-control" id="inputPassword888" placeholder="输入店铺坐标经度" value="<#if shop?exists&&shop.location?exists>${shop.location[0]}</#if>">
                                 </div>
                             </div>
                             
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputPassword8" class="col-sm-2 control-label">坐标·纬度</label>
+                                <label for="inputPassword88" class="col-sm-2 control-label">坐标·纬度('C)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="latitude" class="form-control" id="inputPassword8" placeholder="输入店铺坐标纬度">
+                                    <input type="text" name="latitude" class="form-control" id="inputPassword88" placeholder="输入店铺坐标纬度" value="<#if shop?exists&&shop.location?exists>${shop.location[1]}</#if>">
                                 </div>
                             </div>
 							
@@ -128,7 +158,13 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <button type="submit" class="btn btn-success">保存</button>
-                                    <button type="reset" class="btn btn-warning">重置</button>
+                                    <#if shop?exists>
+                                    	<button type="button" class="btn btn-warning" onclick="location='showShopList.f1t'">取消</button>
+                                	<#else>
+                                		<button type="reset" class="btn btn-warning">重置</button>
+                                		<button type="button" class="btn btn-warning" onclick="location='showShopList.f1t'">取消</button>
+                                    </#if>
+                                    
                                 </div>
                             </div>
                         </form>

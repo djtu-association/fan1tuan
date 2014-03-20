@@ -11,11 +11,11 @@
 <script src="../../res/js/respond.min.js"></script>
 
 <![endif]-->
-
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../../res/js/bootstrap.min.js"></script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="../../res/js/jquery-1.8.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../../res/js/bootstrap.min.js"></script>
+
 <!--
 <script type="text/javascript" src="../../res/plugin/datepicker/js/jquery-1.8.3.min.js" charset="UTF-8"></script>
 -->

@@ -126,92 +126,27 @@
                         <th>NO.</th>
                         <th>名称</th>
                         <th>类型</th>
-                        <th>商圈</th>
-                        <th>注册时间</th>
+                        <th>联系电话</th>
+                        <th>店铺地址</th>
                         <th>管理</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>JOE'S SHOP</td>
-                        <td>在线商铺</td>
-                        <td>交大二期</td>
-                        <td>2013-10-23</td>
-                        <td>
-                            <label><button type="button" value="商铺ID" class="btn btn-primary btn-xs" onclick="location='showShopEdit'">编辑</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-warning btn-xs btnDel">删除</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-info btn-xs" onclick="location='showShopOrders'">历史订单</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-success btn-xs" onclick="location='showDishList'">菜单管理</button></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>JOE'S SHOP</td>
-                        <td>在线商铺</td>
-                        <td>交大二期</td>
-                        <td>2013-10-23</td>
-                        <td>
-                            <label><button type="button" value="商铺ID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">编辑</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-warning btn-xs btnDel">删除</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">历史订单</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">菜单管理</button></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>JOE'S SHOP</td>
-                        <td>在线商铺</td>
-                        <td>交大二期</td>
-                        <td>2013-10-23</td>
-                        <td>
-                            <label><button type="button" value="商铺ID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">编辑</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-warning btn-xs btnDel">删除</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">历史订单</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">菜单管理</button></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>JOE'S SHOP</td>
-                        <td>在线商铺</td>
-                        <td>交大二期</td>
-                        <td>2013-10-23</td>
-                        <td>
-                            <label><button type="button" value="商铺ID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">编辑</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-warning btn-xs btnDel">删除</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">历史订单</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">菜单管理</button></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>JOE'S SHOP</td>
-                        <td>在线商铺</td>
-                        <td>交大二期</td>
-                        <td>2013-10-23</td>
-                        <td>
-                            <label><button type="button" value="商铺ID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">编辑</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-warning btn-xs btnDel">删除</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">历史订单</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">菜单管理</button></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>JOE'S SHOP</td>
-                        <td>在线商铺</td>
-                        <td>交大二期</td>
-                        <td>2013-10-23</td>
-                        <td>
-                            <label><button type="button" value="商铺ID" class="btn btn-primary btn-xs" onclick="javascript:editShop('shopid')">编辑</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-warning btn-xs btnDel">删除</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-info btn-xs" onclick="javascript:checkHistoryOrder('shopid')">历史订单</button></label>
-                            <label><button type="button" value="商铺ID" class="btn btn-success btn-xs" onclick="location='adminShop-dishItem.html'">菜单管理</button></label>
-                        </td>
-                    </tr>
-
-
-
-
+                    <#if shopList?exists>
+                    	<#list shopList as shop>
+                    	<tr>
+	                        <td>${shop_index+1}</td>
+	                        <td>${shop.name}</td>
+	                        <td><#if shop.type == 1>在线商铺<#else>电话商铺</#if></td>
+	                        <td>${shop.cellphone}</td>
+	                        <td>${shop.address}</td>
+	                        <td>
+	                            <label><button type="button" value="商铺ID" class="btn btn-primary btn-xs" onclick="location='showShopEdit.f1t?shopId=${shop.id}'">编辑</button></label>
+	                            <label><button type="button" value="商铺ID" class="btn btn-warning btn-xs btnDel" id="${shop.id}">删除</button></label>
+	                            <label><button type="button" value="商铺ID" class="btn btn-info btn-xs" onclick="location='showShopOrders'">历史订单</button></label>
+	                            <label><button type="button" value="商铺ID" class="btn btn-success btn-xs" onclick="location='showDishList'">菜单管理</button></label>
+	                        </td>
+                    	</tr>
+                    	</#list>
+                    </#if>
                 </table>
 
 
@@ -235,40 +170,6 @@
 
 
 
-<!-- trbar Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel"><span id="modalTitle">商铺名称</span></h4>
-            </div>
-            <div class="modal-body">
-                商铺信息(动态获取，先用ajax返回数据，更新modal，complete显示modal)
-                <div id="modalContent">
-                </div>
-                <div>
-                    <form role="form">
-                        <ul>
-                            <li><label>名称：</label></li>
-                            <li><label>电话：</label></li>
-                            <li><label>配送时间：</label></li>
-                            <li><label>等等：</label></li>
-                            <li><label>等等：</label></li>
-                        </ul>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-
-</div><!-- /.modal -->
-
 
 <!-- trbar Modal -->
 <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -277,13 +178,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title">确定删除该商铺</h3>
+                <h3 class="modal-title">确定删除该商铺?!这是非常恐怖的步骤，谨慎操作!</h3>
             </div>
             <div class="modal-body" style="text-align: center">
-               <label><button type="button" class="btn btn-danger btn-lg">删除</button></label>
+               <label><button type="button" class="btn btn-danger btn-lg" onclick="javascript:confirmDeleteShop()">删除</button></label>
                <label><button type="button" class="btn btn-info btn-lg" data-dismiss="modal">取消</button></label>
-            </div>
-            <div class="modal-footer">
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

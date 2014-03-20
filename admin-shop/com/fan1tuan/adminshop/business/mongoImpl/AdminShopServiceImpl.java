@@ -1,6 +1,7 @@
 package com.fan1tuan.adminshop.business.mongoImpl;
 
 import java.util.List;
+
 import com.fan1tuan.adminshop.business.AdminShopService;
 import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.Pageable;
@@ -141,6 +142,16 @@ public class AdminShopServiceImpl implements AdminShopService{
 	
 	public void setDishTasteTagDao(DishTasteTagDao dishTasteTagDao) {
 		this.dishTasteTagDao = dishTasteTagDao;
+	}
+
+	@Override
+	public Shop getOneShopByShopId(String shopId) {
+		return shopDao.findOneById(shopId);
+	}
+
+	@Override
+	public Dish getOneDishByDishId(String dishId) {
+		return dishDao.findOneById(dishId);
 	}
 
 }
