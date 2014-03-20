@@ -14,8 +14,14 @@ public interface AdminShopService extends IFan1TuanService {
 	public List<Shop> getShopsInPage(Pageable pageable);
 	//添加新的店铺
 	public void addNewShop(Shop shop);
+	//获取店铺口味标签
+	public List<ShopTasteTag> getShopTasteTags();
 	//添加新的口味标签
 	public void addNewShopTasteTag(ShopTasteTag shopTasteTag);
+	//保存编辑的口味标签
+	public void saveShopTasteTagEdit(ShopTasteTag shopTasteTag);
+	//删除一个口味标签
+	public void deleteShopTasteTagByTagId(String tagId);
 	//获取一个店铺
 	public Shop getOneShopByShopId(String shopId);
 	//保存编辑后的店铺

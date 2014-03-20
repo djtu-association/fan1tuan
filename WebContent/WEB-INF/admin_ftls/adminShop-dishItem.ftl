@@ -10,6 +10,7 @@
 <!--top navigator bar-->
 <#include "./sinppet/admin-topnav.ftl">
 
+<input type="hidden" id="shopId" value="${shopId}">
 <!--Main frame-->
 <div class=".container">
 
@@ -23,7 +24,7 @@
         <div class="panel-default">
             <div class="panel-success" style="height: 50px;">
                 <div class="panel-heading">
-                        <h3 class="panel-title"><a href="adminShop.html">…Ã∆Ãπ‹¿Ì></a>≤À∆∑π‹¿Ì</h3>
+                        <h3 class="panel-title"><a href="showShopList.f1t">ÂïÜÈì∫ÁÆ°ÁêÜ></a>ËèúÂìÅÁÆ°ÁêÜ</h3>
                 </div>
             </div>
         </div>
@@ -35,8 +36,8 @@
                 <div class="panel-heading">
                     <div>
                         <div class="form-group">
-                            <button type="button" class="btn btn-warning" onclick="location='adminShop-addDish.html'">ÃÌº”≤À∆∑</button>
-                            <button type="button" class="btn btn-info" onclick="location='adminShop-addType.html'">ÃÌº”∑÷¿‡</button>
+                            <button type="button" class="btn btn-warning" onclick="location='showDishAdd.f1t?shopId=${shopId}'">Ê∑ªÂä†ËèúÂìÅ</button>
+                            <button type="button" class="btn btn-info" onclick="location='showDishType.f1t?shopId=${shopId}'">Ê∑ªÂä†ÂàÜÁ±ª</button>
                         </div>
                     </div>
                 </div>
@@ -44,70 +45,56 @@
                 <table class="table table-striped table-hover table-bordered">
                     <tr>
                         <th>NO.</th>
-                        <th>√˚≥∆</th>
-                        <th>º€∏Ò</th>
-                        <th>∑÷¿‡</th>
-                        <th>Õº∆¨</th>
-                        <th>≤Ÿ◊˜</th>
+                        <th>ÂêçÁß∞</th>
+                        <th>‰ª∑Ê†º</th>
+                        <th>ÂõæÁâá</th>
+                        <th>Êìç‰Ωú</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ω¥±¨–°ÕË◊”</td>
-                        <td>18.00</td>
-                        <td>Ω¥±¨</td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-xs">±‡º≠</button>
-                            <button type="button" class="btn btn-danger btn-xs">…æ≥˝</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ω¥±¨–°ÕË◊”</td>
-                        <td>18.00</td>
-                        <td>Ω¥±¨</td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-xs">±‡º≠</button>
-                            <button type="button" class="btn btn-danger btn-xs">…æ≥˝</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ω¥±¨–°ÕË◊”</td>
-                        <td>18.00</td>
-                        <td>Ω¥±¨</td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-xs">±‡º≠</button>
-                            <button type="button" class="btn btn-danger btn-xs">…æ≥˝</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Ω¥±¨–°ÕË◊”</td>
-                        <td>18.00</td>
-                        <td>Ω¥±¨</td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-xs">±‡º≠</button>
-                            <button type="button" class="btn btn-danger btn-xs">…æ≥˝</button>
-                        </td>
-                    </tr>
-
+                    <#if dishList?exists>
+                    	<#list dishList as dish>
+                    		<tr>
+		                        <td>${dish_index+1}</td>
+		                        <td>${dish.name}</td>
+		                        <td>${dish.price}</td>
+		                        <td></td>
+		                        <td>
+		                            <button type="button" class="btn btn-primary btn-xs" onclick="location='showDishEdit.f1t?dishId=${dish.id}&shopId=${shopId}'">ÁºñËæë</button>
+		                            <button type="button" class="btn btn-danger btn-xs" onclick="javascript:confirmDeleteDish('${dish.id}')" id="">Âà†Èô§</button>
+		                        </td>
+		                    </tr>
+                    	</#list>
+                	<#else>
+                		<tr>
+                			<td colspan="5" style="text-align:center"><h3><strong>ÁõÆÂâçËøòÊ≤°ÊúâËÆ¢Âçï</strong></h3></td>
+                    	</tr>
+                    </#if>
                 </table>
 
 
                 <!--footer-->
                 <div class="panel" style="float: right;">
                     <ul class="pagination">
-                        <li class="disabled"><a href="#">&laquo;</a></li>
-                        <li  class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
+                        <#if dishListPage?exists>
+                        	<#if (dishListPage.currentPage>1)>
+                        		<li><a href="showDishList.f1t?shopId=${shopId}&dishPage=${dishListPage.currentPage-1}" >&laquo;</a></li>
+                        	<#else>
+                        		<li class="disabled"><a>&laquo;</a></li>
+                        	</#if>
+			            	
+		        			<#list 1..dishListPage.pageCount as num>
+		        				<#if dishListPage.currentPage == num>
+		        					<li class="active"><a>${num}</a></li>
+		        				<#else>
+		        					<li><a href="showDishList.f1t?shopId=${shopId}&dishPage=${num}">${num}</a></li>
+		        				</#if>
+		        			</#list>
+		        			
+		        			<#if (dishListPage.currentPage<dishListPage.pageCount)>
+                        		<li><a href="showDishList.f1t?shopId=${shopId}&dishPage=${dishListPage.currentPage+1}" >&raquo;</a></li>
+                        	<#else>
+                        		<li class="disabled"><a>&raquo;</a></li>
+                        	</#if>
+			            </#if>
                     </ul>
                 </div>
             </div>
@@ -116,7 +103,7 @@
 
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../res/js/custom/adminAdvert.js"></script>
+<script src="../../res/js/custom/adminShop.js"></script>
 <script type="text/javascript">
     $('.form_datetime').datetimepicker({
         //language:  'fr',

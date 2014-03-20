@@ -40,11 +40,30 @@
 		    	<param name="shopId">${shopId}</param>
 		    </result>
 		</action>
-				
-	</package>
-	
-	<!-- 菜品管理action -->
-	<package name="admin_shop_menu" extends="admin_main" namespace="/admin/dish">
+		<!-- 显示店铺标签管理 -->
+		<action name="showShopTags" method="showShopTags" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
+			<result name="success" type="freemarker">/WEB-INF/admin_ftls/adminShop-addTag.ftl</result>
+		</action>
+		<!-- 添加店铺标签 -->
+		<action name="doShopTagAdd" method="doShopTagAdd" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
+			<result name="success" type="redirectAction">showShopTags.f1t</result>
+		</action>
+		<!-- 编辑口味标签 -->
+		<action name="doShopTagEdit" method="doShopTagEdit" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
+			<result name="success" type="freemarker">/WEB-INF/admin_ftls/adminShop-addTag.ftl</result>
+		</action>
+		<!-- 删除店铺标签 -->
+		<action name="doShopTagDelete" method="doShopTagDelete" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
+			<result name="success" type="redirectAction">showShopTags.f1t</result>
+		</action>
+		
+		
+		
+		
+		
+		
+		<!-- menu action below -->
+		
 		<!-- 显示菜品列表 -->
 		<action name="showDishList" method="showDishList" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
 		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop-dishItem.ftl</result>
@@ -55,7 +74,7 @@
 		</action>
 		<!-- 确认菜品添加 -->
 		<action name="doDishAdd" method="doDishAdd" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop-dishItem.ftl</result>
+		    <result name="success" type="redirectAction">showDishList.f1t?shopId=${shopId}</result>
 		</action>
 		<!-- 显示菜品编辑 -->
 		<action name="showDishEdit" method="showDishEdit" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
@@ -63,15 +82,19 @@
 		</action>
 		<!-- 确认菜品编辑 -->
 		<action name="doDishEdit" method="doDishEdit" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop-dishItem.ftl</result>
+		    <result name="success" type="redirectAction">showDishList.f1t?shopId=${shopId}</result>
+		</action>
+		<!-- 确认菜品删除 -->
+		<action name="doDishDelete" method="doDishDelete" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
+		    <result name="success" type="redirectAction">showDishList.f1t?shopId=${shopId}</result>
 		</action>
 		<!-- 显示菜品分类别列表 -->
 		<action name="showDishType" method="showDishType" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result type="freemarker">/WEB-INF/admin_ftls/amdinShop-addType.ftl</result>
+		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop-addType.ftl</result>
 		</action>
 		<!-- 确认菜品分类添加 -->
 		<action name="doDishTypeAdd" method="doDishTypeAdd" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop-addType.ftl</result>
+		    <result name="success" type="redirectAction">showDishType.f1t?shopId=${shopId}</result>
 		</action>
 		<!-- 确认菜品分类编辑 -->
 		<action name="doDishTypeEdit" method="doDishTypeEdit" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
@@ -79,9 +102,9 @@
 		</action>
 		<!-- 确认菜品分类删除 -->
 		<action name="doDishTypeDelete" method="doDishTypeDelete" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop-addType.ftl</result>
+		    <result name="success" type="redirectAction">showDishType.f1t?shopId=${shopId}</result>
 		</action>
-				
+		
 	</package>
 	
 </struts>

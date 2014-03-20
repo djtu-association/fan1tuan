@@ -9,7 +9,7 @@
 
 <!--top navigator bar-->
 <#include "./sinppet/admin-topnav.ftl">
-
+<input type="hidden" id="shopId" value="${shopId}">
 <!--Main frame-->
 <div class=".container">
 
@@ -24,28 +24,36 @@
             <div class="panel panel-info">
 
                 <div class="panel-heading">
-                    <h3 class="panel-title"><a href="adminShop.html">…Ã∆Ãπ‹¿Ì></a><a href="adminShop-dishItem.html">≤À∆∑π‹¿Ì</a>>ÃÌº”∑÷¿‡</h3>
+                    <h3 class="panel-title"><a href="showShopList.f1t">ÂïÜÈì∫ÁÆ°ÁêÜ></a><a href="showDishList.f1t?shopId=${shopId}">ËèúÂìÅÁÆ°ÁêÜ</a>>Ê∑ªÂä†ÂàÜÁ±ª</h3>
                 </div>
                 <!--main panel-->
                 <div class="panel-body">
                     <div style="text-align: center">
-                        <h2>ÃÌº”≤À∆∑∑÷¿‡</h2>
+                        <h2>Ê∑ªÂä†ËèúÂìÅÂàÜÁ±ª</h2>
                     </div>
                     <div>
-                        <form class="form-horizontal" role="form">
+                        <form class="form-horizontal" role="form" method="post" action="doDishTypeAdd.f1t?shopId=${shopId}">
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">–¬∑÷¿‡√˚≥∆</label>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Êñ∞ÂàÜÁ±ªÂêçÁß∞</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="inputEmail3" placeholder="«Î ‰»Î–¬µƒ∑÷¿‡√˚≥∆">
+                                    <input type="text" name="tagName" class="form-control" id="inputEmail3" placeholder="ËØ∑ËæìÂÖ•Êñ∞ÁöÑÂàÜÁ±ªÂêçÁß∞">
+                                </div>
+                            </div>
+                            
+                            <!--text-->
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Êñ∞ÂàÜÁ±ªÊèèËø∞</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="tagDescription" class="form-control" id="inputEmail3" placeholder="ËØ∑ËæìÂÖ•Êñ∞ÁöÑÂàÜÁ±ªÊèèËø∞">
                                 </div>
                             </div>
 
                             <!--Confirm button-->
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-success">±£¥Ê</button>
-                                    <button type="reset" class="btn btn-warning">÷ÿ÷√</button>
+                                    <button type="submit" class="btn btn-success">‰øùÂ≠ò</button>
+                                    <button type="reset" class="btn btn-warning">ÈáçÁΩÆ</button>
                                 </div>
                             </div>
                         </form>
@@ -61,29 +69,34 @@
             <div class="panel panel-info">
 
                 <div class="panel-heading">
-                    <h3 class="panel-title"><a href="adminShop.html">…Ã∆Ãπ‹¿Ì></a><a href="adminShop-dishItem.html">≤À∆∑π‹¿Ì</a>>œ÷”–∑÷¿‡</h3>
+                    <h3 class="panel-title"><a href="adminShop.html">ÂïÜÈì∫ÁÆ°ÁêÜ></a><a href="adminShop-dishItem.html">ËèúÂìÅÁÆ°ÁêÜ</a>>Áé∞ÊúâÂàÜÁ±ª</h3>
                 </div>
 
                 <!--main panel-->
                 <div class="panel-body">
                     <div style="text-align: center">
-                        <h2>µÍ∆Ãœ÷”–≤À∆∑∑÷¿‡</h2>
+                        <h2>Â∫óÈì∫Áé∞ÊúâËèúÂìÅÂàÜÁ±ª</h2>
                     </div>
                     <div>
                         <table class="table table-striped table-hover table-bordered">
                             <tr>
                                 <th>NO.</th>
-                                <th>√˚≥∆</th>
-                                <th>≤Ÿ◊˜</th>
+                                <th>ÂêçÁß∞</th>
+                                <th>ÊèèËø∞</th>
+                                <th>Êìç‰Ωú</th>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Ω¥±¨</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-xs">±‡º≠</button>
-                                    <button type="button" class="btn btn-danger btn-xs">…æ≥˝</button>
-                                </td>
-                            </tr>
+                            <#if DishTagList?exists>
+                            	<#list DishTagList as tag>
+                            		<tr>
+		                                <td>${tag_index+1}</td>
+		                                <td>${tag.name}</td>
+		                                <th>${tag.description}</th>
+		                                <td>
+		                                    <button type="button" class="btn btn-danger btn-xs" onclick="javascript:confirmDeleteDishTag('${tag.id}')">Âà†Èô§</button>
+		                                </td>
+		                            </tr>
+                            	</#list>
+                            </#if>
                         </table>
                     </div>
                 </div>
@@ -99,6 +112,7 @@
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../res/js/custom/adminShop.js"></script>
 <script type="text/javascript">
     $('.form_datetime').datetimepicker({
         //language:  'fr',

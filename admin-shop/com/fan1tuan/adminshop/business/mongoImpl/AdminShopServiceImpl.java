@@ -168,6 +168,21 @@ public class AdminShopServiceImpl implements AdminShopService{
 	public long getDishPageCount(String shopId, int pageSize) {
 		return dishDao.getPageCount(CriteriaWrapper.instance().is("shopId", shopId), pageSize);
 	}
+
+	@Override
+	public List<ShopTasteTag> getShopTasteTags() {
+		return shopTasteTagDao.findAll();
+	}
+
+	@Override
+	public void saveShopTasteTagEdit(ShopTasteTag shopTasteTag) {
+		shopTasteTagDao.update(shopTasteTag);
+	}
+
+	@Override
+	public void deleteShopTasteTagByTagId(String tagId) {
+		shopTasteTagDao.delete(tagId);
+	}
 	
 
 }

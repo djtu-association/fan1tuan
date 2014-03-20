@@ -9,7 +9,7 @@
 
 <!--top navigator bar-->
 <#include "./sinppet/admin-topnav.ftl">
-
+<input type="hidden" id="shopId" value="${shopId}">
 <!--Main frame-->
 <div class=".container">
 
@@ -24,48 +24,48 @@
             <div class="panel panel-info">
 
                 <div class="panel-heading">
-                    <h3 class="panel-title"><a href="adminShop.html">…Ã∆Ãπ‹¿Ì></a><a href="adminShop-dishItem.html">≤À∆∑π‹¿Ì</a>>ÃÌº”≤À∆∑</h3>
+                    <h3 class="panel-title"><a href="showShopList.f1t">ÂïÜÈì∫ÁÆ°ÁêÜ></a><a href="showDishList.f1t?shopId=${shopId}">ËèúÂìÅÁÆ°ÁêÜ</a>>Ê∑ªÂä†ËèúÂìÅ</h3>
                 </div>
 
                 <!--main panel-->
                 <div class="panel-body">
                     <div style="text-align: center">
-                        <h2>ÃÌº”≤À∆∑</h2>
+                        <h2>Ê∑ªÂä†ËèúÂìÅ</h2>
                     </div>
                     <div>
-                        <form class="form-horizontal" role="form">
+                        <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" <#if dish?exists>action="doDishEdit.f1t?shopId=${shopId}&dishId=${dishId}"<#else>action="doDishAdd.f1t?shopId=${shopId}"</#if> >
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">√˚≥∆</label>
+                                <label class="col-sm-2 control-label">ÂêçÁß∞</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="inputEmail3" placeholder="≤À∆∑√˚≥∆">
+                                    <input type="text" name="name" class="form-control" placeholder="ËèúÂìÅÂêçÁß∞" value="<#if dish?exists&&dish.name?exists>${dish.name}</#if>" >
                                 </div>
                             </div>
                             <!--text-->
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">√Ë ˆ</label>
+                                <label class="col-sm-2 control-label">ÊèèËø∞</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" placeholder="∂‘≤À∆∑µƒ√Ë ˆ">
+                                    <input type="text" name="description" class="form-control" placeholder="ÂØπËèúÂìÅÁöÑÊèèËø∞" value="<#if dish?exists&&dish.description?exists>${dish.description}</#if>" >
                                 </div>
                             </div>
                             <!--text-->
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"> €º€</label>
+                                <label class="col-sm-2 control-label">ÂîÆ‰ª∑</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" placeholder=" €º€">
+                                    <input type="text" name="price" class="form-control" placeholder="ÂîÆ‰ª∑" value="<#if dish?exists&&dish.price?exists>${dish.price}</#if>" >
                                 </div>
                             </div>
                             <!--text-->
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">‘≠º€</label>
+                                <label class="col-sm-2 control-label">Âéü‰ª∑</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" placeholder="‘≠º€">
+                                    <input type="text" name="originPrice" class="form-control" placeholder="Âéü‰ª∑" value="<#if dish?exists&&dish.originPrice?exists>${dish.originPrice}</#if>" >
                                 </div>
                             </div>
 
                             <!--file-->
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Õº∆¨…œ¥´£®50x50£©</label>
+                                <label class="col-sm-2 control-label">ÂõæÁâá‰∏ä‰º†Ôºà50x50Ôºâ</label>
                                 <div class="col-sm-10">
                                     <input type="file">
                                 </div>
@@ -73,13 +73,17 @@
 
                             <!--select-->
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">≤À∆∑∑÷¿‡</label>
+                                <label class="col-sm-2 control-label">ËèúÂìÅÂàÜÁ±ª</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control">
-                                        <option value="">example</option>
-                                        <option value="">example</option>
-                                        <option value="">example</option>
-                                        <option value="">example</option>
+                                    <select class="form-control" name="dishTasteTagId">
+                                    	<#if dishTagList?exists&&(dishTagList?size>0)>
+                                    		<option value="0">ÈÄâÊã©ÂàÜÁ±ª</option>
+                                    		<#list dishTagList as tag>
+                                    			<option value="${tag.id}" <#if dish?exists&&dish.dishTasteTagId?exists&&(dish.dishTasteTagId==tag.id)>selected</#if> >${tag.name}</option>
+                                    		</#list>
+                                		<#else>
+                                			<option value="0">ÊöÇÊó†ÂàÜÁ±ª</option>
+                                    	</#if>
                                     </select>
                                 </div>
                             </div>
@@ -87,8 +91,14 @@
                             <!--Confirm button-->
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-success">±£¥Ê</button>
-                                    <button type="reset" class="btn btn-warning">÷ÿ÷√</button>
+                                	<#if dish?exists>
+                                		 <button type="submit" class="btn btn-success">Á°ÆËÆ§‰øÆÊîπ</button>
+                                    	<button type="reset" class="btn btn-warning" onclick="location='showDishList.f1t?shopId=${shopId}'">ÂèñÊ∂à</button>
+                                	<#else>
+                                		<button type="submit" class="btn btn-success">Á°ÆËÆ§‰øùÂ≠ò</button>
+                                    	<button type="reset" class="btn btn-warning">ÈáçÁΩÆ</button>
+                                    	<button type="reset" class="btn btn-warning" onclick="location='showDishList.f1t?shopId=${shopId}'">ÂèñÊ∂à</button>
+                                	</#if>
                                 </div>
                             </div>
                         </form>

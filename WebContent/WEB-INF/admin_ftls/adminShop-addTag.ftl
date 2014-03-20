@@ -24,28 +24,36 @@
             <div class="panel panel-info">
 
                 <div class="panel-heading">
-                    <h3 class="panel-title"><a href="adminShop.html">…Ã∆Ãπ‹¿Ì></a><a href="adminShop-dishItem.html">≤À∆∑π‹¿Ì</a>>ÃÌº”ø⁄Œ∂±Í«©</h3>
+                    <h3 class="panel-title"><a href="showShopList.f1t">ÂïÜÈì∫ÁÆ°ÁêÜ></a>Âè£Âë≥Ê†áÁ≠æÁÆ°ÁêÜ</h3>
                 </div>
                 <!--main panel-->
                 <div class="panel-body">
                     <div style="text-align: center">
-                        <h2>ÃÌº”≤À∆∑ø⁄Œ∂±Í«©</h2>
+                        <h2>Ê∑ªÂä†Â∫óÈì∫Âè£Âë≥Ê†áÁ≠æ</h2>
                     </div>
                     <div>
-                        <form class="form-horizontal" role="form">
+                        <form class="form-horizontal" role="form" method="post" action="doShopTagAdd.f1t">
                             <!--text-->
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">–¬±Í«©√˚≥∆</label>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Êñ∞Âè£Âë≥Ê†áÁ≠æÂêçÁß∞</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="inputEmail3" placeholder="«Î ‰»Î–¬µƒ±Í«©√˚≥∆">
+                                    <input type="text" name="tagName" class="form-control" id="inputEmail3" placeholder="ËØ∑ËæìÂÖ•Êñ∞ÁöÑÂè£Âë≥Ê†áÁ≠æÂêçÁß∞/ÂøÖÂ°´">
+                                </div>
+                            </div>
+                            
+                            <!--text-->
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Ê†áÁ≠æÊèèËø∞</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="tagDescription" class="form-control" id="inputEmail3" placeholder="ËØ∑ËæìÂÖ•Êñ∞ÁöÑÂè£Âë≥Ê†áÁ≠æÊèèËø∞/ÂøÖÂ°´">
                                 </div>
                             </div>
 
                             <!--Confirm button-->
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-success">±£¥Ê</button>
-                                    <button type="reset" class="btn btn-warning">÷ÿ÷√</button>
+                                    <button type="submit" class="btn btn-success">‰øùÂ≠ò</button>
+                                    <button type="reset" class="btn btn-warning">ÈáçÁΩÆ</button>
                                 </div>
                             </div>
                         </form>
@@ -61,53 +69,36 @@
             <div class="panel panel-info">
 
                 <div class="panel-heading">
-                    <h3 class="panel-title"><a href="adminShop.html">…Ã∆Ãπ‹¿Ì></a><a href="adminShop-dishItem.html">≤À∆∑π‹¿Ì</a>>œ÷”–±Í«©¡–±Ì</h3>
+                    <h3 class="panel-title">Áé∞ÊúâÂè£Âë≥Ê†áÁ≠æÂàóË°®</h3>
                 </div>
 
                 <!--main panel-->
                 <div class="panel-body">
                     <div style="text-align: center">
-                        <h2>µÍ∆Ãœ÷”–≤À∆∑ø⁄Œ∂±Í«©</h2>
+                        <h2>Áé∞ÊúâËèúÂìÅÂè£Âë≥Ê†áÁ≠æ‰∏ÄËßà</h2>
                     </div>
                     <div>
                         <table class="table table-striped table-hover table-bordered">
                             <tr>
                                 <th>NO.</th>
-                                <th>√˚≥∆</th>
-                                <th>≤Ÿ◊˜</th>
+                                <th>ÂêçÁß∞</th>
+                                <th>ÊèèËø∞</th>
+                                <th>Êìç‰Ωú</th>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>∫⁄Ω∑</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-xs">±‡º≠</button>
-                                    <button type="button" class="btn btn-danger btn-xs">…æ≥˝</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>∫⁄Ω∑</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-xs">±‡º≠</button>
-                                    <button type="button" class="btn btn-danger btn-xs">…æ≥˝</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>¬È¿±</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-xs">±‡º≠</button>
-                                    <button type="button" class="btn btn-danger btn-xs">…æ≥˝</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>≥¨¿±</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-xs">±‡º≠</button>
-                                    <button type="button" class="btn btn-danger btn-xs">…æ≥˝</button>
-                                </td>
-                            </tr>
+                            <#if shopTasteTagList?exists>
+                            	<#list shopTasteTagList as tag>
+	                            	<tr>
+		                                <td>${tag_index+1}</td>
+		                                <td>${tag.name}</td>
+		                                <td>${tag.description}</td>
+		                                <td>
+		                                    <button type="button" class="btn btn-danger btn-xs" onclick="javascript:confirmDeleteShopTag('${tag.id}');" id="">Âà†Èô§</button>
+		                                </td>
+		                            </tr>
+	                            </#list>
+                        	<#else>
+                        		<tr><td colspan="4"><h4><strong>ÁõÆÂâçËøòÊ≤°Êúâ‰ªª‰ΩïÂè£Âë≥Ê†áÁ≠æ</strong></h4></td></tr>
+                            </#if>
                         </table>
                     </div>
                 </div>
@@ -123,7 +114,7 @@
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-
+<script src="../../res/js/custom/adminShop.js"></script>
 <script type="text/javascript">
     $('.form_datetime').datetimepicker({
         //language:  'fr',

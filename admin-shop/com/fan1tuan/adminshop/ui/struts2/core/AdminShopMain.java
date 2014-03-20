@@ -9,6 +9,7 @@ import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
 import com.fan1tuan.order.pojos.Order;
 import com.fan1tuan.shop.pojos.Shop;
+import com.fan1tuan.shop.pojos.ShopTasteTag;
 import com.opensymphony.xwork2.Action;
 
 public class AdminShopMain extends Fan1TuanAction{
@@ -29,7 +30,6 @@ public class AdminShopMain extends Fan1TuanAction{
 	private int shopPage;//param-in
 	private Page shopListPage;//param-out
 	public String showShopList(){
-		System.out.println("getShopPage:"+getShopPage());
 		setShopList(adminShopService.getShopsInPage(Pageable.inPage((getShopPage()==0?0:getShopPage()-1), AdminConstant.SHOPLIST_PAGESIZE)));
 		//set page
 		Page page = new Page();
@@ -92,8 +92,8 @@ public class AdminShopMain extends Fan1TuanAction{
 	}
 	//------------------确认编辑店铺--------------
 	public String doShopEdit(){
-		Shop shop = new Shop();
-		shop.setId(getShopId());
+		Shop shop = adminShopService.getOneShopByShopId(getShopId());
+		//shop.setId(getShopId());
 		shop.setName(getName());
 		shop.setDescription(getDescription());
 		shop.setAvgPersonCost(getAvgPersonCost());
@@ -107,7 +107,6 @@ public class AdminShopMain extends Fan1TuanAction{
 		double[] location = {getLongtitude(),getLatitude()};
 		shop.setLocation(location);
 		//
-		System.out.println("shoptype:"+getShopType());
 		adminShopService.saveShopEdit(shop);
 		return Action.SUCCESS;
 	}
@@ -140,11 +139,45 @@ public class AdminShopMain extends Fan1TuanAction{
 	//---------------------------do delete order---------------------
 	private String orderId;//param-in
 	public String doShopOrderDelete(){
-		System.out.println("after delete: "+getShopId());
 		adminShopService.deleteShopOrderByOrderId(getOrderId());
 		return Action.SUCCESS;
 	}
 
+	
+	//----------------显示店铺口味标签列表-------------------------
+	private List<ShopTasteTag> shopTasteTagList;//param-out
+	public String showShopTags(){
+		setShopTasteTagList(adminShopService.getShopTasteTags());
+		return Action.SUCCESS;
+	}
+	
+	//----------------添加店铺口味标签列表------------------------
+	private String tagName;//param-in
+	private String tagDescription;//param-in
+	public String doShopTagAdd(){
+		ShopTasteTag shopTasteTag = new ShopTasteTag();
+		shopTasteTag.setDescription(getTagDescription());
+		shopTasteTag.setName(getTagName());
+		adminShopService.addNewShopTasteTag(shopTasteTag);
+		return Action.SUCCESS;
+	}
+	//-----------------编辑口味标签---------------------------
+	private String tagId;
+	public String doShopTagEdit(){
+		ShopTasteTag shopTasteTag = new ShopTasteTag();
+		shopTasteTag.setDescription(getTagDescription());
+		shopTasteTag.setName(getTagName());
+		shopTasteTag.setId(getTagId());
+		adminShopService.saveShopTasteTagEdit(shopTasteTag);
+		return Action.SUCCESS;
+	}
+	
+	//-------------------删除口味标签---------------------
+	public String doShopTagDelete(){
+		adminShopService.deleteShopTasteTagByTagId(getTagId());
+		return Action.SUCCESS;
+	}
+	
 	
 	
 	
@@ -361,6 +394,38 @@ public class AdminShopMain extends Fan1TuanAction{
 
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
+	}
+
+	public String getTagDescription() {
+		return tagDescription;
+	}
+
+	public void setTagDescription(String tagDescription) {
+		this.tagDescription = tagDescription;
+	}
+
+	public String getTagName() {
+		return tagName;
+	}
+
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
+	}
+
+	public List<ShopTasteTag> getShopTasteTagList() {
+		return shopTasteTagList;
+	}
+
+	public void setShopTasteTagList(List<ShopTasteTag> shopTasteTagList) {
+		this.shopTasteTagList = shopTasteTagList;
+	}
+
+	public String getTagId() {
+		return tagId;
+	}
+
+	public void setTagId(String tagId) {
+		this.tagId = tagId;
 	}
 	
 	

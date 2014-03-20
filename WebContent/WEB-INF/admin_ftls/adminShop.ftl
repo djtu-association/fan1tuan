@@ -27,7 +27,7 @@
                         <div class="form-group">
                             <label><span class="glyphicon glyphicon-wrench">管理:</span></label>
                             <button type="button" class="btn btn-warning" onclick="location='showShopAdd.f1t'">添加商铺</button>
-                            <button type="button" class="btn btn-success" onclick="location='#'">添加口味标签</button>
+                            <button type="button" class="btn btn-success" onclick="location='showShopTags.f1t'">口味标签管理</button>
                         </div>
                     </div>
                 </div>
@@ -148,28 +148,28 @@
                     	</#list>
                     </#if>
                 </table>
-
+				
 
                 <!--footer-->
                 <div class="panel" style="float: right;">
                     <ul class="pagination">
-                        <#if shopListPage?exists>
-                        	<#if (shopListPage.currentPage>1)>
-                        		<li><a href="showShopList.f1t?shopPage=${shopListPage.currentPage-1}" >&laquo;</a></li>
+                        <#if dishListPage?exists>
+                        	<#if (dishListPage.currentPage>1)>
+                        		<li><a href="showShopList.f1t?dishPage=${dishListPage.currentPage-1}" >&laquo;</a></li>
                         	<#else>
                         		<li class="disabled"><a>&laquo;</a></li>
                         	</#if>
 			            	
-		        			<#list 1..shopListPage.pageCount as num>
-		        				<#if shopListPage.currentPage == num>
+		        			<#list 1..dishListPage.pageCount as num>
+		        				<#if dishListPage.currentPage == num>
 		        					<li class="active"><a>${num}</a></li>
 		        				<#else>
-		        					<li><a href="showShopList.f1t?shopPage=${num}">${num}</a></li>
+		        					<li><a href="showShopList.f1t?dishPage=${num}">${num}</a></li>
 		        				</#if>
 		        			</#list>
 		        			
-		        			<#if (shopListPage.currentPage<shopListPage.pageCount)>
-                        		<li><a href="showShopList.f1t?shopPage=${shopListPage.currentPage+1}" >&raquo;</a></li>
+		        			<#if (dishListPage.currentPage<dishListPage.pageCount)>
+                        		<li><a href="showShopList.f1t?dishPage=${dishListPage.currentPage+1}" >&raquo;</a></li>
                         	<#else>
                         		<li class="disabled"><a>&raquo;</a></li>
                         	</#if>
