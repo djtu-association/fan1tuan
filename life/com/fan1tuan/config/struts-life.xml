@@ -9,15 +9,21 @@
 		    <result type="freemarker">/WEB-INF/ftls/local.ftl</result>
 		</action>
 		
-		<action name="express" class="com.fan1tuan.life.ui.struts2.core.LifeIndexAction">
-		    <result type="freemarker">/WEB-INF/ftls/express.ftl</result>
+		<action name="showExpress" method="showExpress" class="com.fan1tuan.life.ui.struts2.core.ExpressMainAction">
+		    <result name="success" type="freemarker">/WEB-INF/ftls/express.ftl</result>
 		</action>
 		
-	    <!--  
-		<action name="orderTest" class="com.fan1tuan.order.ui.struts2.core.OrderTestAction">
-		    <result>/WEB-INF/jsps/order/order_test.jsp</result>
+		<action name="showExpressCheck" method="showExpressCheck" class="com.fan1tuan.life.ui.struts2.core.ExpressMainAction">
+		    <result name="success" type="freemarker">/WEB-INF/ftls/express-check.ftl</result>
 		</action>
-		-->
+	   
+		<action name="doAddNewOrder" method="doAddNewOrder" class="com.fan1tuan.life.ui.struts2.core.ExpressMainAction">
+		    <result name="success" type="freemarker">/WEB-INF/ftls/express.ftl</result>
+		</action>
+		
+		<action name="doSearchOrders" method="doSearchOrders" class="com.fan1tuan.life.ui.struts2.core.ExpressMainAction">
+		    <result name="success" type="freemarker">/WEB-INF/ftls/express.ftl</result>
+		</action>
 		
 	</package>
 	

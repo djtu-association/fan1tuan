@@ -59,7 +59,7 @@
         </div>
         <div class="span2">
             <div>
-                <a href="javascript:void(0)">
+                <a href="local_express.html">
                 <img class="tile-image big-illustration" alt="Compas" src="../res/images/icons/svg/clipboard.svg">
                 </a>
             </div>
@@ -69,7 +69,6 @@
                 <h4><label class="label label-info">校园快递代取已经加入校园服务，方便同学代取快递哦</label></h4>
                 <br/>
                 <h4><label class="label label-warning">目前可代取校区：交大二期</label></h4>
-                
            </div>
         </div>
         <div class="span1">
@@ -78,89 +77,6 @@
         <div style="height: 110px"></div>
     </div>
 
-</div>
-
-<div style="height: 30px"></div><!-- here is the divider-->
-
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span1 offset1">
-        </div>
-        <div class="span6">
-            <div class="well" style="background: #f5ffff">
-            	<h5>填写信息</h5>
-            	
-                <form class="form" method="post" action="doAddNewOrder.f1t">
-                    <ul>
-                        <li>
-                            <h4><label class="control-label label label-danger">姓名 
-                            <input type="text" name="username" class="input-lg" placeholder="包裹收件人">
-                            </label>
-                            </h4>
-                        </li>
-                        <li>
-                            <div class="nav-divider"></div>
-                        </li>
-                        <li>
-                            <h4><label class="control-label label label-info">手机
-                            <input type="text" name="cellphone" class="input-lg" placeholder="联系人手机">
-                            </label>
-                            </h4>
-                        </li>
-                        <li>
-                            <div class="nav-divider"></div>
-                        </li>
-                        <li>
-                            <h4><label class="control-label label label-primary">送至 
-                            <input type="text" name="address" class="input-lg" placeholder="您收取地点(校区-寝室楼)">
-                            </label>
-                            </h4>
-                        </li>
-                        <li>
-                            <div class="nav-divider"></div>
-                        </li>
-                        <li>
-                            <h4><label class="control-label label label-warning">快递 
-                            <input type="text" name="expressName" class="input-lg" placeholder="快递公司名字(如顺丰)">
-                            </label>
-                            </h4>
-                        </li>
-                        <li>
-                            <div class="nav-divider"></div>
-                        </li>
-                        <li>
-                            <h4>
-                            <label class="control-label label label-success">备注 
-                            <input type="text" name="remark" class="input-lg" placeholder="备注信息(如大包裹)">
-                            </label>
-                            </h4>
-                        </li>
-                        <li>
-                            <div class="nav-divider"></div>
-                        </li>
-                        <li style="left:30px;">
-                            <button type="submit" class="btn btn-primary"><strong>提交代取订单</strong></button>
-                        </li>
-                    </ul>
-                </form>
-            </div>
-        </div>
-        <div class="span3">
-            <div class="well" style="height:490px;">
-                <h4><span class="glyphicon glyphicon-calendar"></span>快速提交订单</h4>
-                <p>快速填写信息，提交您的快递代取订单，并发给校园快递哥
-                <p>收费标准：小件2元/件        大件5元/件
-                <p>或者你也可以亲自联系校园快递哥
-                <p><span class="glyphicon glyphicon-phone"></span>1864088****
-                <br/>
-                <div class="divider"></div>
-                <p>
-                <p>
-                <h4><span class="glyphicon glyphicon-search"></span>订单查询</h4>
-                <p><button class="btn btn-primary" onclick="location=''"><strong>查询快递订单</strong></button>
-            </div>
-        </div>
-    </div>
 </div>
 
 <div style="height: 30px"></div><!-- here is the divider-->
