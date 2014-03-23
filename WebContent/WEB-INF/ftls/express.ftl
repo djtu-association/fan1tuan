@@ -88,8 +88,8 @@
         </div>
         <div class="span6">
             <div class="well" style="background: #f5ffff">
-            	<h5>填写信息</h5>
-            	
+            	<h5><span class="glyphicon glyphicon-file"></span>填写代取快递信息</h5>
+            	<br/>
                 <form class="form" method="post" action="doAddNewOrder.f1t">
                     <ul>
                         <li>
@@ -146,7 +146,7 @@
             </div>
         </div>
         <div class="span3">
-            <div class="well" style="height:490px;">
+            <div class="well" style="height:525px;">
                 <h4><span class="glyphicon glyphicon-calendar"></span>快速提交订单</h4>
                 <p>快速填写信息，提交您的快递代取订单，并发给校园快递哥
                 <p>收费标准：小件2元/件        大件5元/件
@@ -157,7 +157,7 @@
                 <p>
                 <p>
                 <h4><span class="glyphicon glyphicon-search"></span>订单查询</h4>
-                <p><button class="btn btn-primary" onclick="location=''"><strong>查询快递订单</strong></button>
+                <p><button class="btn btn-primary" onclick="location='showExpressCheck.f1t'"><strong>查询快递订单</strong></button>
             </div>
         </div>
     </div>
@@ -165,6 +165,7 @@
 
 <div style="height: 30px"></div><!-- here is the divider-->
 
+<!--
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span1 offset1">
@@ -242,6 +243,7 @@
         </div>
     </div>
 </div>
+-->
 
 <div style="height: 50px"></div><!-- here is the divider-->
 <!-- FOOTER -->

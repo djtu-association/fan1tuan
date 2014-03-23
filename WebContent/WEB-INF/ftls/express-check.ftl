@@ -91,12 +91,15 @@
                 <p>
                 <p>输入手机号可以查询到您的快递代取订单记录和历史订单记录
                 <div class="form-horizontal">
-            		<form method="post" action="doSearchOrders.f1t">
+            		<form method="get" action="doSearchOrders.f1t">
 	                    <label><input type="text" name="searchCellPhone" class="input input-lg" placeholder="输入您的手机号码"></label>
 	                    <div class="controls">
 	                        <button type="submit" class="btn btn-primary btn">查询订单</button>
 	                    </div>
                     </form>
+                    <p>
+                <h4><span class="glyphicon glyphicon-calendar"></span>订单查询</h4>
+                <p><button class="btn btn-primary" onclick="location='showExpress.f1t'"><strong>添加快递订单</strong></button>
                 </div>
             </div>
         </div>
@@ -104,13 +107,14 @@
             <div class="panel panel-info">
 
                 <div class="panel-heading">
-                    <h2 class="panel-title">我的订单记录</h2>
+                    <h2 class="panel-title">我的订单记录 <#if successTips?exists><label class="label label-danger">${successTips}</label></#if> </h2>
                 </div>
                 <div class="panel-body">
                 	<#if expressOrders?exists>
 	                    <table class="table table-bordered table-responsive table-condensed table-striped">
 	                       <tr>
 	                            <th>姓名</th>
+	                            <th>快递</th>
 	                            <th>送至</th>
 	                            <th>时间</th>
 	                            <th>状态</th>
@@ -118,39 +122,28 @@
 	                       <#list expressOrders as order>
 		                       <tr>
 		                            <td>${order.username}</td>
+		                            <td>${order.expressName}</td>
 		                            <td>${order.address}</td>
-		                            <td></td>
-		                            <td><label class="label label-info">${order.status}</label></td>
+		                            <td>${order.date}</td>
+		                            <td>
+		                            	<#if order.status==1>
+		                            		<label class="label label-warning">等待审核</label>
+	                            		<#elseif order.status==2>
+	                            			<label class="label label-info">等待领取</label>
+                            			<#elseif order.status==3>
+	                            			<label class="label label-success">等待送达</label>
+                            			<#elseif order.status==4>
+	                            			<label class="label label-danger">订单完成</label><span class="glyphicon glyphicon-ok"></span>
+                            			<#elseif order.status==5>
+		                            			<label class="label label-danger" id="lbl_${order.id}">已拒绝</label><span class="glyphicon glyphicon-remove"></span>
+	                            		</#if>
+		                            </td>
 		                       </tr>
 	                       </#list>
-	                        <tr>
-	                            <td>JOE</td>
-	                            <td>交大二期5#</td>
-	                            <td>2013-11-09</td>
-	                            <td><label class="label label-info">已完成</label></td>
-	                        </tr>
-	                        <tr>
-	                            <td>JOE</td>
-	                            <td>交大二期5#</td>
-	                            <td>2013-11-09</td>
-	                            <td><label class="label label-info">已完成</label></td>
-	                        </tr>
-	                        <tr>
-	                            <td>JOE</td>
-	                            <td>交大二期5#</td>
-	                            <td>2013-11-09</td>
-	                            <td><label class="label label-info">已完成</label></td>
-	                        </tr>
-	                        <tr>
-	                            <td>JOE</td>
-	                            <td>交大二期5#</td>
-	                            <td>2013-11-09</td>
-	                            <td><label class="label label-info">已完成</label></td>
-	                        </tr>
 	                    </table>
 					<#else>
 	                    <div class="well">
-	                        <h4>您似乎还没有使用过我们的快递服务哦~</h4>
+	                        <h4>输入手机号码查询校园快递服务记录</h4>
 	                    </div>
                     </#if>
                 </div>

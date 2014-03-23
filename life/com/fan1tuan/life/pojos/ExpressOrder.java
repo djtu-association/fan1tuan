@@ -1,6 +1,7 @@
 package com.fan1tuan.life.pojos;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import com.fan1tuan.general.pojos.EntityObject;
 
@@ -19,12 +20,16 @@ public class ExpressOrder extends EntityObject{
 	private String expressName;//目标快递公司：顺丰等等
 	
 	private String remark;//用户备注
+	
+	private String date;
 		
 	private Date createtime;
 	
 	private Date completeTime;
 	
-	private int status;//订单状态：1等待处理，2等待领取，3已领取，4已完成
+	private int status;//订单状态：1等待处理，2等待领取，3已领取，4已完成,5拒绝
+	
+	private String rejectReason;//如果拒绝，写上拒绝理由
 	
 	public String getId() {
 		return id;
@@ -84,7 +89,7 @@ public class ExpressOrder extends EntityObject{
 	public ExpressOrder(){}
 	
 	public ExpressOrder(String id,String clientId,String username,String cellphone,String address,
-			String expressName,String remark,Date createtime,Date completeTime,int status){
+			String expressName,String remark,Date createtime,Date completeTime,int status,String date){
 		super();
 		this.id = id;
 		this.clientId = clientId;
@@ -96,6 +101,7 @@ public class ExpressOrder extends EntityObject{
 		this.createtime = createtime;
 		this.completeTime = completeTime;
 		this.status = status;
+		this.date = date;
 		
 	}
 
@@ -121,6 +127,22 @@ public class ExpressOrder extends EntityObject{
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getRejectReason() {
+		return rejectReason;
+	}
+
+	public void setRejectReason(String rejectReason) {
+		this.rejectReason = rejectReason;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 	
 }

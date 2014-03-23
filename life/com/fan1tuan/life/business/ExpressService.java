@@ -3,7 +3,6 @@
  */
 package com.fan1tuan.life.business;
 
-import java.util.Date;
 import java.util.List;
 import com.fan1tuan.general.business.IFan1TuanService;
 import com.fan1tuan.general.dao.Pageable;
@@ -22,9 +21,9 @@ public interface ExpressService extends IFan1TuanService{
 	//根据手机号码 获取用户最近快递单[user]
 	public List<ExpressOrder> getUserExpressOrders(String cellphone,Pageable pageable);
 	//根据状态，时间获取订单[client]
-	public List<ExpressOrder> getClientExpressOrders(int status,Date createtime,Pageable pageable);
+	public List<ExpressOrder> getClientExpressOrders(int status,String date,Pageable pageable);
 	//更新今天所有订单状态
-	public void clientUpdateOrderStatus(int status,Date today);
+	public void clientUpdateTodayOrderStatus(int status,String today);
 	//根据orderId更新订单状态
 	public void clientUpdateOrderStatus(int status,String orderId);
 	//更新client信息

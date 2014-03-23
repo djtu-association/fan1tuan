@@ -18,11 +18,11 @@
 		</action>
 	   
 		<action name="doAddNewOrder" method="doAddNewOrder" class="com.fan1tuan.life.ui.struts2.core.ExpressMainAction">
-		    <result name="success" type="freemarker">/WEB-INF/ftls/express.ftl</result>
+		    <result name="success" type="freemarker">/WEB-INF/ftls/express-check.ftl</result>
 		</action>
 		
 		<action name="doSearchOrders" method="doSearchOrders" class="com.fan1tuan.life.ui.struts2.core.ExpressMainAction">
-		    <result name="success" type="freemarker">/WEB-INF/ftls/express.ftl</result>
+		    <result name="success" type="freemarker">/WEB-INF/ftls/express-check.ftl</result>
 		</action>
 		
 	</package>

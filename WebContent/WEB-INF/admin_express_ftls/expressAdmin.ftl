@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.css" rel="stylesheet" media="screen">
-    <link href="../plugin/datepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link href="../../res/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="../../res/plugin/datepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="../js/html5shiv.js"></script>
-    <script src="../js/respond.min.js"></script>
+    <script src="../../res/js/html5shiv.js"></script>
+    <script src="../../res/js/respond.min.js"></script>
 
     <![endif]-->
 </head>
@@ -33,26 +33,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="#">Main</a></li><!-- add class="active" @ the current use-->
                 <li><a href="#">Admin</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">More Entry<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Action</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">One Action</a></li>
-                    </ul>
-                </li>
             </ul>
-
-            <!--Search-->
-            <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
 
             <!--right-->
             <ul class="nav navbar-nav navbar-right">
@@ -76,16 +57,15 @@
 
     <!--left bar-->
     <div style="float: left;margin-right: 20px;width: 13%;">
-
         <div class="panel panel-danger">
             <div class="panel-heading">
                 <h3 class="panel-title"><strong>管理面板</strong></h3>
             </div>
             <div class="panel-body">
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="index.html">账号信息</a></li>
-                    <li><a href="adminUser.html">今天未处理订单</a></li>
-                    <li><a href="adminShop.html">历史订单</a></li>
+                    <li class="active"><a href="javascript:void(0)">账号信息</a></li>
+                    <li><a href="showTodayOrders.f1t">今天未处理订单</a></li>
+                    <li><a href="showHistoryOrders.f1t">历史订单</a></li>
                 </ul>
             </div>
         </div>
@@ -138,9 +118,9 @@
 </div>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../plugin/datepicker/js/jquery-1.8.3.min.js" charset="UTF-8"></script>
-<script type="text/javascript" src="../plugin/datepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="../plugin/datepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+<script src="../../res/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../res/plugin/datepicker/js/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../../res/plugin/datepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../../res/plugin/datepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 </body>
 </html>

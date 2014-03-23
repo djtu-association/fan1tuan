@@ -121,6 +121,7 @@
 	<!-- admin xml include -->
 	<include file="com/fan1tuan/config/struts-admin.xml"></include>
 	<include file="com/fan1tuan/config/struts-admin-shop.xml"></include>
+	<include file="com/fan1tuan/config/struts-admin-express.xml"></include>
 	
 
 </struts>

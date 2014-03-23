@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 店铺基本管理action -->
+	<package name="admin_express" extends="main" namespace="/client/express">
+		<!-- 显示快递管理首页 -->
+		<action name="showAdminExpressIndex" method="showAdminExpressIndex" class="com.fan1tuan.adminexpress.ui.struts2.core.AdminExpressMain">
+		    <result type="freemarker">/WEB-INF/admin_express_ftls/expressAdmin.ftl</result>
+		</action>
+		<!-- 显示历史快递单 -->
+		<action name="showHistoryOrders" method="showHistoryOrders" class="com.fan1tuan.adminexpress.ui.struts2.core.AdminExpressMain">
+		    <result type="freemarker">/WEB-INF/admin_express_ftls/historyOrders.ftl</result>
+		</action>
+		<!-- 显示今天快递单 -->
+		<action name="showTodayOrders" method="showTodayOrders" class="com.fan1tuan.adminexpress.ui.struts2.core.AdminExpressMain">
+		    <result type="freemarker">/WEB-INF/admin_express_ftls/todayOrders.ftl</result>
+		</action>
+		<!-- 更新今天所有订单状态 -->
+		<action name="doConfirmAllToday" method="doConfirmAllToday" class="com.fan1tuan.adminexpress.ui.struts2.core.AdminExpressMain">
+		    <result name="success" type="redirectAction">showTodayOrders.f1t</result>
+		</action>
+		<!-- 更新某个订单状态 -->
+		<action name="doFetchAllToday" method="doFetchAllToday" class="com.fan1tuan.adminexpress.ui.struts2.core.AdminExpressMain">
+		    <result name="success" type="redirectAction">showTodayOrders.f1t</result>
+		</action>
+		<!-- 更新某个订单状态 -->
+		<action name="doCompleteAllToday" method="doCompleteAllToday" class="com.fan1tuan.adminexpress.ui.struts2.core.AdminExpressMain">
+		    <result name="success" type="redirectAction">showTodayOrders.f1t</result>
+		</action>
+		<!-- 更新某个订单状态 -->
+		<action name="doCheckStatus" method="doCheckStatus" class="com.fan1tuan.adminexpress.ui.struts2.core.AdminExpressMain">
+		    <result type="jsonResult">result</result>
+		</action>
+		<!-- 
+		<action name="showShopList" method="showShopList" class="com.fan1tuan.adminexpress.ui.struts2.core.AdminExpressMain">
+		    <result type="freemarker">/WEB-INF/admin_express_ftls/expressAdmin.ftl</result>
+		</action>
+		-->
+		
+	</package>
+	
+</struts>

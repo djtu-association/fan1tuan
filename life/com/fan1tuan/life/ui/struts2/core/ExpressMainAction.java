@@ -1,9 +1,12 @@
 package com.fan1tuan.life.ui.struts2.core;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
+import com.fan1tuan.general.util.DateUtil;
 import com.fan1tuan.life.business.ExpressService;
 import com.fan1tuan.life.pojos.ExpressOrder;
 import com.opensymphony.xwork2.Action;
@@ -29,6 +32,7 @@ public class ExpressMainAction extends Fan1TuanAction {
 	private String address;//param-in
 	private String expressName;//param-in
 	private String remark;//param-in
+	private String successTips;//param-out
 	public String doAddNewOrder(){
 		ExpressOrder expressOrder = new ExpressOrder();
 		expressOrder.setAddress(getAddress());
@@ -37,8 +41,15 @@ public class ExpressMainAction extends Fan1TuanAction {
 		expressOrder.setStatus(1);
 		expressOrder.setUsername(getUsername());
 		expressOrder.setRemark(getRemark());
-		//expressOrder.setCreatetime(DateUtil.now());
+		expressOrder.setCreatetime(new Date());
+		expressOrder.setDate(DateUtil.format(new Date(), DateUtil.get8charDateFormat()));
 		expressService.addNewExpressOrder(expressOrder);
+		//set experessOrder
+		ArrayList<ExpressOrder> list = new ArrayList<>();
+		list.add(expressOrder);
+		setExpressOrders(list);
+		//set successTips
+		setSuccessTips("手机号:"+getCellphone()+" 快递代取订单提交成功");
 		return Action.SUCCESS;
 	}
 	
@@ -121,13 +132,18 @@ public class ExpressMainAction extends Fan1TuanAction {
 		return searchCellPhone;
 	}
 
-
-
-
-
 	public void setSearchCellPhone(String searchCellPhone) {
 		this.searchCellPhone = searchCellPhone;
 	}
+
+	public String getSuccessTips() {
+		return successTips;
+	}
+
+	public void setSuccessTips(String successTips) {
+		this.successTips = successTips;
+	}
+
 	
 	
 }
