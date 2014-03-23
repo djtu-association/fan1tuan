@@ -70,6 +70,7 @@
 		<property name="userDao" ref="userDao"></property>
 		<property name="dishDao" ref="dishDao"></property>
 		<property name="shopDao" ref="shopDao"></property>
+		<property name="dishCommentDao" ref="dishCommentDao"></property>
 		<property name="shopUserService" ref="shopUserService"></property>
 		<property name="orderUserService" ref="orderUserService"></property>
 	</bean>

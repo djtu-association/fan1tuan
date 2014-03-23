@@ -551,4 +551,22 @@ public class UserAjaxAction extends Fan1TuanAction {
 		
 		return SUCCESS;
 	}
+	
+	/**
+	 * Get all user favoriteDishes -------------- /user/ajax/ajaxGetFavoriteDishes.f1t
+	 */
+	//in
+	//out
+	//private List<Dish> dishes;
+	public String getFavoriteDishes(){
+		Map<String, Object> user_cache = SessionUtil.getUser(session);
+		String userId = (String)user_cache.get(ISession.USER_ID);
+		
+		dishes = userService.getFavoriteDishes(userId);
+		
+		flag = makeFlag(dishes);
+		
+		return SUCCESS;
+	}
+	
 }
