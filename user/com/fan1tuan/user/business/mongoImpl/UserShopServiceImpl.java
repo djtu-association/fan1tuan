@@ -2,7 +2,6 @@ package com.fan1tuan.user.business.mongoImpl;
 
 import java.util.ArrayList;
 
-import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.UpdateWrapper;
 import com.fan1tuan.general.dao.impl.UserDao;
 import com.fan1tuan.user.business.UserShopService;

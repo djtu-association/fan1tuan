@@ -25,6 +25,10 @@
 		<action name="ajaxGetUserAddresses" method="getUserAddresses" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
 			<result name="success" type="jsonResult">flag,addresses</result>			
 		</action>
+		
+		<action name="ajaxGetFavoriteDishes" method="getFavoriteDishes" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
+			<result name="success" type="jsonResult">flag,dishes</result>			
+		</action>
 	</package>
 	
 	<package name="user_secure" extends="user_main" namespace="/user/secure">

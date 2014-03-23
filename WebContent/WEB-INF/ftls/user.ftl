@@ -430,7 +430,7 @@
 
                                     <div data-href="" class="shop-show">
 		    							<span class="shop-show-tab">
-    			        					<ul class="nav nav-tabs" id="shop-tab${favoriteShopIndex}">
+    			        					<ul class="nav nav-tabs" id="shop-tab${favoriteShopIndex}" style="width:180px;">
                             					<li class="sr-only"><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-loading">loading</a></li>
                             					<li class="active"><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-topSale">店铺热卖</a></li>
                             					<#if favoriteShop.shopRecDishes?exists && favoriteShop.shopRecDishes.size()!=0 ><li class=""><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-shopRec">掌柜推荐</a></li></#if>
@@ -518,199 +518,43 @@
                             <div style="height: 30px"></div>
                             <div id="fav-list">
                                 <ul class="grid img-item-list J_FavList clearfix">
-                                    <li data-item-id="19520808823"  class="g-u J_FavListItem ">
+                                	<#list favoriteDishes as dish>
+                                	<li data-item-id="${dish.id}"  class="g-u J_FavListItem ">
                                         <div class="img-controller-box J_FavImgController">
-                                            <a title="奥尔良煎肉饭"  target="_blank" class="img" href="#" >
+                                            <a title="${dish.name}"  target="_blank" class="img" href="/shop/index.f1t?shopId=${dish.shopId}" >
                                                 <img src="../res/images/shop-image.jpeg" width="210" height="210">
                                             </a>
-                                            <div class="pop-rec J_PopRec">
-                                                <a target="_blank" href="#" >找相似</a>
-                                                <a target="_blank" href="#" >找搭配</a>
-                                                <a target="_blank" href="#" >同店收藏</a>
-                                                <div title="分享" class="gray floatright sns-widget J_NewPoint sns-sharebtn sns-widget-ui sns-sharebtn-custom">分享</div>
-                                            </div>
                                             <div class="old-data-del">
                                             </div>
                                         </div>
                                         <div class="img-item-title">
-                                            <i class="glyphicon glyphicon-tag"></i>
-                                            <a  href="#" target="_blank" title="">
-                                                奥尔良煎肉饭
+                                            <a  href="/shop/index.f1t?shopId=${dish.shopId}" target="_blank" title="">
+                                               	 ${dish.name}
                                             </a>
                                         </div>
                                         <div class="price-container">
-                                            <div class="tagForSale" title="两件130">送加多宝</div>
-                                            <div class="g_price"><span>￥</span><strong>14.00</strong>
+                                            <!--<div class="tagForSale" title="两件130">送加多宝</div>-->
+                                            <div class="g_price"><span>￥</span><strong>${dish.price}</strong>
                                             </div>
-                                            <div class="g_price g_price-original"><span>￥</span><strong style="text-decoration: line-through">22.00</strong></div>
+                                            <#if dish.originPrice gt dish.price>
+                                            	<div class="g_price g_price-original"><span>￥</span><strong style="text-decoration: line-through">${dish.originPrice}</strong></div>
+                                            </#if>
+                                            
                                         </div>
                                         <div class="item-controller">
                                             <a title="删除" href="#" class="J_FavDel fav-item-del miconfont J_NewPoint"><i class="glyphicon glyphicon-trash"></i></a>|
-                                            <a title="进入店铺" target="_blank" href="#" class="goto-shop miconfont"><i class="glyphicon glyphicon-home"></i></a>
+                                            <a title="进入店铺" target="_blank" href="/shop/index.f1t?shopId=${dish.shopId}" class="goto-shop miconfont"><i class="glyphicon glyphicon-home"></i></a>
                                             |<a href="#" title="加入购物车" class="J_AddToCartBtnTgr cart-icon miconfont J_NewPoint" ><i class="glyphicon glyphicon-shopping-cart"></i></a>	</div>
                                     </li>
-                                    <li data-item-id="19520808823"  class="g-u J_FavListItem ">
-                                        <div class="img-controller-box J_FavImgController">
-                                            <a title="奥尔良煎肉饭"  target="_blank" class="img" href="#" >
-                                                <img src="../res/images/shop-image.jpeg" width="210" height="210">
-                                            </a>
-                                            <div class="pop-rec J_PopRec">
-                                                <a target="_blank" href="#" >找相似</a>
-                                                <a target="_blank" href="#" >找搭配</a>
-                                                <a target="_blank" href="#" >同店收藏</a>
-                                                <div title="分享" class="gray floatright sns-widget J_NewPoint sns-sharebtn sns-widget-ui sns-sharebtn-custom">分享</div>
-                                            </div>
-                                            <div class="old-data-del">
-                                            </div>
-                                        </div>
-                                        <div class="img-item-title">
-                                            <i class="glyphicon glyphicon-tag"></i>
-                                            <a  href="#" target="_blank" title="">
-                                                奥尔良煎肉饭
-                                            </a>
-                                        </div>
-                                        <div class="price-container">
-                                            <div class="tagForSale" title="两件130">送加多宝</div>
-                                            <div class="g_price"><span>￥</span><strong>14.00</strong>
-                                            </div>
-                                            <div class="g_price g_price-original"><span>￥</span><strong style="text-decoration: line-through">22.00</strong></div>
-                                        </div>
-                                        <div class="item-controller">
-                                            <a title="删除" href="#" class="J_FavDel fav-item-del miconfont J_NewPoint"><i class="glyphicon glyphicon-trash"></i></a>|
-                                            <a title="进入店铺" target="_blank" href="#" class="goto-shop miconfont"><i class="glyphicon glyphicon-home"></i></a>
-                                            |<a href="#" title="加入购物车" class="J_AddToCartBtnTgr cart-icon miconfont J_NewPoint" ><i class="glyphicon glyphicon-shopping-cart"></i></a>	</div>
-                                    </li>
-                                    <li data-item-id="19520808823"  class="g-u J_FavListItem ">
-                                        <div class="img-controller-box J_FavImgController">
-                                            <a title="奥尔良煎肉饭"  target="_blank" class="img" href="#" >
-                                                <img src="../res/images/shop-image.jpeg" width="210" height="210">
-                                            </a>
-                                            <div class="pop-rec J_PopRec">
-                                                <a target="_blank" href="#" >找相似</a>
-                                                <a target="_blank" href="#" >找搭配</a>
-                                                <a target="_blank" href="#" >同店收藏</a>
-                                                <div title="分享" class="gray floatright sns-widget J_NewPoint sns-sharebtn sns-widget-ui sns-sharebtn-custom">分享</div>
-                                            </div>
-                                            <div class="old-data-del">
-                                            </div>
-                                        </div>
-                                        <div class="img-item-title">
-                                            <i class="glyphicon glyphicon-tag"></i>
-                                            <a  href="#" target="_blank" title="">
-                                                奥尔良煎肉饭
-                                            </a>
-                                        </div>
-                                        <div class="price-container">
-                                            <div class="tagForSale" title="两件130">送加多宝</div>
-                                            <div class="g_price"><span>￥</span><strong>14.00</strong>
-                                            </div>
-                                            <div class="g_price g_price-original"><span>￥</span><strong style="text-decoration: line-through">22.00</strong></div>
-                                        </div>
-                                        <div class="item-controller">
-                                            <a title="删除" href="#" class="J_FavDel fav-item-del miconfont J_NewPoint"><i class="glyphicon glyphicon-trash"></i></a>|
-                                            <a title="进入店铺" target="_blank" href="#" class="goto-shop miconfont"><i class="glyphicon glyphicon-home"></i></a>
-                                            |<a href="#" title="加入购物车" class="J_AddToCartBtnTgr cart-icon miconfont J_NewPoint" ><i class="glyphicon glyphicon-shopping-cart"></i></a>	</div>
-                                    </li>
-                                    <li data-item-id="19520808823"  class="g-u J_FavListItem ">
-                                        <div class="img-controller-box J_FavImgController">
-                                            <a title="奥尔良煎肉饭"  target="_blank" class="img" href="#" >
-                                                <img src="../res/images/shop-image.jpeg" width="210" height="210">
-                                            </a>
-                                            <div class="pop-rec J_PopRec">
-                                                <a target="_blank" href="#" >找相似</a>
-                                                <a target="_blank" href="#" >找搭配</a>
-                                                <a target="_blank" href="#" >同店收藏</a>
-                                                <div title="分享" class="gray floatright sns-widget J_NewPoint sns-sharebtn sns-widget-ui sns-sharebtn-custom">分享</div>
-                                            </div>
-                                            <div class="old-data-del">
-                                            </div>
-                                        </div>
-                                        <div class="img-item-title">
-                                            <i class="glyphicon glyphicon-tag"></i>
-                                            <a  href="#" target="_blank" title="">
-                                                奥尔良煎肉饭
-                                            </a>
-                                        </div>
-                                        <div class="price-container">
-                                            <div class="tagForSale" title="两件130">送加多宝</div>
-                                            <div class="g_price"><span>￥</span><strong>14.00</strong>
-                                            </div>
-                                            <div class="g_price g_price-original"><span>￥</span><strong style="text-decoration: line-through">22.00</strong></div>
-                                        </div>
-                                        <div class="item-controller">
-                                            <a title="删除" href="#" class="J_FavDel fav-item-del miconfont J_NewPoint"><i class="glyphicon glyphicon-trash"></i></a>|
-                                            <a title="进入店铺" target="_blank" href="#" class="goto-shop miconfont"><i class="glyphicon glyphicon-home"></i></a>
-                                            |<a href="#" title="加入购物车" class="J_AddToCartBtnTgr cart-icon miconfont J_NewPoint" ><i class="glyphicon glyphicon-shopping-cart"></i></a>	</div>
-                                    </li>
-                                    <li data-item-id="19520808823"  class="g-u J_FavListItem ">
-                                        <div class="img-controller-box J_FavImgController">
-                                            <a title="奥尔良煎肉饭"  target="_blank" class="img" href="#" >
-                                                <img src="../res/images/shop-image.jpeg" width="210" height="210">
-                                            </a>
-                                            <div class="pop-rec J_PopRec">
-                                                <a target="_blank" href="#" >找相似</a>
-                                                <a target="_blank" href="#" >找搭配</a>
-                                                <a target="_blank" href="#" >同店收藏</a>
-                                                <div title="分享" class="gray floatright sns-widget J_NewPoint sns-sharebtn sns-widget-ui sns-sharebtn-custom">分享</div>
-                                            </div>
-                                            <div class="old-data-del">
-                                            </div>
-                                        </div>
-                                        <div class="img-item-title">
-                                            <i class="glyphicon glyphicon-tag"></i>
-                                            <a  href="#" target="_blank" title="">
-                                                奥尔良煎肉饭
-                                            </a>
-                                        </div>
-                                        <div class="price-container">
-                                            <div class="tagForSale" title="两件130">送加多宝</div>
-                                            <div class="g_price"><span>￥</span><strong>14.00</strong>
-                                            </div>
-                                            <div class="g_price g_price-original"><span>￥</span><strong style="text-decoration: line-through">22.00</strong></div>
-                                        </div>
-                                        <div class="item-controller">
-                                            <a title="删除" href="#" class="J_FavDel fav-item-del miconfont J_NewPoint"><i class="glyphicon glyphicon-trash"></i></a>|
-                                            <a title="进入店铺" target="_blank" href="#" class="goto-shop miconfont"><i class="glyphicon glyphicon-home"></i></a>
-                                            |<a href="#" title="加入购物车" class="J_AddToCartBtnTgr cart-icon miconfont J_NewPoint" ><i class="glyphicon glyphicon-shopping-cart"></i></a>	</div>
-                                    </li>
-                                    <li data-item-id="19520808823"  class="g-u J_FavListItem ">
-                                        <div class="img-controller-box J_FavImgController">
-                                            <a title="奥尔良煎肉饭"  target="_blank" class="img" href="#" >
-                                                <img src="../res/images/shop-image.jpeg" width="210" height="210">
-                                            </a>
-                                            <div class="pop-rec J_PopRec">
-                                                <a target="_blank" href="#" >找相似</a>
-                                                <a target="_blank" href="#" >找搭配</a>
-                                                <a target="_blank" href="#" >同店收藏</a>
-                                                <div title="分享" class="gray floatright sns-widget J_NewPoint sns-sharebtn sns-widget-ui sns-sharebtn-custom">分享</div>
-                                            </div>
-                                            <div class="old-data-del">
-                                            </div>
-                                        </div>
-                                        <div class="img-item-title">
-                                            <i class="glyphicon glyphicon-tag"></i>
-                                            <a  href="#" target="_blank" title="">
-                                                奥尔良煎肉饭
-                                            </a>
-                                        </div>
-                                        <div class="price-container">
-                                            <div class="tagForSale" title="两件130">送加多宝</div>
-                                            <div class="g_price"><span>￥</span><strong>14.00</strong>
-                                            </div>
-                                            <div class="g_price g_price-original"><span>￥</span><strong style="text-decoration: line-through">22.00</strong></div>
-                                        </div>
-                                        <div class="item-controller">
-                                            <a title="删除" href="#" class="J_FavDel fav-item-del miconfont J_NewPoint"><i class="glyphicon glyphicon-trash"></i></a>|
-                                            <a title="进入店铺" target="_blank" href="#" class="goto-shop miconfont"><i class="glyphicon glyphicon-home"></i></a>
-                                            |<a href="#" title="加入购物车" class="J_AddToCartBtnTgr cart-icon miconfont J_NewPoint" ><i class="glyphicon glyphicon-shopping-cart"></i></a>	</div>
-                                    </li>
+                                	</#list>
+                                    
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div id="my_steps" class="tab-pane fade">
-                    <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>
+                    <p class="lead">We are on the way...</p>
                 </div>
             </div>
         </div>
@@ -752,21 +596,22 @@
         <div class="span1"></div>
         <div class="span10">
             <div class="comment_list">
-                <div data-rid="0" class="my-comment-item interact-box">
+            	<#list dishComments as dishComment>
+            	<div data-rid="0" class="my-comment-item interact-box">
                     <div class="comment-box">
                         <div class="pic-box">
                             <div class="pic s160">
-                                <a title="" target="_blank" href="#">
+                                <a title="${dishComment.dish.name}" target="_blank" href="/shop/index.f1t?shopId=${dishComment.dish.shopId}">
                                     <img alt="" src="../res/images/shop-image.jpeg" width="160" height="160" />
                                 </a>
                             </div>
                             <div class="g_price g_price-reversed">
-                                <span>¥</span><span>2</span>
+                                <span>¥</span><span>${dishComment.dish.price}</span>
                             </div>
                         </div>
                         <div class="item-right">
                             <div class="comment c3 lead" style="font-size: 20px">
-                                “买的东西有点多，就不一一评价啦，东西一件都没少，尝了几样，都很好吃，快递很棒，下回还会来的”
+                                “${dishComment.dishComment.comment}”
                             </div>
                             <ul class="img-list clearfix">
 
@@ -774,17 +619,17 @@
                             <div class="item-right-ft clearfix">
 
                                 <span class="date c9 l-left">
-                                    1月前发表
+                                    ${dishComment.dishComment.date?string("yyyy-MM-dd HH:mm")}&nbsp;评价了 ${dishComment.dish.name}
                                 </span>
                                 <div class="btns-area l-right  clearfix">
                                     <a  href="#" title="" class="btn btn-danger btn-sm">
-                                        <span class="border"><i class="glyphicon glyphicon-trash"></i> <span class="icon iconfont btn-tip">删除</span></span>
+                                        <span class="border"><i class="glyphicon glyphicon-trash"></i></span>
                                     </a>
                                     <a  href="#" title="" class="btn btn-info btn-sm">
-                                        <span class="border"><i class="glyphicon glyphicon-shopping-cart"></i> <span class="icon iconfont btn-tip">再次购买</span></span>
+                                        <span class="border"><i class="glyphicon glyphicon-shopping-cart"></i></span>
                                     </a>
-                                    <a  href="#" title="" class="btn btn-primary btn-sm">
-                                        <span class="border"><i class="glyphicon glyphicon-home"></i> <span class="icon iconfont btn-tip">西北面食</span></span>
+                                    <a  href="/shop/index.f1t?shopId=${dishComment.dish.shopId}" title="" class="btn btn-primary btn-sm">
+                                        <span class="border"><i class="glyphicon glyphicon-home"></i></span>
                                     </a>
                                 </div>
                             </div>
@@ -801,104 +646,8 @@
                         </div>
                     </div>
                 </div>
-                <div data-rid="0" class="my-comment-item interact-box">
-                    <div class="comment-box">
-                        <div class="pic-box">
-                            <div class="pic s160">
-                                <a title="" target="_blank" href="#">
-                                    <img alt="" src="../res/images/shop-image.jpeg" width="160" height="160" />
-                                </a>
-                            </div>
-                            <div class="g_price g_price-reversed">
-                                <span>¥</span><span>2</span>
-                            </div>
-                        </div>
-                        <div class="item-right">
-                            <div class="comment c3 lead" style="font-size: 20px">
-                                “买的东西有点多，就不一一评价啦，东西一件都没少，尝了几样，都很好吃，快递很棒，下回还会来的”
-                            </div>
-                            <ul class="img-list clearfix">
-
-                            </ul>
-                            <div class="item-right-ft clearfix">
-
-                                <span class="date c9 l-left">
-                                    1月前发表
-                                </span>
-                                <div class="btns-area l-right  clearfix">
-                                    <a  href="#" title="" class="btn btn-danger btn-sm">
-                                        <span class="border"><i class="glyphicon glyphicon-trash"></i> <span class="icon iconfont btn-tip">删除</span></span>
-                                    </a>
-                                    <a  href="#" title="" class="btn btn-info btn-sm">
-                                        <span class="border"><i class="glyphicon glyphicon-shopping-cart"></i> <span class="icon iconfont btn-tip">再次购买</span></span>
-                                    </a>
-                                    <a  href="#" title="" class="btn btn-primary btn-sm">
-                                        <span class="border"><i class="glyphicon glyphicon-home"></i> <span class="icon iconfont btn-tip">西北面食</span></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="cont">
-                        <div style="display:none;" class="cont-bd">
-                        </div>
-                    </div>
-                    <div class="act-area-flat">
-                        <div class="J_CommentHd">
-                        </div>
-                    </div>
-                </div>
-                <div data-rid="0" class="my-comment-item interact-box">
-                    <div class="comment-box">
-                        <div class="pic-box">
-                            <div class="pic s160">
-                                <a title="" target="_blank" href="#">
-                                    <img alt="" src="../res/images/shop-image.jpeg" width="160" height="160" />
-                                </a>
-                            </div>
-                            <div class="g_price g_price-reversed">
-                                <span>¥</span><span>2</span>
-                            </div>
-                        </div>
-                        <div class="item-right">
-                            <div class="comment c3 lead" style="font-size: 20px">
-                                “买的东西有点多，就不一一评价啦，东西一件都没少，尝了几样，都很好吃，快递很棒，下回还会来的”
-                            </div>
-                            <ul class="img-list clearfix">
-
-                            </ul>
-                            <div class="item-right-ft clearfix">
-
-                                <span class="date c9 l-left">
-                                    1月前发表
-                                </span>
-                                <div class="btns-area l-right  clearfix">
-                                    <a  href="#" title="" class="btn btn-danger btn-sm">
-                                        <span class="border"><i class="glyphicon glyphicon-trash"></i> <span class="icon iconfont btn-tip">删除</span></span>
-                                    </a>
-                                    <a  href="#" title="" class="btn btn-info btn-sm">
-                                        <span class="border"><i class="glyphicon glyphicon-shopping-cart"></i> <span class="icon iconfont btn-tip">再次购买</span></span>
-                                    </a>
-                                    <a  href="#" title="" class="btn btn-primary btn-sm">
-                                        <span class="border"><i class="glyphicon glyphicon-home"></i> <span class="icon iconfont btn-tip">西北面食</span></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="cont">
-                        <div style="display:none;" class="cont-bd">
-                        </div>
-                    </div>
-                    <div class="act-area-flat">
-                        <div class="J_CommentHd">
-                        </div>
-                    </div>
-                </div>
+            	</#list>
+            	
             </div>
         </div>
         <div class="span1"></div>
