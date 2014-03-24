@@ -24,7 +24,7 @@
     <nav class="navbar navbar-default navbar-inverse " role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand " href="#">Fan1Tuan</a>
+            <a class="navbar-brand " href="http://localhost:8080/index.f1t">Fan1Tuan</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

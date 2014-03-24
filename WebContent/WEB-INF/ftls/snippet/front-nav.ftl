@@ -7,15 +7,15 @@
             <ul class="nav">
             	
                 <li>
-                    <a href="javascript:void(0)"><span >Fan1tuan</span></a>
+                    <a href="http://localhost:8080/index.f1t"><span >Fan1tuan</span></a>
                 </li>
                 
                 <li id="navLocalLife" data-toggle="popover">
-                    <a href="javascript:void(0)" onclick="location='life/index.f1t'" id="toOnline"><span class="fui-cmd"></span><span >校园服务</span></a>
+                    <a href="javascript:void(0)" onclick="location='http://localhost:8080/life/index.f1t'" id="toOnline"><span class="fui-cmd"></span><span >校园服务</span></a>
                 </li>
                 
                 <li id="" title="" data-toggle="">
-                    <a class="need-redirect" href="javascript:void(0)" id="navReserveSeat" onclick="location='/areas.f1t'"><span class="fui-location"></span><span ><#if areaName?exists>${areaName}<#else>选择位置</#if></span></a>
+                    <a class="need-redirect" href="javascript:void(0)" id="navReserveSeat" onclick="location='http://localhost:8080/areas.f1t'"><span class="fui-location"></span><span ><#if areaName?exists>${areaName}<#else>选择位置</#if></span></a>
                 </li>
                 
                 <!--
@@ -39,13 +39,13 @@
       				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><#if Session["currentUser"]["realName"]?exists> ${Session["currentUser"]["cellphone"]} <#else> ${Session["currentUser"]["cellphone"]} </#if> <b class="caret"></b></a>
       				<ul class="dropdown-menu dropdown-inverse">
         				<li><a href="#"><i class="glyphicon glyphicon-home"></i>&nbsp;&nbsp;&nbsp;我的页面</a></li>
-        				<li><a href="/user/index.f1t#orders"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;&nbsp;&nbsp;已下的饿单</a></li>
-        				<li><a href="/user/index.f1t#comments"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;&nbsp;已下的评价</a></li>
-        				<li><a href="/user/index.f1t#favorites"><i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;&nbsp;我的收藏</a></li>
-        				<li><a href="/user/index.f1t#info"><i class="glyphicon glyphicon-tasks"></i>&nbsp;&nbsp;&nbsp;收货地址管理</a></li>
-        				<li><a href="/user/index.f1t#info"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;&nbsp;个人信息</a></li>
+        				<li><a href="http://localhost:8080/user/index.f1t#orders"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;&nbsp;&nbsp;已下的饿单</a></li>
+        				<li><a href="http://localhost:8080/user/index.f1t#comments"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;&nbsp;已下的评价</a></li>
+        				<li><a href="http://localhost:8080/user/index.f1t#favorites"><i class="glyphicon glyphicon-heart"></i>&nbsp;&nbsp;&nbsp;我的收藏</a></li>
+        				<li><a href="http://localhost:8080/user/index.f1t#info"><i class="glyphicon glyphicon-tasks"></i>&nbsp;&nbsp;&nbsp;收货地址管理</a></li>
+        				<li><a href="http://localhost:8080/user/index.f1t#info"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;&nbsp;个人信息</a></li>
         				<li class="divider"></li>
-        				<li><a class="need-redirect" href="javascript:void(0)" onclick="location='/signout.f1t'" id="logout"><i class="glyphicon glyphicon-off"></i>&nbsp;&nbsp;&nbsp;退出登录</a></li>
+        				<li><a class="need-redirect" href="javascript:void(0)" onclick="location='http://localhost:8080/signout.f1t'" id="logout"><i class="glyphicon glyphicon-off"></i>&nbsp;&nbsp;&nbsp;退出登录</a></li>
       				</ul>
     			</li>
         		<li>
@@ -62,11 +62,11 @@
 							<button class="btn close-btn" data-dismiss="modal" aria-hidden="true">Close</button>
 							<button class="btn btn-primary">Save changes</button>
 						</div> -->
-					</div>	
+					</div>
         		</li>
         	<#else>
-                <li><a class="need-redirect" href="javascript:void(0)" onclick="location='/secure/signin.f1t'"><span class="glyphicon glyphicon-user"></span> 登陆</a></li>
-                <li><a class="need-redirect" href="javascript:void(0)" onclick="location='/secure/signup.f1t'"><span class="glyphicon glyphicon-check"></span> 注册  </a></li>
+                <li><a class="need-redirect" href="javascript:void(0)" onclick="location='http://localhost:8080/secure/signin.f1t'"><span class="glyphicon glyphicon-user"></span> 登陆</a></li>
+                <li><a class="need-redirect" href="javascript:void(0)" onclick="location='http://localhost:8080/secure/signup.f1t'"><span class="glyphicon glyphicon-check"></span> 注册  </a></li>
             </#if>
             </ul>
             <form class="navbar-form navbar-left form-inline pull-right" role="search">

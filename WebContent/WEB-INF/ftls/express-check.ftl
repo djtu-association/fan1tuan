@@ -107,7 +107,7 @@
             <div class="panel panel-info">
 
                 <div class="panel-heading">
-                    <h2 class="panel-title">我的订单记录 <#if successTips?exists><label class="label label-danger">${successTips}</label></#if> </h2>
+                    <h2 class="panel-title">我的订单记录 <#if successTips?exists><label class="label label-danger">${successTips}</label><#else><label class="label label-success">查询记录,显示最近20条</label></#if> </h2>
                 </div>
                 <div class="panel-body">
                 	<#if expressOrders?exists>
@@ -124,7 +124,7 @@
 		                            <td>${order.username}</td>
 		                            <td>${order.expressName}</td>
 		                            <td>${order.address}</td>
-		                            <td>${order.date}</td>
+		                            <td>${order.createtime?string("yyyy-MM-dd HH:mm:ss")}</td>
 		                            <td>
 		                            	<#if order.status==1>
 		                            		<label class="label label-warning">等待审核</label>
@@ -134,7 +134,7 @@
 	                            			<label class="label label-success">等待送达</label>
                             			<#elseif order.status==4>
 	                            			<label class="label label-danger">订单完成</label><span class="glyphicon glyphicon-ok"></span>
-                            			<#elseif order.status==5>
+                            			<#elseif order.status==5||order.status?exists>
 		                            			<label class="label label-danger" id="lbl_${order.id}">已拒绝</label><span class="glyphicon glyphicon-remove"></span>
 	                            		</#if>
 		                            </td>

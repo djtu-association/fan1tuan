@@ -50,6 +50,7 @@ $(document).ready(function(){
     		}
 		});
 	});
+	
 	$('.btn-fetch').toggle(function(){
 		var label = $('#'+'lbl_'+$(this).attr('id'));
 		var btn = $(this);
@@ -98,6 +99,7 @@ $(document).ready(function(){
     		}
 		});
 	});
+	
 	//拒绝
 	$('.btn-reject').click(function(){
 		var orderId = $(this).attr('id').substring(7);

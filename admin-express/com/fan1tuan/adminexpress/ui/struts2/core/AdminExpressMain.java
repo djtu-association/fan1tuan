@@ -32,12 +32,24 @@ public class AdminExpressMain extends Fan1TuanAction {
 	}
 	//expressorders:param-out
 	public String showHistoryOrders(){
-		setExpressOrders(expressService.getClientExpressOrders(0, null, Pageable.inPage(getExpressPage(), PAGESIZE)));
+		//set the expressList
+		setExpressOrders(expressService.getClientExpressOrders(0, null, Pageable.inPage((getExpressPage()==0?0:getExpressPage()-1), PAGESIZE)));
+		//set the page
+		Page page = new Page();
+		page.setCurrentPage(getExpressPage()==0?1:getExpressPage());
+		page.setPageCount(expressService.getHistoryOrderCount(0, null, PAGESIZE));
+		setExpressListPage(page);
 		return Action.SUCCESS;
 	}
 	//expressorders:param-out
 	public String showTodayOrders(){
-		setExpressOrders(expressService.getClientExpressOrders(0, null, Pageable.inPage(getExpressPage(), PAGESIZE)));
+		//set the expressList
+		setExpressOrders(expressService.getClientExpressOrders(0, DateUtil.format(new Date(), DateUtil.get8charDateFormat()), Pageable.inPage((getExpressPage()==0?0:getExpressPage()-1), PAGESIZE)));
+		//set the page
+		Page page = new Page();
+		page.setCurrentPage(getExpressPage()==0?1:getExpressPage());
+		page.setPageCount(expressService.getTodayOrderCount(DateUtil.format(new Date(), DateUtil.get8charDateFormat()), PAGESIZE));
+		setExpressListPage(page);
 		return Action.SUCCESS;
 	}
 	
@@ -60,7 +72,7 @@ public class AdminExpressMain extends Fan1TuanAction {
 	private String orderId;
 	private String result;
 	public String doCheckStatus(){
-		expressService.clientUpdateOrderStatus(STATUS_REJECT, getOrderId());
+		expressService.clientUpdateOrderStatus(getStatus(), getOrderId());
 		setResult("success");
 		return Action.SUCCESS;
 	}

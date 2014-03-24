@@ -18,6 +18,13 @@
 		</action>
 	   
 		<action name="doAddNewOrder" method="doAddNewOrder" class="com.fan1tuan.life.ui.struts2.core.ExpressMainAction">
+		    <result name="success" type="redirectAction">
+		    	<param name="actionName">showExpressCheck.f1t</param>
+		    	<param name="checkPhone">${checkPhone}</param>
+		    </result>
+		</action>
+		
+		<action name="showExpressCheck" method="showExpressCheck" class="com.fan1tuan.life.ui.struts2.core.ExpressMainAction">
 		    <result name="success" type="freemarker">/WEB-INF/ftls/express-check.ftl</result>
 		</action>
 		

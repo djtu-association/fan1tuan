@@ -1,6 +1,7 @@
 package com.fan1tuan.life.business.mongoImpl;
 
 import java.util.List;
+
 import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.dao.Sortable;
@@ -72,6 +73,30 @@ public class ExpressServiceImpl implements ExpressService {
 	@Override
 	public void updateClient(ExpressClient expressClient) {
 		expressClientDao.update(expressClient);
+	}
+
+	@Override
+	public long getTodayOrderCount(String date, int pageSize) {
+		return expressOrderDao.getPageCount(CriteriaWrapper.instance().is("date", date), pageSize);
+	}
+
+	@Override
+	public long getHistoryOrderCount(int status,String date, int pageSize) {
+		if(0!=status){
+			if(date != null){
+				return expressOrderDao.getPageCount(CriteriaWrapper.instance().is("status", status).is("date", date), pageSize);
+			}else {
+				return expressOrderDao.getPageCount(CriteriaWrapper.instance().is("status", status), pageSize);
+			}
+		}else{
+			//0status代表获取全部
+			if(date != null){
+				return expressOrderDao.getPageCount(CriteriaWrapper.instance().is("date", date), pageSize);
+			}else {
+				return expressOrderDao.getPageCount(CriteriaWrapper.instance(), pageSize);
+			}
+			
+		}
 	}
 	
 

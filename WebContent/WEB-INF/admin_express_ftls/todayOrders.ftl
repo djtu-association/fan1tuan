@@ -24,7 +24,7 @@
     <nav class="navbar navbar-default navbar-inverse " role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand " href="#">Fan1Tuan</a>
+            <a class="navbar-brand " href="http://localhost:8080/index.f1t">Fan1Tuan</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -92,6 +92,7 @@
                                 <th>快递</th>
                                 <th>地址</th>
                                 <th>备注</th>
+                                <th>时间</th>
                                 <th>状态</th>
                                 <th>操作</th>
                             </tr>
@@ -104,6 +105,7 @@
 		                                <td>${order.expressName}</td>
 		                                <td>${order.address}</td>
 		                                <td>${order.remark}</td>
+		                                <td>${order.createtime?string("yyyy-MM-dd HH:mm:ss")}</td>
 		                                <td>
 			                            	<#if order.status==1>
 			                            		<label class="label label-warning" id="lbl_${order.id}">等待审核</label>
@@ -113,7 +115,7 @@
 		                            			<label class="label label-success" id="lbl_${order.id}">等待送达</label>
 	                            			<#elseif order.status==4>
 		                            			<label class="label label-danger" id="lbl_${order.id}">订单完成</label><span class="glyphicon glyphicon-ok"></span>
-	                            			<#elseif order.status==5>
+	                            			<#elseif order.status==5||order.status?exists>
 		                            			<label class="label label-danger" id="lbl_${order.id}">已拒绝</label><span class="glyphicon glyphicon-remove"></span>
 		                            		</#if>
 	                                	</td>
@@ -126,14 +128,14 @@
 		                            			<button class="btn btn-success btn-sm btn-complete" id="${order.id}">确认送达</button>
 	                            			<#elseif order.status==4>
 		                            			<label class="label label-danger">订单完成</label><span class="glyphicon glyphicon-ok"></span>
-	                            			<#elseif order.status==5>
+	                            			<#elseif order.status==5||order.status?exists>
 		                            			<label class="label label-danger" id="lbl_${order.id}">已拒绝</label><span class="glyphicon glyphicon-remove"></span>
 		                            		</#if>
 	                                	</td>
 		                            </tr>
 	                            </#list>
                             <#else>
-                            	<tr><td colspan="8"><h3><strong>当前还没有订单</strong></h3></td></tr>
+                            	<tr><td colspan="9" style="text-align:center"><h3><label class="label label-danger"><strong>今天还没有新的订单</strong></label></h3></td></tr>
                             </#if>
                            
                         </table>
@@ -141,13 +143,27 @@
                         <!--footer-->
                         <div class="panel" style="float: right;">
                             <ul class="pagination">
-                                <li class="disabled"><a href="#">&laquo;</a></li>
-                                <li  class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&raquo;</a></li>
+                                <#if expressListPage?exists>
+		                        	<#if (expressListPage.currentPage>1)>
+		                        		<li><a href="showTodayOrders.f1t?expressPage=${expressListPage.currentPage-1}" >&laquo;</a></li>
+		                        	<#else>
+		                        		<li class="disabled"><a>&laquo;</a></li>
+		                        	</#if>
+					            	
+				        			<#list 1..expressListPage.pageCount as num>
+				        				<#if expressListPage.currentPage == num>
+				        					<li class="active"><a>${num}</a></li>
+				        				<#else>
+				        					<li><a href="showTodayOrders.f1t?expressPage=${num}">${num}</a></li>
+				        				</#if>
+				        			</#list>
+				        			
+				        			<#if (expressListPage.currentPage<expressListPage.pageCount)>
+		                        		<li><a href="showTodayOrders.f1t?expressPage=${expressListPage.currentPage+1}" >&raquo;</a></li>
+		                        	<#else>
+		                        		<li class="disabled"><a>&raquo;</a></li>
+		                        	</#if>
+					            </#if>
                             </ul>
                         </div>
 

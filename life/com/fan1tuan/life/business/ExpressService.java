@@ -28,5 +28,9 @@ public interface ExpressService extends IFan1TuanService{
 	public void clientUpdateOrderStatus(int status,String orderId);
 	//更新client信息
 	public void updateClient(ExpressClient expressClient);
+	//获取今天所有订单列表分页数量
+	public long getTodayOrderCount(String date,int pageSize);
+	//获取历史订单列表分页分页数量
+	public long getHistoryOrderCount(int status,String date,int pageSize);
 	
 }

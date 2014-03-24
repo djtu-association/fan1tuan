@@ -3,7 +3,6 @@ package com.fan1tuan.life.ui.struts2.core;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
 import com.fan1tuan.general.util.DateUtil;
@@ -14,15 +13,20 @@ import com.opensymphony.xwork2.Action;
 public class ExpressMainAction extends Fan1TuanAction {
 	
 	private static final long serialVersionUID = 1L;
+	//static final
+	private static final int CHECK_PAGESIZE = 20;
 	//common-param
 	private ExpressService expressService;
 	private List<ExpressOrder> expressOrders;
+	private String checkPhone;
 	
 	public String showExpress(){
 		return Action.SUCCESS;
 	}
 	
 	public String showExpressCheck(){
+		setExpressOrders(expressService.getUserExpressOrders(getCheckPhone(), Pageable.inPage(0, 1)));
+		setSuccessTips("手机号:"+getCheckPhone()+" 快递代取订单提交成功");
 		return Action.SUCCESS;
 	}
 	
@@ -33,7 +37,7 @@ public class ExpressMainAction extends Fan1TuanAction {
 	private String expressName;//param-in
 	private String remark;//param-in
 	private String successTips;//param-out
-	public String doAddNewOrder(){
+	public String doAddNewOrder() throws Exception{
 		ExpressOrder expressOrder = new ExpressOrder();
 		expressOrder.setAddress(getAddress());
 		expressOrder.setCellphone(getCellphone());
@@ -45,11 +49,14 @@ public class ExpressMainAction extends Fan1TuanAction {
 		expressOrder.setDate(DateUtil.format(new Date(), DateUtil.get8charDateFormat()));
 		expressService.addNewExpressOrder(expressOrder);
 		//set experessOrder
+		/*
 		ArrayList<ExpressOrder> list = new ArrayList<>();
 		list.add(expressOrder);
 		setExpressOrders(list);
 		//set successTips
 		setSuccessTips("手机号:"+getCellphone()+" 快递代取订单提交成功");
+		*/
+		setCheckPhone(getCellphone());
 		return Action.SUCCESS;
 	}
 	
@@ -57,7 +64,7 @@ public class ExpressMainAction extends Fan1TuanAction {
 	//------------根据手机号搜索快递单-------------
 	private String searchCellPhone;
 	public String doSearchOrders(){
-		setExpressOrders(expressService.getUserExpressOrders(getSearchCellPhone(), Pageable.inPage(0, 10)));
+		setExpressOrders(expressService.getUserExpressOrders(getSearchCellPhone(), Pageable.inPage(0,CHECK_PAGESIZE)));
 		return Action.SUCCESS;
 	}
 
@@ -142,6 +149,14 @@ public class ExpressMainAction extends Fan1TuanAction {
 
 	public void setSuccessTips(String successTips) {
 		this.successTips = successTips;
+	}
+
+	public String getCheckPhone() {
+		return checkPhone;
+	}
+
+	public void setCheckPhone(String checkPhone) {
+		this.checkPhone = checkPhone;
 	}
 
 	
