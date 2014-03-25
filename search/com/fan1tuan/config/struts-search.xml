@@ -4,7 +4,9 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="search_main" extends="main" namespace="/search">
-	
+		<action name="index">
+		    <result name="success" type="freemarker">/WEB-INF/ftls/search.ftl</result>
+		</action>
 	</package>
 	
 </struts>

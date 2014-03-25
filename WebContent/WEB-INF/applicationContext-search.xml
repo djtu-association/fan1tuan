@@ -20,6 +20,9 @@
 						http://www.springframework.org/schema/data/mongo
 						http://www.springframework.org/schema/data/mongo/spring-mongo-1.2.xsd">
 						
+<bean id="searchService" class="com.fan1tuan.search.business.mongoImpl.SearchServiceImpl">
+    <property name="shopDao" ref="shopDao"></property>
+    <property name="dishDao" ref="dishDao"></property>
+</bean>
 
-	
 </beans>
