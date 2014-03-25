@@ -100,7 +100,7 @@
                             <div class="form-group">
                                 <label for="inputPassword6" class="col-sm-2 control-label">开始时间(时:分)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="opentime" class="form-control form_time" id="inputPassword6" placeholder="开始营业时间" value="<#if shop?exists&&shop.opentime?exists>${shop.opentime}</#if>">
+                                    <input type="text" name="opentime" class="form-control form_time" readonly id="inputPassword6" placeholder="开始营业时间" value="<#if shop?exists&&shop.openTime?exists>${shop.openTime?string("HH:mm")}<#else>10:30</#if>">
                                 </div>
                             </div>
 
@@ -108,7 +108,7 @@
                             <div class="form-group">
                                 <label for="inputPassword7" class="col-sm-2 control-label">结束时间(时:分)</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="closetime" class="form-control form_time" id="inputPassword7" placeholder="结束营业时间" value="<#if shop?exists&&shop.closetime?exists>${shop.closetime}</#if>">
+                                    <input type="text" name="closetime" readonly class="form-control form_time" id="inputPassword7" placeholder="结束营业时间" value="<#if shop?exists&&shop.closeTime?exists>${shop.closeTime?string("HH:mm")}<#else>20:30</#if>">
                                 </div>
                             </div>
 
@@ -119,7 +119,17 @@
                                     <input type="text" name="address" class="form-control" id="inputPassword8" placeholder="输入店铺大致地址位置" value="<#if shop?exists&&shop.address?exists>${shop.address}</#if>">
                                 </div>
                             </div>
-
+							
+							<!--origin picture-->
+							<#if shop?exists&&shop.avatar?exists>
+								<div class="form-group">
+	                                <label class="col-sm-2 control-label">原头像（50x50）</label>
+	                                <div class="col-sm-10">
+	                                    <a href="${shop.avatar}"><img src="${shop.avatar}" style="width:50px;height:50;"/></a>
+	                                </div>
+                            	</div>
+							</#if>
+							
                             <!--file-->
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">店铺头像（50*50）</label>
@@ -206,7 +216,7 @@
         initialDate:new Date()
     });
     $('.form_time').datetimepicker({
-        language:  'fr',
+        //language:  'fr',
         weekStart: 1,
         todayBtn:  0,
         autoclose: 1,
@@ -215,7 +225,7 @@
         minView: 0,
         maxView: 0,
         forceParse: 0,
-        format:'hh:ss'
+        format:'hh:ii'
     });
 
 </script>

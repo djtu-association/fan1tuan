@@ -1,12 +1,21 @@
 package com.fan1tuan.adminshop.ui.struts2.core;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 
 import com.fan1tuan.admin.dto.Page;
 import com.fan1tuan.adminshop.business.AdminShopService;
 import com.fan1tuan.adminshop.util.AdminConstant;
 import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
+import com.fan1tuan.general.util.UUIDGenerator;
 import com.fan1tuan.order.pojos.Order;
 import com.fan1tuan.shop.pojos.Shop;
 import com.fan1tuan.shop.pojos.ShopTasteTag;
@@ -60,9 +69,10 @@ public class AdminShopMain extends Fan1TuanAction{
 	private String address;
 	private double latitude;
 	private double longtitude;
-	private String avatar;
+	private File avatar;
+	private String avatarFileName;
 	//出参-shopList
-	public String doShopAdd(){
+	public String doShopAdd() throws ParseException, IOException{
 		Shop shop = new Shop();
 		shop.setName(getName());
 		shop.setDescription(getDescription());
@@ -71,12 +81,22 @@ public class AdminShopMain extends Fan1TuanAction{
 		shop.setCellphone(getCellphone());
 		shop.setType(getShopType());
 		shop.setDeliveryCharge(getDeliveryCharge());
-		//shop.setOpenTime(getOpentime());
-		//shop.setCloseTime(getClosetime());
+		SimpleDateFormat formatDate = new SimpleDateFormat("hh:mm");
+		shop.setOpenTime(formatDate.parse(getOpentime()));
+		shop.setCloseTime(formatDate.parse(getClosetime()));
 		shop.setAddress(getAddress());
 		double[] location = {getLongtitude(),getLatitude()};
 		shop.setLocation(location);
-		//
+		shop.setCreateTime(new Date());
+		//upload image file
+		if(getAvatar()!=null){
+			setAvatarFileName(UUIDGenerator.generateUUID()+getAvatarFileName().substring(getAvatarFileName().indexOf(".")));//重置文件名
+			String destPath = ServletActionContext.getServletContext().getRealPath(AdminConstant.UPLOAD_SHOP_PATH);
+	        File dest = new File(destPath, getAvatarFileName()); //服务器的文件
+	        FileUtils.copyFile(avatar, dest);//完成了文件的拷贝工作
+	        shop.setAvatar(AdminConstant.IMG_SAVE_PREFFIX+AdminConstant.UPLOAD_SHOP_PATH+"/"+getAvatarFileName());
+		}
+        //end upload file
 		adminShopService.addNewShop(shop);
 		return Action.SUCCESS;
 	}
@@ -91,7 +111,7 @@ public class AdminShopMain extends Fan1TuanAction{
 		return Action.SUCCESS;
 	}
 	//------------------确认编辑店铺--------------
-	public String doShopEdit(){
+	public String doShopEdit() throws ParseException, IOException{
 		Shop shop = adminShopService.getOneShopByShopId(getShopId());
 		//shop.setId(getShopId());
 		shop.setName(getName());
@@ -101,12 +121,21 @@ public class AdminShopMain extends Fan1TuanAction{
 		shop.setCellphone(getCellphone());
 		shop.setType(getShopType());
 		shop.setDeliveryCharge(getDeliveryCharge());
-		//shop.setOpenTime(getOpentime());
-		//shop.setCloseTime(getClosetime());
+		SimpleDateFormat formatDate = new SimpleDateFormat("hh:mm");
+		shop.setOpenTime(formatDate.parse(getOpentime()));
+		shop.setCloseTime(formatDate.parse(getClosetime()));
 		shop.setAddress(getAddress());
 		double[] location = {getLongtitude(),getLatitude()};
 		shop.setLocation(location);
-		//
+		if(shop.getCreateTime()==null){shop.setCreateTime(new Date());}
+		//upload image file
+		if(getAvatar()!=null){
+			String destPath = ServletActionContext.getServletContext().getRealPath(AdminConstant.UPLOAD_SHOP_PATH);  
+	        File dest = new File(destPath, getAvatarFileName()); //服务器的文件
+	        FileUtils.copyFile(avatar, dest);//完成了文件的拷贝工作 
+	        shop.setAvatar(AdminConstant.IMG_SAVE_PREFFIX+AdminConstant.UPLOAD_SHOP_PATH+"/"+getAvatarFileName());
+		}
+        //end upload file
 		adminShopService.saveShopEdit(shop);
 		return Action.SUCCESS;
 	}
@@ -288,11 +317,11 @@ public class AdminShopMain extends Fan1TuanAction{
 		this.longtitude = longtitude;
 	}
 
-	public String getAvatar() {
+	public File getAvatar() {
 		return avatar;
 	}
 
-	public void setAvatar(String avatar) {
+	public void setAvatar(File avatar) {
 		this.avatar = avatar;
 	}
 
@@ -426,6 +455,14 @@ public class AdminShopMain extends Fan1TuanAction{
 
 	public void setTagId(String tagId) {
 		this.tagId = tagId;
+	}
+
+	public String getAvatarFileName() {
+		return avatarFileName;
+	}
+
+	public void setAvatarFileName(String avatarFileName) {
+		this.avatarFileName = avatarFileName;
 	}
 	
 	

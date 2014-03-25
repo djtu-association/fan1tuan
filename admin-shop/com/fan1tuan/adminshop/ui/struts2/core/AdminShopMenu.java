@@ -1,6 +1,12 @@
 package com.fan1tuan.adminshop.ui.struts2.core;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 
 import com.fan1tuan.admin.dto.Page;
 import com.fan1tuan.adminshop.business.AdminShopService;
@@ -16,6 +22,8 @@ public class AdminShopMenu extends Fan1TuanAction {
 	private static final long serialVersionUID = 1L;
 	private AdminShopService adminShopService;
 	
+	//base params
+	private String navName = "adminshop";
 	//common param
 	private String shopId;
 	
@@ -50,20 +58,29 @@ public class AdminShopMenu extends Fan1TuanAction {
 	private String description;
 	private double price;
 	private double originPrice;
-	private String image;
+	private File image;
+	private String imageFileName;
 	private String dishTasteTagId;
 	//shopId:param-in
-	public String doDishAdd(){
+	public String doDishAdd() throws IOException{
 		Dish dish = new Dish();
 		dish.setShopId(getShopId());
 		dish.setName(getName());
 		dish.setDescription(getDescription());
 		dish.setPrice(getPrice());
 		dish.setOriginPrice(getOriginPrice());
-		dish.setImage(getImage());
 		dish.setDishTasteTagId(getDescription());
 		dish.setDishTasteTagId(getDishTasteTagId());
 		dish.setStatus(1);
+		dish.setCreateTime(new Date());
+		//upload image file
+		if(getImage()!=null){
+			String destPath = ServletActionContext.getServletContext().getRealPath(AdminConstant.UPLOAD_DISH_PATH);  
+	        File dest = new File(destPath, getImageFileName()); //服务器的文件
+	        FileUtils.copyFile(image, dest);//完成了文件的拷贝工作 
+	        dish.setImage(AdminConstant.IMG_SAVE_PREFFIX+AdminConstant.UPLOAD_DISH_PATH+"/"+imageFileName);
+		}
+        //end upload file
 		adminShopService.addNewDish(dish);
 		setShopId(getShopId());//shopId must param-in
 		return Action.SUCCESS;
@@ -96,6 +113,7 @@ public class AdminShopMenu extends Fan1TuanAction {
 		//dish.setImage(getImage());
 		dish.setDishTasteTagId(getDishTasteTagId());
 		dish.setStatus(1);
+		if(dish.getCreateTime()==null){dish.setCreateTime(new Date());}
 		adminShopService.saveDishEdit(dish);
 		//set shopId
 		setShopId(getShopId());
@@ -225,11 +243,11 @@ public class AdminShopMenu extends Fan1TuanAction {
 		this.originPrice = originPrice;
 	}
 
-	public String getImage() {
+	public File getImage() {
 		return image;
 	}
 
-	public void setImage(String image) {
+	public void setImage(File image) {
 		this.image = image;
 	}
 
@@ -287,6 +305,22 @@ public class AdminShopMenu extends Fan1TuanAction {
 
 	public void setDishTasteTagId(String dishTasteTagId) {
 		this.dishTasteTagId = dishTasteTagId;
+	}
+
+	public String getNavName() {
+		return navName;
+	}
+
+	public void setNavName(String navName) {
+		this.navName = navName;
+	}
+
+	public String getImageFileName() {
+		return imageFileName;
+	}
+
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
 	}
 	
 	

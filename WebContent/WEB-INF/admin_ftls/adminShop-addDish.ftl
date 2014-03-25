@@ -62,14 +62,24 @@
                                     <input type="text" name="originPrice" class="form-control" placeholder="原价" value="<#if dish?exists&&dish.originPrice?exists>${dish.originPrice}</#if>" >
                                 </div>
                             </div>
-
+							
+							<!--origin picture-->
+							<#if dish?exists&&dish.image?exists>
+								<div class="form-group">
+	                                <label class="col-sm-2 control-label">原图片（50x50）</label>
+	                                <div class="col-sm-10">
+	                                    <img src="${dish.image}" style="width:50px;height:50;"/>
+	                                </div>
+                            	</div>
+							</#if>
                             <!--file-->
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">图片上传（50x50）</label>
                                 <div class="col-sm-10">
-                                    <input type="file">
+                                    <input type="file" name="image">
                                 </div>
                             </div>
+                            
 
                             <!--select-->
                             <div class="form-group">

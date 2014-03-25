@@ -27,7 +27,7 @@ public class AdminShopServiceImpl implements AdminShopService{
 	
 	@Override
 	public List<Shop> getShopsInPage(Pageable pageable) {
-		return shopDao.findAllInPageInOrder(pageable, Sortable.instance("id", 1));
+		return shopDao.findAllInPageInOrder(pageable, Sortable.instance("createTime", 1));
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class AdminShopServiceImpl implements AdminShopService{
 
 	@Override
 	public List<Dish> getShopDishsByShopIdInPage(String shopId,Pageable pageable) {
-		return dishDao.findByParamsInPageInOrder(CriteriaWrapper.instance().is("shopId", shopId), pageable, Sortable.instance("name", 0));
+		return dishDao.findByParamsInPageInOrder(CriteriaWrapper.instance().is("shopId", shopId), pageable, Sortable.instance("createTime", 0));
 	}
 
 	@Override

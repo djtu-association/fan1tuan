@@ -1,8 +1,7 @@
 package com.fan1tuan.shop.pojos;
 
-import java.sql.Date;
 import java.util.ArrayList;
-
+import java.util.Date;
 import com.fan1tuan.general.pojos.EntityObject;
 
 public class Dish extends EntityObject{

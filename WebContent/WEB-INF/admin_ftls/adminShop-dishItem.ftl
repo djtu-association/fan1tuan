@@ -50,7 +50,7 @@
                         <th>图片</th>
                         <th>操作</th>
                     </tr>
-                    <#if dishList?exists>
+                    <#if dishList?exists&&(dishList?size>0)>
                     	<#list dishList as dish>
                     		<tr>
 		                        <td>${dish_index+1}</td>
