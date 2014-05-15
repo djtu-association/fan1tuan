@@ -1,7 +1,7 @@
 package com.fan1tuan.shop.pojos;
 
 import java.util.ArrayList;
-
+import java.util.Date;
 import com.fan1tuan.general.pojos.EntityObject;
 
 public class Dish extends EntityObject{
@@ -24,9 +24,18 @@ public class Dish extends EntityObject{
 	private int status; //0不可预定,1可预订
 	private String description;
 	
+	private Date createTime;
 	
 	
 	
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
 	public String getDescription() {
 		return description;
 	}

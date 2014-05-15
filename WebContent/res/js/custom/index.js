@@ -116,6 +116,13 @@ $('document').ready(function(){
 //        $('#navReserveSeat').removeClass('active');
 //        $('#navLifeSurround').removeClass('active');
 //    });
+    var navLocalLifeIntro = $('#navLocalLifeIntro').html();
+    $('#navLocalLife').popover({
+        "trigger" : "hover",
+        "html" : true,
+        "content" : navLocalLifeIntro,
+        "placement" : "bottom"
+    });
     var navOnlineOrderframe = $('#navOnlineOrderIntro').html();
     $('#navOnlineOrder').popover({
         "trigger" : "hover",

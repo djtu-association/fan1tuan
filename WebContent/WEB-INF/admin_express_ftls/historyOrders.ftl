@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>快递管理后台</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="../../res/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="../../res/plugin/datepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="../../res/js/html5shiv.js"></script>
+    <script src="../../res/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+
+
+<!--top navigator bar-->
+<div>
+    <nav class="navbar navbar-default navbar-inverse " role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand " href="http://localhost:8080/index.f1t">Fan1Tuan</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--left-->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Main</a></li><!-- add class="active" @ the current use-->
+                <li><a href="#">Admin</a></li>
+            </ul>
+
+            <!--right-->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span>Sign in</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Log out</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</div>
+
+<!--Main frame-->
+<div class=".container">
+
+    <hr class="divider">
+
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            <div>
+                <ul>
+                    <li>
+                        <h2><strong>快递单管理:历史快递单一览</strong></h2>
+                        <button type="button" class="btn btn-info" onclick="location='showAdminExpressIndex.f1t'">账号管理</button>
+                        <button type="button" class="btn btn-info" onclick="location='showTodayOrders.f1t'">今天订单</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--mid bar-->
+    <div>
+        <!--head-->
+
+        <!--center-->
+        <div>
+            <div class="panel panel-info">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title"><strong>历史订单查看</strong></h3>
+                </div>
+
+                <!--main panel-->
+                <div class="panel-body">
+                    <div>
+                        <table class="table table-responsive table-bordered">
+                            <tr>
+                                <th>NO.</th>
+                                <th>姓名</th>
+                                <th>手机</th>
+                                <th>快递</th>
+                                <th>地址</th>
+                                <th>备注</th>
+                                <th>时间</th>
+                                <th>状态</th>
+                            </tr>
+                            <#if expressOrders?exists&&(expressOrders?size>0)>
+                            	<#list expressOrders as order>
+		                            <tr>
+		                                <td>${order_index+1}</td>
+		                                <td>${order.username}</td>
+		                                <td>${order.cellphone}</td>
+		                                <td>${order.expressName}</td>
+		                                <td>${order.address}</td>
+		                                <td>${order.remark}</td>
+		                                <td>${order.createtime?string("yyyy-MM-dd HH:mm:ss")}</td>
+		                                <td>
+			                            	<#if order.status==1>
+			                            		<label class="label label-warning" >等待审核</label>
+		                            		<#elseif order.status==2>
+		                            			<label class="label label-info" >等待领取</label>
+	                            			<#elseif order.status==3>
+		                            			<label class="label label-success" >等待送达</label>
+	                            			<#elseif order.status==4>
+		                            			<label class="label label-danger" >订单完成</label><span class="glyphicon glyphicon-ok"></span>
+	                            			<#elseif order.status==5>
+		                            			<label class="label label-danger" >已拒绝</label><span class="glyphicon glyphicon-remove"></span>
+		                            		</#if>
+	                                	</td>
+		                            </tr>
+	                            </#list>
+                            <#else>
+                            	<tr><td colspan="8"><h3><strong>当前还没有任何历史订单</strong></h3></td></tr>
+                            </#if>
+                        </table>
+						
+                        <!--footer-->
+                        <div class="panel" style="float: right;">
+                            <ul class="pagination">
+                                <#if expressListPage?exists>
+		                        	<#if (expressListPage.currentPage>1)>
+		                        		<li><a href="showHistoryOrders.f1t?expressPage=${expressListPage.currentPage-1}" >&laquo;</a></li>
+		                        	<#else>
+		                        		<li class="disabled"><a>&laquo;</a></li>
+		                        	</#if>
+					            	
+				        			<#list 1..expressListPage.pageCount as num>
+				        				<#if expressListPage.currentPage == num>
+				        					<li class="active"><a>${num}</a></li>
+				        				<#else>
+				        					<li><a href="showHistoryOrders.f1t?expressPage=${num}">${num}</a></li>
+				        				</#if>
+				        			</#list>
+				        			
+				        			<#if (expressListPage.currentPage<expressListPage.pageCount)>
+		                        		<li><a href="showHistoryOrders.f1t?expressPage=${expressListPage.currentPage+1}" >&raquo;</a></li>
+		                        	<#else>
+		                        		<li class="disabled"><a>&raquo;</a></li>
+		                        	</#if>
+					            </#if>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--footer-->
+                <div class="panel" style="float: right;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../../res/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../res/plugin/datepicker/js/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../../res/plugin/datepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../../res/plugin/datepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+</body>
+</html>

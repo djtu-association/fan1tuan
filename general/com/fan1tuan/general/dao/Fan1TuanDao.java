@@ -132,4 +132,8 @@ public interface Fan1TuanDao<T> {
 	 * 获取数据库中数据个数
 	 */
 	long getCount(CriteriaWrapper criteriaWrapper);
+	/*
+	 * 获取分页长度
+	 */
+	long getPageCount(CriteriaWrapper criteriaWrapper,int pageSize);
 }

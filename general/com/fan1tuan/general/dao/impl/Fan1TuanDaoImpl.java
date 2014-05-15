@@ -277,5 +277,10 @@ public class Fan1TuanDaoImpl<T> implements Fan1TuanDao<T>{
 
 	}
 	
+	@Override
+	public long getPageCount(CriteriaWrapper criteriaWrapper,int pageSize){
+		long total = getCount(criteriaWrapper);
+		return (total<pageSize)?1:((total%pageSize==0)?(total/pageSize):(total/pageSize+1));
+	}
 	
 }

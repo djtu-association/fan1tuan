@@ -9,7 +9,9 @@ import java.util.Map;
 import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.FieldFilter;
 import com.fan1tuan.general.dao.Pageable;
+import com.fan1tuan.general.dao.Sortable;
 import com.fan1tuan.general.dao.UpdateWrapper;
+import com.fan1tuan.general.dao.impl.DishCommentDao;
 import com.fan1tuan.general.dao.impl.DishDao;
 import com.fan1tuan.general.dao.impl.ShopDao;
 import com.fan1tuan.general.dao.impl.UserDao;
@@ -19,6 +21,8 @@ import com.fan1tuan.general.util.ISession.LOG_TYPE;
 import com.fan1tuan.order.business.OrderUserService;
 import com.fan1tuan.shop.business.ShopUserService;
 import com.fan1tuan.shop.pojos.Dish;
+import com.fan1tuan.shop.pojos.DishComment;
+import com.fan1tuan.shop.pojos.DishCommentDto;
 import com.fan1tuan.shop.pojos.Shop;
 import com.fan1tuan.user.business.UserService;
 import com.fan1tuan.user.pojos.FavoriteDish;
@@ -42,9 +46,10 @@ public class UserServiceImpl implements UserService {
 	//service
 	private ShopUserService shopUserService;
 	private OrderUserService orderUserService;
+	private DishCommentDao dishCommentDao;
 	
 	
-	
+
 
 	@Override
 	public boolean register(User user) {
@@ -273,9 +278,7 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
-	public void setShopDao(ShopDao shopDao) {
-		this.shopDao = shopDao;
-	}
+	
 
 	/**
 	 * 是否用户收藏店铺
@@ -309,52 +312,12 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 	
-	
-	
-	//-------------fileds getter and setter
-
-	
-	public DishDao getDishDao() {
-		return dishDao;
-	}
-
-	public OrderUserService getOrderUserService() {
-		return orderUserService;
-	}
-
-	public void setOrderUserService(OrderUserService orderUserService) {
-		this.orderUserService = orderUserService;
-	}
-
-	public void setDishDao(DishDao dishDao) {
-		this.dishDao = dishDao;
-	}
-
-	public UserDao getUserDao() {
-		return userDao;
-	}
-	
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
-	}	
-
-	public ShopDao getShopDao() {
-		return shopDao;
-	}
-	public ShopUserService getShopUserService() {
-		return shopUserService;
-	}
-
-	public void setShopUserService(ShopUserService shopUserService) {
-		this.shopUserService = shopUserService;
-	}
-	
-	
 	@Override
 	public User getUser(String userId) {
 		return userDao.findOneById(userId);
 	}
-
+	
+	
 	/**
 	 * 必须要求传入areaId，因为推荐的店铺不应该超出当前的商圈
 	 */
@@ -395,6 +358,87 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return favoriteShopDtos;
+	}
+
+	/**
+	 * <strong>方法用来获取用户的全部的评论</strong>
+	 * @param userId 用户的Id
+	 */
+	@Override
+	public List<DishComment> getAllUserComments(String userId, int pageNumber, int pageSize) {
+		return dishCommentDao.findByParamsInPageInOrder(CriteriaWrapper.instance().is("userId", userId), Pageable.inPage(pageNumber, pageSize), Sortable.instance("date", Sortable.DESCEND));
 	}	
 
+	@Override
+	public List<DishCommentDto> getAllUserCommentDtos(String userId,
+			int pageNumber, int pageSize) {
+		List<DishComment> dishComments = getAllUserComments(userId, pageNumber, pageSize);
+		List<DishCommentDto> dishCommentDtos = new ArrayList<DishCommentDto>();
+		
+		for(DishComment dishComment : dishComments){
+			DishCommentDto dishCommentDto = new DishCommentDto();
+			dishCommentDto.setDishComment(dishComment);
+			Dish dish = dishDao.findOneById(dishComment.getDishId());
+			dishCommentDto.setDish(dish);
+			dishCommentDtos.add(dishCommentDto);
+		}
+		
+		return dishCommentDtos;
+	}
+
+	
+	
+	//-------------fileds getter and setter
+
+	public void setShopDao(ShopDao shopDao) {
+		this.shopDao = shopDao;
+	}
+	
+	public DishDao getDishDao() {
+		return dishDao;
+	}
+
+	public OrderUserService getOrderUserService() {
+		return orderUserService;
+	}
+
+	public void setOrderUserService(OrderUserService orderUserService) {
+		this.orderUserService = orderUserService;
+	}
+
+	public void setDishDao(DishDao dishDao) {
+		this.dishDao = dishDao;
+	}
+
+	public UserDao getUserDao() {
+		return userDao;
+	}
+	
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}	
+
+	public ShopDao getShopDao() {
+		return shopDao;
+	}
+	public ShopUserService getShopUserService() {
+		return shopUserService;
+	}
+
+	public void setShopUserService(ShopUserService shopUserService) {
+		this.shopUserService = shopUserService;
+	}
+	
+	
+
+	public DishCommentDao getDishCommentDao() {
+		return dishCommentDao;
+	}
+
+	public void setDishCommentDao(DishCommentDao dishCommentDao) {
+		this.dishCommentDao = dishCommentDao;
+	}
+
+	
+	
 }

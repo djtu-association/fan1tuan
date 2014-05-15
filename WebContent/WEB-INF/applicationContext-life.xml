@@ -19,10 +19,5 @@
 
 
 	<bean id="expressService" class="com.fan1tuan.life.business.mongoImpl.ExpressServiceImpl" p:expressOrderDao-ref="expressOrderDao" p:expressClientDao-ref="expressClientDao"/>
-	<!-- 
-	<bean id="shopUserService"
-		class="com.fan1tuan.shop.business.mongoImpl.ShopUserServiceImpl"
-		p:template-ref="mongoTemplate" />
-	 -->
-
+	
 </beans>

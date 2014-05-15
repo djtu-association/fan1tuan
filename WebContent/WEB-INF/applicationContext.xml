@@ -156,4 +156,6 @@
 	<import resource="applicationContext-shop.xml" />
 	<import resource="applicationContext-user.xml" />
 	<import resource="applicationContext-life.xml"/>
+	<import resource="applicationContext-admin.xml"/>
+	<import resource="applicationContext-admin-shop.xml"/>
 </beans>

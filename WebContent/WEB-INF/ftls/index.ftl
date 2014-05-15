@@ -27,19 +27,22 @@
     <link href="res/css/custom/shop.css" rel="stylesheet">
     <link href="../res/css/custom/pendingOrder.css" rel="stylesheet">
 </head>
-
-
 <div class="sr-only">
-    <div id="navReserveSeatIntro" class="row">
+    <div id="navReserveSeatIntro" class="row" style="width:100px">
         <div class="tile">
             <img class="tile-image big-illustration" alt="Compas" src="res/images/icons/png/Compas.png">
             <h3 class="tile-title">当前位置</h3>
-            <p>点击重新选择您的位置</p>
+            <p>点击重新选择您想要的位置</p>
+        </div>
+    </div>
+    <div id="navLocalLifeIntro" class="row" style="width:100px">
+        <div class="tile">
+            <img class="tile-image big-illustration" alt="Compas" src="res/images/icons/png/Gift-Box.png">
+            <h3 class="tile-title">校园服务</h3>
+            <p>赶紧来感受便捷的校园服务吧</p>
         </div>
     </div>
 </div>
-
-
 
 <div class="sr-only" id="togCartContent">
     <div class="CartContent">
@@ -229,53 +232,7 @@
 <div class="topPage"></div>
 <div  class="navbar-wrapper">
     <div class="container">
-
-        <div class="navbar">
-            <div class="navbar-header">
-                <button data-target="#nav-collapse-01" data-toggle="collapse" class="btn btn-navbar" type="button"></button>
-            </div>
-            <div id="nav-collapse-01" class="navbar-collapse collapse">
-                    <ul class="nav">
-                    	
-                        <li>
-                            <a href="#"><span >Fan1tuan</span></a>
-                        </li>
-                        <!--
-                        <li id="navOnlineOrder"   title="" data-toggle="popover">
-                            <a href="javascript:void(0)" id="toOnline"><span class="fui-cmd"></span><span >在线订餐</span></a>
-                        </li>
-                        <li id="navPhoneCallOrder" title="" data-toggle="popover">
-                            <a href="javascript:void(0)" id="toPhone"><span class="fui-chat"></span><span >电话订餐</span></a>
-                        </li>
-                        
-                        
-                        <li id="navReserveSeat" title="" data-toggle="popover">
-                            <a href="#"><span class="fui-calendar-solid"></span><span >预留餐位</span></a>
-                        </li>
-                        -->
-                        <li id="" title="" data-toggle="">
-                            <a class="need-redirect" href="javascript:void(0)" id="navReserveSeat" onclick="location='/areas.f1t'"><span class="fui-location"></span><span ><#if areaName?exists>${areaName}</#if></span></a>
-                        </li>
-                        
-                        <!--<li id="navLifeSurround" title="" data-toggle="popover">
-                            <a href="javascript:void(0)" onclick="location='../life/index.f1t'"><span class="fui-location"></span><span >本地生活</span></a>
-                        </li>-->
-				
-                    </ul>
-     
-                    <ul class="nav navbar-nav">
-                    	<#include "./snippet/userstatus.ftl" />
-                    </ul>
-                    <form class="navbar-form navbar-left form-inline pull-right" role="search">
-                        <div class="input-group">
-                            <div class="form-group">
-                                <input id="searchField" type="text" class="form-control" size="25" placeholder="搜店.搜美食" />
-                                <span class="input-icon fui-search"></span>
-                            </div>
-                        </div>
-                    </form>
-            </div>
-        </div>
+		<#include "snippet/front-nav.ftl">
     </div>
 </div>
 

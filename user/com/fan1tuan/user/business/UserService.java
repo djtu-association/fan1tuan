@@ -5,14 +5,10 @@ package com.fan1tuan.user.business;
 import java.util.List;
 import java.util.Map;
 
-
-
-
-
-
-
 import com.fan1tuan.general.util.ISession.LOG_TYPE;
 import com.fan1tuan.shop.pojos.Dish;
+import com.fan1tuan.shop.pojos.DishComment;
+import com.fan1tuan.shop.pojos.DishCommentDto;
 import com.fan1tuan.shop.pojos.Shop;
 import com.fan1tuan.user.pojos.User;
 import com.fan1tuan.user.pojos.dto.FavoriteShopDto;
@@ -38,6 +34,10 @@ public interface UserService {
 	public List<Dish> getFavoriteDishes(String userId);
 	//查找一个店铺中，用户收藏的菜品
 	public List<Dish> getFavoriteInShop(String userId,String shopId);
+	
+	//获取单个用户的全部comment
+	public List<DishComment> getAllUserComments(String userId,int pageNumber, int pageSize);
+	public List<DishCommentDto> getAllUserCommentDtos(String userId, int pageNumber, int pageSize);
 	
 	public boolean findPassword(User user);
 	

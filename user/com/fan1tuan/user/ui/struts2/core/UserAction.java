@@ -13,6 +13,8 @@ import com.fan1tuan.general.util.ISession;
 import com.fan1tuan.general.util.SessionUtil;
 import com.fan1tuan.order.business.OrderUserService;
 import com.fan1tuan.order.pojos.Order;
+import com.fan1tuan.shop.pojos.Dish;
+import com.fan1tuan.shop.pojos.DishCommentDto;
 import com.fan1tuan.user.business.UserService;
 import com.fan1tuan.user.pojos.User;
 import com.fan1tuan.user.pojos.dto.FavoriteShopDto;
@@ -24,6 +26,23 @@ public class UserAction extends Fan1TuanAction {
 	private static final long serialVersionUID = -5139229021131179900L;
 
 
+
+	
+	public List<DishCommentDto> getDishComments() {
+		return dishComments;
+	}
+
+	public void setDishComments(List<DishCommentDto> dishComments) {
+		this.dishComments = dishComments;
+	}
+
+	public List<Dish> getFavoriteDishes() {
+		return favoriteDishes;
+	}
+
+	public void setFavoriteDishes(List<Dish> favoriteDishes) {
+		this.favoriteDishes = favoriteDishes;
+	}
 
 	public UserService getUserService() {
 		return userService;
@@ -107,6 +126,8 @@ public class UserAction extends Fan1TuanAction {
 	private int pageSize;
 	private List<Order> orders; //订单部分
 	private List<FavoriteShopDto> favoriteShopDtos; //店铺收藏部分
+	private List<Dish> favoriteDishes;
+	private List<DishCommentDto> dishComments;
 	public String execute() {
 		Map<String, Object> user_cache = SessionUtil.getUser(session);
 		String userId = (String)user_cache.get(ISession.USER_ID);
@@ -134,7 +155,13 @@ public class UserAction extends Fan1TuanAction {
 		//获取收藏部分
 		favoriteShopDtos = userService.getFavoriteShopDtos(userId, areaId);
 
-		return "success";
+		//获取收藏的菜品
+		favoriteDishes = userService.getFavoriteDishes(userId);
+		
+		//获取分页评价
+		dishComments = userService.getAllUserCommentDtos(userId, 0, 20);
+		
+		return SUCCESS;
 	}
 	
 	

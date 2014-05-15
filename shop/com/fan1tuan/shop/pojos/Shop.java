@@ -44,8 +44,24 @@ public class Shop  extends EntityObject{
 	private double commentLevel; //dish comments now it is sum of the comment level, not the average
 	private double avgCommentLevel;
 	
+	//string path of avatar: img file
+	private String avatar;
+	
+	private Date createTime;
 	
 	
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 	public double getAvgCommentLevel() {
 		return avgCommentLevel;
 	}
