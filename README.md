@@ -7,14 +7,17 @@ Screen Shots
 
 > Welcome Page
 User will visit this age at the very begining.
+
 ![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/1.png)
 
 > Select the Area
 If User has never select an area before, this page will prompt.
+
 ![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/2.png)
 
 > Index Page
 Index Page has Shop & Dish Rank List and Dish Recommendations.
+
 ![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/3.png)
 
 > Food and Shop Rank list
@@ -24,6 +27,7 @@ Index Page has Shop & Dish Rank List and Dish Recommendations.
 
 > Shop Page
 Overview of Shop Page.
+
 ![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/6.png)
 
 > You Can see shop info details in this popover.
