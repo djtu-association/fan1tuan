@@ -8,52 +8,52 @@ Screen Shots
 > Welcome Page
 User will visit this age at the very begining.
 
-![welcome](http://115.28.83.115:1222/cdn/get/git-cache/doomdagger/fan1tuan/1.png)
+![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/1.png)
 
 > Select the Area
 If User has never select an area before, this page will prompt.
 
-![welcome](http://115.28.83.115:1222/cdn/get/git-cache/doomdagger/fan1tuan/2.png)
+![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/2.png)
 
 > Index Page
 Index Page has Shop & Dish Rank List and Dish Recommendations.
 
-![welcome](http://115.28.83.115:1222/cdn/get/git-cache/doomdagger/fan1tuan/3.png)
+![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/3.png)
 
 > Food and Shop Rank list
 
-![welcome](http://115.28.83.115:1222/cdn/get/git-cache/doomdagger/fan1tuan/4.png)
-![welcome](http://115.28.83.115:1222/cdn/get/git-cache/doomdagger/fan1tuan/5.png)
+![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/4.png)
+![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/5.png)
 
 > Shop Page
 Overview of Shop Page.
 
-![welcome](http://115.28.83.115:1222/cdn/get/git-cache/doomdagger/fan1tuan/6.png)
+![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/6.png)
 
 > You Can see shop info details in this popover.
 
-![welcome](http://115.28.83.115:1222/cdn/get/git-cache/doomdagger/fan1tuan/7.png)
+![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/7.png)
 
 > All the Dishes listed here are grouped.
 
-![welcome](http://115.28.83.115:1222/cdn/get/git-cache/doomdagger/fan1tuan/8.png)
+![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/8.png)
 
 > Hit a dish name and you will see the dish info page slide in from the leftside.
 
-![welcome](http://115.28.83.115:1222/cdn/get/git-cache/doomdagger/fan1tuan/9.png)
+![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/9.png)
 
 > After you sign in the platform, you will see the shopping cart at the bottom.
 
-![welcome](http://115.28.83.115:1222/cdn/get/git-cache/doomdagger/fan1tuan/10.png)
+![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/10.png)
 
 > Order Page
 
-![welcome](http://115.28.83.115:1222/cdn/get/git-cache/doomdagger/fan1tuan/11.png)
+![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/11.png)
 
 > User Page
 
-![welcome](http://115.28.83.115:1222/cdn/get/git-cache/doomdagger/fan1tuan/12.png)
+![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/12.png)
 
 > Orders List
 
-![welcome](http://115.28.83.115:1222/cdn/get/git-cache/doomdagger/fan1tuan/13.png)
+![welcome](http://git-cache.oss-cn-qingdao.aliyuncs.com/doomdagger/fan1tuan/13.png)
