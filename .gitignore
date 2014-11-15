@@ -1,5 +1,7 @@
-.DS_Store
-build
+*.DS_Store
 *.class
-.settings
-/.externalToolBuilders
+*.iml
+*.ipr
+*.iws
+
+/target
