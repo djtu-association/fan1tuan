@@ -2,8 +2,6 @@ package com.fan1tuan.test;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Update.update;
-//import static org.springframework.data.mongodb.core.query¡£Query.query;
-
 
 import java.util.List;
 
@@ -19,21 +17,6 @@ public class TestBean {
 
 	public void setTemplate(MongoTemplate template) {
 		this.template = template;
-	}
-	
-	public void insertDocument(String name, int age, String[] contents){
-		Person temp = new Person(name, age);
-		
-		Character[] chs = new Character[contents.length];
-		int i = 0;
-		for(String str : contents){
-			Character character = new Character();
-			character.setContent(str);
-			chs[i++] = character;
-		}
-		
-		temp.setCharacters(chs);
-		template.insert(temp);
 	}
 	
 	public Person findOne(String name){  

@@ -22,7 +22,6 @@ public interface Fan1TuanDao<T> {
 	/**
 	 * 根据传递个命名参数来查找符合条件的表记录，然后执行update
 	 * 根据JPQL来操作
-	 * @param queryName JPQL语句名称   mapper 命名参数对象
 	 */
 	WriteResult updateFirstByParams(CriteriaWrapper criteriaWrapper, UpdateWrapper UpdateWrapper);
 	WriteResult updateFirstByParams(String id, UpdateWrapper UpdateWrapper); 
@@ -39,7 +38,6 @@ public interface Fan1TuanDao<T> {
 	/**
 	 * 根据传递个命名参数来查找符合条件的表记录，然后执行delete
 	 * 根据JPQL来操作
-	 * @param queryName JPQL语句名称   mapper 命名参数对象
 	 */
 	void deleteByParams(CriteriaWrapper criteriaWrapper);
 	
@@ -52,7 +50,6 @@ public interface Fan1TuanDao<T> {
 	/**
 	 * 根据传递个命名参数来查找符合条件的表记录，只返回第一个符合条件的
 	 * 根据JPQL来操作
-	 * @param queryName JPQL语句名称   mapper 命名参数对象
 	 */
 	T findOneByParams(CriteriaWrapper criteriaWrapper);
 	T findOneProjectedByParams(CriteriaWrapper criteriaWrapper, FieldFilter filFieldFilter);
@@ -61,7 +58,6 @@ public interface Fan1TuanDao<T> {
 	/**
 	 * 根据传递个命名参数来查找符合条件的表记录，返回多个对象
 	 * 根据JPQL来操作
-	 * @param queryName JPQL语句名称   mapper 命名参数对象
 	 */
 	List<T> findByParams(CriteriaWrapper criteriaWrapper);
 	List<T> findByParamsInOrder(CriteriaWrapper criteriaWrapper, Sortable sortable);

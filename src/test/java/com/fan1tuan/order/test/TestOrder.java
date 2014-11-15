@@ -1,13 +1,10 @@
 package com.fan1tuan.order.test;
 
 import org.junit.Test;
-import org.omg.CORBA.CTX_RESTRICT_SCOPE;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.fan1tuan.order.business.OrderUserService;
-import com.fan1tuan.order.business.mongoImpl.OrderUserServiceImpl;
-import com.fan1tuan.order.pojos.DishItem;
 import com.fan1tuan.order.pojos.Order;
 import com.fan1tuan.order.util.SystemOutEntity;
 

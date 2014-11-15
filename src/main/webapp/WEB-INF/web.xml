@@ -104,26 +104,7 @@
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 	
-	
-	
-	<!-- servlets -->
-	<servlet>
-		<servlet-name>Fan1TuanWebservice</servlet-name>
-		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
-		<init-param>
-			<param-name>javax.ws.rs.Application</param-name>
-			<param-value>com.fan1tuan.general.webservices.Fan1TuanApplication</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	
-	<!-- servlet mappings -->
-	<servlet-mapping>
-		<servlet-name>Fan1TuanWebservice</servlet-name>
-		<url-pattern>/webservice/rest/*</url-pattern>
-	</servlet-mapping>
-	
-	
+
 	<!-- based settings -->
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

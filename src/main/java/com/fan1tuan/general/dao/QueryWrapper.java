@@ -24,7 +24,7 @@ public class QueryWrapper {
 	}
 	
 	public static Query wrap(CriteriaWrapper criteriaWrapper, FieldFilter fieldFilter, Pageable pageable){
-		Query query = null;
+		Query query;
 		if(criteriaWrapper==null||criteriaWrapper.getCriteria()==null){
 			query = new Query();
 		}else{

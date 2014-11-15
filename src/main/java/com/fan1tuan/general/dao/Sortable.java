@@ -14,9 +14,7 @@ public class Sortable {
 	
 	private Map<String, Integer> sortMap = new HashMap<String, Integer>();
 	
-	private Sortable(){
-		
-	}
+	private Sortable() {}
 	
 	private Sortable(String field, int sort){
 		sortMap.put(field, sort);
@@ -40,7 +38,7 @@ public class Sortable {
 		List<Sort.Order> list = new ArrayList<Sort.Order>();
 		
 		for(Map.Entry<String, Integer> entry : sortMap.entrySet()){
-			Sort.Order order = null;
+			Sort.Order order;
 			if(entry.getValue()==ASCEND){
 				order = new Sort.Order(Sort.Direction.ASC, entry.getKey());
 			}else{

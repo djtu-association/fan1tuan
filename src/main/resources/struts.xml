@@ -110,18 +110,18 @@
 		
 	</package>
 
-	<include file="com/fan1tuan/config/struts-index.xml"></include>
-	<include file="com/fan1tuan/config/struts-order.xml"></include>
-	<include file="com/fan1tuan/config/struts-rank.xml"></include>
-	<include file="com/fan1tuan/config/struts-search.xml"></include>
-	<include file="com/fan1tuan/config/struts-shop.xml"></include>
-	<include file="com/fan1tuan/config/struts-user.xml"></include>
-	<include file="com/fan1tuan/config/struts-life.xml"></include>
+	<include file="com/fan1tuan.config/struts-index.xml"/>
+	<include file="com/fan1tuan.config/struts-order.xml"/>
+	<include file="com/fan1tuan.config/struts-rank.xml"/>
+	<include file="com/fan1tuan.config/struts-search.xml"/>
+	<include file="com/fan1tuan.config/struts-shop.xml"/>
+	<include file="com/fan1tuan.config/struts-user.xml"/>
+	<include file="com/fan1tuan.config/struts-life.xml"/>
 	
 	<!-- admin xml include -->
-	<include file="com/fan1tuan/config/struts-admin.xml"></include>
-	<include file="com/fan1tuan/config/struts-admin-shop.xml"></include>
-	<include file="com/fan1tuan/config/struts-admin-express.xml"></include>
+	<include file="com/fan1tuan.config/struts-admin.xml"/>
+	<include file="com/fan1tuan.config/struts-admin-shop.xml"/>
+	<include file="com/fan1tuan.config/struts-admin-express.xml"/>
 	
 
 </struts>

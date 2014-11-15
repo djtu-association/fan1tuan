@@ -17,7 +17,7 @@
 						http://www.springframework.org/schema/data/mongo
 						http://www.springframework.org/schema/data/mongo/spring-mongo-1.2.xsd">
 	<context:property-placeholder
-		location="classpath:/com/fan1tuan/config/mongo.properties" />
+		location="classpath:/com/fan1tuan.config/mongo.properties" />
    
 	<mongo:mongo id="mongo" host="${mongo.host}" port="${mongo.port}">
 		<mongo:options connections-per-host="${mongo.connectionsPerHost}"
@@ -32,56 +32,56 @@
 	<mongo:db-factory id="mongoDbFactory" dbname="${mongo.dbname}" />
 
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory"></constructor-arg>
-		<property name="writeResultChecking" value="EXCEPTION"></property>
+		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
+		<property name="writeResultChecking" value="EXCEPTION"/>
 	</bean>
 
 
 	<!-- dao files list -->
 	<bean id="areaDao" class="com.fan1tuan.general.dao.impl.AreaDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<bean id="dishCommentDao" class="com.fan1tuan.general.dao.impl.DishCommentDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<bean id="dishDao" class="com.fan1tuan.general.dao.impl.DishDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<bean id="dishTasteTagDao" class="com.fan1tuan.general.dao.impl.DishTasteTagDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<bean id="orderDao" class="com.fan1tuan.general.dao.impl.OrderDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<bean id="rankTagDao" class="com.fan1tuan.general.dao.impl.RankTagDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<bean id="shopAffairTagDao" class="com.fan1tuan.general.dao.impl.ShopAffairTagDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<bean id="shopClientDao" class="com.fan1tuan.general.dao.impl.ShopClientDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<bean id="shopDao" class="com.fan1tuan.general.dao.impl.ShopDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<bean id="shoppingCartDao" class="com.fan1tuan.general.dao.impl.ShoppingCartDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<bean id="shopTasteTagDao" class="com.fan1tuan.general.dao.impl.ShopTasteTagDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<bean id="userDao" class="com.fan1tuan.general.dao.impl.UserDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<bean id="expressOrderDao" class="com.fan1tuan.general.dao.impl.ExpressOrderDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<bean id="expressClientDao" class="com.fan1tuan.general.dao.impl.ExpressClientDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<bean id="sequenceDao" class="com.fan1tuan.general.dao.impl.SequenceDao">
-		<property name="template" ref="mongoTemplate"></property>
+		<property name="template" ref="mongoTemplate"/>
 	</bean>
 	<!-- end dao files list -->
 
@@ -112,38 +112,24 @@
 	</bean>
 	<!-- clean up -->
 
-	<!-- for the test -->
-	<bean id="testBean" class="com.fan1tuan.test.TestBean">
-		<property name="template" ref="mongoTemplate"></property>
-	</bean>
-
-	<bean id="testWebservice" class="com.fan1tuan.general.webservices.Fan1TuanWebserviceTest">
-		<property name="testBean" ref="testBean"></property>
-	</bean>
-	<!--end for the test -->
-
-
 	<!-- aop config -->
 	<bean id="serviceAspect" class="com.fan1tuan.general.business.ServiceAspect">
 	</bean>
 	<aop:config>
-		<aop:aspect ref="serviceAspect">
-			<aop:pointcut id="booleanReturnCut"
-				expression="execution(public boolean com.fan1tuan..*.business.*Service+.*(..))" />
-			<aop:pointcut id="entityObjectReturnCut"
-				expression="execution(public com.fan1tuan.general.pojos.EntityObject+ com.fan1tuan..*.business.*Service+.*(..))" />
-			<aop:pointcut id="collectionObjectReturnCut"
-				expression="execution(public java.util.Collection+ com.fan1tuan..*.business.*Service+.*(..))" />
-			
+		<aop:pointcut id="booleanReturnCut"
+					  expression="execution(public boolean com.fan1tuan..*.business.*Service+.*(..))" />
+		<aop:pointcut id="entityObjectReturnCut"
+					  expression="execution(public com.fan1tuan.general.pojos.EntityObject+ com.fan1tuan..*.business.*Service+.*(..))" />
+		<aop:pointcut id="collectionObjectReturnCut"
+					  expression="execution(public java.util.Collection+ com.fan1tuan..*.business.*Service+.*(..))" />
 
+		<aop:aspect ref="serviceAspect">
 			<aop:around pointcut-ref="booleanReturnCut"
 				method="booleanAroundMethod"/>
 			<aop:around pointcut-ref="entityObjectReturnCut"
 				method="objectAroundMethod"  />
 			<aop:around pointcut-ref="collectionObjectReturnCut"
 				method="objectAroundMethod"  />
-			
-
 		</aop:aspect>
 	</aop:config>
 

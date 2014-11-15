@@ -12,8 +12,6 @@ import org.apache.commons.logging.LogFactory;
  * This is the single entry point for accessing configuration properties in Roller.
  */
 public class Fan1TuanConfig {
-    
-    private static String default_config = "/com/fan1tuan/config/fan1tuan.properties";
 
     private static Properties config;
 
@@ -34,6 +32,7 @@ public class Fan1TuanConfig {
 			Class config_class = Class.forName("com.fan1tuan.general.config.Fan1TuanConfig");
 
             // first, lets load our default properties
+            String default_config = "/com/fan1tuan.config/fan1tuan.properties";
             InputStream is = config_class.getResourceAsStream(default_config);
             config.load(is);
 
@@ -49,7 +48,7 @@ public class Fan1TuanConfig {
             if(log.isDebugEnabled()) {
                 log.debug("Fan1TuanConfig looks like this ...");
 
-                String key = null;
+                String key;
                 @SuppressWarnings("rawtypes")
 				Enumeration keys = config.keys();
                 while(keys.hasMoreElements()) {
@@ -77,7 +76,7 @@ public class Fan1TuanConfig {
     public static String getProperty(String key) {
         log.debug("Fetching property ["+key+"="+config.getProperty(key)+"]");
         String value = config.getProperty(key);
-        return value == null ? value : value.trim();
+        return value == null ? null : value.trim();
     }
     
     /**
@@ -112,7 +111,7 @@ public class Fan1TuanConfig {
         if(value == null)
             return defaultValue;
 
-        return (new Boolean(value)).booleanValue();
+        return Boolean.valueOf(value);
     }
 
     /**
@@ -132,7 +131,7 @@ public class Fan1TuanConfig {
         if (value == null)
             return defaultValue;
 
-        return (new Integer(value)).intValue();
+        return new Integer(value);
     }
 
     /**

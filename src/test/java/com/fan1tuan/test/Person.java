@@ -1,12 +1,14 @@
 package com.fan1tuan.test;
 
+import java.lang.*;
+
 public class Person {
 	private String id;
 	private String name;
 	private int age;
 	private int sex;
 	
-	private Character[] characters;
+	private java.lang.Character[] characters;
 	//private Comment[] comments;
 	
 	
@@ -41,10 +43,10 @@ public class Person {
 		this.age = age;
 	}
 		
-	public Character[] getCharacters() {
+	public java.lang.Character[] getCharacters() {
 		return characters;
 	}
-	public void setCharacters(Character[] characters) {
+	public void setCharacters(java.lang.Character[] characters) {
 		this.characters = characters;
 	}
 	public Person() {}

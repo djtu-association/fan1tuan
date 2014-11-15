@@ -17,13 +17,11 @@ private List<String> includedFields = new ArrayList<String>();
 	
 	/**
 	 * 返回单个实体的ParamMapper
-	 * @param key
-	 * @param value
-	 * @return
+	 * @param field 字段名称
+	 * @return FieldFilter
 	 */
 	public static FieldFilter instance(String field){
-		FieldFilter filter = new FieldFilter(field);
-		return filter;
+		return new FieldFilter(field);
 	}
 	
 	public static FieldFilter instance(Collection<String> fields){
@@ -40,9 +38,8 @@ private List<String> includedFields = new ArrayList<String>();
 	
 	/**
 	 * 向ParamMapper添加一个实体
-	 * @param key
-	 * @param value
-	 * @return
+	 * @param field 字段名称
+	 * @return FieldFilter
 	 */
 	public FieldFilter add(String field){
 		this.includedFields.add(field);
