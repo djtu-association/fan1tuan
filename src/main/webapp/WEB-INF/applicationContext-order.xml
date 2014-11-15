@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.2.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+						http://www.springframework.org/schema/task
+						http://www.springframework.org/schema/task/spring-task-3.2.xsd
+						http://www.springframework.org/schema/data/mongo
+						http://www.springframework.org/schema/data/mongo/spring-mongo-1.2.xsd">
+	
+	<!--  <bean id="orderTestBean" class="com.fan1tuan.order.business.mongoImpl.OrderTestServiceImpl" p:template-ref="mongoTemplate"></bean> -->
+	
+	<!-- 
+	<bean id="orderUserService" class="com.fan1tuan.order.business.mongoImpl.OrderUserServiceImpl" p:template-ref="mongoTemplate"/>
+	
+	<bean id="orderShopService" class="com.fan1tuan.order.business.mongoImpl.OrderShopServiceImpl" p:template-ref="mongoTemplate"/>
+	 -->
+	
+	<!-- spring inject bean use attribute "p:XXX(attribute of the target class)-ref='beanname'" -->
+	<bean id="orderService" class="com.fan1tuan.order.business.mongoImpl.OrderServiceImpl" p:orderDao-ref="orderDao" p:dishDao-ref="dishDao"/>
+	
+	<bean id="orderShopService" class="com.fan1tuan.order.business.mongoImpl.OrderShopServiceImpl" p:orderDao-ref="orderDao"/>
+	
+	<bean id="orderUserService" class="com.fan1tuan.order.business.mongoImpl.OrderUserServiceImpl" p:orderDao-ref="orderDao" p:dishDao-ref="dishDao"></bean>
+	
+	<bean id="shoppingCartService" class="com.fan1tuan.order.business.mongoImpl.ShoppingCartServiceImpl">
+			<property name="shoppingCartDao" ref="shoppingCartDao"></property>
+			<property name="orderDao" ref="orderDao"></property>
+			<property name="shopDao" ref="shopDao"></property>
+			<property name="dishDao" ref="dishDao"></property>
+			</bean>
+			
+	
+	
+	
+</beans>

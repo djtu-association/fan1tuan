@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="order_main" extends="main" namespace="/order">
+	
+		<action name="index" class="com.fan1tuan.order.ui.struts2.core.OrderAction">
+		    <result name="success" type="freemarker">/WEB-INF/ftls/order.ftl</result>
+		</action>
+	
+		
+		<action name="result" method="getOrderResult" class="com.fan1tuan.order.ui.struts2.core.OrderAction" >
+		    <result name="success" type="freemarker">/WEB-INF/ftls/orderSubmit.ftl</result>
+		</action>
+		
+		
+	</package>
+	
+	<package name="order_secure" extends="order_main" namespace="/order/secure">
+		
+	</package>
+	
+	<package name="order_ajax" extends="order_main" namespace="/order/ajax">
+		
+	</package>
+	
+	<package name="order_ajax_secure" extends="order_ajax" namespace="/order/ajax/secure">
+		
+	</package>
+	
+</struts>

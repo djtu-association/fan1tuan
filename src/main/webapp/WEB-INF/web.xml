@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>fan1tuan</display-name>
+	
+	<!-- Listeners -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	
+	<!-- context -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jConfiguration</param-name>
+		<param-value>classpath:/com/fan1tuan/config/log4j2.xml</param-value>
+	</context-param>
+	
+	
+	<!-- Filters -->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>CharEncodingFilter</filter-name>
+		<filter-class>com.fan1tuan.general.ui.core.filter.CharEncodingFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>SchemeEnforcementFilter</filter-name>
+		<filter-class>com.fan1tuan.general.ui.core.filter.SchemeEnforcementFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>requestFilter</filter-name>
+		<filter-class>com.fan1tuan.general.ui.core.filter.RequestFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>autoLoginFilter</filter-name>
+		<filter-class>com.fan1tuan.general.ui.core.filter.AutoLoginFilter</filter-class>
+	</filter>
+	<filter>
+	    <filter-name>sessionFilter</filter-name>
+	    <filter-class>com.fan1tuan.general.ui.core.filter.SessionFilter</filter-class>
+	</filter>
+	<filter>
+	    <filter-name>needAreaFilter</filter-name>
+	    <filter-class>com.fan1tuan.general.ui.core.filter.NeedAreaFilter</filter-class>
+	</filter>
+	
+	<!-- filters mapping -->
+	
+	<filter-mapping>
+		<filter-name>CharEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>requestFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+	    <filter-name>sessionFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SchemeEnforcementFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>*.f1t</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>needAreaFilter</filter-name>
+		<url-pattern>*.f1t</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>autoLoginFilter</filter-name>
+		<url-pattern>*.f1t</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	
+	
+	
+	<!-- servlets -->
+	<servlet>
+		<servlet-name>Fan1TuanWebservice</servlet-name>
+		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>com.fan1tuan.general.webservices.Fan1TuanApplication</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<!-- servlet mappings -->
+	<servlet-mapping>
+		<servlet-name>Fan1TuanWebservice</servlet-name>
+		<url-pattern>/webservice/rest/*</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!-- based settings -->
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/ftls/404.html</location>
+	</error-page>
+	
+</web-app>
