@@ -14,7 +14,21 @@ $(document).ready(function(){
 	
 	this.phone_AjaxChange = function(pNumber){
 		var url = "rank/ajax/phoneCallShopRank.f1t";
-		var data = {"data":"data"};
+
+		var shopTasteTagIds = $('#call_taste').val();
+
+		var data = {
+			"pSize": 12,
+			"pNumber": pNumber,
+			"accord": $('#call_accord').val(),
+			"order": 1,
+			"shopType": 2,
+			"shopTasteTagIds": shopTasteTagIds
+		};
+
+		if (shopTasteTagIds == "")
+			delete data["shopTasteTagIds"];
+
 		$.getJSON(url,data,function(json){
 			phone_createPanel(json);
 		});
@@ -64,6 +78,9 @@ $(document).ready(function(){
 				partial += "&nbsp;<a class='btn btn-danger' href='javascript:void(0)' onclick="+funcAddCollect+" title='收藏该店铺'><span class='glyphicon glyphicon-heart' id='call_spn_"+i+"'></span></a>";
 			}
 			//"&nbsp;<a class='btn btn-danger' href='javascript:void(0)' onclick="+funcAddCollect+" title='收藏该菜品'><span class='glyphicon glyphicon-heart' id='call_spn_"+i+"'></span></a>"+//点击收藏可以收藏该店铺，这里是收藏店铺，而不是收藏菜品
+
+			var inner_type = data[i].content.type == 0 ? "摊位":"实体店";
+
 			partial += "</p></div>"+
 			"</div>"+
 			"<div  class='sr-only'>"+//店铺popover弹出框，id动态生成
@@ -82,7 +99,7 @@ $(document).ready(function(){
         </p>\
         <p>\
             <span>我是</span>\
-            <strong><span class="text text-danger">'+data[i].content.type+'</span></strong>\
+            <strong><span class="text text-danger">'+inner_type+'</span></strong>\
             <span>，</span>\
             <strong><span class="text text-danger"><i class="glyphicon glyphicon-road"></i>'+data[i].content.deliveryCharge+'元</span></strong>\
             <span>起送，人均</span>\

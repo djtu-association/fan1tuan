@@ -230,7 +230,7 @@ public class ShopRankServiceImpl implements ShopRankService {
 			criteriaWrapper.is("type", shopType.ordinal());
 		}
 		
-		Sortable sortable = null;
+		Sortable sortable;
 		if(accord == Constants.RankAccord.POPULARITY){
 			sortable = Sortable.instance("popularity", order.ordinal());
 		} else {
@@ -264,7 +264,7 @@ public class ShopRankServiceImpl implements ShopRankService {
 				.all("shopTasteTagIds", shopTasteTagIds)
 				.all("shopAffairTagIds", shopAffairTagIds);
 		Sortable sortable = null;
-		
+
 		if(open == ShopState.OPEN){
 			criteriaWrapper.is("open", true);
 		}
@@ -282,12 +282,17 @@ public class ShopRankServiceImpl implements ShopRankService {
 		}else{
 			sortable = Sortable.instance("popularity", order.ordinal());
 		}
+
+		//pageable.setPageSize(pageable.getPageSize()-1);
+
 		Circle circle = makeCircleWithArea(areaId);
 		GeoResults<Shop> geoResults = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(criteriaWrapper, null, pageable).with(sortable.toSort()));
 		List<ShopGeo> shopGeos = new ArrayList<ShopGeo>();
 		for(GeoResult<Shop> geoResult: geoResults){
 			shopGeos.add(new ShopGeo(geoResult.getContent(), geoResult.getDistance().getValue()));
 		}
+		//System.out.println("!!!size:"+shopGeos.size()+"\n"+pageable.getPageSize());
+
 		//计算页数，实属无奈，查询需要两次
 		GeoResults<Shop> pageCountResults = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(criteriaWrapper, FieldFilter.instance("id"), null));
 		pageable.setItemsNum(pageCountResults.getContent().size());
@@ -297,15 +302,11 @@ public class ShopRankServiceImpl implements ShopRankService {
 	}
 	@Override
 	public List<ShopGeo> rankOnlineShopGeos(String areaId, Pageable pageable) {
-		return this.rankOnlineShopGeos(ShopType.ALL, null, null, RankAccord.POPULARITY, Sort.DESC, ShopState.ALL, areaId, pageable);
+		return this.rankOnlineShopGeos(ShopType.ALL, null, null, RankAccord.POPULARITY, Sort.DESC, ShopState.OPEN, areaId, pageable);
 
 	}
-	
 
-	
-	
-	
-	
+
 	@Override
 	public List<String> transformShopListToShopIdList(List<Shop> shops) {
 		List<String> list = new ArrayList<String>();

@@ -53,7 +53,12 @@ public class Pageable {
 		if(length == 0)return 0;
 		return (length<pageSize)?1:((length%pageSize==0)?(length/pageSize):(length/pageSize+1));
 	}
-	
+
+	public static long getPageLength(Pageable page) {
+		if(page.itemsNum == 0) return 0;
+		return (page.itemsNum < page.pageSize)?1:((page.itemsNum%page.pageSize==0)?(page.itemsNum/page.pageSize):(page.itemsNum/page.pageSize+1));
+	}
+
 	public static long getPageLength(long itemsNum,int pageSize){
 		if(itemsNum == 0)return 0;
 		return (itemsNum<pageSize)?1:((itemsNum%pageSize==0)?(itemsNum/pageSize):(itemsNum/pageSize+1));

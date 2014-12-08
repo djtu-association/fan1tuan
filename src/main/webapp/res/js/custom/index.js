@@ -176,12 +176,12 @@ $('document').ready(function () {
      */
     this.index_ChangeHiddenSelTaste = function (obj, type) {
         if (type == 1) {
-            $('#shop_taste').val($('#shop_taste').val() + "," + obj.value);
+            $('#shop_taste').val(obj.value);
         }
         else if (type == 2) {
-            $('#dish_taste').val($('#dish_taste').val() + "," + obj.value);
+            $('#dish_taste').val(obj.value);
         } else {
-            $('#call_taste').val($('#call_taste').val() + "," + obj.value);
+            $('#call_taste').val(obj.value);
         }
     };
 

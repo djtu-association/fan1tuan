@@ -20,12 +20,12 @@ $(document).ready(function () {
     this.shop_AjaxChange = function (pNumber) {
 
         var pSize = 12;
-        var open = 1;
+        var open = 1; //正在开店
         var order = 1;//1:desc,0:asc
-        var shopType = 2;
+        var shopType = 2;//全部的店铺类型：摊位和实体店
         var accord = $('#shop_accord').val();
         var shopAffairTagIds = {};
-        var shopTasteTagIds = $('#shop_taste').val().split(",");
+        var shopTasteTagIds = $('#shop_taste').val();
 
 
         //ajax url
@@ -41,6 +41,8 @@ $(document).ready(function () {
             "shopTasteTagIds": shopTasteTagIds
         };
         //data需要的参数：pNumber,pSize,accord(人气，销量，评分),open,areaId,shop,shopTasteTagIds, shopAffairTagIds,order
+        if (shopTasteTagIds == "")
+            delete data["shopTasteTagIds"];
 
         $.getJSON(url, data, function (json) {
             shop_createPanel(json);
@@ -91,11 +93,13 @@ $(document).ready(function () {
                 partial += "&nbsp;<a class='btn btn-danger' href='javascript:void(0)' onclick=" + funcAddCollect + " title='收藏该店铺'><span class='glyphicon glyphicon-heart' id='shop_spn_" + i + "'></span></a>";
             }
             //partial +=  "&nbsp;<a class='btn btn-danger' href='javascript:void(0)' onclick="+funcAddCollect+" title='收藏该店铺'><span class='glyphicon glyphicon-heart' id='shop_spn_"+i+"'></span></a>"+//点击收藏可以收藏该店铺，这里是收藏店铺，而不是收藏菜品
+
+            var inner_type = data[i].content.type == 0 ? "摊位":"实体店";
+
             partial += "</p></div>" +
             "</div>" +
             "<div  class='sr-only'>" +//店铺popover弹出框，id动态生成
             "<div id='popover_" + (i + 1) + "'>" +
-
             '<p>\
             <span class="text text-warning"><strong>公告:</strong></span>\
             <span class="text text-warning">' + data[i].content.announcement + '</span>\
@@ -110,7 +114,7 @@ $(document).ready(function () {
         </p>\
         <p>\
             <span>我是</span>\
-            <strong><span class="text text-danger">' + data[i].content.type + '</span></strong>\
+            <strong><span class="text text-danger">' + inner_type + '</span></strong>\
             <span>，</span>\
             <strong><span class="text text-danger"><i class="glyphicon glyphicon-road"></i>' + data[i].content.deliveryCharge + '元</span></strong>\
             <span>起送，人均</span>\

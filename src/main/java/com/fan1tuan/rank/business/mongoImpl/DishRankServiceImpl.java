@@ -203,7 +203,7 @@ public class DishRankServiceImpl implements DishRankService {
 	}
 	@Override
 	public List<Dish> rankDish(String areaId, Pageable pageable) {
-		return this.rankDish(ShopType.ALL, RankAccord.SALEVOLUME, Sort.DESC, ShopState.ALL, areaId, pageable);
+		return this.rankDish(ShopType.ALL, RankAccord.SALEVOLUME, Sort.DESC, ShopState.OPEN, areaId, pageable);
 	}
 	@Override
 	public List<Dish> rankDish(ShopType shopType, RankAccord rankAccord,

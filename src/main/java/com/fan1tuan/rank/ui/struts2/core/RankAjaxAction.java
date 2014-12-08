@@ -1,9 +1,6 @@
 package com.fan1tuan.rank.ui.struts2.core;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
@@ -58,6 +55,8 @@ public class RankAjaxAction extends Fan1TuanAction {
 	
 	private List<Dish> rankDishList;
 	private List<Dish> rankDishListByTag;
+
+
 	/*
 	 * 返回tag排行 例如菜品之星
 	 */
@@ -70,12 +69,29 @@ public class RankAjaxAction extends Fan1TuanAction {
       return Action.SUCCESS;
 		
 	}
-	
+
+	/*------------------ /rank/ajax/dishRank.f1t ---------------------*/
+
+	// 入参
+	// pNumber -- 页号
+	// pSize -- 单页容量
+	// shopType -- 店铺类型
+	// accord -- 排行依据
+	// order -- 递增递减
+	// open -- 是否开门
+	//
+	// 出参
+	// dishGeo -- 集合
+	// pageMap -- Map
+
 	//菜品排行，筛选
 	public String getDishRank()
 	{
 		//缺少dishTasteTag
+
+		// area的ID
 		areaId = (String) SessionUtil.getArea(session).get(ISession.AREAID);
+		// 生成page对象
 		Pageable page = Pageable.inPage(pNumber, pSize);
 				
 		rankDishList = dishRankService.rankDish(ShopType.valueOf(shopType), RankAccord.valueOf(accord), Sort.valueOf(order), ShopState.valueOf(open), areaId, page);
@@ -84,18 +100,21 @@ public class RankAjaxAction extends Fan1TuanAction {
 			//String userId = ((HashMap<String, String>)session.get(ISession.USER)).get(ISession.USER_ID);
 			Map<String, Object> user = SessionUtil.getUser(session);
 			String userId = (user == null)?null:(String)user.get(ISession.USER_ID);
+
+			//用户是否登陆，登陆的话标记收藏菜品
 			if(userId != null){
-				for(int i=0,size=rankDishList.size(); i<size; i++){
-					dishGeos.add(i, new DishGeo(rankDishList.get(i),Constants.FALSE));
-					if(userService.isLikeDish(userId, dishGeos.get(i).getContent().getId())){
-						dishGeos.get(i).setLike(Constants.TRUE);
+				for (Dish aRankDishList : rankDishList) {
+					DishGeo geoTemp = new DishGeo(aRankDishList, Constants.FALSE);
+					if(userService.isLikeDish(userId, geoTemp.getContent().getId())){
+						geoTemp.setLike(Constants.TRUE);
 					}else{
-						dishGeos.get(i).setLike(Constants.FALSE);
+						geoTemp.setLike(Constants.FALSE);
 					}
+					dishGeos.add(geoTemp);
 				}
 			}else{
-				for(int i=0,size=rankDishList.size(); i<size; i++){
-					dishGeos.add(i, new DishGeo(rankDishList.get(i),Constants.FALSE));
+				for (Dish aRankDishList : rankDishList) {
+					dishGeos.add(new DishGeo(aRankDishList, Constants.FALSE));
 				}
 			}
 		} catch (Exception e) {
@@ -105,16 +124,24 @@ public class RankAjaxAction extends Fan1TuanAction {
 		
 		setDishGeo(dishGeos);
 		//System.err.println("page items:"+page.getItemsNum()+";pageSize:"+page.getPageSize());
-		long length = Pageable.getPageLength(page.getItemsNum(), page.getPageSize());
+
+		long length = Pageable.getPageLength(page);
 	    pageMap = new HashMap<String, Long>();
 	    pageMap.put("length", length);
-	    pageMap.put("number", Long.valueOf(pNumber));
-	    
-	    
+	    pageMap.put("number", (long) pNumber);
+
+
 		return Action.SUCCESS;
 	}
 
-	
+	/* ----------------- /rank/ajax/dishRankDefault.f1t -------------------*/
+
+	// 入参
+	//
+	// 出参
+	// dishGeo -- 集合
+	// pageMap -- Map
+
 	//菜品排行，默认
 	public String getDishRankDefault()
 	{
@@ -123,24 +150,27 @@ public class RankAjaxAction extends Fan1TuanAction {
 		Pageable page = Pageable.inPage(pNumber, pSize);
 		areaId = (String) SessionUtil.getArea(session).get(ISession.AREAID);
 		rankDishList = dishRankService.rankDish(areaId, page);
+
 		List<DishGeo> dishGeos = new ArrayList<DishGeo>();
 		
 		try {
-			//String userId = ((HashMap<String, String>)session.get(ISession.USER)).get(ISession.USER_ID);
 			Map<String, Object> user = SessionUtil.getUser(session);
 			String userId = (user == null)?null:(String)user.get(ISession.USER_ID);
+
+			//用户是否登陆，登陆的话标记收藏菜品
 			if(userId != null){
-				for(int i=0,size=rankDishList.size(); i<size; i++){
-					dishGeos.add(i, new DishGeo(rankDishList.get(i),Constants.FALSE));
-					if(userService.isLikeDish(userId, dishGeos.get(i).getContent().getId())){
-						dishGeos.get(i).setLike(Constants.TRUE);
+				for (Dish aRankDishList : rankDishList) {
+					DishGeo geoTemp = new DishGeo(aRankDishList, Constants.FALSE);
+					if(userService.isLikeDish(userId, geoTemp.getContent().getId())){
+						geoTemp.setLike(Constants.TRUE);
 					}else{
-						dishGeos.get(i).setLike(Constants.FALSE);
+						geoTemp.setLike(Constants.FALSE);
 					}
+					dishGeos.add(geoTemp);
 				}
 			}else{
-				for(int i=0,size=rankDishList.size(); i<size; i++){
-					dishGeos.add(i, new DishGeo(rankDishList.get(i),Constants.FALSE));
+				for (Dish aRankDishList : rankDishList) {
+					dishGeos.add(new DishGeo(aRankDishList, Constants.FALSE));
 				}
 			}
 		} catch (Exception e) {
@@ -149,13 +179,28 @@ public class RankAjaxAction extends Fan1TuanAction {
 		
 		setDishGeo(dishGeos);
 		//System.err.println("page items:"+page.getItemsNum()+";pageSize:"+page.getPageSize());
-		long length = Pageable.getPageLength(page.getItemsNum(), page.getPageSize());
+		long length = Pageable.getPageLength(page);
+
 	    pageMap = new HashMap<String, Long>();
 	    pageMap.put("length", length);
-	    pageMap.put("number", Long.valueOf(pNumber));
-	    
+	    pageMap.put("number", (long) pNumber);
+
 		return Action.SUCCESS;
 	}
+
+	/* ------------------------ /rank/ajax/phoneCallShopRank.f1t -------------------- */
+
+	// 入参
+	// pNumber -- 页号
+	// pSize -- 单页容量
+	// shopType -- 店铺类型
+	// shopTasteTagIds -- taste id 集合
+	// accord -- 排行依据
+	// order -- 递增递减
+	//
+	// 出参
+	// shopGeo -- 集合
+	// pageMap -- Map
 
 	//电话店铺，筛选
 	@SuppressWarnings("unchecked")
@@ -164,22 +209,22 @@ public class RankAjaxAction extends Fan1TuanAction {
 		areaId = (String) ((HashMap<String, Object>)session.get(ISession.AREA)).get(ISession.AREAID);
 		Pageable page = Pageable.inPage(pNumber, pSize);
 		
-		List<ShopGeo> shopGeos = shopRankService.rankPhoneCallShopGeos(ShopType.valueOf("shopType"), shopTasteTagIds, RankAccord.valueOf(accord), Sort.valueOf(order), areaId, page);
+		List<ShopGeo> shopGeos = shopRankService.rankPhoneCallShopGeos(ShopType.valueOf(shopType), shopTasteTagIds, RankAccord.valueOf(accord), Sort.valueOf(order), areaId, page);
 		try {
 			//String userId = ((HashMap<String, String>)session.get(ISession.USER)).get(ISession.USER_ID);
 			HashMap<String, String> user = (HashMap<String, String>)session.get(ISession.USER);
 			String userId = (user == null)?null:user.get(ISession.USER_ID);
 			if(userId != null){
-				for(int i=0,size=shopGeos.size(); i<size; i++){
-					if(userService.isLikeShop(userId, shopGeos.get(i).getContent().getId())){
-						shopGeos.get(i).setLike(Constants.TRUE);
-					}else{
-						shopGeos.get(i).setLike(Constants.FALSE);
+				for (ShopGeo shopGeo1 : shopGeos) {
+					if (userService.isLikeShop(userId, shopGeo1.getContent().getId())) {
+						shopGeo1.setLike(Constants.TRUE);
+					} else {
+						shopGeo1.setLike(Constants.FALSE);
 					}
 				}
 			}else{
-				for(int i=0,size=shopGeos.size(); i<size; i++){
-					shopGeos.get(i).setLike(Constants.FALSE);
+				for (ShopGeo shopGeo1 : shopGeos) {
+					shopGeo1.setLike(Constants.FALSE);
 				}
 			}
 		} catch (Exception e) {
@@ -187,13 +232,23 @@ public class RankAjaxAction extends Fan1TuanAction {
 		}
 		
 		setShopGeo(shopGeos);
-		long length = Pageable.getPageLength(page.getItemsNum(), page.getPageSize());
+
+		long length = Pageable.getPageLength(page);
 	    pageMap = new HashMap<String, Long>();
 	    pageMap.put("length", length);
-	    pageMap.put("number", Long.valueOf(pNumber));
+	    pageMap.put("number", (long) pNumber);
 		return Action.SUCCESS;
 	}
-	
+
+
+	/* ------------------------ /rank/ajax/phoneCallShopRankDefault.f1t -------------------- */
+
+	// 入参
+	//
+	// 出参
+	// shopGeo -- 集合
+	// pageMap -- Map
+
 	//电话店铺，默认
 	@SuppressWarnings("unchecked")
 	public String getPhoneCallShopRankDefault()
@@ -209,16 +264,16 @@ public class RankAjaxAction extends Fan1TuanAction {
 		    HashMap<String, String> user = (HashMap<String, String>) session.get(ISession.USER);
 		    String userId = (user == null)?null:user.get(ISession.USER_ID);
 			if(userId != null){
-				for(int i=0,size=shopGeos.size(); i<size; i++){
-					if(userService.isLikeShop(userId, shopGeos.get(i).getContent().getId())){
-						shopGeos.get(i).setLike(Constants.TRUE);
-					}else{
-						shopGeos.get(i).setLike(Constants.FALSE);
+				for (ShopGeo shopGeo1 : shopGeos) {
+					if (userService.isLikeShop(userId, shopGeo1.getContent().getId())) {
+						shopGeo1.setLike(Constants.TRUE);
+					} else {
+						shopGeo1.setLike(Constants.FALSE);
 					}
 				}
 			}else{
-				for(int i=0,size=shopGeos.size(); i<size; i++){
-					shopGeos.get(i).setLike(Constants.FALSE);
+				for (ShopGeo shopGeo1 : shopGeos) {
+					shopGeo1.setLike(Constants.FALSE);
 				}
 			}
 		} catch (Exception e) {
@@ -229,10 +284,25 @@ public class RankAjaxAction extends Fan1TuanAction {
 		long length = Pageable.getPageLength(page.getItemsNum(), page.getPageSize());
 	    pageMap = new HashMap<String, Long>();
 	    pageMap.put("length", length);
-	    pageMap.put("number", Long.valueOf(pNumber));
+	    pageMap.put("number", (long) pNumber);
 		return Action.SUCCESS;
 	}
-	
+
+	/* ------------------------ /rank/ajax/onlineShopRank.f1t -------------------- */
+
+	// 入参
+	// pNumber -- 页号
+	// pSize -- 单页容量
+	// shopType -- 店铺类型
+	// shopTasteTagIds -- taste id 集合
+	// accord -- 排行依据
+	// order -- 递增递减
+	// open -- 是否开门
+	//
+	// 出参
+	// shopGeo -- 集合
+	// pageMap -- Map
+
 	//店铺排行，筛选
 	@SuppressWarnings("unchecked")
 	public String getOnlineShopRank()
@@ -245,16 +315,16 @@ public class RankAjaxAction extends Fan1TuanAction {
 			HashMap<String, String> user = (HashMap<String, String>)session.get(ISession.USER);
 			String userId = (user == null)?null:user.get(ISession.USER_ID);
 			if(userId != null){
-				for(int i=0,size=shopGeos.size(); i<size; i++){
-					if(userService.isLikeShop(userId, shopGeos.get(i).getContent().getId())){
-						shopGeos.get(i).setLike(Constants.TRUE);
-					}else{
-						shopGeos.get(i).setLike(Constants.FALSE);
+				for (ShopGeo shopGeo1 : shopGeos) {
+					if (userService.isLikeShop(userId, shopGeo1.getContent().getId())) {
+						shopGeo1.setLike(Constants.TRUE);
+					} else {
+						shopGeo1.setLike(Constants.FALSE);
 					}
 				}
 			}else{
-				for(int i=0,size=shopGeos.size(); i<size; i++){
-					shopGeos.get(i).setLike(Constants.FALSE);
+				for (ShopGeo shopGeo1 : shopGeos) {
+					shopGeo1.setLike(Constants.FALSE);
 				}
 			}
 		} catch (Exception e) {
@@ -262,13 +332,24 @@ public class RankAjaxAction extends Fan1TuanAction {
 		}
 		
 		setShopGeo(shopGeos);
-		long length = Pageable.getPageLength(page.getItemsNum(), page.getPageSize());
+
+		long length = Pageable.getPageLength(page);
 	    pageMap = new HashMap<String, Long>();
 	    pageMap.put("length", length);
-	    pageMap.put("number", Long.valueOf(pNumber));
+	    pageMap.put("number", (long) pNumber);
+
 		return Action.SUCCESS;
 	}
-	
+
+
+	/* ------------------------ /rank/ajax/onlineShopRankDefault.f1t -------------------- */
+
+	// 入参
+	//
+	// 出参
+	// shopGeo -- 集合
+	// pageMap -- Map
+
 	//店铺排行，默认
 	@SuppressWarnings("unchecked")
 	public String getOnlineShopRankDefault()
@@ -284,16 +365,16 @@ public class RankAjaxAction extends Fan1TuanAction {
 			HashMap<String, String> user = (HashMap<String, String>)session.get(ISession.USER);
 			String userId = (user == null)?null:user.get(ISession.USER_ID);
 			if(userId != null){
-				for(int i=0,size=shopGeos.size(); i<size; i++){
-					if(userService.isLikeShop(userId, shopGeos.get(i).getContent().getId())){
-						shopGeos.get(i).setLike(Constants.TRUE);
-					}else{
-						shopGeos.get(i).setLike(Constants.FALSE);
+				for (ShopGeo shopGeo1 : shopGeos) {
+					if (userService.isLikeShop(userId, shopGeo1.getContent().getId())) {
+						shopGeo1.setLike(Constants.TRUE);
+					} else {
+						shopGeo1.setLike(Constants.FALSE);
 					}
 				}
 			}else{
-				for(int i=0,size=shopGeos.size(); i<size; i++){
-					shopGeos.get(i).setLike(Constants.FALSE);
+				for (ShopGeo shopGeo1 : shopGeos) {
+					shopGeo1.setLike(Constants.FALSE);
 				}
 			}
 		} catch (Exception e) {
@@ -301,10 +382,12 @@ public class RankAjaxAction extends Fan1TuanAction {
 		}
 		
 		setShopGeo(shopGeos);
-		long length = Pageable.getPageLength(page.getItemsNum(), page.getPageSize());
+
+		long length = Pageable.getPageLength(page);
 	    pageMap = new HashMap<String, Long>();
 	    pageMap.put("length", length);
-	    pageMap.put("number", Long.valueOf(pNumber));
+	    pageMap.put("number", (long) pNumber);
+
 		return Action.SUCCESS;
 	}
 	
@@ -353,10 +436,13 @@ public class RankAjaxAction extends Fan1TuanAction {
 		this.userService = userService;
 	}
 	public List<String> getShopTasteTagIds() {
-		return shopTasteTagIds;
+		return shopTasteTagIds.size() == 0? null : this.shopTasteTagIds;
 	}
 	public void setShopTasteTagIds(List<String> shopTasteTagIds) {
 		this.shopTasteTagIds = shopTasteTagIds;
+		if (shopTasteTagIds != null && shopTasteTagIds.size() == 0) {
+			this.shopTasteTagIds = null;
+		}
 	}
 	public int getShopType() {
 		return shopType;
@@ -424,8 +510,5 @@ public class RankAjaxAction extends Fan1TuanAction {
 	public void setRankDishList(List<Dish> rankDishList) {
 		this.rankDishList = rankDishList;
 	}
-	
-	
-	
 
 }

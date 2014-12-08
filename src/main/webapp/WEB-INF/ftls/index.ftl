@@ -594,8 +594,9 @@
 
                         <div class="col-lg-3">
                             <div class="btn-group">
-                                <select id="sel_shop_taste" multiple="multiple" title="选择口味"
+                                <select id="sel_shop_taste" title="选择口味"
                                         onchange="index_ChangeHiddenSelTaste(this,1);shop_AjaxChange(0);">
+                                    <option value="">全部</option>
                                 <#list shopTasteTags as tags>
                                     <option value="${tags.id}">${tags.name}</option>
                                 </#list>
@@ -606,7 +607,7 @@
 
                         <div class="col-lg-6 pull-right">
                             <div class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-primary">
+                                <label class="btn btn-primary active">
                                     <input type="radio" name="options1" id="option1" value="0"
                                            onchange="javascript:index_ChangeHiddenAccord(1,0);shop_AjaxChange(0);"> 人气
                                     <span class="glyphicon glyphicon-sort-by-attributes"></span>
@@ -662,24 +663,12 @@
                         </div>
 
                         <div class="span3">
-                            <div class="btn-group">
-                                <select id="sel_dish_taste" multiple="multiple" title="选择口味"
-                                        onchange="index_ChangeHiddenSelTaste(this,2);dish_AjaxChange(0);">
-                                <#list shopTasteTags as tags>
-                                    <option value="${tags.id}">${tags.name}</option>
-                                </#list>
-                                </select>
-                            </div>
+
                         </div>
 
                         <div class="span6 pull-right">
                             <div class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-primary">
-                                    <input type="radio" name="options" id="dish_option1" value="0"
-                                           onchange="javascript:index_ChangeHiddenAccord(2,0);dish_AjaxChange(0);"> 人气
-                                    <span class="glyphicon glyphicon-sort-by-attributes"></span>
-                                </label>
-                                <label class="btn btn-primary">
+                                <label class="btn btn-primary active">
                                     <input type="radio" name="options" id="dish_option2" value="1"
                                            onchange="javascript:index_ChangeHiddenAccord(2,1);dish_AjaxChange(0);"> 销量
                                     <span class="glyphicon glyphicon-sort-by-attributes"></span>
@@ -803,8 +792,9 @@
                         </div>
 
                         <div class="span3">
-                            <select id="sel_call_taste" multiple="multiple" title="选择口味"
-                                    onchange="index_ChangeHiddenSelTaste(this,3);">
+                            <select id="sel_call_taste" title="选择口味"
+                                    onchange="index_ChangeHiddenSelTaste(this,3);phone_AjaxChange(0);">
+                                <option value="">全部</option>
                             <#list shopTasteTags as tags>
                                 <option value="${tags.id}">${tags.name}</option>
                             </#list>
@@ -813,7 +803,7 @@
 
                         <div class="span6">
                             <div class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-primary">
+                                <label class="btn btn-primary active">
                                     <input type="radio" name="options" id="option1"
                                            onchange="javascript:index_ChangeHiddenAccord(3,0);phone_AjaxChange(0);"> 人气
                                     <span class="glyphicon glyphicon-sort-by-attributes"></span>
