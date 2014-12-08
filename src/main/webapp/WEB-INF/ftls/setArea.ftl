@@ -26,27 +26,33 @@
 </head>
 <body style="background: white">
 <span class="col-lg-12"/>
+
 <div class="jumbotron">
     <div class="container">
         <div class="col-lg-12">
-            <h1>欢迎进入饭1团！<small></small></h1>
+            <h1>欢迎进入饭1团！
+                <small></small>
+            </h1>
             <p><h4>请选择您所在的商圈</h4></p>
             <p>
+
             <div class="panel panel-primary">
                 <div class="panel-body">
-                	<#list area as item>
-                		<span class="span2">
-                		<a href="javascript:void(0);" onclick="location='updateArea.f1t?areaId=${item.id}&areaName=${item.name}&redirect=${redirect!""}'">
-                		<div class="palette 
+                <#list area as item>
+                    <span class="span2">
+                		<a href="javascript:void(0);"
+                           onclick="location='updateArea.f1t?areaId=${item.id}&areaName=${item.name}&redirect=${redirect!""}'">
+                            <div class="palette
                 		<#if item_index+1%5 == 1>palette-belize-hole
                 		<#elseif item_index+1%5 == 2>palette palette-emerald
                 		<#elseif item_index+1%5 == 3>palette palette-carrot
                 		<#elseif item_index+1%5 == 4>palette palette-sun-flower
                 		<#elseif item_index+1%5 == 0>palette palette-concrete
                 		</#if>
-                		" style="height: 70px;width: 195px;font-size: 14px;text-align: left;margin-bottom: 20px;">
-                		${item.name}</div></a></span>
-                	</#list>
+                		" style="height: 80px;width: 208px;font-size: 16px;text-align: center;margin-bottom: 35px;">
+                            ${item.name}</div>
+                        </a></span>
+                </#list>
                 </div>
             </div>
             </p>

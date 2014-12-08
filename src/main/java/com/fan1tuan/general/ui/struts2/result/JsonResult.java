@@ -1,14 +1,11 @@
 package com.fan1tuan.general.ui.struts2.result;
 
 import java.io.PrintWriter;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import org.apache.struts2.ServletActionContext;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.fan1tuan.general.pojos.EntityObject;
@@ -35,9 +32,63 @@ public class JsonResult implements Result {
 		this.included = included;
 	}
 
+
+	/**
+	 * 递归获取可以put到JSONObject中的对象
+	 * @param object POJOs
+	 * @return JsonObject
+	 */
+	@SuppressWarnings("rawtypes")
+	private Object getJsonObject(Object object){
+
+		if(object==null){
+			return null;
+		}
+
+		if(object instanceof EntityObject){ //字段对象为EntityObject
+			object = ((EntityObject)object).toJSON();
+		}else if(object instanceof Date){  //字段对象为Date
+			object = ((Date)object).getTime();
+		}else if(object instanceof Map){
+			JSONObject jsonObject = new JSONObject();
+			for(Object obj : ((Map)object).entrySet()){
+				Map.Entry entry = (Map.Entry)obj;
+				//如果为map，必须保证key为String
+				try {
+					jsonObject.put(entry.getKey().toString(), getJsonObject(entry.getValue()));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+
+			object = jsonObject;
+
+		}else if(object instanceof Collection){
+			JSONArray jsonArray = new JSONArray();
+
+			for(Object obj : (Collection)object){
+				jsonArray.put(getJsonObject(obj));
+			}
+
+			object = jsonArray;
+		}
+
+		return object;
+	}
+
+
 	@SuppressWarnings("rawtypes")
 	public void execute(ActionInvocation invocation) throws Exception {
-		ServletActionContext.getResponse().setContentType("application/json");
+		//为了jsonp，扩展当前的jsonResult
+		String callBack = ServletActionContext.getRequest().getParameter("callback");
+		boolean jsonpFlag = false;
+		if(callBack!=null&&!"".equals(callBack)){
+			ServletActionContext.getResponse().setContentType("text/javascript");
+			jsonpFlag = true;
+		}else{
+			ServletActionContext.getResponse().setContentType("application/json");
+		}
+
 		ServletActionContext.getResponse().setCharacterEncoding("UTF-8");
 
 		PrintWriter responseStream = ServletActionContext.getResponse()
@@ -46,115 +97,23 @@ public class JsonResult implements Result {
 		ValueStack valueStack = invocation.getStack();
 
 		JSONObject json = new JSONObject();
-		Map<String, Object> map = new HashMap<String, Object>();
 
 		String[] included = this.included.split(",");
 
-		if (included == null || included.length == 0) {
-
-		} else {
+		if (included.length != 0) {
 			// 指定了included参数
 			for (String name : included) {
-				map.put(name.trim(), valueStack.findValue(name));
+
+				Object value = valueStack.findValue(name);
+
+				json.put(name, getJsonObject(value));
 			}
 		}
 
-		for (Map.Entry<String, Object> entry : map.entrySet()) {
-			if (entry.getValue() instanceof EntityObject) {
-				json.put(entry.getKey(),
-						((EntityObject) entry.getValue()).toJSON());
-			} else if (entry.getValue() instanceof Date) {
-				json.put(entry.getKey(), ((Date) entry.getValue()).getTime());
-			} else if (entry.getValue() instanceof List) {
-				if(entry.getValue()!=null&&((List)entry.getValue()).size()!=0){
-					Object elem = ((List) entry.getValue()).iterator().next();
-					if (elem instanceof EntityObject) {
-						JSONArray array = new JSONArray();
-
-						for (Object object : ((List) entry.getValue())) {
-							array.put(((EntityObject) object).toJSON());
-						}
-
-						json.put(entry.getKey(), array);
-					} else if (elem instanceof Date) {
-
-						JSONArray array = new JSONArray();
-
-						for (Object object : ((List) entry.getValue())) {
-							array.put(((Date) object).getTime());
-						}
-
-						json.put(entry.getKey(), array);
-					} else {
-						json.put(entry.getKey(), entry.getValue());
-					}
-				}else{
-					
-				}
-				
-			} else if (entry.getValue() instanceof Set) {
-				if(entry.getValue()!=null&&((Set)entry.getValue()).size()!=0){
-					Object elem = ((Set) entry.getValue()).iterator().next();
-					if (elem instanceof EntityObject) {
-						JSONArray array = new JSONArray();
-
-						for (Object object : ((Set) entry.getValue())) {
-							array.put(((EntityObject) object).toJSON());
-						}
-
-						json.put(entry.getKey(), array);
-					} else if (elem instanceof Date) {
-
-						JSONArray array = new JSONArray();
-
-						for (Object object : ((Set) entry.getValue())) {
-							array.put(((Date) object).getTime());
-						}
-
-						json.put(entry.getKey(), array);
-					} else {
-						json.put(entry.getKey(), entry.getValue());
-					}
-				}
-				
-			} else if (entry.getValue() instanceof Map) {
-				if(entry.getValue()!=null&&((Map)entry.getValue()).size()!=0){
-					Map.Entry elem = (Map.Entry) ((Map) entry.getValue())
-							.entrySet().iterator().next();
-					if (elem.getValue() instanceof EntityObject) {
-						JSONObject jsonObject = new JSONObject();
-
-						for (Object object : ((Map) entry.getValue()).entrySet()) {
-							Map.Entry innerEntry = (Map.Entry) object;
-							jsonObject
-									.put(innerEntry.getKey().toString(),
-											((EntityObject) innerEntry.getValue())
-													.toJSON());
-						}
-
-						json.put(entry.getKey(), jsonObject);
-					} else if (elem instanceof Date) {
-						JSONObject jsonObject = new JSONObject();
-
-						for (Object object : ((Map) entry.getValue()).entrySet()) {
-							Map.Entry innerEntry = (Map.Entry) object;
-							jsonObject
-									.put(innerEntry.getKey().toString(),
-											((Date) innerEntry.getValue())
-													.getTime());
-						}
-
-						json.put(entry.getKey(), jsonObject);
-					} else {
-						json.put(entry.getKey(), entry.getValue());
-					}
-				}
-				
-			} else {
-				json.put(entry.getKey(), entry.getValue());
-			}
+		if(jsonpFlag){
+			responseStream.println(callBack+"("+json.toString()+");");
+		}else{
+			responseStream.println(json.toString());
 		}
-
-		responseStream.println(json.toString());
 	}
 }
