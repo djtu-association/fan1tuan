@@ -86,7 +86,7 @@
                         <h6>选择一个地址</h6>
                     </div>
                     <div class="col-lg-4 col-lg-offset-4">
-                        <a id="newAddressBtn" class="btn btn-sm btn-primary" href="#美餐Modal" role="button" ><i class="fui-new"></i>添加一个地址</a>
+                        <a id="newAddressBtn" class="btn btn-sm btn-primary" href="#fan1tuanModal" role="button" ><i class="fui-new"></i>添加一个地址</a>
                         <!-- Button to trigger modal -->
 
                         <!-- Modal -->

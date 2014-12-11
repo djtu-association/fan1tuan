@@ -10,7 +10,7 @@
             <div class="row-fluid">
                 <div class="span1"></div>
                 <div class="span4">
-                    <h1 class="text-info">饭1团</h1>
+                    <h1 class="text-info">美餐</h1>
                     <h5 class="text-center">先来登陆~</h5>
                 </div>
                 <div class="span5">
