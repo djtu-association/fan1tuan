@@ -20,7 +20,7 @@
     <!-- Custom styles for this template -->
 
     <!-- page independent -->
-    <title>*饭1团*</title>
+    <title>*美餐*</title>
     <link href="../res/css/custom/index.css" rel="stylesheet">
     <link href="../res/css/custom/pendingOrder.css" rel="stylesheet">
 </head>
@@ -36,7 +36,7 @@
                     <ul class="nav">
                     	
                         <li>
-                            <a href="/index.f1t"><span >Fan1tuan</span></a>
+                            <a href="/index.f1t"><span >美餐</span></a>
                         </li>
                         
                         <li id="navOnlineOrder"   title="" data-toggle="popover">
@@ -86,7 +86,7 @@
                         <h6>选择一个地址</h6>
                     </div>
                     <div class="col-lg-4 col-lg-offset-4">
-                        <a id="newAddressBtn" class="btn btn-sm btn-primary" href="#fan1tuanModal" role="button" ><i class="fui-new"></i>添加一个地址</a>
+                        <a id="newAddressBtn" class="btn btn-sm btn-primary" href="#美餐Modal" role="button" ><i class="fui-new"></i>添加一个地址</a>
                         <!-- Button to trigger modal -->
 
                         <!-- Modal -->

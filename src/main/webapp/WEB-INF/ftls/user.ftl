@@ -20,7 +20,7 @@
     <!-- Custom styles for this template -->
 
     <!-- page independent -->
-    <title>*饭1团*</title>
+    <title>*美餐*</title>
     <link href="../res/css/custom/index.css" rel="stylesheet">
     <link href="../res/css/custom/user.css" rel="stylesheet">
     <link href="../res/css/jquery-ui-smoothness.css" rel="stylesheet">
@@ -45,7 +45,7 @@
                     <ul class="nav">
                     	
                         <li>
-                            <a href="/index.f1t"><span >Fan1tuan</span></a>
+                            <a href="/index.f1t"><span >美餐</span></a>
                         </li>
                         
                         <li id="navOnlineOrder"   title="" data-toggle="popover">

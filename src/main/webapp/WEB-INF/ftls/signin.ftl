@@ -29,7 +29,7 @@
   <div class="jumbotron">
       <div class="container">
           <div class="col-lg-6">
-              <h1>饭1团来啦!</h1>
+              <h1>美餐来啦!</h1>
               <p class="lead">我们专注校园外卖，“食”刻为你准备着！！</p>
               <p><a class="btn btn-primary btn-lg" href="javascript:void(0)" onclick="location='../index.f1t'">进入主页</a></p>
           </div>
@@ -96,7 +96,7 @@
                   <h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-gift"/>恭喜你,注册成功</h4>
               </div>
               <div class="modal-body">
-                  <p><span class="glyphicon glyphicon-time"/><span id="countTime">5</span>秒后自动登陆进入到饭1团
+                  <p><span class="glyphicon glyphicon-time"/><span id="countTime">5</span>秒后自动登陆进入到美餐
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal" onclick="location='reg.f1t'">返回注册页面</button>

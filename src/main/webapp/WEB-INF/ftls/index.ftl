@@ -20,7 +20,7 @@
     <!-- Custom styles for this template -->
 
     <!-- page independent -->
-    <title>*饭1团*</title>
+    <title>*美餐*</title>
     <link href="res/css/custom/index.css" rel="stylesheet">
     <link href="res/css/custom/sample.css" rel="stylesheet">
     <link href="res/css/custom/shoppingcart.css" rel="stylesheet">
@@ -266,7 +266,7 @@
 
             <div class="container">
                 <div class="carousel-caption" style="margin-top: 150px">
-                    <h1>饭1团来啦</h1>
+                    <h1>美餐来啦</h1>
 
                     <p class="lead">食客~为你准备着</p>
                     <a class="btn btn-large btn-primary" href="#">点击注册</a>
@@ -278,7 +278,7 @@
 
             <div class="container">
                 <div class="carousel-caption" style="margin-top: 150px">
-                    <h1>饭1团来啦</h1>
+                    <h1>美餐来啦</h1>
 
                     <p class="lead">食客~为你准备着</p>
                     <a class="btn btn-large btn-primary" href="#">点击登陆</a>
@@ -290,7 +290,7 @@
 
             <div class="container">
                 <div class="carousel-caption" style="margin-top: 150px">
-                    <h1>饭1团来啦</h1>
+                    <h1>美餐来啦</h1>
 
                     <p class="lead">食客~为你准备着</p>
                     <a class="btn btn-large btn-primary" href="#">了解更多</a>

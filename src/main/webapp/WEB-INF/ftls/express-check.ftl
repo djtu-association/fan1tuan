@@ -21,7 +21,7 @@
     <!-- Custom styles for this template -->
 
     <!-- page independent -->
-    <title>*饭1团*</title>
+    <title>*美餐*</title>
     <link href="../res/css/custom/index.css" rel="stylesheet">
     <link href="../res/css/custom/shop.css" rel="stylesheet">
 </head>

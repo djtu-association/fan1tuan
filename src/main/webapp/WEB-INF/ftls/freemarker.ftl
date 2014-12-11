@@ -5,198 +5,198 @@
 <body>
 
 <h1>${projectName}</h1>
-<h3>FreeMarkerÊ¾ÀıÒ³Ãæ</h2>
-<hr>
-<h3>Struts2ÖĞAction BeanµÄProperty</h3>
-<hr>
-<h4>PropertyÎªJava Bean</h4>
-<p>Bean Name: shoppingCart</p>
-<p>ID:${shoppingCart.id}; Price: ${shoppingCart.price}</p>
-<hr>
-<h4>PropertyÎª¼¯ºÏ(List,Set)»òÊı×é</h4>
-<p>Bean Name : tags</p>
-<p>[0]${tags[0]}, [1]${tags[1]}</p>
-<hr>
-<h4>PropertyÎªÓ³Éä(Map)</h4>
-<p>Bean Name : map</p>
-<p>['Hello']${map.Hello}, ['ÄãºÃ']${map['ÄãºÃ']}</p>
-<hr>
+<h3>FreeMarkerç¤ºä¾‹é¡µé¢</h2>
+    <hr>
+    <h3>Struts2ä¸­Action Beançš„Property</h3>
+    <hr>
+    <h4>Propertyä¸ºJava Bean</h4>
+    <p>Bean Name: shoppingCart</p>
+    <p>ID:${shoppingCart.id}; Price: ${shoppingCart.price}</p>
+    <hr>
+    <h4>Propertyä¸ºé›†åˆ(List,Set)æˆ–æ•°ç»„</h4>
+    <p>Bean Name : tags</p>
+    <p>[0]${tags[0]}, [1]${tags[1]}</p>
+    <hr>
+    <h4>Propertyä¸ºæ˜ å°„(Map)</h4>
+    <p>Bean Name : map</p>
+    <p>['Hello']${map.Hello}, ['ä½ å¥½']${map['ä½ å¥½']}</p>
+    <hr>
 <#-- This is a comment -->
-<h3>FreeMarkerÖ¸Áî(FTL±êÇ©)£º×¢£º(1)FTL±êÇ©ÖĞ²»¿ÉÒÔÔÙÊ¹ÓÃFTL±êÇ©£¬»á±¨´í;(2)ÎŞÇ¶Ì×µÄFTL±êÇ©Ö»ÄÜÈç´ËÊ¹ÓÃ<# /></h3>
-<hr>
-<h4>if,else if, elseÖ¸Áî</h4>
-<p>Bean Name : projectName</p>
-<p>
+    <h3>FreeMarkeræŒ‡ä»¤(FTLæ ‡ç­¾)ï¼šæ³¨ï¼š(1)FTLæ ‡ç­¾ä¸­ä¸å¯ä»¥å†ä½¿ç”¨FTLæ ‡ç­¾ï¼Œä¼šæŠ¥é”™;(2)æ— åµŒå¥—çš„FTLæ ‡ç­¾åªèƒ½å¦‚æ­¤ä½¿ç”¨<# /></h3>
+    <hr>
+    <h4>if,else if, elseæŒ‡ä»¤</h4>
+    <p>Bean Name : projectName</p>
+    <p>
 	<#if projectName=="fan1tuan">
-		projectNameÎªfan1tuan
+        projectNameä¸ºfan1tuan
 	<#elseif projectName=="hello">
-		projectNameÎªhello
+        projectNameä¸ºhello
 	<#else>
-		projectNameÎªunknown		
+        projectNameä¸ºunknown
 	</#if>
-</p>
-<hr>
-<h4>listÖ¸Áî</h4>
-<p>Bean Name : dishList</p>
-<p>
+    </p>
+    <hr>
+    <h4>listæŒ‡ä»¤</h4>
+    <p>Bean Name : dishList</p>
+    <p>
 	<#list dishList as dish>
-		- ${dish.dishId}
-		- ${dish.dishPrice}
-		- ${dish.number}
+        - ${dish.dishId}
+        - ${dish.dishPrice}
+        - ${dish.number}
 	</#list>
-</p>
-<hr>
-<h4>compressÖ¸Áî</h4>
-<p>ÓÃÀ´Ñ¹Ëõ¿Õ¼ä£¬»Ø³µ£¬¿Õ¸ñ£¬ÖÆ±í·û¾ù±»È¡Ïû£¬µ«ÊÇHTMLÆğµ½µÄ×÷ÓÃ»á±£Áô</p>
-<p>
-<#compress>
-	<#list dishList as dish>
-		- ${dish.dishId}
-		- ${dish.dishPrice}
-		- ${dish.number}
-	</#list>
-</#compress>
-</p>
-<hr>
-<h4>escapeÓënoescapeÖ¸Áî</h4>
-<p></p>
-<p>
-	ÒÔÏÂÎªescapeÊ¾Àı:<br>
+    </p>
+    <hr>
+    <h4>compressæŒ‡ä»¤</h4>
+    <p>ç”¨æ¥å‹ç¼©ç©ºé—´ï¼Œå›è½¦ï¼Œç©ºæ ¼ï¼Œåˆ¶è¡¨ç¬¦å‡è¢«å–æ¶ˆï¼Œä½†æ˜¯HTMLèµ·åˆ°çš„ä½œç”¨ä¼šä¿ç•™</p>
+    <p>
+	<#compress>
+		<#list dishList as dish>
+            - ${dish.dishId}
+            - ${dish.dishPrice}
+            - ${dish.number}
+		</#list>
+	</#compress>
+    </p>
+    <hr>
+    <h4>escapeä¸noescapeæŒ‡ä»¤</h4>
+    <p></p>
+    <p>
+        ä»¥ä¸‹ä¸ºescapeç¤ºä¾‹:<br>
 	<#assign htmlTag="<h1>Hello</h1>" />
 	<#escape x as x?html>
-		${htmlTag}
+	${htmlTag}
 		<#noescape>${htmlTag}</#noescape>
 	</#escape>
-</p>
-<hr>
-<h4>´¦Àínull±äÁ¿Çé¿ö</h4>
-<p>Bean Name: user(not exist!), projectName, shoppingCart(exist!!)</p>
-<p>
-	Ìá¹©È±Ê¡Öµ£º<strong>Welcome!! ${user!"Anonymous"}</strong><br>
+    </p>
+    <hr>
+    <h4>å¤„ç†nullå˜é‡æƒ…å†µ</h4>
+    <p>Bean Name: user(not exist!), projectName, shoppingCart(exist!!)</p>
+    <p>
+        æä¾›ç¼ºçœå€¼ï¼š<strong>Welcome!! ${user!"Anonymous"}</strong><br>
 	<#if projectName??>
-		ÅĞ¶ÏÊÇ·ñ´æÔÚ<strong>projectName±äÁ¿´æÔÚ£¡£¡£¡ÆäÖµÎª:${projectName}</strong><br>
+        åˆ¤æ–­æ˜¯å¦å­˜åœ¨<strong>projectNameå˜é‡å­˜åœ¨ï¼ï¼ï¼å…¶å€¼ä¸º:${projectName}</strong><br>
 	</#if>
-	¶ÔÓÚ¶à¼¶·ÃÎÊµÄ±äÁ¿£¬ÎªÁË±ÜÃâNullPointerÒì³££¬Èç´Ë´¦Àí£º<br>
-	<strong>${shoppingCart.aNotHaveProperty!"Ã»ÓĞ´ËProperty"}</strong><br>
-	<strong>${(user.id)!"Ã»ÓĞ±äÁ¿"}</strong>
-</p>
-<hr>
-<h3>ÀàĞÍ´¦Àí</h3>
-<hr>
-<h4>Number</h4>
-<p>Bean Name: shoppingCart</p>
-<p>
-	half-price: ${shoppingCart.price/2}
-</p>
-<hr>
-<h4>·Ç×ªÒå×Ö·û´®</h4>
-<p>Bean Name: projectName</p>
-<p>
-	·Ç×ªÒå×Ö·û´®: ${r"${projectName}"}<br>
-	×ªÒå×Ö·û´®£º${"${projectName}"}
-</p>
-<hr>
-<h4>ÊÖ¶¯´´½¨¼¯ºÏ</h4>
-<p>Bean Name: null</p>
-<p>
+        å¯¹äºå¤šçº§è®¿é—®çš„å˜é‡ï¼Œä¸ºäº†é¿å…NullPointerå¼‚å¸¸ï¼Œå¦‚æ­¤å¤„ç†ï¼š<br>
+        <strong>${shoppingCart.aNotHaveProperty!"æ²¡æœ‰æ­¤Property"}</strong><br>
+        <strong>${(user.id)!"æ²¡æœ‰å˜é‡"}</strong>
+    </p>
+    <hr>
+    <h3>ç±»å‹å¤„ç†</h3>
+    <hr>
+    <h4>Number</h4>
+    <p>Bean Name: shoppingCart</p>
+    <p>
+        half-price: ${shoppingCart.price/2}
+    </p>
+    <hr>
+    <h4>éè½¬ä¹‰å­—ç¬¦ä¸²</h4>
+    <p>Bean Name: projectName</p>
+    <p>
+        éè½¬ä¹‰å­—ç¬¦ä¸²: ${r"${projectName}"}<br>
+        è½¬ä¹‰å­—ç¬¦ä¸²ï¼š${"${projectName}"}
+    </p>
+    <hr>
+    <h4>æ‰‹åŠ¨åˆ›å»ºé›†åˆ</h4>
+    <p>Bean Name: null</p>
+    <p>
 	<#list ["Hello","Hi", "Bye"] as str>
-		${str},
+	${str},
 	</#list>
-</p>
-<hr>
-<h4>ÊÖ¶¯´´½¨Ó³Éä</h4>
-<p>Bean Name: map</p>
-<p>
-	<#assign user={"name" : "ÀîºÕ", "age" : 15} />
+    </p>
+    <hr>
+    <h4>æ‰‹åŠ¨åˆ›å»ºæ˜ å°„</h4>
+    <p>Bean Name: map</p>
+    <p>
+	<#assign user={"name" : "æèµ«", "age" : 15} />
 	${user.name}
-</p>
-<hr>
-<h3>·½·¨µ÷ÓÃÒÔ¼°×Ô¶¨ÒåÖ¸Áî</h3>
-<hr>
-<h4>Bean¶ÔÏóµÄ·½·¨µ÷ÓÃ</h4>
-<p>Bean Name: shoppingCart</p>
-<p>
-	toJSON(): ${shoppingCart.toJSON()}
-</p>
-<hr>
-<h4>Struts2µÄ±êÇ©¿ÉÒÔ×÷Îª×Ô¶¨ÒåÖ¸ÁîÊ¹ÓÃ</h4>
-<p>Bean Name: tags</p>
-<p>
-	<!-- struts2µÄtagÒÀÈ»¿ÉÒÔÊ¹ÓÃ£¬¼ûÏÂ·½ -->
+    </p>
+    <hr>
+    <h3>æ–¹æ³•è°ƒç”¨ä»¥åŠè‡ªå®šä¹‰æŒ‡ä»¤</h3>
+    <hr>
+    <h4>Beanå¯¹è±¡çš„æ–¹æ³•è°ƒç”¨</h4>
+    <p>Bean Name: shoppingCart</p>
+    <p>
+        toJSON(): ${shoppingCart.toJSON()}
+    </p>
+    <hr>
+    <h4>Struts2çš„æ ‡ç­¾å¯ä»¥ä½œä¸ºè‡ªå®šä¹‰æŒ‡ä»¤ä½¿ç”¨</h4>
+    <p>Bean Name: tags</p>
+    <p>
+        <!-- struts2çš„tagä¾ç„¶å¯ä»¥ä½¿ç”¨ï¼Œè§ä¸‹æ–¹ -->
 	<@s.iterator value="tags">
-    	<@s.property /><br>
+		<@s.property /><br>
 	</@s.iterator>
-</p>
-<hr>
-<h3>ÄÚ½¨º¯Êı</h3>
-<hr>
-<h4>html:·Ç×ªÒåhtml tag</h4>
-<p>Bean Name: projectName</p>
-<p>
+    </p>
+    <hr>
+    <h3>å†…å»ºå‡½æ•°</h3>
+    <hr>
+    <h4>html:éè½¬ä¹‰html tag</h4>
+    <p>Bean Name: projectName</p>
+    <p>
 	${"<h1>Hello ${projectName}</h1>"?html}
-</p>
-<hr>
-<h4>html:·Ç×ªÒåhtml tag</h4>
-<p>Bean Name: projectName</p>
-<p>
+    </p>
+    <hr>
+    <h4>html:éè½¬ä¹‰html tag</h4>
+    <p>Bean Name: projectName</p>
+    <p>
 	${"<h1>Hello ${projectName}</h1>"?html}
-</p>
-<hr>
-<h4>c:½«Êı¾İÊä³öÎª¼ÆËã»ú¿ÉÊ¶±ğµÄ¼òµ¥ĞÎÊ½£¨¼´ºöÂÔlocale£©</h4>
-<p>Bean Name: shoppingCart</p>
-<p>
-	Ä¬ÈÏÇøÓòĞÔÊä³ö£º${shoppingCart.price}<br>
-	¼ÆËã»úÊ¶±ğÊä³ö£º${shoppingCart.price?c}
-</p>
-<hr>
-<h4>timeÄÚ½¨º¯Êı:Ò»ÏµÁĞÓÃÀ´´¦ÀíÊ±¼äÊä³öµÄ·½·¨</h4>
-<p>Bean Name: releaseDate</p>
-<p>
+    </p>
+    <hr>
+    <h4>c:å°†æ•°æ®è¾“å‡ºä¸ºè®¡ç®—æœºå¯è¯†åˆ«çš„ç®€å•å½¢å¼ï¼ˆå³å¿½ç•¥localeï¼‰</h4>
+    <p>Bean Name: shoppingCart</p>
+    <p>
+        é»˜è®¤åŒºåŸŸæ€§è¾“å‡ºï¼š${shoppingCart.price}<br>
+        è®¡ç®—æœºè¯†åˆ«è¾“å‡ºï¼š${shoppingCart.price?c}
+    </p>
+    <hr>
+    <h4>timeå†…å»ºå‡½æ•°:ä¸€ç³»åˆ—ç”¨æ¥å¤„ç†æ—¶é—´è¾“å‡ºçš„æ–¹æ³•</h4>
+    <p>Bean Name: releaseDate</p>
+    <p>
 	${releaseDate?time}<br>
 	${releaseDate?date}<br>
 	${releaseDate?datetime}<br>
 	${releaseDate?string("yyyy/MM/dd HH:mm:ss")}
-	
-</p>
-<hr>
-<h4>¸ü¶àÄÚ½¨º¯Êı</h4>
-<img src="memo2.png" />
-<hr>
-<h3>ÆäËû</h3>
-<hr>
-<h4>ÓÃglobalsÀ´Ê¹ÓÃ±»Òş²ØµÄÈ«¾Ö±äÁ¿</h4>
-<p>
-	<#assign projectName="°Ù¶È" />
-	µ±Ç°±äÁ¿£º${projectName}<br>
-	È«¾Ö±äÁ¿£º${.globals.projectName}
-</p>
-<hr>
-<h4>¸ü¶à²Ù×÷²ÎÕÕ</h4>
-<img src="memo.png" />
-<hr>
 
-<h2>Struts2µÄÄÚ½¨Ö§³Ö£¡</h2>
-<hr>
-<h3>Request, Application, SessionµÄAttribute·ÃÎÊ</h3>
-<p>
-	Application Scope: 
+    </p>
+    <hr>
+    <h4>æ›´å¤šå†…å»ºå‡½æ•°</h4>
+    <img src="memo2.png" />
+    <hr>
+    <h3>å…¶ä»–</h3>
+    <hr>
+    <h4>ç”¨globalsæ¥ä½¿ç”¨è¢«éšè—çš„å…¨å±€å˜é‡</h4>
+    <p>
+	<#assign projectName="ç™¾åº¦" />
+        å½“å‰å˜é‡ï¼š${projectName}<br>
+        å…¨å±€å˜é‡ï¼š${.globals.projectName}
+    </p>
+    <hr>
+    <h4>æ›´å¤šæ“ä½œå‚ç…§</h4>
+    <img src="memo.png" />
+    <hr>
+
+    <h2>Struts2çš„å†…å»ºæ”¯æŒï¼</h2>
+    <hr>
+    <h3>Request, Application, Sessionçš„Attributeè®¿é—®</h3>
+    <p>
+        Application Scope:
 	<#if Application.user?exists>
-     	${Application.user.toJSON()}<br>
+	${Application.user.toJSON()}<br>
 	</#if>
-	Session Scope: 
+        Session Scope:
 	<#if Session.user?exists>
-     	${Session.user.toJSON()}<br>
+	${Session.user.toJSON()}<br>
 	</#if>
-	Request Scope: 
+        Request Scope:
 	<#if Request.user?exists>
-     	${Request.user.toJSON()}<br>
+	${Request.user.toJSON()}<br>
 	</#if>
-	Request Parameter:msg(try add ?msg=xxxx behind your url):
+        Request Parameter:msg(try add ?msg=xxxx behind your url):
 	<#if Parameters.msg?exists>
-     	${Parameters.msg}<br>
+	${Parameters.msg}<br>
 	</#if>
-</p>
-<h3>¸ü¶àcontextÇë¼ûÏÂÃæµÄtable</h3>
-<img src="memo3.png" />
+    </p>
+    <h3>æ›´å¤šcontextè¯·è§ä¸‹é¢çš„table</h3>
+    <img src="memo3.png" />
 </body>
 </html>

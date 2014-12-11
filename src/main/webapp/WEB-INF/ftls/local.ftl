@@ -20,7 +20,7 @@
     <!-- Custom styles for this template -->
 
     <!-- page independent -->
-    <title>*饭1团*</title>
+    <title>*美餐*</title>
     <link href="../res/css/custom/index.css" rel="stylesheet">
     <link href="../res/css/custom/sample.css" rel="stylesheet">
 </head>
@@ -62,7 +62,7 @@
 
             <!--main panel-->
             <div class="panel-body">
-                <h3>饭1团 : 关注您在大学的衣食住行</h3>
+                <h3>美餐 : 关注您在大学的衣食住行</h3>
                 <div class="jumbotron">
                     <div class="container-fluid"  style="height: 400px">
 

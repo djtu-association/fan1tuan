@@ -45,7 +45,7 @@
                     <ul class="nav">
                     	
                         <li>
-                            <a href="/index.f1t"><span >Fan1tuan</span></a>
+                            <a href="/index.f1t"><span >美餐</span></a>
                         </li>
                         
                         <li id="navOnlineOrder"   title="" data-toggle="popover">

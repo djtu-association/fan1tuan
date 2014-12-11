@@ -1,5 +1,5 @@
 <#if Session["login"]?exists && Session["login"]["loginStatus"]?exists && Session["login"]["loginStatus"]=="1">
-	<table id="J_CommonBottomBar" style="">
+<table id="J_CommonBottomBar" style="">
     <tbody>
     <tr>
         <td order="0"></td>
@@ -16,11 +16,11 @@
                                     </span>
 
                                 </div>
-                                
+
                                 <!-- content start here -->
-                                
+
                                 <!-- content end here -->
-                                
+
                                 <div class="tm-mcBottom">
                                     <div class="tm-mcBottomMain text-center">
                                     </div>
@@ -39,12 +39,12 @@
                     <div class="tm-mcGrace"></div>
                     <div class="tm-mcApart"></div>
                     <div class="tm-mcHandler" data-tmc="toggleFold">
-                        
+
                         <h3 style="font-size: 13px">
                             <span class="tm-e1">购物车</span>
                             <span>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-							<button class="btn btn-danger btn-sm " id="confirm-order">结 算</button>
-			 				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <button class="btn btn-danger btn-sm " id="confirm-order">结 算</button>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             <strong class="tm-mcCartNumTotal"></strong>
                             <strong class="tm-mcCartSumCost" style="font-size:15px;"></strong>
                         </h3>
@@ -55,5 +55,5 @@
     </tr>
     </tbody>
 </table>
-	
+
 </#if>

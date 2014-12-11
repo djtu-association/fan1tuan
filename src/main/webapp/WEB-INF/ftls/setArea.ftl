@@ -20,7 +20,7 @@
     <!-- Custom styles for this template -->
 
     <!-- page independent -->
-    <title>*饭1团*</title>
+    <title>*美餐*</title>
     <link href="res/css/custom/index.css" rel="stylesheet">
     <link href="res/css/custom/sample.css" rel="stylesheet">
 </head>
@@ -30,7 +30,7 @@
 <div class="jumbotron">
     <div class="container">
         <div class="col-lg-12">
-            <h1>欢迎进入饭1团！
+            <h1>欢迎来到美餐
                 <small></small>
             </h1>
             <p><h4>请选择您所在的商圈</h4></p>

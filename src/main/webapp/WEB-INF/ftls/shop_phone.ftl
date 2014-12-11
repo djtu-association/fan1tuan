@@ -22,7 +22,7 @@
     <!-- Custom styles for this template -->
 
     <!-- page independent -->
-    <title>*饭1团*----电话订餐----${shop.name}</title>
+    <title>*美餐*----电话订餐----${shop.name}</title>
     <link href="../res/css/custom/index.css" rel="stylesheet">
     <link href="../res/css/custom/shoppingcart.css" rel="stylesheet">
     <link href="../res/css/custom/shop.css" rel="stylesheet">
@@ -48,7 +48,7 @@
                     <ul class="nav">
                     	
                         <li>
-                            <a href="/index.f1t"><span >Fan1tuan</span></a>
+                            <a href="/index.f1t"><span >美餐</span></a>
                         </li>
                         
                         <li id="navOnlineOrder"   title="" data-toggle="popover">
