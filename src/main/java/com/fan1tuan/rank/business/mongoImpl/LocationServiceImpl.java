@@ -1,9 +1,9 @@
 package com.fan1tuan.rank.business.mongoImpl;
 
-import org.springframework.data.mongodb.core.geo.Circle;
-import org.springframework.data.mongodb.core.geo.GeoResults;
-import org.springframework.data.mongodb.core.geo.Metrics;
-import org.springframework.data.mongodb.core.geo.Point;
+import org.springframework.data.geo.Circle;
+import org.springframework.data.geo.GeoResults;
+import org.springframework.data.geo.Metrics;
+import org.springframework.data.geo.Point;
 
 import com.fan1tuan.general.dao.FieldFilter;
 import com.fan1tuan.general.dao.impl.AreaDao;

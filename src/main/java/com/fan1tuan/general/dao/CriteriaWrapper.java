@@ -5,8 +5,8 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 import java.util.Collection;
 import java.util.regex.Pattern;
 
-import org.springframework.data.mongodb.core.geo.Circle;
-import org.springframework.data.mongodb.core.geo.Point;
+import org.springframework.data.geo.Circle;
+import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.query.Criteria;
 
 public class CriteriaWrapper {
@@ -328,11 +328,11 @@ public class CriteriaWrapper {
 		{
 			if (isBootstrap) {
 				//criteria.and(field).withinSphere(circle);
-				criteria.and(field).nearSphere(new Point(circle.getCenter())).maxDistance(circle.getRadius());
+				criteria.and(field).nearSphere(new Point(circle.getCenter())).maxDistance(circle.getRadius().getValue());
 			} else {
 				//criteria = where(field).withinSphere(circle);
 				//criteria.and(field).nearSphere(new Point(circle.getCenter())).maxDistance(circle.getRadius());
-				criteria = where(field).nearSphere(new Point(circle.getCenter())).maxDistance(circle.getRadius());
+				criteria = where(field).nearSphere(new Point(circle.getCenter())).maxDistance(circle.getRadius().getValue());
 				isBootstrap = true;
 			}
 		}

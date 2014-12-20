@@ -1,8 +1,8 @@
 package com.fan1tuan.general.dao;
 
-import org.springframework.data.mongodb.core.geo.Distance;
-import org.springframework.data.mongodb.core.geo.Metric;
-import org.springframework.data.mongodb.core.geo.Point;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.Metric;
+import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.query.NearQuery;
 
 public class NearCriteriaWrapper {

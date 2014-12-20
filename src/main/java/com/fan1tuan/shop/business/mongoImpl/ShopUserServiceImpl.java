@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.springframework.data.mongodb.core.geo.Circle;
-import org.springframework.data.mongodb.core.geo.Distance;
-import org.springframework.data.mongodb.core.geo.GeoResult;
-import org.springframework.data.mongodb.core.geo.GeoResults;
-import org.springframework.data.mongodb.core.geo.Metrics;
+import org.springframework.data.geo.Circle;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.GeoResult;
+import org.springframework.data.geo.GeoResults;
+import org.springframework.data.geo.Metrics;
 
 import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.FieldFilter;
@@ -359,7 +359,7 @@ public class ShopUserServiceImpl implements ShopUserService{
 		//System.out.println("shopId:"+shopId+", areaId:"+areaId);
 		//CriteriaWrapper criteriaWrapper = CriteriaWrapper.instance().is("id", shopId);
 		Circle circle = makeCircleWithArea(areaId);
-		GeoResults<Shop> geoResults = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius()/1000, Metrics.KILOMETERS)/*, QueryWrapper.wrap(criteriaWrapper)*/);
+		GeoResults<Shop> geoResults = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius().getValue()/1000, Metrics.KILOMETERS)/*, QueryWrapper.wrap(criteriaWrapper)*/);
 		if(geoResults==null){
 			return null;
 		}
@@ -428,7 +428,7 @@ public class ShopUserServiceImpl implements ShopUserService{
 		Shop shop = shopDao.findOneProjectedById(shopId, FieldFilter.instance("shopTasteTagIds","orderType"));
 		
 		//List<Shop> shops = shopDao.findProjectedByParamsInPageInOrder(CriteriaWrapper.instance().withinSphere("location", cricle));
-		GeoResults<Shop> shops = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(CriteriaWrapper.instance().in("shopTasteTagIds", shop.getShopTasteTagIds()).is("orderType", shop.getOrderType()), FieldFilter.instance("id","name","description"), pageable).with(Sortable.instance("saleVolume", Sortable.DESCEND).toSort()));
+		GeoResults<Shop> shops = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius().getValue()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(CriteriaWrapper.instance().in("shopTasteTagIds", shop.getShopTasteTagIds()).is("orderType", shop.getOrderType()), FieldFilter.instance("id","name","description"), pageable).with(Sortable.instance("saleVolume", Sortable.DESCEND).toSort()));
 
 		List<FavoriteShopRec> favoriteShopRecs = new ArrayList<FavoriteShopRec>();
 		

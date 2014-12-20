@@ -3,7 +3,7 @@ package com.fan1tuan.rank.business.mongoImpl.task;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.data.mongodb.core.geo.Circle;
+import org.springframework.data.geo.Circle;
 
 import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.FieldFilter;

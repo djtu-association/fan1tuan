@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.data.mongodb.core.geo.Circle;
-import org.springframework.data.mongodb.core.geo.Distance;
-import org.springframework.data.mongodb.core.geo.GeoResult;
-import org.springframework.data.mongodb.core.geo.GeoResults;
-import org.springframework.data.mongodb.core.geo.Metrics;
+import org.springframework.data.geo.Circle;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.GeoResult;
+import org.springframework.data.geo.GeoResults;
+import org.springframework.data.geo.Metrics;
 
 import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.FieldFilter;
@@ -193,7 +193,7 @@ public class DishRankServiceImpl implements DishRankService {
 		criteriaWrapper.is("orderType", OrderType.ONLINE.ordinal());
 		
 		Circle circle = makeCircleWithArea(areaId);
-		GeoResults<Shop> shopGeos = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(criteriaWrapper, FieldFilter.instance("id"), null));
+		GeoResults<Shop> shopGeos = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius().getValue()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(criteriaWrapper, FieldFilter.instance("id"), null));
 		List<Shop> shops = new ArrayList<Shop>();
 		for(GeoResult<Shop> geoResult:shopGeos){
 			shops.add(geoResult.getContent());
@@ -218,7 +218,7 @@ public class DishRankServiceImpl implements DishRankService {
 		List<String> shopIdsList = this.transformShopListToShopIdList(simpleShops);
 		
 		CriteriaWrapper criteriaWrapper = CriteriaWrapper.instance().in("shopId", shopIdsList);
-		Sortable sortable = null;
+		Sortable sortable;
 		if(rankAccord==RankAccord.COMMENTLEVEL){
 			sortable = Sortable.instance("avgCommentLevel", order.ordinal());
 		}else if(rankAccord==RankAccord.SALEVOLUME){

@@ -3,11 +3,11 @@ package com.fan1tuan.rank.business.mongoImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.data.mongodb.core.geo.Circle;
-import org.springframework.data.mongodb.core.geo.Distance;
-import org.springframework.data.mongodb.core.geo.GeoResult;
-import org.springframework.data.mongodb.core.geo.GeoResults;
-import org.springframework.data.mongodb.core.geo.Metrics;
+import org.springframework.data.geo.Circle;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.GeoResult;
+import org.springframework.data.geo.GeoResults;
+import org.springframework.data.geo.Metrics;
 
 import com.fan1tuan.general.dao.CriteriaWrapper;
 import com.fan1tuan.general.dao.FieldFilter;
@@ -238,14 +238,14 @@ public class ShopRankServiceImpl implements ShopRankService {
 		}
 		
 		Circle circle = makeCircleWithArea(areaId);
-		GeoResults<Shop> geoResults = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(criteriaWrapper, null, pageable).with(sortable.toSort()));
+		GeoResults<Shop> geoResults = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius().getValue()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(criteriaWrapper, null, pageable).with(sortable.toSort()));
 		
 		List<ShopGeo> shopGeos = new ArrayList<ShopGeo>();
 		for(GeoResult<Shop> geoResult: geoResults){
 			shopGeos.add(new ShopGeo(geoResult.getContent(), geoResult.getDistance().getValue()));
 		}
 		//计算页数，实属无奈，查询需要两次
-		GeoResults<Shop> pageCountResults = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(criteriaWrapper, FieldFilter.instance("id"), null));
+		GeoResults<Shop> pageCountResults = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius().getValue()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(criteriaWrapper, FieldFilter.instance("id"), null));
 		pageable.setItemsNum(pageCountResults.getContent().size());
 		
 		return shopGeos;
@@ -286,7 +286,7 @@ public class ShopRankServiceImpl implements ShopRankService {
 		//pageable.setPageSize(pageable.getPageSize()-1);
 
 		Circle circle = makeCircleWithArea(areaId);
-		GeoResults<Shop> geoResults = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(criteriaWrapper, null, pageable).with(sortable.toSort()));
+		GeoResults<Shop> geoResults = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius().getValue()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(criteriaWrapper, null, pageable).with(sortable.toSort()));
 		List<ShopGeo> shopGeos = new ArrayList<ShopGeo>();
 		for(GeoResult<Shop> geoResult: geoResults){
 			shopGeos.add(new ShopGeo(geoResult.getContent(), geoResult.getDistance().getValue()));
@@ -294,7 +294,7 @@ public class ShopRankServiceImpl implements ShopRankService {
 		//System.out.println("!!!size:"+shopGeos.size()+"\n"+pageable.getPageSize());
 
 		//计算页数，实属无奈，查询需要两次
-		GeoResults<Shop> pageCountResults = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(criteriaWrapper, FieldFilter.instance("id"), null));
+		GeoResults<Shop> pageCountResults = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius().getValue()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(criteriaWrapper, FieldFilter.instance("id"), null));
 		pageable.setItemsNum(pageCountResults.getContent().size());
 		
 		return shopGeos;

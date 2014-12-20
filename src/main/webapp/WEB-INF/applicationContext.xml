@@ -15,7 +15,8 @@
 						http://www.springframework.org/schema/task
 						http://www.springframework.org/schema/task/spring-task-3.2.xsd
 						http://www.springframework.org/schema/data/mongo
-						http://www.springframework.org/schema/data/mongo/spring-mongo-1.2.xsd">
+          				http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
+
 	<context:property-placeholder
 		location="classpath:/com/fan1tuan.config/mongo.properties" />
    
