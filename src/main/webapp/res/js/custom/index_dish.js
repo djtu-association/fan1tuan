@@ -62,7 +62,7 @@ $(document).ready(function () {
             "<div>" +
             "<div class='row-fluid'>" +
             "<div class='span5'>" +
-            "<a title=''><img class='img-thumbnail'  title=" + data[i].content.id + " src='res/images/shop-image.jpeg' alt='Generic placeholder image' style='width: 96px;height: 96px'><br></a>" +
+            "<a title=''><img class='img-thumbnail'  title=" + data[i].content.id + " src='res/avatar/dish/"+data[i].content.image+"' alt='Generic placeholder image' style='width: 96px;height: 96px'><br></a>" +
             "<label class='label label-info'><strong>￥" + data[i].content.price + "</strong></label>" +
             "<br><span class='text-primary text-center'>销量" + data[i].content.saleVolume + "份</span>" +
             "</div>" +

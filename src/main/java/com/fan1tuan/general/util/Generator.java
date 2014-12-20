@@ -64,7 +64,7 @@ public class Generator {
 		shopAffairTagDao.addMulti(shopAffairTags);
 		shopClientDao.addMulti(shopClients);
 		userDao.addMulti(users);
-		
+		int i = 0;
 		for(Shop shop : shops){
 			for(ShopAffairTag shopAffairTag : shopAffairTags){
 				if(halfChance()){
@@ -72,6 +72,7 @@ public class Generator {
 				}
 			}
 			shop.getShopTasteTagIds().add(randomElem(shopTasteTags).getId());
+			shop.setAvatar((i++)+".jpeg");
 		}
 		shopDao.addMulti(shops);
 
@@ -122,7 +123,7 @@ public class Generator {
 		Area area = new Area();
 		area.setLatitude(38.799963);
 		area.setLongtitude(121.163815); //交大航运 121.163815,38.799963
-		area.setName("大连交通大学，航运学院");
+		area.setName("大连交通大学");
 		area.setRadius(900);
 		
 		Area area2 = new Area();
@@ -134,7 +135,7 @@ public class Generator {
 		Area area3 = new Area();
 		area3.setLatitude(38.820374); //大连医科大学 121.322061,38.820374
 		area3.setLongtitude(121.322061);
-		area3.setName("大连医科大学,大连外国语大学");
+		area3.setName("大连医科大学");
 		area3.setRadius(1500);		
 		
 		Area area4 = new Area();
@@ -223,7 +224,11 @@ public class Generator {
 	 */
 	public List<DishComment> generateDishComments(int num, String userId, String userName, String dishId){
 		
-		String[] comments = new String[]{"饭菜很好吃~~","真的非常好吃哦！","一级棒！！","棒极啦~~~"};
+		String[] comments = new String[]{"好评！！！","好好吃！！","这是我吃过的最满意的一顿饭，哈哈","难吃！！",
+				"吃完了恶心，大家不要来","是啊是啊，大家不要来啦","这家店不咋地","店老板很热情的","好不好吃，自己来试试",
+				"评论真好看","饭菜很好吃~~","真的非常好吃哦！","一级棒！！","棒极啦~~~","good！","都来尝尝老板的手艺把",
+				"不吃不知道","一吃吓一跳","自己尝尝，好不好吃啊","整体瞎叫唤，自己来尝尝，真的很好吃！！","不好吃，不会再来啦",
+				"不好吃，一股地沟油味道","没有别的话啦，好吃","我觉着不好吃，你们觉着呢"};
 		
 		ArrayList<DishComment> list = new ArrayList<DishComment>();
 		
@@ -246,7 +251,7 @@ public class Generator {
 		ArrayList<DishTasteTag> list = new ArrayList<DishTasteTag>();
 		
 		String[] description = new String[]{"这是一个店铺内的菜品口味分类","某个店铺的菜品口味分类"};
-		String[] names = new String[]{"炒饭","盖饭","焖饭","汉堡","奶茶","煲仔饭","盖饭","套餐"};
+		String[] names = new String[]{"炒饭","招牌","特价","送可口可乐","送加多宝","本地特色","套餐","销量冠军","其他"};
 		
 		int index = 0;
 		while(index++ < num){
@@ -326,7 +331,19 @@ public class Generator {
 		ArrayList<Dish> dishes = new ArrayList<Dish>();
 		
 		String[] description = new String[]{"完美的菜","这是汇聚中华美食的完美的菜","这个菜是我们店铺的极品菜"};
-		String[] names = new String[]{"扬州炒饭","牛肉堡","好吃的堡","鱼肉炒饭","A套餐","虾堡","牛肉拌饭","土豆煲仔饭","蜂蜜柚子茶","焦糖布丁"};
+		String[] names = new String[]{"扬州炒饭","牛肉堡","好吃的堡","鱼肉炒饭","A套餐",
+				"虾堡","牛肉拌饭","土豆煲仔饭","蜂蜜柚子茶","焦糖布丁","筋头巴脑","解馋脱骨凤爪",
+				"解馋猪蹄","解馋牛肚丝","解馋牛蹄筋","解馋鸭舌","解馋鸭脖","解馋牛口条","解馋鸡心",
+				"麻辣脑花","麻辣黄喉","红烧肉","香辣牛骨髓","麻辣掌中宝","香辣牛肉","麻辣小龙虾",
+				"麻辣田螺","麻辣鲍鱼","活剥夏夷贝柱","麻辣虾爬肉","金牌河蟹","麻辣活虾","麻辣鱿鱼",
+				"麻辣海撒","麻辣鸟贝","麻辣飞蟹","麻辣籽乌","麻辣夏夷贝","麻辣皮皮虾","麻辣卢沟虾",
+				"凉拌嘎巴虾","凉拌花盖","红烧排骨饭","红烧肉饭","辣子鸡丁饭","宫保鸡丁饭","鱼香肉丝饭",
+				"茄汁牛腩饭","孜然牛肉饭","红烧鸡块饭","木须肉饭","西红柿鸡蛋饭","韭菜鸡蛋饭","尖椒炒蛋饭",
+				"麻婆豆腐饭","烧茄子饭","鱼香茄子饭","肉丝炒饭","火腿蛋炒饭","鲜虾水饺","韭菜海肠","猪肉韭菜鲅鱼",
+				"猪肉馄饨","青椒肉丝","香菇滑鸡","狮子头","鱼香肉丝","鱼香鸡蛋","香炒豆腐","乡村花菜 ",
+				"西红柿炒蛋","酱香茄子","芸豆土豆丁","咖喱鸡肉","蒜苔炒肉","肉碎酸豆角","咖喱牛肉","卤肉",
+				"牛肉炖土豆","手撕肉","蜜汁排骨","日式牛肉","大酱汤","酸菜五花肉","金针肥牛","西红柿牛腩",
+				"土豆炖豆腐","小鸡炖蘑菇","麻辣香锅","拌鸡架","蓝莓山药","泡椒蜀汉笋","烤鸡翅","南瓜浓汤"};
 		
 		int index = 0;
 		while(index++ < num){
@@ -336,9 +353,9 @@ public class Generator {
 			dish.setCommentLevel(0);
 			dish.setDescription(randomElem(description));
 			dish.setDishTasteTagId(dishTasteTagId);
-			dish.setImage("");
+			dish.setImage((int)(Math.random()*68)+".jpeg");
 			dish.setName(randomElem(names));
-			dish.setOriginPrice(NumberUtil.reserveBit(Math.random()*20,1));
+			dish.setOriginPrice(NumberUtil.reserveBit(Math.random()*20+2,1));
 			dish.setPrice(NumberUtil.reserveBit(dish.getOriginPrice()*Math.random(), 0));
 			dish.setRankTagIds(new ArrayList<String>());
 			dish.setSaleVolume((int)(Math.random()*100));
@@ -364,7 +381,16 @@ public class Generator {
 		
 		List<Area> areas = this.generateAreas();
 		
-		String[] names = new String[]{"饭醉团火","阿福盖浇饭","小馋猫米粉","无明缘米粉","KHC","上海小吃","小辣椒","西北面食","不差钱超冷面","私房牛肉饭","杨国富麻辣烫","万里香","美味烤肉饭","淼淼烤肉饭"};
+		String[] names = new String[]{"饭醉团火","阿福盖浇饭","小馋猫米粉","无明缘米粉","KHC",
+				"上海小吃","小辣椒","西北面食","不差钱炒冷面","私房牛肉饭","杨国福麻辣烫","万里香",
+				"美味烤肉饭","淼淼烤肉饭","大熊解馋坊","麻辣道","韩国泡菜","味思美","无名缘米粉",
+				"千味牛肉饭店","新阳光快餐","佳乐快餐小炒","鼎易坊快餐","长林小店","懿香阁上海特色",
+				"橘子餐厅","百味川菜","美味来快餐","港式小吃","丸子小吃","八哥米线","好再来快餐",
+				"八哥米线","锅锅香小吃","香吧嘴麻辣烫","有缘来米粉","食全食美","家常小菜","爱情麻辣烫",
+				"台北香肉饭","黄记麻辣百分百","三秦面庄","慕尚快餐","瓦罐营养快餐","泓源美食","蜜秘鸡地",
+				"小馆印巷","鲅鱼饺子馆","台湾美食","旺旺美食屋","惠客快餐","咱家灶脚","食全巷","鑫蒙特牛杂",
+				"山西辛玉田锅贴","奶茶牧场餐厅","便当屋 配餐","天天美味","民生源","紫藤地瓜坊","瓦房店全羊",
+				"排骨精排骨饭","私房小厨","碳火瓦罐"};
 		
 		int index = 0;
 		while(index++ < num){
@@ -386,16 +412,15 @@ public class Generator {
 			shop.setOpen(halfChance());
 			shop.setCloseTime(DateUtil.getEndOfDay(new Date()));
 			shop.setOpenTime(DateUtil.getStartOfDay(new Date()));
-			shop.setOrderType((int)(Math.random()*2));
-			shop.setPopularity((int)(Math.random()*300));
+			shop.setOrderType((int) (Math.random() * 2));
+			shop.setPopularity((int) (Math.random() * 300));
 			shop.setRankTagIds(new ArrayList<String>());   //需要添加
-			shop.setSaleVolume((int)(Math.random()*200));
+			shop.setSaleVolume((int) (Math.random() * 200));
 			shop.setShopAffairTagIds(new ArrayList<String>());  //需要添加
 			shop.setShopSales(new ArrayList<ShopSale>());
 			shop.setShopTasteTagIds(new ArrayList<String>());   //需要添加
 			shop.setTelephone("18878765565");
 			shop.setType((int)(Math.random()*2));
-			
 			shops.add(shop);
 		}
 		

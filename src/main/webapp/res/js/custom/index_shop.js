@@ -72,7 +72,7 @@ $(document).ready(function () {
             "<div id='shopPopPanel_" + (i + 1) + "' class='shopPopPanel' data-toggle='popover' title=''  data-original-title='" + data[i].content.name + "'>" + //这里的id跟下面的popover的id是绑定的
             "<div class='row-fluid'>" +
             "<div class='span5'>" +
-            "<a href='javascript:void(0)' onclick=" + shopLink + " title='进入店铺'><img class='img-thumbnail'   src='res/images/shop-image.jpeg' alt='Generic placeholder image' style='width: 96px;height: 96px'></a>" + //进入店铺的href要穿店铺ID，店铺图片
+            "<a href='javascript:void(0)' onclick=" + shopLink + " title='进入店铺'><img class='img-thumbnail'   src='res/avatar/shop/"+data[i].content.avatar+"' alt='Generic placeholder image' style='width: 96px;height: 96px'></a>" + //进入店铺的href要穿店铺ID，店铺图片
             "<br/><span class='text-primary text-center'><span class='glyphicon glyphicon-time'></span>" + data[i].content.avgDeliveryTime + "分钟</span>" +//平均送餐时间
             "</div>" +
             "<div class='span7'>" +

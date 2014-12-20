@@ -93,7 +93,7 @@
         <div class="span3"  id="shopPopover"  title="" data-toggle="popover" >
             <div class="row-fluid" id="shopPopoverCotainer">
                 <div class="span4" >
-                    <img class="img-thumbnail"   src="../res/images/shop-image.jpeg" alt="Generic placeholder image" style="width: 96px;height: 96px">
+                    <img class="img-thumbnail"   src="../res/avatar/shop/${shop.avatar}" alt="Generic placeholder image" style="width: 96px;height: 96px">
                 </div>
                 <div class="span8">
                     <div class="row-fluid">
@@ -250,7 +250,7 @@
                             <tr title="${dish.id}" class="dish_body_list_item">
                             	
                                 <td style="width:250px">
-                                    <img title="${dish.id}" src="../res/images/shop-image.jpeg" style="height: 42px;width: 42px" />
+                                    <img title="${dish.id}" src="../res/avatar/dish/${dish.image}" style="height: 42px;width: 42px" />
                                     <span class="lead dish-cat-head"> <a class="dish_item" title="${dish.id}">${dish.name}</a> </span>
                                 </td>
                                 <td style="width:50px">

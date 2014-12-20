@@ -9,12 +9,12 @@
             <li>
                 <a href="http://localhost:8080/index.f1t"><span>美餐</span></a>
             </li>
-
+            <!--
             <li id="navLocalLife" data-toggle="popover">
                 <a href="javascript:void(0)" onclick="location='http://localhost:8080/life/index.f1t'"
                    id="toOnline"><span class="fui-cmd"></span><span>校园服务</span></a>
             </li>
-
+            -->
             <li id="" title="" data-toggle="">
                 <a class="need-redirect" href="javascript:void(0)" id="navReserveSeat"
                    onclick="location='http://localhost:8080/areas.f1t'"><span

@@ -25,227 +25,10 @@
     <link href="res/css/custom/sample.css" rel="stylesheet">
     <link href="res/css/custom/shoppingcart.css" rel="stylesheet">
     <link href="res/css/custom/shop.css" rel="stylesheet">
-    <link href="../res/css/custom/pendingOrder.css" rel="stylesheet">
+    <link href="res/css/custom/pendingOrder.css" rel="stylesheet">
 </head>
 
-<div class="sr-only" id="togCartContent">
-    <div class="CartContent">
-        <div class="row-fluid">
-            <div class="span5 text-center">
-                <img style="width: 64px;height: 64px" alt="Generic placeholder image" src="res/images/shop-image.jpeg"
-                     title="52a6ac98c0939676d0180f07" class="img-thumbnail">
-                <span class="badge badge-success">￥12</span>
-            </div>
-            <div class="span7">
-                <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
 
-                <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#" class="btn btn-info btn-sm"><span
-                        class="glyphicon glyphicon-home"></span></a>
-                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="addToShoppingCart()" title="加入购物车"><span
-                        class="glyphicon glyphicon-cutlery"></span></a>
-
-            </div>
-        </div>
-    </div>
-    <div class="CartContent">
-        <div class="row-fluid">
-            <div class="span5 text-center">
-                <img style="width: 64px;height: 64px" alt="Generic placeholder image" src="res/images/shop-image.jpeg"
-                     title="52a6ac98c0939676d0180f07" class="img-thumbnail">
-                <span class="badge badge-success">￥12</span>
-            </div>
-            <div class="span7">
-                <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#" class="btn btn-info btn-sm"><span
-                        class="glyphicon glyphicon-home"></span></a>
-                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="addToShoppingCart()" title="加入购物车"><span
-                        class="glyphicon glyphicon-cutlery"></span></a>
-
-            </div>
-        </div>
-    </div>
-    <div class="CartContent">
-        <div class="row-fluid">
-            <div class="span5 text-center">
-                <img style="width: 64px;height: 64px" alt="Generic placeholder image" src="res/images/shop-image.jpeg"
-                     title="52a6ac98c0939676d0180f07" class="img-thumbnail">
-                <span class="badge badge-success">￥12</span>
-            </div>
-            <div class="span7">
-                <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#" class="btn btn-info btn-sm"><span
-                        class="glyphicon glyphicon-home"></span></a>
-                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="addToShoppingCart()" title="加入购物车"><span
-                        class="glyphicon glyphicon-cutlery"></span></a>
-
-            </div>
-        </div>
-    </div>
-    <div class="CartContent">
-        <div class="row-fluid">
-            <div class="span5 text-center">
-                <img style="width: 64px;height: 64px" alt="Generic placeholder image" src="res/images/shop-image.jpeg"
-                     title="52a6ac98c0939676d0180f07" class="img-thumbnail">
-                <span class="badge badge-success">￥12</span>
-            </div>
-            <div class="span7">
-                <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#" class="btn btn-info btn-sm"><span
-                        class="glyphicon glyphicon-home"></span></a>
-                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="addToShoppingCart()" title="加入购物车"><span
-                        class="glyphicon glyphicon-cutlery"></span></a>
-
-            </div>
-        </div>
-    </div>
-    <div class="CartContent">
-        <div class="row-fluid">
-            <div class="span5 text-center">
-                <img style="width: 64px;height: 64px" alt="Generic placeholder image" src="res/images/shop-image.jpeg"
-                     title="52a6ac98c0939676d0180f07" class="img-thumbnail">
-                <span class="badge badge-success">￥12</span>
-            </div>
-            <div class="span7">
-                <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#" class="btn btn-info btn-sm"><span
-                        class="glyphicon glyphicon-home"></span></a>
-                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="addToShoppingCart()" title="加入购物车"><span
-                        class="glyphicon glyphicon-cutlery"></span></a>
-
-            </div>
-        </div>
-    </div>
-    <div class="CartContent">
-        <div class="row-fluid">
-            <div class="span5 text-center">
-                <img style="width: 64px;height: 64px" alt="Generic placeholder image" src="res/images/shop-image.jpeg"
-                     title="52a6ac98c0939676d0180f07" class="img-thumbnail">
-                <span class="badge badge-success">￥12</span>
-            </div>
-            <div class="span7">
-                <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#" class="btn btn-info btn-sm"><span
-                        class="glyphicon glyphicon-home"></span></a>
-                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="addToShoppingCart()" title="加入购物车"><span
-                        class="glyphicon glyphicon-cutlery"></span></a>
-
-            </div>
-        </div>
-    </div>
-    <div class="CartContent">
-        <div class="row-fluid">
-            <div class="span5 text-center">
-                <img style="width: 64px;height: 64px" alt="Generic placeholder image" src="res/images/shop-image.jpeg"
-                     title="52a6ac98c0939676d0180f07" class="img-thumbnail">
-                <span class="badge badge-success">￥12</span>
-            </div>
-            <div class="span7">
-                <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#" class="btn btn-info btn-sm"><span
-                        class="glyphicon glyphicon-home"></span></a>
-                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="addToShoppingCart()" title="加入购物车"><span
-                        class="glyphicon glyphicon-cutlery"></span></a>
-
-            </div>
-        </div>
-    </div>
-    <div class="CartContent">
-        <div class="row-fluid">
-            <div class="span5 text-center">
-                <img style="width: 64px;height: 64px" alt="Generic placeholder image" src="res/images/shop-image.jpeg"
-                     title="52a6ac98c0939676d0180f07" class="img-thumbnail">
-                <span class="badge badge-success">￥12</span>
-            </div>
-            <div class="span7">
-                <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#" class="btn btn-info btn-sm"><span
-                        class="glyphicon glyphicon-home"></span></a>
-                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="addToShoppingCart()" title="加入购物车"><span
-                        class="glyphicon glyphicon-cutlery"></span></a>
-
-            </div>
-        </div>
-    </div>
-    <div class="CartContent">
-        <div class="row-fluid">
-            <div class="span5 text-center">
-                <img style="width: 64px;height: 64px" alt="Generic placeholder image" src="res/images/shop-image.jpeg"
-                     title="52a6ac98c0939676d0180f07" class="img-thumbnail">
-                <span class="badge badge-success">￥12</span>
-            </div>
-            <div class="span7">
-                <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#" class="btn btn-info btn-sm"><span
-                        class="glyphicon glyphicon-home"></span></a>
-                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="addToShoppingCart()" title="加入购物车"><span
-                        class="glyphicon glyphicon-cutlery"></span></a>
-
-            </div>
-        </div>
-    </div>
-    <div class="CartContent">
-        <div class="row-fluid">
-            <div class="span5 text-center">
-                <img style="width: 64px;height: 64px" alt="Generic placeholder image" src="res/images/shop-image.jpeg"
-                     title="52a6ac98c0939676d0180f07" class="img-thumbnail">
-                <span class="badge badge-success">￥12</span>
-            </div>
-            <div class="span7">
-                <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#" class="btn btn-info btn-sm"><span
-                        class="glyphicon glyphicon-home"></span></a>
-                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="addToShoppingCart()" title="加入购物车"><span
-                        class="glyphicon glyphicon-cutlery"></span></a>
-
-            </div>
-        </div>
-    </div>
-    <div class="CartContent">
-        <div class="row-fluid">
-            <div class="span5 text-center">
-                <img style="width: 64px;height: 64px" alt="Generic placeholder image" src="res/images/shop-image.jpeg"
-                     title="52a6ac98c0939676d0180f07" class="img-thumbnail">
-                <span class="badge badge-success">￥12</span>
-            </div>
-            <div class="span7">
-                <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#" class="btn btn-info btn-sm"><span
-                        class="glyphicon glyphicon-home"></span></a>
-                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="addToShoppingCart()" title="加入购物车"><span
-                        class="glyphicon glyphicon-cutlery"></span></a>
-
-            </div>
-        </div>
-    </div>
-    <div class="CartContent">
-        <div class="row-fluid">
-            <div class="span5 text-center">
-                <img style="width: 64px;height: 64px" alt="Generic placeholder image" src="res/images/shop-image.jpeg"
-                     title="52a6ac98c0939676d0180f07" class="img-thumbnail">
-                <span class="badge badge-success">￥12</span>
-            </div>
-            <div class="span7">
-                <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#" class="btn btn-info btn-sm"><span
-                        class="glyphicon glyphicon-home"></span></a>
-                <a class="btn btn-success btn-sm" href="javascript:void(0)" onclick="addToShoppingCart()" title="加入购物车"><span
-                        class="glyphicon glyphicon-cutlery"></span></a>
-
-            </div>
-        </div>
-    </div>
-</div>
 <!-- NAVBAR
 ================================================== -->
 <body>
@@ -269,7 +52,6 @@
                     <h1>美餐来啦</h1>
 
                     <p class="lead">食客~为你准备着</p>
-                    <a class="btn btn-large btn-primary" href="#">点击注册</a>
                 </div>
             </div>
         </div>
@@ -281,7 +63,6 @@
                     <h1>美餐来啦</h1>
 
                     <p class="lead">食客~为你准备着</p>
-                    <a class="btn btn-large btn-primary" href="#">点击登陆</a>
                 </div>
             </div>
         </div>
@@ -293,7 +74,6 @@
                     <h1>美餐来啦</h1>
 
                     <p class="lead">食客~为你准备着</p>
-                    <a class="btn btn-large btn-primary" href="#">了解更多</a>
                 </div>
             </div>
         </div>
@@ -307,210 +87,7 @@
 <!--sec level-->
 <div class="carousel"></div>
 
-
-<div class="container-fluid jumbotron" style="height: 350px">
-    <div class="row-fluid">
-
-        <div class="span12">
-            <div class="panel panel-default">
-
-                <div class="panel-body">
-                    <div class="row-fluid">
-                        <div class="span2">
-                            <dl class="palette palette-green-sea togCart" id="togCart1_1">
-                                <div class="row-fluid">
-                                    <div class="span5 text-center">
-                                        <img style="width: 64px;height: 64px" alt="Generic placeholder image"
-                                             src="res/images/shop-image.jpeg" title="52a6ac98c0939676d0180f07"
-                                             class="img-thumbnail">
-                                        <span class="badge badge-success">￥12</span>
-                                    </div>
-                                    <div class="span7">
-                                        <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                                        <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#"
-                                           class="btn btn-info btn-sm"><span
-                                                class="glyphicon glyphicon-home"></span></a>
-                                        <a class="btn btn-success btn-sm" href="javascript:void(0)"
-                                           onclick="addToShoppingCart()" title="加入购物车"><span
-                                                class="glyphicon glyphicon-cutlery"></span></a>
-
-                                    </div>
-                                </div>
-                            </dl>
-                            <dl class="palette palette-turquoise togCart" id="togCart1_2">
-                                <div class="row-fluid">
-                                    <div class="span5 text-center">
-                                        <img style="width: 64px;height: 64px" alt="Generic placeholder image"
-                                             src="res/images/shop-image.jpeg" title="52a6ac98c0939676d0180f07"
-                                             class="img-thumbnail">
-                                        <span class="badge badge-success">￥12</span>
-                                    </div>
-                                    <div class="span7">
-                                        <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                                        <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#"
-                                           class="btn btn-info btn-sm"><span
-                                                class="glyphicon glyphicon-home"></span></a>
-                                        <a class="btn btn-success btn-sm" href="javascript:void(0)"
-                                           onclick="addToShoppingCart()" title="加入购物车"><span
-                                                class="glyphicon glyphicon-cutlery"></span></a>
-
-                                    </div>
-                                </div>
-                            </dl>
-                        </div>
-
-                        <div class="span2">
-                            <dl class="palette palette-orange togCart" id="togCart2_1">
-                                <div class="row-fluid">
-                                    <div class="span5 text-center">
-                                        <img style="width: 64px;height: 64px" alt="Generic placeholder image"
-                                             src="res/images/shop-image.jpeg" title="52a6ac98c0939676d0180f07"
-                                             class="img-thumbnail">
-                                        <span class="badge badge-success">￥12</span>
-                                    </div>
-                                    <div class="span7">
-                                        <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                                        <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#"
-                                           class="btn btn-info btn-sm"><span
-                                                class="glyphicon glyphicon-home"></span></a>
-                                        <a class="btn btn-success btn-sm" href="javascript:void(0)"
-                                           onclick="addToShoppingCart()" title="加入购物车"><span
-                                                class="glyphicon glyphicon-cutlery"></span></a>
-
-                                    </div>
-                                </div>
-                            </dl>
-                            <dl class="palette palette-sun-flower togCart" id="togCart2_2">
-                                <div class="row-fluid">
-                                    <div class="span5 text-center">
-                                        <img style="width: 64px;height: 64px" alt="Generic placeholder image"
-                                             src="res/images/shop-image.jpeg" title="52a6ac98c0939676d0180f07"
-                                             class="img-thumbnail">
-                                        <span class="badge badge-success">￥12</span>
-                                    </div>
-                                    <div class="span7">
-                                        <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                                        <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#"
-                                           class="btn btn-info btn-sm"><span
-                                                class="glyphicon glyphicon-home"></span></a>
-                                        <a class="btn btn-success btn-sm" href="javascript:void(0)"
-                                           onclick="addToShoppingCart()" title="加入购物车"><span
-                                                class="glyphicon glyphicon-cutlery"></span></a>
-
-                                    </div>
-                                </div>
-                            </dl>
-                        </div>
-
-                        <div class="span4">
-                            <button class="btn btn-info btn-lg toOnline"><h1 class="feature-heading">Let's Have 饭</h1>
-                            </button>
-                        </div>
-
-
-                        <div class="span2">
-                            <dl class="palette palette-wisteria togCart" id="togCart5_1">
-                                <div class="row-fluid">
-                                    <div class="span5 text-center">
-                                        <img style="width: 64px;height: 64px" alt="Generic placeholder image"
-                                             src="res/images/shop-image.jpeg" title="52a6ac98c0939676d0180f07"
-                                             class="img-thumbnail">
-                                        <span class="badge badge-success">￥12</span>
-                                    </div>
-                                    <div class="span7">
-                                        <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                                        <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#"
-                                           class="btn btn-info btn-sm"><span
-                                                class="glyphicon glyphicon-home"></span></a>
-                                        <a class="btn btn-success btn-sm" href="javascript:void(0)"
-                                           onclick="addToShoppingCart()" title="加入购物车"><span
-                                                class="glyphicon glyphicon-cutlery"></span></a>
-
-                                    </div>
-                                </div>
-                            </dl>
-                            <dl class="palette palette-amethyst togCart" id="togCart5_2">
-                                <div class="row-fluid">
-                                    <div class="span5 text-center">
-                                        <img style="width: 64px;height: 64px" alt="Generic placeholder image"
-                                             src="res/images/shop-image.jpeg" title="52a6ac98c0939676d0180f07"
-                                             class="img-thumbnail">
-                                        <span class="badge badge-success">￥12</span>
-                                    </div>
-                                    <div class="span7">
-                                        <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                                        <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#"
-                                           class="btn btn-info btn-sm"><span
-                                                class="glyphicon glyphicon-home"></span></a>
-                                        <a class="btn btn-success btn-sm" href="javascript:void(0)"
-                                           onclick="addToShoppingCart()" title="加入购物车"><span
-                                                class="glyphicon glyphicon-cutlery"></span></a>
-
-                                    </div>
-                                </div>
-                            </dl>
-                        </div>
-
-                        <div class="span2">
-                            <dl class="palette palette-pumpkin togCart" id="togCart6_1">
-                                <div class="row-fluid">
-                                    <div class="span5 text-center">
-                                        <img style="width: 64px;height: 64px" alt="Generic placeholder image"
-                                             src="res/images/shop-image.jpeg" title="52a6ac98c0939676d0180f07"
-                                             class="img-thumbnail">
-                                        <span class="badge badge-success">￥12</span>
-                                    </div>
-                                    <div class="span7">
-                                        <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                                        <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#"
-                                           class="btn btn-info btn-sm"><span
-                                                class="glyphicon glyphicon-home"></span></a>
-                                        <a class="btn btn-success btn-sm" href="javascript:void(0)"
-                                           onclick="addToShoppingCart()" title="加入购物车"><span
-                                                class="glyphicon glyphicon-cutlery"></span></a>
-
-                                    </div>
-                                </div>
-                            </dl>
-                            <dl class="palette palette-carrot togCart" id="togCart6_2">
-                                <div class="row-fluid">
-                                    <div class="span5 text-center">
-                                        <img style="width: 64px;height: 64px" alt="Generic placeholder image"
-                                             src="res/images/shop-image.jpeg" title="52a6ac98c0939676d0180f07"
-                                             class="img-thumbnail">
-                                        <span class="badge badge-success">￥12</span>
-                                    </div>
-                                    <div class="span7">
-                                        <p style="font-size:15px">蔬菜拌饭<br><i class="icon-d-star s6"></i></p>
-
-                                        <a title="进入菜品所在店铺" data-toggle="Enter the shop" href="#"
-                                           class="btn btn-info btn-sm"><span
-                                                class="glyphicon glyphicon-home"></span></a>
-                                        <a class="btn btn-success btn-sm" href="javascript:void(0)"
-                                           onclick="addToShoppingCart()" title="加入购物车"><span
-                                                class="glyphicon glyphicon-cutlery"></span></a>
-
-                                    </div>
-                                </div>
-                            </dl>
-                        </div>
-                        <!-- end of span2 -->
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-</div>
+<br><br>
 
 <div id="rankPart">
     <div id="onlinePart" class="container-fluid">
@@ -560,15 +137,6 @@
 
         <div class="row-fluid">
             <div class="span1">
-                <div class="row-fluid" id="weekStarTrigger">
-                    <div class="span10">
-                        <button class="btn btn-primary btn-lg" style="margin-top:150px"><i
-                                class="fui-arrow-right"></i><br>周榜
-                        </button>
-                    </div>
-                    <div class="span2">
-                    </div>
-                </div>
             </div>
             <div class="span10" style="height: 600px">
 
@@ -895,7 +463,6 @@
 <script src="res/js/custom/index_dish.js"></script>
 <script src="res/js/custom/index_shop_popover.js"></script>
 <script src="res/js/custom/shoppingCart.js"></script>
-<script src="res/js/custom/indexToggleCarts.js"></script>
 <script src="../res/js/custom/pendingOrder.js"></script>
 <script src="../res/js/custom/publicRedirect.js"></script>
 
