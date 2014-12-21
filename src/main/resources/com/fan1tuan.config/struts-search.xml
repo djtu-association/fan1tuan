@@ -4,7 +4,7 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="search_main" extends="main" namespace="/search">
-		<action name="index">
+		<action name="index" class="com.fan1tuan.search.ui.struts2.core.SearchAction" method="index">
 		    <result name="success" type="freemarker">/WEB-INF/ftls/search.ftl</result>
 		</action>
 	</package>

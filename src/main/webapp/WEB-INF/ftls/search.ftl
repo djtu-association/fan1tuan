@@ -1,89 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
-<head> 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="./favicon.ico">
+<html>
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0">
 
-    <!-- Bootstrap core CSS -->
-    <link href="../res/css/bootstrap.css" rel="stylesheet">
-    <link href="../res/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="../res/css/flat-ui.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="./js/html5shiv.js"></script>
-    <![endif]-->
-
-    <!-- Custom styles for this template -->
-
-    <!-- page independent -->
-    <title>搜索也是很简单</title>
-    <link href="../res/css/custom/index.css" rel="stylesheet">
-    <link href="../res/css/custom/shoppingcart.css" rel="stylesheet">
-    <link href="../res/css/custom/shop.css" rel="stylesheet">
-    <link href="../res/css/custom/pendingOrder.css" rel="stylesheet">
+    <title>*美餐*|搜索美食</title>
+    <link rel="stylesheet" href="../res/css/semantic.css">
 </head>
-
-
-
-
-
-<!-- NAVBAR
-================================================== -->
 <body>
-<div class="navbar-wrapper"  id="top">
-    <div class="container">
 
-        <div class="navbar" style="background: #d1f2eb">
-            <div class="navbar-header">
-                <button data-target="#nav-collapse-01" data-toggle="collapse" class="btn btn-navbar" type="button"></button>
+<br>
+
+<div class="ui page padded grid">
+    <div class="sixteen wide column">
+        <h2 class="ui header">
+            <i class="search icon"></i>
+            <div class="content">
+                "美餐"千百度
+                <div class="sub header">欢迎来到美餐网搜索页面，觉着主页信息没有亲相中的宝贝餐食吗，来这里搜搜再试试？</div>
             </div>
-            <div id="nav-collapse-01" class="navbar-collapse collapse">
-                    <ul class="nav">
-                    	
-                        <li>
-                            <a href="/index.f1t"><span >美餐</span></a>
-                        </li>
-                        
-                        <li id="navOnlineOrder"   title="" data-toggle="popover">
-                            <a href="javascript:void(0)" id="toOnline"><span class="fui-cmd"></span><span >在线订餐</span></a>
-                        </li>
-                        <li id="navPhoneCallOrder" title="" data-toggle="popover">
-                            <a href="javascript:void(0)" id="toPhone"><span class="fui-chat"></span><span >电话订餐</span></a>
-                        </li>
-                        
-                        
-                        <!-- <li id="" title="" data-toggle="">
-                            <a href="javascript:void(0)" id="navReserveSeat" onclick="location='areas.f1t'"><span class="fui-location"></span><span ><#if areaName?exists>${areaName}</#if></span></a>
-                        </li> -->
-                        
-                        <!--<li id="navLifeSurround" title="" data-toggle="popover">
-                            <a href="javascript:void(0)" onclick="location='../life/index.f1t'"><span class="fui-location"></span><span >本地生活</span></a>
-                        </li>-->
-				
-                    </ul>
-     
-                    <ul class="nav navbar-nav">
-                    	<#include "./snippet/userstatus.ftl" />
-                    </ul>
-                    <form class="navbar-form navbar-left form-inline pull-right" role="search">
-                        <div class="input-group">
-                            <div class="form-group">
-                                <input id="searchField" type="text" class="form-control" size="25" placeholder="搜店.搜美食" />
-                                <span class="input-icon fui-search"></span>
-                            </div>
-                        </div>
-                    </form>
+        </h2>
+    </div>
+    <div class="sixteen wide column">
+        <div class="ui action fluid input">
+            <input id="keyword-field" type="text" placeholder="输入关键字搜索店铺或菜品">
+            <div class="ui teal right labeled icon button" id="search-button">
+                <i class="search icon"></i>
+                搜索
             </div>
         </div>
     </div>
+    <#if blandRequest==false>
+        <div class="sixteen wide column">
+            <div class="ui six cards">
+                <#list shops as shop>
+                    <div class="card">
+                        <div class="dimmable image">
+                            <div class="ui dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                        <div class="ui inverted left labeled button shop-button" data-bind="${shop.id}"><i class="home icon"></i>进店铺</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="../res/avatar/shop/${shop.avatar}">
+                        </div>
+                        <div class="content">
+                            <a class="header" href="#">${shop.name}</a>
+                        </div>
+                    </div>
+                </#list>
+            </div>
+        </div>
+        <div class="sixteen wide column">
+            <div class="ui divided items">
+                <#list dishes as dish>
+                    <div class="item">
+                        <div class="ui tiny image">
+                            <img src="../res/avatar/dish/${dish.image}">
+                        </div>
+                        <div class="content">
+                            <a class="header">${dish.name}</a>
+                            <div class="description">
+                                <p>${dish.description}</p>
+                                <div class="ui vertical animated blue button">
+                                    <div class="hidden content">￥${dish.price}</div>
+                                    <div class="visible content">
+                                        <i class="shop large icon"></i>
+                                    </div>
+                                </div>
+                                <div class="ui vertical animated green button shop-button" data-bind=""${dish.shopId}>
+                                    <div class="hidden content">进店铺</div>
+                                    <div class="visible content">
+                                        <i class="home large icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </#list>
+            </div>
+        </div>
+    </#if>
+    <#if haveResult==false>
+        <div class="sixteen wide column">
+            <h1 class="ui header">
+                <div class="content">
+                    抱歉，未找到任何餐厅或菜品
+                </div>
+            </h1>
+        </div>
+    </#if>
 </div>
 
+<script src="../res/js/jquery-2.0.3.min.js"></script>
+<script src="../res/js/semantic.js"></script>
+<script>
+    $('.cards .image').dimmer({
+        on: 'hover'
+    });
+    $('.shop-button').click(function(){
+        var shopId = $(this).attr('data-bind');
+        window.open("http://localhost:8080/shop/index.f1t?shopId="+shopId);
+    });
 
+    $('#search-button').click(function(){
+        var keyword = $('#keyword-field').val();
+
+        if (!!keyword) {
+            window.location.href="http://localhost:8080/search/index.f1t?keyword="+keyword;
+        } else {
+            alert("请输入有效关键字进行搜索~");
+        }
+    });
+</script>
 
 </body>
-
 </html>

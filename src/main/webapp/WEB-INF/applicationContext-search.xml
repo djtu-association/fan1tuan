@@ -23,6 +23,7 @@
 <bean id="searchService" class="com.fan1tuan.search.business.mongoImpl.SearchServiceImpl">
     <property name="shopDao" ref="shopDao"></property>
     <property name="dishDao" ref="dishDao"></property>
+	<property name="areaDao" ref="areaDao"></property>
 </bean>
 
 </beans>
