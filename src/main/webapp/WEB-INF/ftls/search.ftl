@@ -71,7 +71,7 @@
                                         <i class="shop large icon"></i>
                                     </div>
                                 </div>
-                                <div class="ui vertical animated green button shop-button" data-bind=""${dish.shopId}>
+                                <div class="ui vertical animated green button shop-button" data-bind="${dish.shopId}">
                                     <div class="hidden content">进店铺</div>
                                     <div class="visible content">
                                         <i class="home large icon"></i>
@@ -104,6 +104,12 @@
     $('.shop-button').click(function(){
         var shopId = $(this).attr('data-bind');
         window.open("http://localhost:8080/shop/index.f1t?shopId="+shopId);
+    });
+
+    $("#keyword-field").keypress(function(event){
+        if (event.which==13){
+            $('#search-button').click();
+        }
     });
 
     $('#search-button').click(function(){
