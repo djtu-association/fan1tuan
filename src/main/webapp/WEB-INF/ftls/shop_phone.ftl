@@ -395,5 +395,7 @@
 <script src="../res/js/custom/shop.js"></script>
 <script src="../res/js/custom/publicRedirect.js"></script>
 <script src="../res/js/custom/pendingOrder.js"></script>
+<script src="../res/js/custom/search.js"></script>
+
 </body>
 </html>

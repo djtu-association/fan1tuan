@@ -463,6 +463,7 @@
 <script src="res/js/custom/index_dish.js"></script>
 <script src="res/js/custom/index_shop_popover.js"></script>
 <script src="res/js/custom/shoppingCart.js"></script>
+<script src="res/js/custom/search.js"></script>
 <script src="../res/js/custom/pendingOrder.js"></script>
 <script src="../res/js/custom/publicRedirect.js"></script>
 

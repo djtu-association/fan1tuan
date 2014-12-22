@@ -98,12 +98,15 @@
 <script src="../res/js/jquery-2.0.3.min.js"></script>
 <script src="../res/js/semantic.js"></script>
 <script>
+    var baseHref = window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
+
+
     $('.cards .image').dimmer({
         on: 'hover'
     });
     $('.shop-button').click(function(){
         var shopId = $(this).attr('data-bind');
-        window.open("http://localhost:8080/shop/index.f1t?shopId="+shopId);
+        window.open(baseHref+"/shop/index.f1t?shopId="+shopId);
     });
 
     $("#keyword-field").keypress(function(event){
@@ -116,7 +119,7 @@
         var keyword = $('#keyword-field').val();
 
         if (!!keyword) {
-            window.location.href="http://localhost:8080/search/index.f1t?keyword="+keyword;
+            window.location.href=baseHref+"/search/index.f1t?keyword="+keyword;
         } else {
             alert("请输入有效关键字进行搜索~");
         }

@@ -421,5 +421,7 @@
 <script src="../res/js/custom/shoppingCart.js"></script>
 <script src="../res/js/custom/publicRedirect.js"></script>
 <script src="../res/js/custom/pendingOrder.js"></script>
+<script src="../res/js/custom/search.js"></script>
+
 </body>
 </html>
