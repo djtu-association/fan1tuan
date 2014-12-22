@@ -9,12 +9,19 @@ public class ShopItem extends EntityObject {
 	private ArrayList<DishItem> dishItems;
 	private String shopId;
 	private String shopName;
+	private String shopAvatar;
 	private double sumPrice;
 	
 	//新加字段，为了保证起送价限制与店铺的事务标签提醒
 	private double deliveryCharge;
 	private List<String> shopAffairTagIds;
-	
+
+	public String getShopAvatar() {
+		return shopAvatar;
+	}
+	public void setShopAvatar(String shopAvatar) {
+		this.shopAvatar = shopAvatar;
+	}
 	public ArrayList<DishItem> getDishItems() {
 		return dishItems;
 	}

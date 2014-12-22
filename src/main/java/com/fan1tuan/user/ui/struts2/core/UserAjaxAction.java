@@ -501,7 +501,7 @@ public class UserAjaxAction extends Fan1TuanAction {
 					dishItem.setDishName(dish.getName());
 					dishItem.setDishPrice(dish.getPrice());
 					dishItem.setDishSum(dishItem.getNumber()*dishItem.getDishPrice());
-					
+					dishItem.setDishImage(dish.getImage());
 					price+=dishItem.getDishSum();
 					dishItems.add(dishItem);
 				}

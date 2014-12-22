@@ -334,13 +334,14 @@ public class UserServiceImpl implements UserService {
 		for(FavoriteShop favoriteShop : favoriteShops){
 			FavoriteShopDto favoriteShopDto = new FavoriteShopDto();
 			
-			Shop shop = shopDao.findOneProjectedById(favoriteShop.getShopId(), FieldFilter.instance("id","name","shopTasteTagIds","orderType","description","dishRecs"));
+			Shop shop = shopDao.findOneProjectedById(favoriteShop.getShopId(), FieldFilter.instance("id","name","shopTasteTagIds","orderType","description","dishRecs","avatar"));
 		
 			favoriteShopDto.setDate(favoriteShop.getDate());
 			favoriteShopDto.setOrderType(shop.getOrderType());
 			favoriteShopDto.setShopId(favoriteShop.getShopId());
 			favoriteShopDto.setShopName(shop.getName());
-									
+			favoriteShopDto.setShopAvatar(shop.getAvatar());
+
 			favoriteShopDto.setFavoriteShopRecs(shopUserService.getFavoriteShopRecs(shop.getId(), areaId, Pageable.inPage(0, 3)));//3个
 			favoriteShopDto.setShopTasteTags(shopUserService.getShopTasteTags(shop.getShopTasteTagIds()));
 

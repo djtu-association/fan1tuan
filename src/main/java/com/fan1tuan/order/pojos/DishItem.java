@@ -3,6 +3,8 @@ package com.fan1tuan.order.pojos;
 import com.fan1tuan.general.pojos.EntityObject;
 
 public class DishItem extends EntityObject{
+	private String dishImage; // new added
+
 	private String dishId;
 	private int number;
 	private String dishName;
@@ -32,7 +34,9 @@ public class DishItem extends EntityObject{
 		this.number = number;
 		this.dishPrice = dishPrice;
 	}
-	
+
+
+
 	public DishItem() {}
 	public String getDishName() {
 		return dishName;
@@ -46,7 +50,12 @@ public class DishItem extends EntityObject{
 	public void setDishSum(double dishSum) {
 		this.dishSum = dishSum;
 	}
-	
+	public String getDishImage() {
+		return dishImage;
+	}
+	public void setDishImage(String dishImage) {
+		this.dishImage = dishImage;
+	}
 	/*
 	@Override
 	public boolean equals(Object obj){

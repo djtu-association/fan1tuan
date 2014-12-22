@@ -133,7 +133,7 @@
             	<div data-title="${order.shopId}" class="shopItem">
                     <div class="row-fluid">
                         <div class="span1">
-                            <img src="../res/images/shop-image.jpeg">
+                            <img src="../res/avatar/shop/${order.shopAvatar}" style="width: 64px; height: 64px">
                         </div>
                         <div class="span6">
                             餐厅名称：<span><a class="btn btn-xs btn-info" href="/shop/index.f1t?shopId=${order.shopId}">${order.shopName}</a></span>

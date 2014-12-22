@@ -25,7 +25,7 @@
     </div>
     <div class="sixteen wide column">
         <div class="ui action fluid input">
-            <input id="keyword-field" type="text" placeholder="输入关键字搜索店铺或菜品">
+            <input id="keyword-field" type="text" value="${keyword}" placeholder="输入关键字搜索店铺或菜品">
             <div class="ui teal right labeled icon button" id="search-button">
                 <i class="search icon"></i>
                 搜索

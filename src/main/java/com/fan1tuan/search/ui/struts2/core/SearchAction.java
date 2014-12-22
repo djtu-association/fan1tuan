@@ -10,7 +10,6 @@ import com.opensymphony.xwork2.Action;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Li He on 2014/12/21.
@@ -77,7 +76,7 @@ public class SearchAction extends Fan1TuanAction{
 
     private List<Shop> shops;
     private List<Dish> dishes;
-    private String keyword;
+    private String keyword = "";
     private String areaId;
     private boolean haveResult;
     private boolean blandRequest;

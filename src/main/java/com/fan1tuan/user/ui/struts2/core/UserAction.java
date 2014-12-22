@@ -1,10 +1,6 @@
 package com.fan1tuan.user.ui.struts2.core;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.fan1tuan.general.dao.Pageable;
 import com.fan1tuan.general.dao.Sortable;
@@ -16,6 +12,7 @@ import com.fan1tuan.order.pojos.Order;
 import com.fan1tuan.shop.pojos.Dish;
 import com.fan1tuan.shop.pojos.DishCommentDto;
 import com.fan1tuan.user.business.UserService;
+import com.fan1tuan.user.pojos.FavoriteShop;
 import com.fan1tuan.user.pojos.User;
 import com.fan1tuan.user.pojos.dto.FavoriteShopDto;
 
@@ -139,11 +136,7 @@ public class UserAction extends Fan1TuanAction {
 		Date now = new Date();
 		GregorianCalendar gregorianCalendar = new GregorianCalendar();
 		gregorianCalendar.setTime(now);
-		if(gregorianCalendar.get(Calendar.HOUR_OF_DAY)>18||gregorianCalendar.get(Calendar.HOUR_OF_DAY)<6){
-			morning = false;
-		}else{
-			morning = true;
-		}
+		morning = !(gregorianCalendar.get(Calendar.HOUR_OF_DAY) > 18 || gregorianCalendar.get(Calendar.HOUR_OF_DAY) < 6);
 		
 		
 		//获取用户信息

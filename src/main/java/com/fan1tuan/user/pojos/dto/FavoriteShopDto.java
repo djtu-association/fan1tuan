@@ -15,7 +15,8 @@ import com.fan1tuan.shop.pojos.ShopTasteTag;
 public class FavoriteShopDto extends EntityObject{
 	private String shopId;
 	private String shopName;
-	
+	private String shopAvatar;
+
 	private int orderType;
 	
 	private List<ShopTasteTag> shopTasteTags;
@@ -26,8 +27,15 @@ public class FavoriteShopDto extends EntityObject{
 	private List<Dish> topDishes;  //4个
 	private List<Dish> shopRecDishes; //4个
 	private List<Dish> onceBoughtDishes; //4个
-	
-	
+
+	public String getShopAvatar() {
+		return shopAvatar;
+	}
+
+	public void setShopAvatar(String shopAvatar) {
+		this.shopAvatar = shopAvatar;
+	}
+
 	public int getOrderType() {
 		return orderType;
 	}

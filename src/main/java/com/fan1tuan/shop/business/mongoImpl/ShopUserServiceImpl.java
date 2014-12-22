@@ -428,7 +428,7 @@ public class ShopUserServiceImpl implements ShopUserService{
 		Shop shop = shopDao.findOneProjectedById(shopId, FieldFilter.instance("shopTasteTagIds","orderType"));
 		
 		//List<Shop> shops = shopDao.findProjectedByParamsInPageInOrder(CriteriaWrapper.instance().withinSphere("location", cricle));
-		GeoResults<Shop> shops = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius().getValue()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(CriteriaWrapper.instance().in("shopTasteTagIds", shop.getShopTasteTagIds()).is("orderType", shop.getOrderType()), FieldFilter.instance("id","name","description"), pageable).with(Sortable.instance("saleVolume", Sortable.DESCEND).toSort()));
+		GeoResults<Shop> shops = shopDao.getGeoResults(circle.getCenter(), new Distance(circle.getRadius().getValue()/1000, Metrics.KILOMETERS), QueryWrapper.wrap(CriteriaWrapper.instance().in("shopTasteTagIds", shop.getShopTasteTagIds()).is("orderType", shop.getOrderType()), FieldFilter.instance("id","name","avatar","description"), pageable).with(Sortable.instance("saleVolume", Sortable.DESCEND).toSort()));
 
 		List<FavoriteShopRec> favoriteShopRecs = new ArrayList<FavoriteShopRec>();
 		
@@ -441,7 +441,7 @@ public class ShopUserServiceImpl implements ShopUserService{
 			
 			if(i++<3){				
 				FavoriteShopRec favoriteShopRec = new FavoriteShopRec();
-				favoriteShopRec.setImagePath("");
+				favoriteShopRec.setImagePath(geoResult.getContent().getAvatar());
 				favoriteShopRec.setShopDescription(geoResult.getContent().getDescription());
 				favoriteShopRec.setShopId(geoResult.getContent().getId());
 				favoriteShopRec.setShopName(geoResult.getContent().getName());

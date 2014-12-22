@@ -49,10 +49,10 @@
                         </li>
                         
                         <li id="navOnlineOrder"   title="" data-toggle="popover">
-                            <a href="javascript:void(0)" id="toOnline"><span class="fui-cmd"></span><span >在线订餐</span></a>
+                            <a href="/index.f1t#onlinePart" id="toOnline"><span class="fui-cmd"></span><span >在线订餐</span></a>
                         </li>
                         <li id="navPhoneCallOrder" title="" data-toggle="popover">
-                            <a href="javascript:void(0)" id="toPhone"><span class="fui-chat"></span><span >电话订餐</span></a>
+                            <a href="/index.f1t#phoneCallPart" id="toPhone"><span class="fui-chat"></span><span >电话订餐</span></a>
                         </li>
                         
                         
@@ -254,7 +254,7 @@
                         
                         <tr>
                             <td style="width: 50px">
-                                <a href="#"><img src="../res/images/shop-image.jpeg"></a>
+                                <a href="#"><img src="../res/avatar/dish/${dishItem.dishImage}"></a>
                             </td>
                             <td colspan="2">
                                 <span class="text text-primary lead"><a href="#">${dishItem.dishName}</a></span><br>
@@ -378,136 +378,137 @@
                         <div class="span12" style="padding-left: 0px;margin-left: 0px">
                             <ul id="J_FavList" class="fav-shop-list J_FavList" style="padding-left: 0px;margin-left: 0px">
                             <#assign favoriteShopIndex=0 />
-                            <#list favoriteShopDtos as favoriteShop>
-                            	<li class="shop-item clearfix J_FavListItem">
-                                    <div class="shop-some-info">
-                                        <div class="shop-item-m">
-                                            <a target="_blank" href="/shop/index.f1t?shopId=${favoriteShop.shopId}" class="shop-icon">
-                                                <span class="png50"></span>
-                                                <img width="50" height="50" alt="" src="../res/images/shop-image.jpeg">
-                                            </a>
-                                            <div class="shop-detail">
-                                                <a title="" target="_blank" href="/shop/index.f1t?shopId=${favoriteShop.shopId}" class="shop-title ">
-                                                    ${favoriteShop.shopName}
+                            <#if favoriteShopDtos?exists && favoriteShopDtos.size()!=0>
+                                <#list favoriteShopDtos as favoriteShop>
+                                    <li class="shop-item clearfix J_FavListItem">
+                                        <div class="shop-some-info">
+                                            <div class="shop-item-m">
+                                                <a target="_blank" href="/shop/index.f1t?shopId=${favoriteShop.shopId}" class="shop-icon">
+                                                    <span class="png50"></span>
+                                                    <img width="50" height="50" alt="" src="../res/avatar/shop/${favoriteShop.shopAvatar}">
                                                 </a>
+                                                <div class="shop-detail">
+                                                    <a title="" target="_blank" href="/shop/index.f1t?shopId=${favoriteShop.shopId}" class="shop-title ">
+                                                    ${favoriteShop.shopName}
+                                                    </a>
 
-                                                <p class="shop-desc">
+                                                    <p class="shop-desc">
                      								<span class="shop-desc-text">
                         								<a target="_blank" href="#">
-                        									<#list favoriteShop.shopTasteTags as shopTasteTag>
-                        										${shopTasteTag.name}&nbsp;&nbsp;
-                        									</#list>
-                        								</a>
+                                                            <#list favoriteShop.shopTasteTags as shopTasteTag>
+                                                            ${shopTasteTag.name}&nbsp;&nbsp;
+                                                            </#list>
+                                                        </a>
                      								</span>
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="shop-item-c clearfix">
-                                            <a  href="#" class="cancel-up" ><i class="icon-rst-rating s9"></i></a>
-                                            <div class="shop-item-c-info">
-                                                <div class="remark J_Remark">
+                                                    </p>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="shop-item-sn">
-                                            <a href="#" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
-                                            <a href="#" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-share"></i></a>
+
+                                            <div class="shop-item-c clearfix">
+                                                <a  href="#" class="cancel-up" ><i class="icon-rst-rating s9"></i></a>
+                                                <div class="shop-item-c-info">
+                                                    <div class="remark J_Remark">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="shop-item-sn">
+                                                <a href="#" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
+                                                <a href="#" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-share"></i></a>
+                                            </div>
+
+                                            <div class="shop-item-s">
+                                                <a target="_blank" href="#" class="similar-shop-btn">相似店铺</a>
+                                                <#list favoriteShop.favoriteShopRecs as favoriteShopRec>
+                                                    <a data-spm="d4912213" target="_blank" href="/shop/index.f1t?shopId=${favoriteShopRec.shopId}" title="${favoriteShopRec.shopName}">
+                                                        <img src="../res/avatar/shop/${favoriteShopRec.imagePath}">
+                                                    </a>
+                                                </#list>
+
+
+
+                                            </div>
                                         </div>
 
-                                        <div class="shop-item-s">
-                                            <a target="_blank" href="#" class="similar-shop-btn">相似店铺</a>
-                                            <#list favoriteShop.favoriteShopRecs as favoriteShopRec>
-                                            	<a data-spm="d4912213" target="_blank" href="/shop/index.f1t?shopId=${favoriteShopRec.shopId}" title="${favoriteShopRec.shopName}">
-                                                	<img src="../res/images/shop-image.jpeg">
-                                            	</a>
-                                            </#list>
-                                            
-                                            
-
-                                        </div>
-                                    </div>
-
-                                    <div data-href="" class="shop-show">
+                                        <div data-href="" class="shop-show">
 		    							<span class="shop-show-tab">
     			        					<ul class="nav nav-tabs" id="shop-tab${favoriteShopIndex}" style="width:180px;">
-                            					<li class="sr-only"><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-loading">loading</a></li>
-                            					<li class="active"><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-topSale">店铺热卖</a></li>
-                            					<#if favoriteShop.shopRecDishes?exists && favoriteShop.shopRecDishes.size()!=0 ><li class=""><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-shopRec">掌柜推荐</a></li></#if>
-                            					<#if favoriteShop.onceBoughtDishes?exists && favoriteShop.onceBoughtDishes.size()!=0 ><li class=""><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-onceBought">我买过的</a></li></#if>
-                        					</ul>
+                                                <li class="sr-only"><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-loading">loading</a></li>
+                                                <li class="active"><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-topSale">店铺热卖</a></li>
+                                                <#if favoriteShop.shopRecDishes?exists && favoriteShop.shopRecDishes.size()!=0 ><li class=""><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-shopRec">掌柜推荐</a></li></#if>
+                                                <#if favoriteShop.onceBoughtDishes?exists && favoriteShop.onceBoughtDishes.size()!=0 ><li class=""><a data-toggle="tab" href="#shop-tab${favoriteShopIndex}-onceBought">我买过的</a></li></#if>
+                                            </ul>
     	    							</span>
-                                        <div class="tab-content carousel-container latestUp-tab" style="">
-                                            <div style="display: none;" class="tab-pane loading-j" id="shop-tab${favoriteShopIndex}-loading">请稍候</div>
-                                            
-                                            <div class="tab-pane active ul-container" id="shop-tab${favoriteShopIndex}-topSale">
-                                            <#if favoriteShop.topDishes?exists && favoriteShop.topDishes.size()!=0 >
-                                                <ul style="position: absolute;" class="shop-show-container ks-switchable-content">
-                                                <#list favoriteShop.topDishes as dish>
-                                                	<li class="item-show">
-                                                        <a title="" class="item-link" target="_blank" href="#">
+                                            <div class="tab-content carousel-container latestUp-tab" style="">
+                                                <div style="display: none;" class="tab-pane loading-j" id="shop-tab${favoriteShopIndex}-loading">请稍候</div>
+
+                                                <div class="tab-pane active ul-container" id="shop-tab${favoriteShopIndex}-topSale">
+                                                    <#if favoriteShop.topDishes?exists && favoriteShop.topDishes.size()!=0 >
+                                                        <ul style="position: absolute;" class="shop-show-container ks-switchable-content">
+                                                            <#list favoriteShop.topDishes as dish>
+                                                                <li class="item-show">
+                                                                    <a title="" class="item-link" target="_blank" href="#">
                                 							<span class="img-wrap">
-                                    							<img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
+                                    							<img src="../res/avatar/dish/${dish.image}" width="160" height="160" alt="">
                                 							</span>
-                                                        </a>
-                                                        <div class="cont">
-                                                            <div class="g_price"><span class="lead" style="font-size:15px">${dish.name}</span></div>
-                                                            <div class="g_price"><strong>￥${dish.price}</strong></div>
-                                                            <!-- <div class="g_price g_price-original"><span>￥</span>299.00</div> -->
-                                                        </div>
-                                                    </li>
-                                                </#list>
-                                                </ul>
-                                            <#else>
-                                            	<div class="row-fluid"><div class="span12"><span class="text-center text-primary lead">没有内容需要显示，sorry哦</span></div></div>
-                                            </#if>
-                                            </div>
-                                            <#if favoriteShop.shopRecDishes?exists && favoriteShop.shopRecDishes.size()!=0 >
-                                            <div class="tab-pane ul-container" id="shop-tab${favoriteShopIndex}-shopRec">
-                                                <ul style="position: absolute;" class="shop-show-container ks-switchable-content">
-                                                <#list favoriteShop.shopRecDishes as dish>
-                                                	<li class="item-show">
-                                                        <a title="" class="item-link" target="_blank" href="#">
+                                                                    </a>
+                                                                    <div class="cont">
+                                                                        <div class="g_price"><span class="lead" style="font-size:15px">${dish.name}</span></div>
+                                                                        <div class="g_price"><strong>￥${dish.price}</strong></div>
+                                                                        <!-- <div class="g_price g_price-original"><span>￥</span>299.00</div> -->
+                                                                    </div>
+                                                                </li>
+                                                            </#list>
+                                                        </ul>
+                                                    <#else>
+                                                        <div class="row-fluid"><div class="span12"><span class="text-center text-primary lead">没有内容需要显示，sorry哦</span></div></div>
+                                                    </#if>
+                                                </div>
+                                                <#if favoriteShop.shopRecDishes?exists && favoriteShop.shopRecDishes.size()!=0 >
+                                                    <div class="tab-pane ul-container" id="shop-tab${favoriteShopIndex}-shopRec">
+                                                        <ul style="position: absolute;" class="shop-show-container ks-switchable-content">
+                                                            <#list favoriteShop.shopRecDishes as dish>
+                                                                <li class="item-show">
+                                                                    <a title="" class="item-link" target="_blank" href="#">
                                 							<span class="img-wrap">
-                                    							<img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
+                                    							<img src="../res/avatar/dish/${dish.image}" width="160" height="160" alt="">
                                 							</span>
-                                                        </a>
-                                                        <div class="cont">
-                                                            <div class="g_price"><span class="lead" style="font-size:15px">${dish.name}</span></div>
-                                                            <div class="g_price"><strong>￥${dish.price}</strong></div>
-                                                            <!-- <div class="g_price g_price-original"><span>￥</span>299.00</div> -->
-                                                        </div>
-                                                    </li>
-                                                </#list>
-                                                </ul>
-                                            </div>
-                                            </#if>
-                                            <#if favoriteShop.onceBoughtDishes?exists && favoriteShop.onceBoughtDishes.size()!=0 >
-                                            <div class="tab-pane ul-container" id="shop-tab${favoriteShopIndex}-onceBought">
-                                                <ul style="position: absolute;" class="shop-show-container ks-switchable-content">
-                                                <#list favoriteShop.onceBoughtDishes as dish>
-                                                	<li class="item-show">
-                                                        <a title="" class="item-link" target="_blank" href="#">
+                                                                    </a>
+                                                                    <div class="cont">
+                                                                        <div class="g_price"><span class="lead" style="font-size:15px">${dish.name}</span></div>
+                                                                        <div class="g_price"><strong>￥${dish.price}</strong></div>
+                                                                        <!-- <div class="g_price g_price-original"><span>￥</span>299.00</div> -->
+                                                                    </div>
+                                                                </li>
+                                                            </#list>
+                                                        </ul>
+                                                    </div>
+                                                </#if>
+                                                <#if favoriteShop.onceBoughtDishes?exists && favoriteShop.onceBoughtDishes.size()!=0 >
+                                                    <div class="tab-pane ul-container" id="shop-tab${favoriteShopIndex}-onceBought">
+                                                        <ul style="position: absolute;" class="shop-show-container ks-switchable-content">
+                                                            <#list favoriteShop.onceBoughtDishes as dish>
+                                                                <li class="item-show">
+                                                                    <a title="" class="item-link" target="_blank" href="#">
                                 							<span class="img-wrap">
-                                    							<img src="../res/images/shop-image.jpeg" width="160" height="160" alt="">
+                                    							<img src="../res/avatar/dish/${dish.image}" width="160" height="160" alt="">
                                 							</span>
-                                                        </a>
-                                                        <div class="cont">
-                                                            <div class="g_price"><span class="lead" style="font-size:15px">${dish.name}</span></div>
-                                                            <div class="g_price"><strong>￥${dish.price}</strong></div>
-                                                            <!-- <div class="g_price g_price-original"><span>￥</span>299.00</div> -->
-                                                        </div>
-                                                    </li>
-                                                </#list>
-                                                </ul>
+                                                                    </a>
+                                                                    <div class="cont">
+                                                                        <div class="g_price"><span class="lead" style="font-size:15px">${dish.name}</span></div>
+                                                                        <div class="g_price"><strong>￥${dish.price}</strong></div>
+                                                                        <!-- <div class="g_price g_price-original"><span>￥</span>299.00</div> -->
+                                                                    </div>
+                                                                </li>
+                                                            </#list>
+                                                        </ul>
+                                                    </div>
+                                                </#if>
                                             </div>
-                                            </#if>
                                         </div>
-                                    </div>
-                                </li>
-                                <#assign favoriteShopIndex=favoriteShopIndex+1 />
-                            </#list>
-                                
+                                    </li>
+                                    <#assign favoriteShopIndex=favoriteShopIndex+1 />
+                                </#list>
+                            </#if>
                             </ul>
                         </div>
                     </div>
@@ -518,36 +519,37 @@
                             <div style="height: 30px"></div>
                             <div id="fav-list">
                                 <ul class="grid img-item-list J_FavList clearfix">
-                                	<#list favoriteDishes as dish>
-                                	<li data-item-id="${dish.id}"  class="g-u J_FavListItem ">
-                                        <div class="img-controller-box J_FavImgController">
-                                            <a title="${dish.name}"  target="_blank" class="img" href="/shop/index.f1t?shopId=${dish.shopId}" >
-                                                <img src="../res/images/shop-image.jpeg" width="210" height="210">
-                                            </a>
-                                            <div class="old-data-del">
-                                            </div>
-                                        </div>
-                                        <div class="img-item-title">
-                                            <a  href="/shop/index.f1t?shopId=${dish.shopId}" target="_blank" title="">
-                                               	 ${dish.name}
-                                            </a>
-                                        </div>
-                                        <div class="price-container">
-                                            <!--<div class="tagForSale" title="两件130">送加多宝</div>-->
-                                            <div class="g_price"><span>￥</span><strong>${dish.price}</strong>
-                                            </div>
-                                            <#if dish.originPrice gt dish.price>
-                                            	<div class="g_price g_price-original"><span>￥</span><strong style="text-decoration: line-through">${dish.originPrice}</strong></div>
-                                            </#if>
-                                            
-                                        </div>
-                                        <div class="item-controller">
-                                            <a title="删除" href="#" class="J_FavDel fav-item-del miconfont J_NewPoint"><i class="glyphicon glyphicon-trash"></i></a>|
-                                            <a title="进入店铺" target="_blank" href="/shop/index.f1t?shopId=${dish.shopId}" class="goto-shop miconfont"><i class="glyphicon glyphicon-home"></i></a>
-                                            |<a href="#" title="加入购物车" class="J_AddToCartBtnTgr cart-icon miconfont J_NewPoint" ><i class="glyphicon glyphicon-shopping-cart"></i></a>	</div>
-                                    </li>
-                                	</#list>
-                                    
+                                    <#if favoriteDishes?exists && favoriteDishes.size()!=0>
+                                        <#list favoriteDishes as dish>
+                                            <li data-item-id="${dish.id}"  class="g-u J_FavListItem ">
+                                                <div class="img-controller-box J_FavImgController">
+                                                    <a title="${dish.name}"  target="_blank" class="img" href="/shop/index.f1t?shopId=${dish.shopId}" >
+                                                        <img src="../res/avatar/dish/${dish.image}" width="210" height="210">
+                                                    </a>
+                                                    <div class="old-data-del">
+                                                    </div>
+                                                </div>
+                                                <div class="img-item-title">
+                                                    <a  href="/shop/index.f1t?shopId=${dish.shopId}" target="_blank" title="">
+                                                    ${dish.name}
+                                                    </a>
+                                                </div>
+                                                <div class="price-container">
+                                                    <!--<div class="tagForSale" title="两件130">送加多宝</div>-->
+                                                    <div class="g_price"><span>￥</span><strong>${dish.price}</strong>
+                                                    </div>
+                                                    <#if dish.originPrice gt dish.price>
+                                                        <div class="g_price g_price-original"><span>￥</span><strong style="text-decoration: line-through">${dish.originPrice}</strong></div>
+                                                    </#if>
+
+                                                </div>
+                                                <div class="item-controller">
+                                                    <a title="删除" href="#" class="J_FavDel fav-item-del miconfont J_NewPoint"><i class="glyphicon glyphicon-trash"></i></a>|
+                                                    <a title="进入店铺" target="_blank" href="/shop/index.f1t?shopId=${dish.shopId}" class="goto-shop miconfont"><i class="glyphicon glyphicon-home"></i></a>
+                                                    |<a href="#" title="加入购物车" class="J_AddToCartBtnTgr cart-icon miconfont J_NewPoint" ><i class="glyphicon glyphicon-shopping-cart"></i></a>	</div>
+                                            </li>
+                                        </#list>
+                                    </#if>
                                 </ul>
                             </div>
                         </div>
@@ -602,7 +604,7 @@
                         <div class="pic-box">
                             <div class="pic s160">
                                 <a title="${dishComment.dish.name}" target="_blank" href="/shop/index.f1t?shopId=${dishComment.dish.shopId}">
-                                    <img alt="" src="../res/images/shop-image.jpeg" width="160" height="160" />
+                                    <img alt="" src="../res/avatar/dish/${dishComment.dish.image}" width="160" height="160" />
                                 </a>
                             </div>
                             <div class="g_price g_price-reversed">

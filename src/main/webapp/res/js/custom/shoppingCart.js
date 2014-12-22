@@ -7,7 +7,7 @@ $('document').ready(function () {
     function buildDishItem(dishItem) {
         return '<div title="' + dishItem.dishId + '" class="tm-mcOrder tm-mcOrderService tm-mcOrderOne tm-mcOrderSelected">' +
             '<div class="tm-mcItem"><a target="_blank" class="tm-mcPic">' +
-            '    <img style="padding-left:3px" height="50" src="../res/images/shop-image.jpeg"></a>' +
+            '    <img style="padding-left:3px" height="50" src="../res/avatar/dish/'+dishItem.dishImage+'"></a>' +
             '</div>' +
             '<div class="tm-mcSku" style="padding-left: 5px">' +
             '    <p class="lead" style="font-size: 15px" title="">' + dishItem.dishName + '</p>' +
@@ -187,7 +187,7 @@ $('document').ready(function () {
         }).done(function (data) {
             if (data.flag == 2) {
                 var cloneDom = $("img[title=" + id + "]").clone();
-                cloneDom.attr("style", "z-index: 1;left:" + event.clientX + "px;top:" + event.clientY + "px;position:fixed;");
+                cloneDom.attr("style", "z-index: 1;left:" + event.clientX + "px;top:" + event.clientY + "px;position:fixed; height: 42px; width: 42px");
 
                 cloneDom.insertAfter("img[title=" + id + "]");
                 cloneDom.animate({

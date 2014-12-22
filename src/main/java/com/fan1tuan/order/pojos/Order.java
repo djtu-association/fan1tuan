@@ -10,7 +10,8 @@ public class Order extends EntityObject {
 	private String orderNo;
 	private String userId;
 	private String shopId;  //用户提供
-	private String shopName;  
+	private String shopName;
+	private String shopAvatar;
 	
 	private ArrayList<DishItem> dishItems;  //用户提供部分，dishId, number
 	
@@ -27,7 +28,13 @@ public class Order extends EntityObject {
 	private String description;
 	//用户留言
 	private String userRemark;  //用户提供
-	
+
+	public String getShopAvatar() {
+		return shopAvatar;
+	}
+	public void setShopAvatar(String shopAvatar) {
+		this.shopAvatar = shopAvatar;
+	}
 	public String getReceiver() {
 		return receiver;
 	}

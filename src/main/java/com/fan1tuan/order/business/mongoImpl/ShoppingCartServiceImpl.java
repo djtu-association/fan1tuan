@@ -659,6 +659,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 						dishItem.setDishName(dish.getName());
 						dishItem.setDishPrice(dish.getPrice());//only one dish now
 						dishItem.setDishSum(dish.getPrice());//only one dish now
+						dishItem.setDishImage(dish.getImage());
 						dishItem.setNumber(1);//only one dish now
 						
 						dishItems.add(dishItem);//添加新的dishItem						
@@ -687,6 +688,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 				dishItem.setDishPrice(dish.getPrice());
 				dishItem.setNumber(1);
 				dishItem.setDishSum(dish.getPrice());
+				dishItem.setDishImage(dish.getImage());
 				dishItems.add(dishItem);
 				
 				Shop shop = shopDao.findOneById(dish.getShopId());
@@ -697,6 +699,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 				shopItem.setDeliveryCharge(shop.getDeliveryCharge());
 				shopItem.setShopAffairTagIds(shop.getShopAffairTagIds());
 				shopItem.setSumPrice(dish.getPrice());
+				shopItem.setShopAvatar(shop.getAvatar());
 				shopItems.add(shopItem);
 				
 				//key step,更新shoppingCart相关数据
@@ -723,7 +726,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 			dishItem.setDishName(dish.getName());
 			dishItem.setDishPrice(dish.getPrice());
 			dishItem.setDishSum(dish.getPrice());//only one dish now	
-			dishItem.setNumber(1);//only one dish now				
+			dishItem.setNumber(1);//only one dish now
+			dishItem.setDishImage(dish.getImage());
 			dishItems.add(dishItem);
 			
 			//new shopItem
@@ -734,7 +738,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 			shopItem.setShopName(shop.getName());
 			shopItem.setDeliveryCharge(shop.getDeliveryCharge());
 			shopItem.setShopAffairTagIds(shop.getShopAffairTagIds());
-			shopItem.setSumPrice(dish.getPrice());//only one dish now		
+			shopItem.setSumPrice(dish.getPrice());//only one dish now
+			shopItem.setShopAvatar(shop.getAvatar());
 			shopItems.add(shopItem);//
 			
 			//new shoppingCart
@@ -775,6 +780,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 			order.setTelephone("");
 			order.setUserId(userId);
 			order.setUserRemark("");
+			order.setShopAvatar(shopItem.getShopAvatar());
 			orders.add(order);
 		}
 		return orders;
