@@ -48,7 +48,7 @@ public class NeedAreaFilter implements Filter {
 		logger.trace("REQUEST URI :"+URI);
 		boolean isRedirect = false;
 
-		if( !URI.equals(FilterConstant.URL_TO_SETAREA) && !URI.equals(FilterConstant.URL_TO_GETAREA))
+		if( !URI.equals(FilterConstant.URL_TO_SETAREA) && !URI.equals(FilterConstant.URL_TO_GETAREA) && URI.indexOf(FilterConstant.URL_RELATED_ADMIN)!=0)
 		{
 			HttpServletResponse response = (HttpServletResponse)res;
 			HttpSession session = request.getSession();

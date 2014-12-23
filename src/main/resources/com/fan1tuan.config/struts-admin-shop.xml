@@ -5,17 +5,58 @@
 <struts>
 	<!-- 店铺基本管理action -->
 	<package name="admin_shop" extends="admin_main" namespace="/admin/shop">
-		<!-- 显示店铺列表 -->
-		<action name="showShopList" method="showShopList" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop.ftl</result>
+
+		<action name="index" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction">
+			<result name="success" type="freemarker">/WEB-INF/admin_ftls/index.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">sign</param>
+				<param name="namespace">/admin/shop</param>
+				<param name="message">${message}</param>
+			</result>
 		</action>
-		<!-- 显示店铺添加 -->
-		<action name="showShopAdd" method="showShopAdd" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShopEditOrAdd.ftl</result>
+
+		<action name="signin">
+			<result name="success" type="freemarker">/WEB-INF/admin_ftls/signin.ftl</result>
 		</action>
-		<!-- 确认店铺添加 -->
-		<action name="doShopAdd" method="doShopAdd" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-			<!-- 文件上传拦截器 -->
+
+		<action name="signup">
+			<result name="success" type="freemarker">/WEB-INF/admin_ftls/signup.ftl</result>
+		</action>
+
+		<action name="doSignin" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction" method="signin">
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+				<param name="namespace">/admin/shop</param>
+			</result>
+			<result name="input" type="redirectAction">
+				<param name="actionName">signin</param>
+				<param name="namespace">/admin/shop</param>
+				<param name="message">${message}</param>
+			</result>
+		</action>
+
+		<action name="doSignup" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction" method="signup">
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+				<param name="namespace">/admin/shop</param>
+			</result>
+			<result name="input" type="redirectAction">
+				<param name="actionName">signup</param>
+				<param name="namespace">/admin/shop</param>
+				<param name="message">${message}</param>
+			</result>
+		</action>
+
+		<action name="doSignout" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction" method="signout">
+			<result name="success" type="redirectAction">
+				<param name="actionName">signin</param>
+				<param name="namespace">/admin/shop</param>
+				<param name="message">${message}</param>
+			</result>
+		</action>
+
+		<!--
+		<action name="" method="" class="">
 			<interceptor-ref name="fileUpload">
                 <param name="allowedTypes">
                     image/bmp,image/png,image/gif,image/jpeg,image/jpg
@@ -23,102 +64,13 @@
                 <param name="maximumSize">1024000</param>
             </interceptor-ref>
             
-            <!-- 默认的拦截器，必须要写 -->
             <interceptor-ref name="defaultStack" />
-		    <result name="success" type="redirectAction">showShopList.f1t</result>
-		    
+		    <result name="success" type="redirectAction"></result>
 		</action>
-		
-		<!-- 显示店铺编辑 -->
-		<action name="showShopEdit" method="showShopEdit" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShopEditOrAdd.ftl</result>
-		</action>
-		<!-- 确认店铺编辑 -->
-		<action name="doShopEdit" method="doShopEdit" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-		    <result name="success" type="redirectAction">showShopList.f1t</result>
-		</action>
-		<!--  确认店铺删除-->
-		<action name="doShopDelete" method="doShopDelete" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-		    <result name="success" type="redirectAction">showShopList.f1t</result>
-		</action>
-		<!-- 显示店铺订单列表 -->
-		<action name="showShopOrders" method="showShopOrders" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShopHistoryOrder.ftl</result>
-		</action>
-		<!-- 确认订单删除 -->
-		<action name="doShopOrderDelete" method="doShopOrderDelete" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-		    <result name="success" type="redirectAction">
-		    	<param name="actionName">showShopOrders.f1t</param>
-		    	<param name="shopId">${shopId}</param>
-		    </result>
-		</action>
-		<!-- 显示店铺标签管理 -->
-		<action name="showShopTags" method="showShopTags" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-			<result name="success" type="freemarker">/WEB-INF/admin_ftls/adminShop-addTag.ftl</result>
-		</action>
-		<!-- 添加店铺标签 -->
-		<action name="doShopTagAdd" method="doShopTagAdd" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-			<result name="success" type="redirectAction">showShopTags.f1t</result>
-		</action>
-		<!-- 编辑口味标签 -->
-		<action name="doShopTagEdit" method="doShopTagEdit" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-			<result name="success" type="freemarker">/WEB-INF/admin_ftls/adminShop-addTag.ftl</result>
-		</action>
-		<!-- 删除店铺标签 -->
-		<action name="doShopTagDelete" method="doShopTagDelete" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMain">
-			<result name="success" type="redirectAction">showShopTags.f1t</result>
-		</action>
-		
-		
-		
-		
-		
-		
-		<!-- menu action below -->
-		
-		<!-- 显示菜品列表 -->
-		<action name="showDishList" method="showDishList" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop-dishItem.ftl</result>
-		</action>
-		<!-- 显示菜品添加 -->
-		<action name="showDishAdd" method="showDishAdd" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop-addDish.ftl</result>
-		</action>
-		<!-- 确认菜品添加 -->
-		<action name="doDishAdd" method="doDishAdd" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result name="success" type="redirectAction">showDishList.f1t?shopId=${shopId}</result>
-		</action>
-		<!-- 显示菜品编辑 -->
-		<action name="showDishEdit" method="showDishEdit" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop-addDish.ftl</result>
-		</action>
-		<!-- 确认菜品编辑 -->
-		<action name="doDishEdit" method="doDishEdit" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result name="success" type="redirectAction">showDishList.f1t?shopId=${shopId}</result>
-		</action>
-		<!-- 确认菜品删除 -->
-		<action name="doDishDelete" method="doDishDelete" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result name="success" type="redirectAction">showDishList.f1t?shopId=${shopId}</result>
-		</action>
-		<!-- 显示菜品分类别列表 -->
-		<action name="showDishType" method="showDishType" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop-addType.ftl</result>
-		</action>
-		<!-- 确认菜品分类添加 -->
-		<action name="doDishTypeAdd" method="doDishTypeAdd" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result name="success" type="redirectAction">showDishType.f1t?shopId=${shopId}</result>
-		</action>
-		<!-- 确认菜品分类编辑 -->
-		<action name="doDishTypeEdit" method="doDishTypeEdit" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result type="freemarker">/WEB-INF/admin_ftls/adminShop-addType.ftl</result>
-		</action>
-		<!-- 确认菜品分类删除 -->
-		<action name="doDishTypeDelete" method="doDishTypeDelete" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopMenu">
-		    <result name="success" type="redirectAction">showDishType.f1t?shopId=${shopId}</result>
-		</action>
-		
+		-->
+
 	</package>
 	<!-- 临时存放文件的路径 如果不要这个路径，就会在控制台打印Unable to find 'struts.multipart.saveDir'-->
-	<constant name="struts.multipart.saveDir" value="/WebContent/upload/temp"></constant>
+	<constant name="struts.multipart.saveDir" value=""/>
 	
 </struts>

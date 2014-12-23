@@ -17,12 +17,15 @@
 						http://www.springframework.org/schema/data/mongo
 						http://www.springframework.org/schema/data/mongo/spring-mongo-1.2.xsd">
 
-
-	<bean id="adminShopService" class="com.fan1tuan.adminshop.business.mongoImpl.AdminShopServiceImpl" 
-		p:shopDao-ref="shopDao"
-		p:shopTasteTagDao-ref="shopTasteTagDao"
-		p:orderDao-ref="orderDao"
-		p:dishTasteTagDao-ref="dishTasteTagDao" 
-		p:dishDao-ref="dishDao"/>
-
+		<!--
+        <bean id="shopUserService"
+            class="com.fan1tuan.shop.business.mongoImpl.ShopUserServiceImpl"
+            p:template-ref="mongoTemplate" />
+         -->
+	<bean id="adminShopService" class="com.fan1tuan.adminshop.business.mongoImpl.AdminShopServiceImpl"
+			p:dishDao-ref="dishDao"
+			p:orderDao-ref="orderDao"
+			p:dishTasteTagDao-ref="dishTasteTagDao"
+			p:shopClientDao-ref="shopClientDao"
+			p:shopDao-ref="shopDao"/>
 </beans>

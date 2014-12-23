@@ -8,7 +8,7 @@ public class ShopClient  extends EntityObject{
 	private String id;
 	private String username;
 	private String password;
-	private ArrayList<String> shopIds;
+	private String shopId;
 	public String getId() {
 		return id;
 	}
@@ -27,17 +27,17 @@ public class ShopClient  extends EntityObject{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public ArrayList<String> getShopIds() {
-		return shopIds;
+	public String getShopId() {
+		return shopId;
 	}
-	public void setShopIds(ArrayList<String> shopIds) {
-		this.shopIds = shopIds;
+	public void setShopId(String shopId) {
+		this.shopId = shopId;
 	}
-	public ShopClient(String username, String password, ArrayList<String> shopIds) {
+	public ShopClient(String username, String password, String shopId) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.shopIds = shopIds;
+		this.shopId = shopId;
 	}
 	
 	public ShopClient() {}

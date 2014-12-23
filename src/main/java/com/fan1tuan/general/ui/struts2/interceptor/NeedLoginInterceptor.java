@@ -47,7 +47,7 @@ public class NeedLoginInterceptor extends AbstractInterceptor implements Session
 		boolean isUser = actionNameSpace.contains("user");
 		boolean isOrder = actionNameSpace.contains("order");
 		boolean isUserSecure = actionNameSpace.contains("user")&&actionNameSpace.contains("secure");
-		
+		boolean isAdmin = actionNameSpace.contains("admin");
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String queryStr = request.getQueryString();
@@ -63,7 +63,7 @@ public class NeedLoginInterceptor extends AbstractInterceptor implements Session
 		
 		//check if current uri need (true) login
 		
-		if(isUser||isOrder){
+		if(!isAdmin&&(isUser||isOrder)){
 			Map<String, Object> login_cache = SessionUtil.getLogin(session);
 			if(login_cache!=null){
 				//check if login
