@@ -61,7 +61,7 @@
             </li>
             <li>
                 <a id="pendingOrder" href="#fan1tuanModal" role="button"><i class="glyphicon glyphicon-list-alt"></i>
-                    订单动态 <span class="badge badge-success">2</span></a>
+                    订单动态 <!--<span class="badge badge-success">2</span>--></a>
 
                 <div id="pendingOrderModal" class="sr-only">
                     <div class="modal-header" style="height:45px">

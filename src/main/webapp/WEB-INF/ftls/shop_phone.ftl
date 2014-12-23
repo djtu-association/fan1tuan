@@ -52,10 +52,10 @@
                         </li>
                         
                         <li id="navOnlineOrder"   title="" data-toggle="popover">
-                            <a href="javascript:void(0)" id="toOnline"><span class="fui-cmd"></span><span >在线订餐</span></a>
+                            <a href="/index.f1t#onlinePart" id="toOnline"><span class="fui-cmd"></span><span >在线订餐</span></a>
                         </li>
                         <li id="navPhoneCallOrder" title="" data-toggle="popover">
-                            <a href="javascript:void(0)" id="toPhone"><span class="fui-chat"></span><span >电话订餐</span></a>
+                            <a href="/index.f1t#phoneCallPart" id="toPhone"><span class="fui-chat"></span><span >电话订餐</span></a>
                         </li>
                         
                         

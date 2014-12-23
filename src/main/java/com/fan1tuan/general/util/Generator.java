@@ -269,27 +269,27 @@ public class Generator {
 		ShopClient shopClient = new ShopClient();
 		shopClient.setPassword("1234");
 		shopClient.setUsername("lihe");
-		shopClient.setShopIds(new ArrayList<String>());
+		shopClient.setShopId("");
 		
 		ShopClient shopClient2 = new ShopClient();
 		shopClient2.setPassword("1234");
 		shopClient2.setUsername("zrh");
-		shopClient2.setShopIds(new ArrayList<String>());
+		shopClient2.setShopId("");
 		
 		ShopClient shopClient3 = new ShopClient();
 		shopClient3.setPassword("1234");
 		shopClient3.setUsername("lyk");
-		shopClient3.setShopIds(new ArrayList<String>());
+		shopClient3.setShopId("");
 		
 		ShopClient shopClient4 = new ShopClient();
 		shopClient4.setPassword("1234");
 		shopClient4.setUsername("mls");
-		shopClient4.setShopIds(new ArrayList<String>());
+		shopClient4.setShopId("");
 		
 		ShopClient shopClient5 = new ShopClient();
 		shopClient5.setPassword("1234");
 		shopClient5.setUsername("qyf");
-		shopClient5.setShopIds(new ArrayList<String>());
+		shopClient5.setShopId("");
 		
 		return Arrays.asList(shopClient, shopClient2, shopClient3, shopClient4, shopClient5);
 	}

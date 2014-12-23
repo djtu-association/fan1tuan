@@ -31,5 +31,20 @@
 
 <script src="/res/adminshop/js/jquery.min.js"></script>
 <script src="/res/adminshop/js/bootstrap.min.js"></script>
+<script>
+    var search = window.location.search;
+    var message = search.substr(search.indexOf("message")+("message".length+1), 1);
+
+    if (message == "1") {
+        $(".form-signin").prepend(formMessage("danger", "注册失败！", "用户名已被占用，请更换"));
+    }
+
+    function formMessage(type, title, body) {
+        return ['<div class="alert alert-'+type+'" role="alert">',
+            '<b>'+title+'</b>'+body,
+            '</div>'].join('');
+    }
+
+</script>
 </body>
 </html>

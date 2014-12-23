@@ -9,7 +9,7 @@
 		<action name="index" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction">
 			<result name="success" type="freemarker">/WEB-INF/admin_ftls/index.ftl</result>
 			<result name="login" type="redirectAction">
-				<param name="actionName">sign</param>
+				<param name="actionName">signin</param>
 				<param name="namespace">/admin/shop</param>
 				<param name="message">${message}</param>
 			</result>

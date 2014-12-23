@@ -26,7 +26,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <p class="navbar-text"><b>李赫</b>店主，您好！</p>
+                    <p class="navbar-text"><b>${shopClient.username}</b>店主，您好！</p>
                 </li>
             </ul>
         </div>
@@ -40,13 +40,15 @@
                 <li id="overview-btn" class="active"><a href="#">概览</a></li>
                 <li id="userInfo-btn"><a href="#userInfo">用户信息</a></li>
                 <li id="shopInfo-btn"><a href="#shopInfo">店铺信息</a></li>
-                <li id="dishTasteInfo-btn"><a href="#dishTasteInfo">菜品口味管理</a></li>
-                <li id="dishInfo-btn"><a href="#dishInfo">菜品管理</a></li>
-                <li id="orderInfo-btn"><a href="#orderInfo">订单管理</a></li>
+                <#if shop??>
+                    <li id="dishTasteInfo-btn"><a href="#dishTasteInfo">菜品口味管理</a></li>
+                    <li id="dishInfo-btn"><a href="#dishInfo">菜品管理</a></li>
+                    <li id="orderInfo-btn"><a href="#orderInfo">订单管理</a></li>
+                </#if>
             </ul>
             <ul class="nav nav-sidebar">
                 <li><a href="/index.f1t">回到饭1团</a></li>
-                <li><a href="">退出登陆</a></li>
+                <li><a href="/admin/shop/doSignout.f1t">退出登陆</a></li>
             </ul>
         </div>
         <div id="primary-view" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -59,12 +61,12 @@
                 <form role="form">
                     <div class="form-group">
                         <label for="userId">用户编号</label>
-                        <input type="text" class="form-control" id="userId" placeholder="用户编号" readonly>
+                        <input type="text" value="${shopClient.id}" class="form-control" id="userId" placeholder="用户编号" readonly>
                         <span class="help-block">用户编号为系统自动生成，仅供用户查看，用户无法自行修改。</span>
                     </div>
                     <div class="form-group">
                         <label for="username">用户名</label>
-                        <input type="text" class="form-control" id="username" placeholder="用户名" readonly>
+                        <input type="text" value="${shopClient.username}" class="form-control" id="username" placeholder="用户名" readonly>
                     </div>
                     <div class="form-group">
                         <label for="password">密码</label>
@@ -84,108 +86,96 @@
             </div>
             <div style="display: none" id="shopInfo">
                 <h1 class="page-header">店铺信息</h1>
-                <!-- 判断该账户是否已经开店 -->
-                <div class="alert alert-warning" role="alert">
-                    <b>您还未开店！</b>请填写下面的信息来创建一个店铺
-                </div>
+                <#if !shop??>
+                    <div class="alert alert-warning" role="alert">
+                        <b>您还未开店！</b>请填写下面的信息来创建一个店铺
+                    </div>
+                </#if>
                 <form id="shopForm" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="shopId" class="col-sm-1 control-label">店铺编号</label>
                         <div class="col-sm-11">
-                            <input type="text" class="form-control" id="shopId" placeholder="店铺编号" readonly>
+                            <input value="<#if shop??>${shop.id}</#if>" type="text" class="form-control" id="shopId" placeholder="店铺编号" readonly>
                             <p class="help-block">此编号为只读项，店铺编号为系统自动生成。</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="shopName" class="col-sm-1 control-label">店铺名称</label>
                         <div class="col-sm-11">
-                            <input name="name" type="text" class="form-control" id="shopName" placeholder="店铺名称">
+                            <input value="<#if shop??>${shop.name}</#if>" name="name" type="text" class="form-control" id="shopName" placeholder="店铺名称">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-1 control-label">店铺口味</label>
                         <div class="col-sm-11">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="shopTasteTagIds" value="tasteid1"> 烧烤
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="shopTasteTagIds" value="tasteid2"> 奶茶
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="shopTasteTagIds" value="tasteid3"> 中式
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="shopTasteTagIds" value="tasteid4"> 日式
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="shopTasteTagIds" value="tasteid5"> 汉堡
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="shopTasteTagIds" value="tasteid6"> 面包
-                            </label>
+                            <#list shopTasteTags as shopTasteTag>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" name="shopTasteTagIds" value="${shopTasteTag.id}" <#if shop?? && shop.shopTasteTagIds.contains(shopTasteTag.id)>checked</#if>> ${shopTasteTag.name}
+                                </label>
+                            </#list>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-1 control-label">店铺类型</label>
                         <div class="col-sm-11">
                             <label class="radio-inline">
-                                <input type="radio" name="type" value="0"> 摊位
+                                <input type="radio" name="type" value="0" <#if shop?? && shop.type==0>checked</#if>> 摊位
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="type" value="1"> 实体店
+                                <input type="radio" name="type" value="1" <#if shop?? && shop.type==1>checked</#if>> 实体店
                             </label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="shopDeliveryCharge" class="col-sm-1 control-label">送餐起送价</label>
                         <div class="col-sm-11">
-                            <input name="deliveryCharge" type="number" class="form-control" id="shopDeliveryCharge" placeholder="请输入起送价">
+                            <input value="<#if shop??>${shop.deliveryCharge}</#if>" name="deliveryCharge" type="number" class="form-control" id="shopDeliveryCharge" placeholder="请输入起送价">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="shopAddress" class="col-sm-1 control-label">店铺地址</label>
                         <div class="col-sm-11">
-                            <input name="address" type="text" class="form-control" id="shopAddress" placeholder="输入店铺地址的文字描述">
+                            <input value="<#if shop??>${shop.address}</#if>" name="address" type="text" class="form-control" id="shopAddress" placeholder="输入店铺地址的文字描述">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="shopArea" class="col-sm-1 control-label">店铺所在商圈</label>
+                        <label for="shopArea" class="col-sm-1 control-label">所在商圈</label>
                         <div class="col-sm-11">
                             <select name="areaId" id="shopArea" class="form-control">
-                                <option value="areaid1">大连交通大学</option>
-                                <option value="areaid2">大连科技大学</option>
-                                <option value="areaid3">大连医科大学</option>
-                                <option value="areaid4">大连理工大学</option>
+                                <option value=""><#if shop??>--保持不变--<#else>--请选择--</#if></option>
+                                <#list areas as area>
+                                    <option value="${area.id}">${area.name}</option>
+                                </#list>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="shopPhone" class="col-sm-1 control-label">店铺联系电话</label>
+                        <label for="shopPhone" class="col-sm-1 control-label">联系电话</label>
                         <div class="col-sm-11">
-                            <input name="cellphone" type="text" class="form-control" id="shopPhone" placeholder="输入店铺的联系电话">
+                            <input value="<#if shop??>${shop.cellphone}</#if>" name="cellphone" type="text" class="form-control" id="shopPhone" placeholder="输入店铺的联系电话">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-1 control-label">店铺营业时间</label>
+                        <label class="col-sm-1 control-label">营业时间</label>
                         <div class="col-sm-5">
-                            <input name="openTime" type="time" class="form-control" placeholder="店铺何时开门">
+                            <input value="<#if shop??>${shop.openTime?string("HH:mm")}</#if>" name="openTime" type="time" class="form-control" placeholder="店铺何时开门">
                             <p class="help-block">在这里输入店铺的起始营业时间。</p>
                         </div>
                         <div class="col-sm-6">
-                            <input name="closeTime" type="time" class="form-control" placeholder="店铺何时关门">
+                            <input value="<#if shop??>${shop.closeTime?string("HH:mm")}</#if>" name="closeTime" type="time" class="form-control" placeholder="店铺何时关门">
                             <p class="help-block">在这里输入店铺的终止营业时间。</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="shopAnnouncement" class="col-sm-1 control-label">店铺声明</label>
                         <div class="col-sm-11">
-                            <textarea name="announcement" id="shopAnnouncement" class="form-control" rows="3"></textarea>
+                            <textarea name="announcement" id="shopAnnouncement" class="form-control" rows="3"><#if shop??>${shop.announcement}</#if></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="shopDescription" class="col-sm-1 control-label">店铺描述</label>
                         <div class="col-sm-11">
-                            <textarea name="description" id="shopDescription" class="form-control" rows="3"></textarea>
+                            <textarea name="description" id="shopDescription" class="form-control" rows="3"><#if shop??>${shop.description}</#if></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -239,22 +229,26 @@
                     <div class="panel-body">
                         <table class="table table-hover table-striped table-responsive table-condensed">
                             <tr>
-                                <th></th>
+                                <th class="sr-only"></th>
                                 <th>口味名称</th>
                                 <th>描述</th>
                                 <th>操作</th>
                             </tr>
-                            <tr style="font-size: 18px">
-                                <td></td>
-                                <td>送可口可乐</td>
-                                <td>用户凡购买此口味下的任何一种菜品，每单送一厅可口可乐~</td>
-                                <td>
-                                    <div class="btn-group btn-group-sm">
-                                        <button data-bind="tagid" type="button" data-toggle="modal" data-target="#editDishTasteModal" class="btn btn-success dish-taste-tag-edit-btn"><span class="glyphicon glyphicon-pencil"></span></button>
-                                        <button data-bind="tagid" type="button" class="btn btn-danger dish-taste-tag-remove-btn"><span class="glyphicon glyphicon-trash"></span></button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <#if dishTasteTags??>
+                                <#list dishTasteTags as dishTasteTag>
+                                    <tr style="font-size: 18px">
+                                        <td class="sr-only">${dishTasteTag.id}</td>
+                                        <td>${dishTasteTag.name}</td>
+                                        <td>${dishTasteTag.description}</td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <button data-bind="${dishTasteTag.id}" type="button" data-toggle="modal" data-target="#editDishTasteModal" class="btn btn-success dish-taste-tag-edit-btn"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                <button data-bind="${dishTasteTag.id}" type="button" class="btn btn-danger dish-taste-tag-remove-btn"><span class="glyphicon glyphicon-trash"></span></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </#list>
+                            </#if>
                         </table>
                     </div>
                 </div>
@@ -276,7 +270,7 @@
                                             <h4 class="modal-title" id="newDishModalLabel">添加新菜品</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <form role="form">
+                                            <form id="newDishForm" role="form">
                                                 <div class="form-group">
                                                     <label>菜品名称</label>
                                                     <input type="text" class="form-control"  placeholder="输入菜品的名称">
@@ -339,38 +333,31 @@
                                 <th>状态</th>
                                 <th>操作</th>
                             </tr>
-                            <tr style="font-size: 18px">
-                                <td><img src="/res/adminshop/images/avatar.jpeg" style="width:30px;height:30px"></td>
-                                <td>不差钱烤冷面一份</td>
-                                <td>送可口可乐</td>
-                                <td>￥20</td>
-                                <td class="text-danger">￥16</td>
-                                <td class="text-success"><b>可预订</b></td>
-                                <td>
-                                    <div class="btn-group btn-group-sm">
-                                        <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
-                                        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr style="font-size: 18px">
-                                <td><img src="/res/adminshop/images/avatar.jpeg" style="width:30px;height:30px"></td>
-                                <td>不差钱烤冷面一份</td>
-                                <td>送可口可乐</td>
-                                <td>￥20</td>
-                                <td class="text-danger">￥16</td>
-                                <td class="text-success"><b>可预订</b></td>
-                                <td>
-                                    <div class="btn-group btn-group-sm">
-                                        <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
-                                        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <#if dishes??>
+                                <#list dishes as dish>
+                                    <tr style="font-size: 18px">
+                                        <td><img src="/res/avatar/dish/${dish.image}" style="width:30px;height:30px"></td>
+                                        <td>${dish.name}</td>
+                                        <td>${dishTasteMap[dish.dishTasteTagId]}</td>
+                                        <td>￥${dish.originPrice}</td>
+                                        <td class="text-danger">￥${dish.price}</td>
+                                        <#if dish.status == 0>
+                                            <td class="text-success"><b>可预订</b></td>
+                                        <#else>
+                                            <td class="text-danger"><b>不可预订</b></td>
+                                        </#if>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <button data-bind="${dish.id}" type="button" class="btn btn-success edit-dish-btn" data-toggle="modal" data-target="#editDishModal"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                <button data-bind="${dish.id}" type="button" class="btn btn-danger remove-dish-btn"><span class="glyphicon glyphicon-trash"></span></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </#list>
+                            </#if>
                         </table>
                     </div>
                 </div>
-
             </div>
             <div style="display: none" id="orderInfo">
                 <h1 class="page-header">订单管理</h1>
@@ -456,6 +443,66 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" id="editDishTasteTagButton" class="btn btn-primary">保存修改</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editDishModal" tabindex="-1" role="dialog" aria-labelledby="editDishModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="editDishModalLabel">修改菜品</h4>
+            </div>
+            <div class="modal-body">
+                <form id="editDishForm" role="form">
+                    <div class="form-group">
+                        <label>菜品名称</label>
+                        <input type="text" class="form-control"  placeholder="输入菜品的名称">
+                    </div>
+                    <div class="form-group">
+                        <label>菜品口味</label>
+                        <select class="form-control">
+                            <option>炒饭</option>
+                            <option>盖饭</option>
+                            <option>送可口可乐</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>菜品设定价格</label>
+                        <input type="number" class="form-control"  placeholder="输入菜品的原有设定价格">
+                    </div>
+                    <div class="form-group">
+                        <label>菜品售出价格</label>
+                        <input type="number" class="form-control"  placeholder="输入菜品的折后价格，可与原价一致">
+                    </div>
+                    <div class="form-group">
+                        <label>菜品图片</label>
+                        <input type="file">
+                        <p class="help-block">菜品的图片在这里上传。</p>
+                    </div>
+                    <div class="form-group">
+                        <label>菜品状态</label>
+                        <br>
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" value="option1"> 可预订
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" value="option2"> 暂不提供
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>菜品描述</label>
+                        <textarea class="form-control" rows="3"></textarea>
+                        <p class="help-block">在这里写上对菜品的详尽描述。</p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">确认添加</button>
             </div>
         </div>
     </div>

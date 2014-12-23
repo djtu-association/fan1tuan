@@ -21,7 +21,7 @@ public class Dish extends EntityObject{
 	private double commentLevel; //now it is sum of the comment level, not the average
 	private double avgCommentLevel;
 	
-	private int status; //0不可预定,1可预订
+	private int status; //0可预定,1不可预订
 	private String description;
 	
 	private Date createTime;
