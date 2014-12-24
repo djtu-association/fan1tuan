@@ -55,6 +55,16 @@
 			</result>
 		</action>
 
+		<action name="fetchOrder" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction" method="fetchOrder">
+			<result name="success" type="jsonResult">order</result>
+		</action>
+
+		<action name="updateOrder" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction" method="updateOrder">
+			<result name="success" type="jsonResult">
+				flag
+			</result>
+		</action>
+
 		<!--
 		<action name="" method="" class="">
 			<interceptor-ref name="fileUpload">

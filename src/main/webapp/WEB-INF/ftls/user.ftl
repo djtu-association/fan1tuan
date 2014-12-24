@@ -370,7 +370,6 @@
             <ul class="nav nav-tabs" id="myTab">
                 <li class="active"><a data-toggle="tab" href="#fav_shops">店铺收藏</a></li>
                 <li class=""><a data-toggle="tab" href="#fav_dishes">菜品收藏</a></li>
-                <li class=""><a data-toggle="tab" href="#my_steps">我的足迹</a></li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div id="fav_shops" class="tab-pane fade active in">
@@ -554,9 +553,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="my_steps" class="tab-pane fade">
-                    <p class="lead">We are on the way...</p>
                 </div>
             </div>
         </div>

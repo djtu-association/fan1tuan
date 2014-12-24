@@ -37,7 +37,9 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul id="primary-sidebar" class="nav nav-sidebar">
+                <#if shop??>
                 <li id="overview-btn" class="active"><a href="#">概览</a></li>
+                </#if>
                 <li id="userInfo-btn"><a href="#userInfo">用户信息</a></li>
                 <li id="shopInfo-btn"><a href="#shopInfo">店铺信息</a></li>
                 <#if shop??>
@@ -52,10 +54,34 @@
             </ul>
         </div>
         <div id="primary-view" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <#if shop??>
             <div id="overview">
                 <h1 class="page-header">信息概览</h1>
-
+                <div class="row placeholders">
+                    <div class="col-xs-8 col-sm-4 placeholder">
+                        <canvas id="dishTagChart" width="250" height="250"></canvas>
+                        <h4>菜品标签</h4>
+                        <span class="text-muted">您的店铺当前共有 <b><#if dishTasteTags??>${dishTasteTags.size()}<#else>0</#if></b> 个菜品标签</span>
+                    </div>
+                    <div class="col-xs-8 col-sm-4 placeholder">
+                        <canvas id="dishChart" width="250" height="250"></canvas>
+                        <h4>菜品销量</h4>
+                        <span class="text-muted">店铺的 <b><#if dishes??>${dishes.size()}<#else>0</#if></b> 道菜品共卖出了 <b>${shop.saleVolume!0}</b> 份</span>
+                    </div>
+                    <div class="col-xs-8 col-sm-4 placeholder">
+                        <canvas id="orderChart" width="250" height="250"></canvas>
+                        <h4>订单动态</h4>
+                        <span class="text-muted">您共有 <b><#if activeOrders??>${activeOrders.size()}<#else>0</#if></b> 份订单处于活跃状态</span>
+                    </div>
+                </div>
+                <div class="row placeholders">
+                    <div class="col-xs-24 col-sm-12 placeholder">
+                        <canvas id="orderRecentChart" width="1200" height="200"></canvas>
+                        <h4 class="text-muted">店铺近几日订单受理状况</h4>
+                    </div>
+                </div>
             </div>
+            </#if>
             <div style="display: none" id="userInfo">
                 <h1 class="page-header">用户信息</h1>
                 <form role="form">
@@ -85,6 +111,11 @@
                 </form>
             </div>
             <div style="display: none" id="shopInfo">
+                <#if shop??>
+                    <div class="alert alert-success" role="alert">
+                        <b>您的小店开张啦！</b>现在可以随意修改店铺信息
+                    </div>
+                </#if>
                 <h1 class="page-header">店铺信息</h1>
                 <#if !shop??>
                     <div class="alert alert-warning" role="alert">
@@ -378,38 +409,52 @@
                                 <th>订单日期</th>
                                 <th>操作</th>
                             </tr>
-                            <tr style="font-size: 18px">
-                                <td><span class="badge">2acd1244122faccd12haadffca21</span></td>
-                                <td class="text-success"><b>￥34</b></td>
-                                <td class="text-warning"><b>未接受</b></td>
-                                <td>13:34</td>
-                                <td>货到付款</td>
-                                <td>18777667676</td>
-                                <td>2014-11-12 18:21</td>
-                                <td>
-                                    <div class="btn-group btn-group-sm">
-                                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></button>
-                                        <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-arrow-up"></span></button>
-                                        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-arrow-down"></span></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr style="font-size: 18px">
-                                <td><span class="badge">2acd1244122faccd12haadffca21</span></td>
-                                <td class="text-success"><b>￥34</b></td>
-                                <td class="text-warning"><b>未接受</b></td>
-                                <td>13:34</td>
-                                <td>货到付款</td>
-                                <td>18777667676</td>
-                                <td>2014-11-12 18:21</td>
-                                <td>
-                                    <div class="btn-group btn-group-sm">
-                                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></button>
-                                        <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-arrow-up"></span></button>
-                                        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-arrow-down"></span></button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <#if activeOrders??>
+                            <#list activeOrders as activeOrder>
+                                <tr style="font-size: 18px">
+                                    <td><span class="badge">${activeOrder.orderNo}</span></td>
+                                    <td class="text-success"><b>￥${activeOrder.price}</b></td>
+                                    <td>
+                                        <#if activeOrder.status == 1>
+                                            <span class="text-danger">
+                                                <b>未处理</b>
+                                            </span>
+                                        <#elseif activeOrder.status == 2>
+                                            <span class="text-warning">
+                                                <b>已接受</b>
+                                            </span>
+                                        <#elseif activeOrder.status == 3>
+                                            <span class="text-success">
+                                                <b>已送出</b>
+                                            </span>
+                                        </#if>
+                                    </td>
+                                    <td>${activeOrder.deliveryTime?string("HH:mm")}</td>
+                                    <td>
+                                        <#if activeOrder.chargeType == 0>
+                                            货到付款
+                                        <#else>
+                                            其他
+                                        </#if>
+                                    </td>
+                                    <td>${activeOrder.cellphone}</td>
+                                    <td>${activeOrder.date?string("yyyy-MM-dd HH:mm")}</td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+                                            <button data-bind="${activeOrder.id}" data-target="#viewOrderModal" type="button" class="btn btn-primary">
+                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                            </button>
+                                            <button data-bind="${activeOrder.id}" type="button" class="btn btn-success update-order" <#if activeOrder.status gt 2>disabled="disabled"</#if>>
+                                                <span class="glyphicon glyphicon-arrow-up"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-danger" <#if activeOrder.status gt 1>disabled="disabled"</#if>>
+                                                <span class="glyphicon glyphicon-arrow-down"></span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </#list>
+                            </#if>
                         </table>
                     </div>
                 </div>
@@ -508,91 +553,193 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="viewOrderModal" tabindex="-1" role="dialog" aria-labelledby="viewOrderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="viewOrderModalLabel">订单详情</h4>
+            </div>
+            <div class="modal-body">
+                <form id="viewOrderForm" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">订单编号</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" data-bind="orderNo"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">订单价格</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" data-bind="price"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">收餐地址</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" data-bind="address"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">收餐人</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" data-bind="receiver"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">联系电话</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" data-bind="cellphone"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">订单描述</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" data-bind="description"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">用户留言</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" data-bind="userRemark"></p>
+                        </div>
+                    </div>
+                </form>
+                <table class="table table-hover table-condensed" data-bind="dishItems">
+
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="/res/adminshop/js/jquery.min.js"></script>
 <script src="/res/adminshop/js/bootstrap.min.js"></script>
+<script src="/res/adminshop/js/adminshop.js"></script>
+<#if shop??>
+<script src="/res/adminshop/js/Chart.min.js"></script>
 <script>
-    $("#primary-sidebar").find("li").click(function (event) {
-        //event.preventDefault();
-        $("#primary-sidebar").find("li").removeClass("active");
-        $(this).addClass("active");
-
-        var id = $(this).attr("id").substring(0, $(this).attr("id").indexOf("-"));
-
-        $("#primary-view").find("> div").hide();
-        $("#"+id).show();
-    });
-
-    var hash = window.location.hash;
-    if(hash.length>1) {
-        hash = hash.substring(1);
-        $("#primary-sidebar").find("li[id='"+hash+"-btn']").click();
+    function randomColor() {
+        var elems = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
+        var ret = "#";
+        for(var index = 0; index < 6; index++)
+            ret += elems[parseInt(Math.random()*16)];
+        return ret;
     }
 
-    // change password
-    $("#saveUserInfoButton").click(function () {
-        var password = $("#password").val(),
-                newPassword = $("#newPassword").val(),
-                newPasswordAgain = $("#newPasswordAgain").val();
-        if (newPassword && newPasswordAgain && password) {
-            if (newPassword == newPasswordAgain) {
-                //logic put here
-                alert("success!");
+    var dishTagdata = [
+        <#if dishTasteTags??>
+            <#list dishTasteTags as dishTasteTag>
+                {
+                    value: ${dishTagData[dishTasteTag.id]},
+                    color: randomColor(),
+                    label: "${dishTasteTag.name}"
+                },
+            </#list>
+        </#if>
+    ];
 
+    var dishData = [
+        <#if dishes??>
+            <#list dishes as dish>
+                {
+                    value: ${dish.saleVolume},
+                    color: randomColor(),
+                    label: "${dish.name}"
+                },
+            </#list>
+        </#if>
+    ];
 
-                $("#password").val("");
-                $("#newPassword").val("");
-                $("#newPasswordAgain").val("");
-            } else {
-                alert("新密码与确认新密码不相同，请核实后提交");
+    var orderData = [
+        <#if activeOrders??>
+            {
+                value: ${orderData["1"]!0},
+                color: randomColor(),
+                label: "未处理"
+            },
+            {
+                value: ${orderData["2"]!0},
+                color: randomColor(),
+                label: "已接受"
+            },
+            {
+                value: ${orderData["3"]!0},
+                color: randomColor(),
+                label: "已送出"
             }
-        } else {
-            alert("任何项不可为空");
-        }
-    });
+        </#if>
+    ];
 
-    // save shop info
-    $("#saveShopInfoButton").click(function (event) {
-        event.preventDefault();
-        var postData = $("#shopForm").serialize();
+    if(dishTagdata.length==0) {
+        dishTagdata.push({
+            value: 100,
+            color: randomColor(),
+            label: "还未设置任何菜品标签哦"
+        });
+        Chart.defaults.global.tooltipTemplate = "<%=label%>";
+    } else {
+        Chart.defaults.global.tooltipTemplate = "有<%= value %>种菜品为类别：<%=label%>";
+    }
 
-        alert(postData);
-    });
+    //Get context with jQuery - using jQuery's .get() method.
+    var dishTagChartCtx = $("#dishTagChart").get(0).getContext("2d");
+    //This will get the first returned node in the jQuery collection.
+    var dishTagChart = new Chart(dishTagChartCtx).Doughnut(dishTagdata);
 
-    // add dish taste tag
-    $("#newDishTasteTagButton").click(function () {
-        var form = $("#newDishTasteTagForm"),
-                postData = form.serialize();
+    if(dishData.length==0) {
+        dishData.push({
+            value: 100,
+            color: randomColor(),
+            label: "还未有任何菜品售出记录哦"
+        });
+        Chart.defaults.global.tooltipTemplate = "<%=label%>";
+    } else {
+        Chart.defaults.global.tooltipTemplate = "<%=label%>共售出<%= value %>份";
+    }
 
-        alert(postData);
+    //Get context with jQuery - using jQuery's .get() method.
+    var dishChartCtx = $("#dishChart").get(0).getContext("2d");
+    //This will get the first returned node in the jQuery collection.
+    var dishChart = new Chart(dishChartCtx).Doughnut(dishData);
 
-        $("#dishTasteModal").find("button[data-dismiss='modal']").click();
-        form.find("input").val("");
-        form.find("textarea").val("");
-    });
+    if(orderData.length==0) {
+        orderData.push({
+            value: 100,
+            color: randomColor(),
+            label: "貌似所有订单都处理完啦"
+        });
+        Chart.defaults.global.tooltipTemplate = "<%=label%>";
+    } else {
+        Chart.defaults.global.tooltipTemplate = "<%=label%>订单有<%= value %>份";
+    }
 
-    // edit dish taste tag
-    $('#dishTasteInfo').find('.dish-taste-tag-edit-btn').click(function () {
-        var form = $("#editDishTasteTagForm");
+    //Get context with jQuery - using jQuery's .get() method.
+    var orderChartCtx = $("#orderChart").get(0).getContext("2d");
+    //This will get the first returned node in the jQuery collection.
+    var orderChart = new Chart(orderChartCtx).Doughnut(orderData);
 
-    });
+    var data = {
+        labels : ["","","","","","","今天"],
+        datasets : [
+            {
+                fillColor : "rgba(151,187,205,0.5)",
+                strokeColor : "rgba(151,187,205,1)",
+                pointColor : "rgba(151,187,205,1)",
+                pointStrokeColor : "#fff",
+                data : [0,0,0,1,0,0,0]
+            }
+        ]
+    };
 
-    $("#editDishTasteTagButton").click(function () {
-        var form = $("#editDishTasteTagForm"),
-                postData = form.serialize();
-
-        alert(postData);
-
-        $("#editDishTasteModal").find("button[data-dismiss='modal']").click();
-        form.find("input").val("");
-        form.find("textarea").val("");
-    });
-
-    // remove dish taste tag
-    $('#dishTasteInfo').find('.dish-taste-tag-remove-btn').click(function () {
-        var form = $("#editDishTasteTagForm");
-
-        alert("remove");
-    });
+    var orderRecentChartCtx = $("#orderRecentChart").get(0).getContext("2d");
+    var orderRecentChart = new Chart(orderRecentChartCtx).Line(data);
 </script>
+</#if>
+
 </body>
 </html>

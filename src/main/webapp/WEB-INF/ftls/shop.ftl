@@ -217,7 +217,7 @@
                                 	</div>
                             	</div>
                             </div>
-                            <div class="span2 offset3">
+                            <div class="span2 offset5">
                             	<div class="btn-group">
     								<button class="btn btn-primary meal-category-btn dropdown-toggle" data-toggle="dropdown" href="#">
     									美食分类
@@ -232,7 +232,8 @@
     								</ul>
     							</div>
                             </div>
-                            <div class="span4">
+                            <div class="span2">
+                                <!--
                                 <div class="btn-toolbar">
                                     <div class="btn-group">
                                         <a href="#fakelink" class="btn btn-primary active">默认</a>
@@ -240,6 +241,7 @@
                                         <a href="#fakelink" class="btn btn-primary">评价<i class="glyphicon glyphicon-arrow-down"></i></a>
                                     </div>
                                 </div>
+                                -->
                             </div>
                         </div>
                     </div>
