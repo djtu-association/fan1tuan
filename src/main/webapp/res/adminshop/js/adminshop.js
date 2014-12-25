@@ -17,15 +17,22 @@ if(hash.length>1) {
 }
 
 // change password
-$("#saveUserInfoButton").click(function () {
+$("#saveUserInfoButton").click(function (event) {
+    event.preventDefault();
+
     var password = $("#password").val(),
         newPassword = $("#newPassword").val(),
         newPasswordAgain = $("#newPasswordAgain").val();
     if (newPassword && newPasswordAgain && password) {
         if (newPassword == newPasswordAgain) {
             //logic put here
-            alert("success!");
-
+            $.getJSON("/admin/shop/changePassword.f1t?password="+password+"&newPassword="+newPassword, function(data){
+                 if(data.flag==2) {
+                     alert("修改密码成功！")
+                 } else {
+                     alert("修改密码失败，用户密码错误！")
+                 }
+            });
 
             $("#password").val("");
             $("#newPassword").val("");
@@ -39,47 +46,95 @@ $("#saveUserInfoButton").click(function () {
 });
 
 // save shop info
+$("#shopForm").submit(function(){
+    alert("店铺信息已成功提交，需要刷新页面以继续...");
+});
 $("#saveShopInfoButton").click(function (event) {
-    event.preventDefault();
-    var postData = $("#shopForm").serialize();
-
-    alert(postData);
+    //event.preventDefault();
+    //var postData = $("#shopForm").serialize();
+    //
+    //$.getJSON();
+    //
+    //alert(postData);
 });
 
 // add dish taste tag
 $("#newDishTasteTagButton").click(function () {
-    var form = $("#newDishTasteTagForm"),
-        postData = form.serialize();
-
-    alert(postData);
+    var form = $("#newDishTasteTagForm");
 
     $("#dishTasteModal").find("button[data-dismiss='modal']").click();
-    form.find("input").val("");
-    form.find("textarea").val("");
+
+    form.submit();
 });
 
 // edit dish taste tag
 $('#dishTasteInfo').find('.dish-taste-tag-edit-btn').click(function () {
-    var form = $("#editDishTasteTagForm");
+    var form = $("#editDishTasteTagForm"),
+        modal = $("#editDishTasteModal");
 
+    var multiTds = $(this).closest('tr').find('td');
+
+    form.find("input[name='id']").val($(multiTds[0]).text());
+    form.find("input[name='name']").val($(multiTds[1]).text());
+    form.find("textarea[name='description']").val($(multiTds[2]).text());
+
+    modal.modal();
 });
 
 $("#editDishTasteTagButton").click(function () {
-    var form = $("#editDishTasteTagForm"),
-        postData = form.serialize();
+    var form = $("#editDishTasteTagForm");
 
-    alert(postData);
 
-    $("#editDishTasteModal").find("button[data-dismiss='modal']").click();
-    form.find("input").val("");
-    form.find("textarea").val("");
+    $('#editDishTasteModal').find("button[data-dismiss='modal']").click();
+
+    form.submit();
 });
+
+
 
 // remove dish taste tag
 $('#dishTasteInfo').find('.dish-taste-tag-remove-btn').click(function () {
-    var form = $("#editDishTasteTagForm");
+    var dishTasteTagId = $(this).attr("data-bind");
 
-    alert("remove");
+    $.getJSON("/admin/shop/removeDishTasteTag.f1t?dishTasteTagId="+dishTasteTagId, function () {
+        window.location.reload(true);
+    });
+});
+
+
+//add dish
+$("#newDishButton").click(function () {
+
+    $('#newDishModal').find("button[data-dismiss='modal']").click();
+
+    $("#newDishForm").submit();
+});
+
+$("#dishInfo").find(".edit-dish-btn").click(function(){
+    var dishId = $(this).attr("data-bind");
+
+    $.getJSON("/admin/shop/fetchDish.f1t?dishId="+dishId, function(data){
+        var dish = data.dish;
+
+        var form = $("#editDishForm");
+
+        form.find("input[name='id']").val(dish.id);
+        form.find("input[name='name']").val(dish.name);
+        form.find("select[name='dishTasteTagId']").val(dish.dishTasteTagId);
+        form.find("input[name='originPrice']").val(dish.originPrice);
+        form.find("input[name='price']").val(dish.price);
+        form.find("input[name='status'][value='"+dish.status+"']").attr("checked", "");
+        form.find("textarea[name='description']").text(dish.description);
+
+    });
+
+    $("#editDishModal").modal();
+});
+
+$("#editDishButton").click(function(){
+    $('#editDishModal').find("button[data-dismiss='modal']").click();
+
+    $("#editDishForm").submit();
 });
 
 // 查看订单
@@ -119,6 +174,14 @@ $(".update-order").click(function(){
     var orderId = $(this).attr("data-bind");
 
     $.get("/admin/shop/updateOrder.f1t?orderId="+orderId, function() {
+        location.reload(true);
+    })
+});
+
+$(".decline-order").click(function(){
+    var orderId = $(this).attr("data-bind");
+
+    $.get("/admin/shop/declineOrder.f1t?orderId="+orderId, function() {
         location.reload(true);
     })
 });

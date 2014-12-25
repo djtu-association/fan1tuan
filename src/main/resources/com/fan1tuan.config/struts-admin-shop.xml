@@ -3,6 +3,9 @@
 "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
+	<constant name="struts.multipart.maxSize" value="10701096"/>
+	<constant name="struts.multipart.saveDir" value="/res/uploads"/>
+
 	<!-- 店铺基本管理action -->
 	<package name="admin_shop" extends="admin_main" namespace="/admin/shop">
 
@@ -65,6 +68,59 @@
 			</result>
 		</action>
 
+		<action name="declineOrder" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction" method="declineOrder">
+			<result name="success" type="jsonResult">
+				flag
+			</result>
+		</action>
+
+		<action name="fetchActiveOrders" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction" method="fetchActiveOrders">
+			<result name="success" type="jsonResult">
+				flag,activeOrders
+			</result>
+		</action>
+
+		<action name="fetchNonActiveOrders" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction" method="fetchNonActiveOrders">
+			<result name="success" type="jsonResult">
+				flag,nonactiveOrders
+			</result>
+		</action>
+
+		<action name="changePassword" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction" method="changePassword">
+			<result name="success" type="jsonResult">
+				flag
+			</result>
+		</action>
+
+		<action name="updateShop" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction" method="updateShop">
+			<result name="success" type="redirect">
+				/admin/shop/index.f1t#shopInfo
+			</result>
+		</action>
+
+		<action name="updateDishTasteTag" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction" method="updateDishTasteTag">
+			<result name="success" type="redirect">
+				/admin/shop/index.f1t#dishTasteInfo
+			</result>
+		</action>
+
+		<action name="removeDishTasteTag" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction" method="removeDishTasteTag">
+			<result name="success" type="jsonResult">
+				flag
+			</result>
+		</action>
+
+		<action name="updateDish" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction" method="updateDish">
+			<result name="success" type="redirect">
+				/admin/shop/index.f1t#dishInfo
+			</result>
+		</action>
+
+		<action name="fetchDish" class="com.fan1tuan.adminshop.ui.struts2.core.AdminShopAction" method="fetchDish">
+			<result name="success" type="jsonResult">
+				flag,dish
+			</result>
+		</action>
 		<!--
 		<action name="" method="" class="">
 			<interceptor-ref name="fileUpload">
@@ -80,7 +136,6 @@
 		-->
 
 	</package>
-	<!-- 临时存放文件的路径 如果不要这个路径，就会在控制台打印Unable to find 'struts.multipart.saveDir'-->
-	<constant name="struts.multipart.saveDir" value=""/>
+
 	
 </struts>

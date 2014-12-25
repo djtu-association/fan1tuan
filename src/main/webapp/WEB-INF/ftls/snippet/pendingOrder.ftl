@@ -49,7 +49,7 @@
             <#list order.dishItems as dishItem>
                 <tr>
                     <td style="width: 50px">
-                        <a href="#"><img style="height: 32px;width: 32px" src="/res/images/shop-image.jpeg"></a>
+                        <a href="#"><img style="height: 32px;width: 32px" src="/res/avatar/shop-image.jpeg"></a>
                     </td>
                     <td colspan="2">
                         <span class="text-primary lead" style="font-size: 17px">${dishItem.dishName}</span><br>

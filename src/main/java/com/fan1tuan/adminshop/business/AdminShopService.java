@@ -21,6 +21,8 @@ public interface AdminShopService extends IFan1TuanService {
 	// 同上
 	public DishTasteTag saveDishTasteTag(String shopClientId, DishTasteTag dishTasteTag);//判断店铺归属
 
+	public Dish saveDish(String shopClientId, Dish dish);
+
 	public boolean removeDishTasteTag(String shopClientId, String dishTasteId);//判断店铺归属
 
 	public ShopClient fetchShopClient(String shopClientId);

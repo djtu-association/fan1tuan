@@ -125,6 +125,22 @@ public class AdminShopServiceImpl implements AdminShopService{
 	}
 
 	@Override
+	public Dish saveDish(String shopClientId, Dish dish) {
+		if (!isYourShop(shopClientId, dish.getShopId())) {
+			return null;
+		}
+
+		if (dish.getId()==null||"".equals(dish.getId())) {
+			//save shop
+			dishDao.add(dish);
+		} else {
+			//update shop
+			dishDao.update(dish);
+		}
+		return dish;
+	}
+
+	@Override
 	public boolean removeDishTasteTag(String shopClientId, String dishTasteId) {
 		DishTasteTag dishTasteTag = dishTasteTagDao.findOneById(dishTasteId);
 		if (!isYourShop(shopClientId, dishTasteTag.getShopId())) {
