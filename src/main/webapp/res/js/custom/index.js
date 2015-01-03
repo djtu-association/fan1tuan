@@ -105,6 +105,50 @@ $('document').ready(function () {
         });
     });
 
+    this.delFromCollectBox = function(target, type, id) {
+        var obj = $('#' + target);//obj是<span>
+        var objParent = obj.parent();//objParent则是<a>
+
+        //下面判断，按钮是否已经是"已收藏"，如果是则跳过跳出
+        var attrArr = (objParent.attr("class")).split(" ");
+        var btnAvail = false;
+        for (var i = 0; i < attrArr.length; i++) {
+            if (attrArr[i] == "collectTips") {//collectTips控制收藏按钮的现实和可用
+                btnAvail = true;
+            }
+        }
+        if(!btnAvail) {
+            return;
+        }
+
+        //Ajax url,data
+        var url = (0 == type) ? "user/ajax/secure/ajaxRemoveFavoriteShop.f1t" : "user/ajax/secure/ajaxRemoveFavoriteDish.f1t";
+        var data = (0 == type) ? {"shopId": id, "type": type} : {"dishId": id, "type": type};
+        //Ajax request
+        htmlobj = $.ajax({
+            url: url,
+            data: data,
+            success: function (data) {
+                if(data.flag==2){
+                    //success修改btn的属性，spn的属性
+                    obj.removeClass("text text-danger");
+                    objParent.removeClass();
+                    objParent.addClass("btn btn-danger");
+                    objParent.attr("title", "已取消收藏");
+                    var link = objParent.attr("onclick");
+                    link = link.replace("delFromCollectBox", "addToCollectBox");
+                    objParent.attr("onclick", link);
+                }else if(data.flag==1){
+                    $("#signinModalBtn").trigger("click");
+                    objParent.removeAttr("disabled");
+                }else{
+                    alert("未知错误！！！");
+                    objParent.removeAttr("disabled");
+                }
+
+            }
+        });
+    };
 
     /**
      * 添加到收藏（点击收藏按钮）
@@ -138,9 +182,10 @@ $('document').ready(function () {
                     obj.addClass("text text-danger");
                     objParent.removeClass();
                     objParent.addClass("btn btn-warning collectTips");
-                    objParent.attr("data-toggle", "tooltip");
                     objParent.attr("title", "已收藏");
-                    objParent.tooltip("show");
+                    var link = objParent.attr("onclick");
+                    link = link.replace("addToCollectBox", "delFromCollectBox");
+                    objParent.attr("onclick", link);
                 }else if(data.flag==1){
                     $("#signinModalBtn").trigger("click");
                     objParent.removeAttr("disabled");
@@ -152,10 +197,6 @@ $('document').ready(function () {
             }
         });
     };
-
-    //点击收藏的popover函数
-    $('.collectTips').tooltip("show");
-
 
     /**
      * accord(人气，排行，评分)在页面隐藏域的值

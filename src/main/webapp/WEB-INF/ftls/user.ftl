@@ -86,7 +86,7 @@
             <div class="cm-bd">
                 <div class="hp-user-info">
                     <div class="hd">
-                        <img alt="#" src="../res/img/avatar.jpg" class="user-pic">
+                        <img alt="#" src="../res/avatar/user/${user.image!"user-image.png"}" class="user-pic">
                     </div>
                     <div class="bd">
                         <div class="info">
@@ -112,29 +112,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div data-url="http://my.taobao.com/homepage/ajax/get_user_info.json?user_id=646701379" id="J_HomePageSNS" class="sns">
-                            <p class="line edit-btn">
-                                <a href="#" class="btn btn-inverse">编辑资料</a>
-                            </p>
-                            <ul class="user-atten">
-                                <li class="atten-item fans">
-                                    <a class="atten-link " href="#">
-                                        <strong class="J_FansCount">0</strong>
-                                        <span>
-                                            粉丝
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="atten-item follow">
-                                    <a class="atten-link" href="#">
-                                        <strong class="J_FollowCount">0</strong>
-                                        <span>
-                                            关注
-                                        </span>
-                                    </a>
-                                </li>
+                        <div class="sns">
 
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -189,9 +168,9 @@
         <div class="span10">
             <div class="well order_cat">
                 <span class="text text-primary"><a href="" class="">全部订单</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="text text-primary"><a href="" class="">待卖家受理</a><span class="badge">2</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="text text-primary"><a href="" class="">待确认收货</a><span class="badge">2</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="text text-primary"><a href="" class="">待评价</a><span class="badge">2</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="text text-primary"><a href="" class="">待卖家受理</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="text text-primary"><a href="" class="">待确认收货</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="text text-primary"><a href="" class="">待评价</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
         </div>
         <div class="span1"></div>
@@ -281,9 +260,12 @@
                             </td>
                             
                             <td colspan="4" rowspan="${order.dishItems.size()}" style="text-align: center;padding-top:30px">
-                            	<#if order.status<4 >
-                            	<#elseif order.status==4>
-                                	<a href="#" class=""><span class="lead text-info" style="font-size: 17px;">评价<i class="glyphicon glyphicon-pencil"></i></span></a>
+                            	<#if order.status<3 >
+
+                                <#elseif order.status==3>
+                                    <button class="btn btn-primary confirm-delivery" data-bind="${order.id}"><span class="lead" style="font-size: 17px;">确认收货</span></button>
+                                <#elseif order.status==4>
+                                	<button class="btn btn-info evaluate" data-bind="${order.id}"><span class="lead" style="font-size: 17px;">评价</span></button>
                             	<#elseif order.status==5>
                                 	<span class="text-default lead" style="font-size: 17px;color:darkgray">已评价</span>
                             	<#else>
@@ -852,6 +834,12 @@
         <button class="btn btn-primary">添加地址</button>
     </div>
 </div>
+
+    <div id="orderStatusModal" class="modal fade sr-only" tabindex="-1" role="dialog" aria-labelledby="fan1tuanModalLabel"
+         aria-hidden="true">
+        <h3></h3>
+        <button></button>
+    </div>
 
 
 <div style="height: 30px"></div>

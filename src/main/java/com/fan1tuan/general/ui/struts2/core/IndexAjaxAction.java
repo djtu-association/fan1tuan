@@ -2,6 +2,9 @@ package com.fan1tuan.general.ui.struts2.core;
 
 import javax.servlet.http.Cookie;
 
+import com.fan1tuan.user.pojos.FavoriteDish;
+import com.fan1tuan.user.pojos.FavoriteShop;
+import com.fan1tuan.user.pojos.UserAddress;
 import org.apache.struts2.ServletActionContext;
 
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
@@ -13,6 +16,8 @@ import com.fan1tuan.general.util.SessionUtil;
 import com.fan1tuan.user.business.UserService;
 import com.fan1tuan.user.pojos.User;
 import com.opensymphony.xwork2.Action;
+
+import java.util.ArrayList;
 
 public class IndexAjaxAction extends Fan1TuanAction{
 	
@@ -78,7 +83,7 @@ public class IndexAjaxAction extends Fan1TuanAction{
 	
 	
 	/**
-	 * --------------------------/ajaxSignup.f1t----------------------
+	 * --------------------------/ajax/Signup.f1t----------------------
 	 * @return
 	 */
 	//入参
@@ -90,7 +95,15 @@ public class IndexAjaxAction extends Fan1TuanAction{
 	public String signup(){
 		User user = new User();
 		user.setCellphone(cellphone);
+		user.setCredit(0);
+		user.setLevel(0);
+		user.setEmail("");
+		user.setFavoriteDishes(new ArrayList<FavoriteDish>());
+		user.setFavoriteShops(new ArrayList<FavoriteShop>());
+		user.setUserAddresses(new ArrayList<UserAddress>());
 		user.setPassword(password);
+		user.setImage("user-image.png");
+		user.setUsername(cellphone);
 		flag = makeFlag(false);
 		//判断手机号码是否可用
 		if(userService.isAvailableCellphone(cellphone)){		

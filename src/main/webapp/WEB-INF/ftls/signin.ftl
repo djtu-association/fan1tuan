@@ -98,10 +98,6 @@
               <div class="modal-body">
                   <p><span class="glyphicon glyphicon-time"/><span id="countTime">5</span>秒后自动登陆进入到美餐
               </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="location='reg.f1t'">返回注册页面</button>
-                  <button type="button" class="btn btn-primary" onclick="location='setArea.f1t'">自动登陆进入主页</button>
-              </div>
           </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->

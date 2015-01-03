@@ -46,6 +46,7 @@ $(document).ready(function () {
         var tdFooter = "";
         var pContent = "";
         var funcAddCollect = "";
+        var funcDelCollect = "";
         var shopLink = "";
 
         //alert(json.rankDishList.length);
@@ -57,6 +58,7 @@ $(document).ready(function () {
             tdFooter = (((i + 1) % 4) == 0 || (i + 1) == size) ? "</td></tr>" : "</td>";
             shopLink = "location='shop/index.f1t?shopId=" + data[i].content.shopId + "'";
             funcAddCollect = "addToCollectBox('dish_spn_" + i + "','1','" + data[i].content.id + "')";
+            funcDelCollect = "delFromCollectBox('dish_spn_" + i + "','1','" + data[i].content.id + "')";
 
             partial = tdHeader +
             "<div>" +
@@ -80,7 +82,7 @@ $(document).ready(function () {
             "<p>" +
             "<a class='btn btn-info ' href='javascript:void(0);' onclick=" + shopLink + " data-toggle='Enter the shop' title='进入菜品所在店铺'><span class='glyphicon glyphicon-home'></span></a>";
             if (data[i].isLike != undefined && data[i].isLike == 'true') {
-                partial += "&nbsp;<a class='btn btn-warning collectTips' href='javascript:void(0)' title='已收藏' data-toggle='tooltip' data-original-title='已收藏'><span class='glyphicon glyphicon-heart text text-danger' id='dish_spn_" + i + "'></span></a>";
+                partial += "&nbsp;<a class='btn btn-warning collectTips' href='javascript:void(0)' onclick=" + funcDelCollect + " title='已收藏' data-toggle='tooltip' data-original-title='已收藏'><span class='glyphicon glyphicon-heart text text-danger' id='dish_spn_" + i + "'></span></a>";
             } else {
                 partial += "&nbsp;<a class='btn btn-danger ' href='javascript:void(0)' onclick=" + funcAddCollect + " title='收藏该菜品'><span class='glyphicon glyphicon-heart' id='dish_spn_" + i + "'></span></a>";
             }

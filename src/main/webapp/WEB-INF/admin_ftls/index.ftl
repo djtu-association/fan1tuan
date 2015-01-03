@@ -813,14 +813,15 @@
     var orderChart = new Chart(orderChartCtx).Doughnut(orderData);
 
     var data = {
-        labels : ["","","","","","","今天"],
+        labels : ["6天前","5天前","4天前","3天前","前天","昨天","今天"],
         datasets : [
             {
                 fillColor : "rgba(151,187,205,0.5)",
                 strokeColor : "rgba(151,187,205,1)",
                 pointColor : "rgba(151,187,205,1)",
                 pointStrokeColor : "#fff",
-                data : [0,0,0,1,0,0,0]
+                data : [${orderActivity["6"]},${orderActivity["5"]},${orderActivity["4"]},${orderActivity["3"]}
+                    ,${orderActivity["2"]},${orderActivity["1"]},${orderActivity["0"]}]
             }
         ]
     };

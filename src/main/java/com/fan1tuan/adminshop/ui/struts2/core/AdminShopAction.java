@@ -7,9 +7,9 @@ import com.fan1tuan.general.dao.impl.*;
 import com.fan1tuan.general.pojos.Area;
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
 import com.fan1tuan.general.util.Constants;
-import com.fan1tuan.general.util.DateUtil;
 import com.fan1tuan.general.util.UUIDGenerator;
 import com.fan1tuan.order.pojos.Order;
+import com.fan1tuan.order.util.SystemOutEntity;
 import com.fan1tuan.shop.pojos.*;
 import com.mongodb.WriteResult;
 import com.opensymphony.xwork2.Action;
@@ -34,6 +34,14 @@ public class AdminShopAction extends Fan1TuanAction {
     private OrderDao orderDao;
     private DishTasteTagDao dishTasteTagDao;
     private DishDao dishDao;
+
+    public Map<String, Integer> getOrderActivity() {
+        return orderActivity;
+    }
+
+    public void setOrderActivity(Map<String, Integer> orderActivity) {
+        this.orderActivity = orderActivity;
+    }
 
     public DishDao getDishDao() {
         return dishDao;
@@ -433,6 +441,7 @@ public class AdminShopAction extends Fan1TuanAction {
 
     private Map<String, Integer> dishTagData;
     private Map<String, Integer> orderData;
+    private Map<String, Integer> orderActivity;
     private Date today;
 
     public String execute() {
@@ -448,7 +457,6 @@ public class AdminShopAction extends Fan1TuanAction {
                 dishes = adminShopService.fetchDishes(shopClient.getId(), shopClient.getShopId());
                 activeOrders = adminShopService.fetchActiveOrders(shopClient.getId(), shopClient.getShopId());
                 nonactiveOrders = adminShopService.fetchNonActiveOrders(shopClient.getId(), shopClient.getShopId());
-
                 dishTasteMap = new HashMap<String, String>();
                 for (DishTasteTag tag : dishTasteTags) {
                     dishTasteMap.put(tag.getId(), tag.getName());
@@ -467,14 +475,46 @@ public class AdminShopAction extends Fan1TuanAction {
 
                 orderData = new HashMap<String, Integer>();
                 for (Order order : activeOrders) {
-                    if (orderData.get(order.getStatus()) == null) {
+                    if (orderData.get(order.getStatus()+"") == null) {
                         orderData.put(order.getStatus() + "", 1);
                     } else {
-                        int num = orderData.get(order.getStatus());
+                        int num = orderData.get(order.getStatus()+"");
                         orderData.put(order.getStatus() + "", ++num);
                     }
                 }
+
                 today = new Date();
+                GregorianCalendar gc = new GregorianCalendar();
+                gc.setTime(today);
+                gc.set(Calendar.DAY_OF_MONTH, 1);
+                gc.set(Calendar.DATE, -1);
+                int days = gc.get(Calendar.DAY_OF_MONTH);
+                gc.setTime(today);
+                gc.set(Calendar.MINUTE, 0);
+                gc.set(Calendar.HOUR, 0);
+                gc.set(Calendar.SECOND, 0);
+                gc.add(Calendar.DATE, -6);
+                Date startDate = gc.getTime();
+
+                orderActivity = new HashMap<String, Integer>();
+                orderActivity.put("0", 0);
+                orderActivity.put("1", 0);
+                orderActivity.put("2", 0);
+                orderActivity.put("3", 0);
+                orderActivity.put("4", 0);
+                orderActivity.put("5", 0);
+                orderActivity.put("6", 0);
+                List<Order> tempOrders = orderDao.findByParams(CriteriaWrapper.instance().is("shopId", shop.getId()).gte("date", startDate));
+                for(Order temp: tempOrders) {
+                    //System.out.println(temp.getDate());
+                    int keyInt = (today.getDate() - temp.getDate().getDate());
+                    if(keyInt<0) {
+                        keyInt=days-temp.getDate().getDate()+today.getDate()+1;
+                    }
+                    String key = keyInt+"";
+                    orderActivity.put(key, orderActivity.get(key) + 1);
+                    //System.out.println("key = "+key+", value="+orderActivity.get(key));
+                }
             } else {
                 shop = null;
             }

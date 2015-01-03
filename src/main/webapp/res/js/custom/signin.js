@@ -36,14 +36,19 @@ $('document').ready(function(){
 			$('#sign_tips').fadeIn(500);
 			$('#sign_tips').fadeOut(3000);
 			return;
-    	}
+    	} else if(repassword != password) {
+			$('#sign_tips').html("两次密码输入不一致哦");
+			$('#sign_tips').fadeIn(500);
+			$('#sign_tips').fadeOut(3000);
+			return;
+		}
     	//ajax url,data
     	var url = "../ajax/secure/ajaxSignup.f1t";
     	var data = {"cellphone":cellphone,"password":password,"checkcode":checkcode};
     	//ajax register
     	$.getJSON(url,data,function(json){
     		
-    		if(json.regFlag == "success"){
+    		if(json.flag == 2){
     			$('#myModal').modal('show');
     			var count = 4;
     			setInterval(function(){
@@ -61,13 +66,8 @@ $('document').ready(function(){
     		    },1000);
     			
     		}
-    		if(json.regFlag == "cellphone"){
+    		if(json.flag == 0){
     			$('#sign_tips').html("此手机号已注册过了哦");
-    			$('#sign_tips').fadeIn(500);
-    			$('#sign_tips').fadeOut(3000);
-    		}
-    		if(json.regFlag == "error"){ 			
-    			$('#sign_tips').html("不小心注册失败了+_+");
     			$('#sign_tips').fadeIn(500);
     			$('#sign_tips').fadeOut(3000);
     		}

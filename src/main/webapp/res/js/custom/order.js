@@ -241,9 +241,11 @@ $('document').ready(function(){
     	}).done(function(data){
     		if(data.flag==2){
     			alert("确认订单成功！");
+				window.location.href = "/user/index.f1t#orders";
     		}else if(data.flag==1){
     			alert("请登录！");
-    		}else{
+				window.location.href = "/secure/signin.f1t";
+			}else{
     			alert("确认订单失败！");
     		}
     	});

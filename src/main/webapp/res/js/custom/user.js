@@ -105,7 +105,31 @@ $(function() {
         $("#receiver-cellphone").toggleClass("flat");
     });
     
-    
+
+    $(".confirm-delivery").click(function (event) {
+        var orderId = $(this).attr("data-bind");
+        var modal = $("#orderStatusModal");
+        modal.empty();
+        modal.removeClass("sr-only");
+        modal.append(['<div class="modal-header" style="height: 40px">'
+            ,'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>'
+            ,'<h4 id="myModalLabe" class="lead">确认收货</h4>'
+            ,'</div>'
+            ,'<div class="modal-body">'
+            ,'<h5>您确定已收到货物，并确认收货吗？</h5>'
+            ,'</div>'
+            ,'<div class="modal-footer">'
+            ,'<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>'
+            ,'<button class="btn btn-primary" onclick="confirmDelivery(\''+orderId+'\')">确认</button>'
+            ,'</div>'].join(''));
+        modal.modal('show');
+    });
+
+    $(".evaluate").click(function (event) {
+        var orderId = $(this).attr("data-bind");
+
+    });
+
     /**
      * js全部加载好后执行切换tab的操作
      */
@@ -116,3 +140,14 @@ $(function() {
     }
 
 });
+
+window.confirmDelivery = function (orderId) {
+    $.getJSON("/user/ajax/secure/ajaxConfirmDelivery.f1t?orderId="+orderId, function(data){
+        if(data.flag==2){
+            window.location.reload(true);
+        } else {
+            alert("error");
+        }
+
+    });
+};

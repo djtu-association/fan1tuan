@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.fan1tuan.general.dao.CriteriaWrapper;
+import com.fan1tuan.general.dao.UpdateWrapper;
+import com.fan1tuan.general.dao.impl.OrderDao;
 import com.fan1tuan.general.ui.struts2.core.support.Fan1TuanAction;
 import com.fan1tuan.general.util.Constants.ChargeType;
 import com.fan1tuan.general.util.Constants.FlagStatus;
@@ -26,6 +29,7 @@ import com.fan1tuan.shop.pojos.Shop;
 import com.fan1tuan.user.business.UserAddressService;
 import com.fan1tuan.user.business.UserService;
 import com.fan1tuan.user.pojos.UserAddress;
+import com.mongodb.WriteResult;
 import com.opensymphony.xwork2.Action;
 
 public class UserAjaxAction extends Fan1TuanAction {
@@ -34,13 +38,30 @@ public class UserAjaxAction extends Fan1TuanAction {
 	 */
 	private static final long serialVersionUID = -2793076353887105436L;
 
+	private OrderDao orderDao;
 	private ShoppingCartService shoppingCartService;
 	private UserService userService;
 	private UserAddressService userAddressService;
 	private DishUserService dishUserService;
 	private ShopUserService shopUserService;
 	private OrderUserService orderUserService;
-	
+
+	public OrderDao getOrderDao() {
+		return orderDao;
+	}
+
+	public void setOrderDao(OrderDao orderDao) {
+		this.orderDao = orderDao;
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
 	public DishUserService getDishUserService() {
 		return dishUserService;
 	}
@@ -568,5 +589,19 @@ public class UserAjaxAction extends Fan1TuanAction {
 		
 		return SUCCESS;
 	}
-	
+
+	/**
+	 * confirm delivery -------------- /user/ajax/secure/ajaxConfirmDelivery.f1t
+	 */
+	private String orderId;
+	public String confirmDelivery() {
+		WriteResult wr = orderDao.updateFirstByParams(CriteriaWrapper.instance().is("id", orderId), UpdateWrapper.instance().set("status", 4));
+		if(wr.getN()>0){
+			flag = makeFlag(true);
+		}else{
+			flag = makeFlag(false);
+		}
+		return SUCCESS;
+	}
+
 }

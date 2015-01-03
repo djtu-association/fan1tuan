@@ -59,6 +59,7 @@ $(document).ready(function () {
         var tdFooter = "";
         var pContent = "";
         var funcAddCollect = "";//js添加收藏函数
+        var funcDelCollect = "";
         var shopLink = "";
         var data = json.shopGeo;
         for (var i = 0, size = json.shopGeo.length; i < size; i++) {
@@ -66,6 +67,7 @@ $(document).ready(function () {
             tdHeader = (i == 0 || (i % 4) == 0) ? "<tr><td>" : "<td>";
             tdFooter = (((i + 1) % 4) == 0 || (i + 1) == size) ? "</td></tr>" : "</td>";
             funcAddCollect = "addToCollectBox('shop_spn_" + i + "','0','" + data[i].content.id + "')";
+            funcDelCollect = "delFromCollectBox('shop_spn_" + i + "','0','" + data[i].content.id + "')";
             shopLink = "location='shop/index.f1t?shopId=" + data[i].content.id + "'";
 
             partial = tdHeader +
@@ -87,7 +89,7 @@ $(document).ready(function () {
             "<a class='btn btn-info' href='javascript:void(0)' onclick=" + shopLink + " data-toggle='Enter the shop' title='进入店铺'><span class='glyphicon glyphicon-home'></span></a>";//跟上面的进入店铺一样
 
             if (data[i].isLike != undefined && data[i].isLike == 'true') {
-                partial += "&nbsp;<a class='btn btn-warning collectTips' href='javascript:void(0)' title='已收藏' data-toggle='tooltip'><span class='glyphicon glyphicon-heart text text-danger' id='shop_spn_" + i + "'></span></a>";
+                partial += "&nbsp;<a class='btn btn-warning collectTips' href='javascript:void(0)' onclick="+funcDelCollect+" title='已收藏' data-toggle='tooltip'><span class='glyphicon glyphicon-heart text text-danger' id='shop_spn_" + i + "'></span></a>";
             }
             else {
                 partial += "&nbsp;<a class='btn btn-danger' href='javascript:void(0)' onclick=" + funcAddCollect + " title='收藏该店铺'><span class='glyphicon glyphicon-heart' id='shop_spn_" + i + "'></span></a>";

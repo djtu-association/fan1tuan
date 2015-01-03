@@ -75,6 +75,9 @@
 		<action name="ajaxSubmitOrder" method="submitOrder" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
 			<result name="success" type="jsonResult">flag</result>
 		</action>
+		<action name="ajaxConfirmDelivery" method="confirmDelivery" class="com.fan1tuan.user.ui.struts2.core.UserAjaxAction">
+			<result name="success" type="jsonResult">flag</result>
+		</action>
 	</package>
 	
 </struts>
