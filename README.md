@@ -1,6 +1,6 @@
 Fan1tuan
 ========
-Fan1tuan is a C2C e-business platform for food sale, providing a lot of features both for shop owners and customers.
+Fan1tuan is a B2C e-business platform for food sale, providing a lot of features both for shop owners and customers.
 
 Overview
 ------------
